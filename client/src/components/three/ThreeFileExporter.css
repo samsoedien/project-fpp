@@ -1,0 +1,19 @@
+.three-file-exporter-button {
+  display: block;
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 240px;
+  height: 40px;
+  background-color: DodgerBlue;
+  color: white;
+  font-size: 14px;
+  z-index: 1;
+  transition: .4s;
+}
+
+.three-file-exporter-button:hover {
+  cursor: pointer;
+  background-color: blue;
+  transition: .4s;
+}
