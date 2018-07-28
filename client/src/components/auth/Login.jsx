@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classnames from 'classnames';
 import { loginUser } from '../../actions/authActions';
-import TextFieldGroup from '../common/TextFieldGroup';
+import classnames from 'classnames';
 
 import './Login.css';
 
@@ -71,38 +70,28 @@ class Login extends Component {
               <h2 className="login-heading-h2">Login</h2>
               <p>Sign in your account.</p>
               <form onSubmit={this.onSubmit} className="login-form">
-                <TextFieldGroup
-                  placeholder="Email Address"
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={this.onChange}
-                  error={errors.email}
-                />
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  value={password}
-                  onChange={this.onChange}
-                  error={errors.password}
-                />
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={this.onChange}
-                  error={errors.email}
-                />
-                <TextFieldGroup
-                  placeholder="Email Address"
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={this.onChange}
-                  error={errors.email}
-                />
+                <div className="register-form-group">
+                  <input
+                    type="text"
+                    className={classnames('register-form-control form-control-lg', { 'isinvalid': errors.email })}
+                    placeholder="Email"
+                    name="email"
+                    value={email}
+                    onChange={this.onChange}
+                  />
+                  {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
+                </div>
+                <div className="register-form-group">
+                  <input
+                    type="text"
+                    className={classnames('register-form-control form-control-lg', { 'isinvalid': errors.password })}
+                    placeholder="Password"
+                    name="password"
+                    value={password}
+                    onChange={this.onChange}
+                  />
+                  {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
+                </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
