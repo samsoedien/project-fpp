@@ -126,7 +126,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
       // Update 
       Profile.findOneAndUpdate(
         { user: req.user.id },
-        { $set: profileField },
+        { $set: profileFields },
         { new: true }
       ).then(profile => res.json(profile));
     } else {

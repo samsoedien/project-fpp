@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react'
 
-export default class Navbar extends Component {
-  render() {
-    return (
-      <div>
-        <footer>
-          <h2>This is a footer</h2>
-        </footer>
-      </div>
-    );
-  }
-}
+const Footer = () => {
+  return (
+    <footer className="bg-dark text-white mt-5 p-4 text-center">
+      <span>Copyright &copy; {new Date().getFullYear()} Food Printing Platform</span>
+      <br />
+      <span>All rights reserved</span>
+    </footer>
+  );
+};
+
+export default Footer;

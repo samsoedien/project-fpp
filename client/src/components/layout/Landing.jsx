@@ -16,13 +16,25 @@ class Landing extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Welcome to FoodieShapes</h2>
-        <p>The online platform for food printing.</p>
-        <h3>Get Started</h3>
-        <Link to="/register" className="">Signup</Link>
+      <div className="landing">
+        <div className="dark-overlay landing-inner text-light">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12 text-center">
+                <h2 className="display-3 mb-4">Food Printing Platform</h2>
+                <p className="lead">
+                  {' '}
+                  A platform to work with food printing technology.
+                </p>
+                <hr />
+                <Link to="/register" className="btn btn-lg btn-info mr-2">Signup</Link>
+                <Link to="/login" className="btn btn-lg btn-light">Login</Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 }
 

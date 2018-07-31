@@ -9,7 +9,6 @@ import './Navbar.css';
 class Navbar extends Component {
   constructor(props) {
     super(props);
-
     this.onLogoutClick = this.onLogoutClick.bind(this);
   }
 
@@ -24,6 +23,11 @@ class Navbar extends Component {
 
     const authLinks = (
       <ul className="navbar-list navbar-list--float-right">
+        <li className="navbar-list-item">
+          <Link className="navbar-link" to="/dashboard">
+            Dashboard
+          </Link>
+        </li>
         <li className="navbar-list-item">
           <a href="#" onClick={this.onLogoutClick} className="navbar-link">Logout
             <img src={user.avatar} alt={user.name} style={{ width: '25px', marginRight: '5x' }} title="Gravatar image" />
