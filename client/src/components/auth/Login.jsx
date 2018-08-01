@@ -42,19 +42,19 @@ class Login extends Component {
     }
   }
 
-  onChange(event) {
+  onChange(e) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     });
   }
 
-  onSubmit(event) {
-    event.preventDefault();
+  onSubmit(e) {
+    e.preventDefault();
 
     const userData = {
       email: this.state.email,
       password: this.state.password,
-    }
+    };
 
     this.props.loginUser(userData);
   }
@@ -64,16 +64,16 @@ class Login extends Component {
 
     return (
       <div className="login">
-        <div className="login-container">
+        <div className="container">
           <div className="row">
             <div className="cold-md-8 m-auto">
-              <h2 className="login-heading-h2">Login</h2>
-              <p>Sign in your account.</p>
+              <h2 className="display-4 text-center">Login</h2>
+              <p className="lead text-center">Sign in your account.</p>
               <form onSubmit={this.onSubmit} className="login-form">
-                <div className="register-form-group">
+                <div className="form-group">
                   <input
-                    type="text"
-                    className={classnames('register-form-control form-control-lg', { 'isinvalid': errors.email })}
+                    type="email"
+                    className={classnames('form-control form-control-lg', { 'is-invalid': errors.email })}
                     placeholder="Email"
                     name="email"
                     value={email}
@@ -81,10 +81,10 @@ class Login extends Component {
                   />
                   {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                 </div>
-                <div className="register-form-group">
+                <div className="form-group">
                   <input
-                    type="text"
-                    className={classnames('register-form-control form-control-lg', { 'isinvalid': errors.password })}
+                    type="password"
+                    className={classnames('form-control form-control-lg', { 'is-invalid': errors.password })}
                     placeholder="Password"
                     name="password"
                     value={password}

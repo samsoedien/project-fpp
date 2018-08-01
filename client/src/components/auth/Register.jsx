@@ -18,6 +18,7 @@ class Register extends Component {
       password2: '',
       errors: {},
     };
+
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -39,14 +40,14 @@ class Register extends Component {
     }
   }
 
-  onChange(event) {
+  onChange(e) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     });
   }
 
-  onSubmit(event) {
-    event.preventDefault();
+  onSubmit(e) {
+    e.preventDefault();
 
     const newUser = {
       name: this.state.name,
@@ -61,6 +62,7 @@ class Register extends Component {
   render() {
     const { name, email, password, password2, errors } = this.state;
 
+
     return (
       <div className="register">
         <div className="register-container">
@@ -69,10 +71,10 @@ class Register extends Component {
               <h2 className="register-heading-h2">Sign Up</h2>
               <p>Create your account.</p>
               <form className="register-form" onSubmit={this.onSubmit} noValidate>
-                <div className="register-form-group">
+                <div className="form-group">
                   <input
                     type="text"
-                    className={classnames('register-form-control form-control-lg', { 'isinvalid': errors.name })}
+                    className={classnames('form-control form-control-lg', { 'is-invalid': errors.name })}
                     placeholder="Name"
                     name="name"
                     value={name}
@@ -80,10 +82,10 @@ class Register extends Component {
                   />
                   {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
                 </div>
-                <div className="register-form-group">
+                <div className="form-group">
                   <input
-                    type="text"
-                    className="register-form-control"
+                    type="email"
+                    className={classnames('form-control form-control-lg', { 'is-invalid': errors.email })}
                     placeholder="Email"
                     name="email"
                     value={email}
@@ -91,10 +93,13 @@ class Register extends Component {
                   />
                   {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                 </div>
-                <div className="register-form-group">
+                <small className="form-text text-muted">
+                  This site uses Gravatar.
+                </small>
+                <div className="form-group">
                   <input
-                    type="text"
-                    className="register-form-control"
+                    type="password"
+                    className={classnames('form-control form-control-lg', { 'is-invalid': errors.password })}
                     placeholder="Password"
                     name="password"
                     value={password}
@@ -102,10 +107,10 @@ class Register extends Component {
                   />
                   {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                 </div>
-                <div className="register-form-group">
+                <div className="form-group">
                   <input
-                    type="text"
-                    className="register-form-control"
+                    type="password"
+                    className={classnames('form-control form-control-lg', { 'is-invalid': errors.password2 })}
                     placeholder="Confirm Password"
                     name="password2"
                     value={password2}
