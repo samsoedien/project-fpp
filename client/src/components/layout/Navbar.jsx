@@ -29,7 +29,7 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="navbar-list-item">
-          <a href="#" onClick={this.onLogoutClick} className="navbar-link">Logout
+          <a href="" onClick={this.onLogoutClick} className="navbar-link">Logout
             <img src={user.avatar} alt={user.name} style={{ width: '25px', marginRight: '5x' }} title="Gravatar image" />
             {' '}
           </a>

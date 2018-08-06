@@ -12,7 +12,7 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
-  restaurant: {
+  company: {
     type: String
   },
   website: {
@@ -30,6 +30,9 @@ const ProfileSchema = new Schema({
     required: true
   },
   bio: {
+    type: String
+  },
+  githubusername: {
     type: String
   },
   experience: [
@@ -57,11 +60,11 @@ const ProfileSchema = new Schema({
         default: false
       },
       description: {
-        type: String,
+        type: String
       }
     }
   ],
-  educataion: [
+  education: [
     {
       school: {
         type: String,
@@ -87,7 +90,7 @@ const ProfileSchema = new Schema({
         default: false
       },
       description: {
-        type: String,
+        type: String
       }
     }
   ],
