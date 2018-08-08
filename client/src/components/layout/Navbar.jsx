@@ -64,13 +64,13 @@ class Navbar extends Component {
                 </Link>
               </li>
               <li className="navbar-list-item">
-                <Link className="navbar-link" to="/dishes">
-                  Digital Dishes
+                <Link className="navbar-link" to="/profiles">
+                  Chefs
                 </Link>
               </li>
               <li className="navbar-list-item">
-                <Link className="navbar-link" to="/profiles">
-                  Chefs
+                <Link className="navbar-link" to="/feed">
+                  Community
                 </Link>
               </li>
             </ul>
