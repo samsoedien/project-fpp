@@ -22,14 +22,12 @@ class Posts extends Component {
     }
 
     return (
-      <div className="posts">
-        <div className="feed">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <PostForm />
-                {postContent}
-              </div>
+      <div className="feed">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <PostForm />
+              {postContent}
             </div>
           </div>
         </div>
@@ -40,11 +38,11 @@ class Posts extends Component {
 
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
-  posts: PropTypes.object.isRequired,
-}
+  post: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
-  post: state.post,
+  post: state.post
 });
 
 export default connect(mapStateToProps, { getPosts })(Posts);

@@ -9,7 +9,7 @@ module.exports = function validateProfileInput(data) {
   data.skills = !isEmpty(data.skills) ? data.skills : '';
 
   if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
-    errors.handle = 'Handle needs to be between 2 and 40 characters';
+    errors.handle = 'Handle needs to between 2 and 4 characters';
   }
 
   if (Validator.isEmpty(data.handle)) {
@@ -29,8 +29,6 @@ module.exports = function validateProfileInput(data) {
       errors.website = 'Not a valid URL';
     }
   }
-
-  // Social networks
 
   if (!isEmpty(data.youtube)) {
     if (!Validator.isURL(data.youtube)) {
@@ -65,5 +63,5 @@ module.exports = function validateProfileInput(data) {
   return {
     errors,
     isValid: isEmpty(errors)
-  }
+  };
 };

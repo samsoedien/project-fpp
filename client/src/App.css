@@ -7,7 +7,7 @@
   padding: 0;
 }
 
-/* Rules from MERN Tutorial */
+/* Rules from MERN Stack Tutorial */
 
 img {
   width: 100%;
@@ -15,7 +15,7 @@ img {
 
 .landing {
   position: relative;
-  background: url('./prawn11.jpg') no-repeat;
+  background: url('./img/prawn11.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import PostItem from '../posts/PostItem';
 import CommentForm from './CommentForm';
 import CommentFeed from './CommentFeed';
@@ -42,17 +42,17 @@ class Post extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 Post.propTypes = {
   getPost: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
-}
+  post: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
-  post: state.post,
+  post: state.post
 });
 
 export default connect(mapStateToProps, { getPost })(Post);

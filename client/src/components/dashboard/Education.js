@@ -15,7 +15,7 @@ class Education extends Component {
         <td>{edu.school}</td>
         <td>{edu.degree}</td>
         <td>
-          <Moment format="YYYY/MM/DD">{edu.from}</Moment> {' - '}
+          <Moment format="YYYY/MM/DD">{edu.from}</Moment> -
           {edu.to === null ? (
             ' Now'
           ) : (
@@ -23,7 +23,12 @@ class Education extends Component {
             )}
         </td>
         <td>
-          <button onClick={this.onDeleteClick.bind(this, edu._id)} className="btn btn-danger">Delete</button>
+          <button
+            onClick={this.onDeleteClick.bind(this, edu._id)}
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
         </td>
       </tr>
     ));
@@ -42,12 +47,12 @@ class Education extends Component {
           </thead>
         </table>
       </div>
-    )
+    );
   }
 }
 
 Education.propTypes = {
-  deleteEducation: PropTypes.func.isRequired,
+  deleteEducation: PropTypes.func.isRequired
 };
 
 export default connect(null, { deleteEducation })(Education);

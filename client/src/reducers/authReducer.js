@@ -1,9 +1,10 @@
 import isEmpty from '../validation/is-empty';
+
 import { SET_CURRENT_USER } from '../actions/types';
 
 const initialState = {
   isAuthenticated: false,
-  user: {},
+  user: {}
 };
 
 export default function (state = initialState, action) {
@@ -12,7 +13,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload),
-        user: action.payload,
+        user: action.payload
       };
     default:
       return state;

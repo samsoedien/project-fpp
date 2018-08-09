@@ -15,7 +15,7 @@ class Experience extends Component {
         <td>{exp.company}</td>
         <td>{exp.title}</td>
         <td>
-          <Moment format="YYYY/MM/DD">{exp.from}</Moment> {' - '}
+          <Moment format="YYYY/MM/DD">{exp.from}</Moment> -
           {exp.to === null ? (
             ' Now'
           ) : (
@@ -23,7 +23,12 @@ class Experience extends Component {
             )}
         </td>
         <td>
-          <button onClick={this.onDeleteClick.bind(this, exp._id)} className="btn btn-danger">Delete</button>
+          <button
+            onClick={this.onDeleteClick.bind(this, exp._id)}
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
         </td>
       </tr>
     ));
@@ -42,12 +47,12 @@ class Experience extends Component {
           </thead>
         </table>
       </div>
-    )
+    );
   }
 }
 
 Experience.propTypes = {
-  deleteExperience: PropTypes.func.isRequired,
+  deleteExperience: PropTypes.func.isRequired
 };
 
 export default connect(null, { deleteExperience })(Experience);
