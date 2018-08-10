@@ -23,7 +23,7 @@ class Login extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  getDerivedStateFromProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/dashboard');
     }

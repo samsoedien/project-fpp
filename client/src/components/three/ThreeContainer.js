@@ -1,34 +1,37 @@
 import React, { Component } from 'react';
-import './ThreeContainer.css';
-
-import ThreeScene from './ThreeScene';
-import ThreeDataInfo from './ThreeDataInfo';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import * as THREE from 'three';
+import { threeInit, threeCalcVol } from './threeFunctions';
 
 class ThreeContainer extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      title: 'Dessert Dish',
-      volume: 0,
+      geometry: 20,
+      material: { color: 0x00ff00 },
+      mesh: 20,
     };
-
-    this.myCallback = this.myCallback.bind(this);
   }
 
-  myCallback(dataFromChild) {
-    console.log('vol: ' + dataFromChild);
+  componentDidMount() {
+    const { geometry, material, mesh } = this.state;
+    threeInit(THREE);
   }
 
   render() {
     const { width, height } = this.props;
-
     return (
       <div className="three-container">
-        <ThreeScene width={width} height={height} callbackVolume={this.myCallback} />
+        <canvas ref={(mount => { this.mount = mount })} width={width} height={height} />
       </div>
     );
   }
 }
 
-export default ThreeContainer;
+ThreeContainer.propTypes = {
+  width: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
+};
+
+export default connect(null)(ThreeContainer);
