@@ -4,7 +4,8 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  recipes: [],
+  recipe: null,
+  recipes: null,
   loading: false,
 };
 

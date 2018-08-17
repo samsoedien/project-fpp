@@ -16,7 +16,7 @@ class PostForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  getDerivedStateFromProps(newProps) {
+  componentWillReceiveProps(newProps) {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
     }

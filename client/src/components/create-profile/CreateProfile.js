@@ -26,17 +26,21 @@ class CreateProfile extends Component {
       linkedin: '',
       youtube: '',
       instagram: '',
-      errors: {}
+      errors: {},
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  getDerivedStateFromProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   onSubmit(e) {
@@ -59,10 +63,6 @@ class CreateProfile extends Component {
     };
 
     this.props.createProfile(profileData, this.props.history);
-  }
-
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
@@ -241,12 +241,12 @@ class CreateProfile extends Component {
 }
 CreateProfile.propTypes = {
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
+
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.errors
+  errors: state.errors,
 });
-export default connect(mapStateToProps, { createProfile })(
-  withRouter(CreateProfile)
-);
+
+export default connect(mapStateToProps, { createProfile })(withRouter(CreateProfile));

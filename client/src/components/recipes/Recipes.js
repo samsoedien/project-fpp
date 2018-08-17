@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Spinner from '../common/Spinner';
 import RecipeItem from './RecipeItem';
 import { getRecipes } from '../../actions/recipeActions';
@@ -31,6 +32,9 @@ class Recipes extends Component {
       <div>
         {recipeItems}
         <ThreeContainer width="800" height="280" />
+        <Link to="/create-recipe" className="btn btn-lg btn-info">
+          Create Recipe
+        </Link>
       </div>
     );
   }

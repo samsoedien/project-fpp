@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 import { clearCurrentProfile } from './actions/profileActions';
@@ -27,6 +27,7 @@ import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
 
 import Recipes from './components/recipes/Recipes';
+import CreateRecipe from './components/create-recipe/CreateRecipe';
 
 import './App.css';
 
@@ -35,7 +36,7 @@ if (localStorage.jwtToken) {
     // Set auth token header auth
     setAuthToken(localStorage.jwtToken);
     // Decode token and get user info and exp
-    const decoded = jwt_decode(localStorage.jwtToken);
+    const decoded = jwtDecode(localStorage.jwtToken);
     // Set user and isAuthenticated
     store.dispatch(setCurrentUser(decoded));
 
@@ -101,6 +102,13 @@ class App extends Component {
                             </Switch>
                             <Switch>
                                 <PrivateRoute exact path="/post/:id" component={Post} />
+                            </Switch>
+                            <Switch>
+                                <PrivateRoute
+                                    exact
+                                    path="/create-recipe"
+                                    component={CreateRecipe}
+                                />
                             </Switch>
                             <Route exact path="/not-found" component={NotFound} />
                         </div>

@@ -3,19 +3,13 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const RecipeSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'users'
-  },
-  text: {
+  title: {
     type: String,
     required: true
   },
-  name: {
-    type: String
-  },
-  avatar: {
-    type: String
+  ingredient: {
+    type: String,
+    required: true
   },
   date: {
     type: Date,

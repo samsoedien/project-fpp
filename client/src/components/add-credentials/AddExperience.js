@@ -26,7 +26,7 @@ class AddExperience extends Component {
     this.onCheck = this.onCheck.bind(this);
   }
 
-  getDerivedStateFromProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
