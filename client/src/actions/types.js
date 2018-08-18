@@ -13,4 +13,5 @@ export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 
 export const GET_RECIPES = 'GET_RECIPES';
+export const GET_RECIPE = 'GET_RECIPE';
 export const RECIPE_LOADING = 'RECIPE_LOADING';

@@ -24,24 +24,6 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ norecipesfound: 'No recipes found' }));
 });
 
-// @route   GET api/recipes/all
-// @desc    Get all recipes
-// @access  Public
-router.get('/all', (req, res) => {
-  const errors = {};
-
-  Recipe.find()
-    .populate()
-    .then(recipes => {
-      if (!recipes) {
-        errors.norecipe = 'There are no recipes';
-        return res.status(404).json(errors);
-      }
-      res.json(recipes);
-    })
-    .catch(err => res.status(404).json({ recipe: 'There are no recipes' }));
-});
-
 // @route   POST api/recipes
 // @desc    Create a recipe
 // @access  Private
@@ -59,6 +41,18 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   });
 
   newRecipe.save().then(recipe => res.json(recipe));
+});
+
+
+// @route   GET api/recipes/:id
+// @desc    Get recipe by id
+// @access  Public
+router.get('/:id', (req, res) => {
+  Recipe.findById(req.params.id)
+    .then(recipe => res.json(recipe))
+    .catch(err =>
+      res.status(404).json({ norecipefound: 'No recipe found with that ID' })
+    );
 });
 
 module.exports = router;

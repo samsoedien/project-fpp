@@ -15,7 +15,7 @@ img {
 
 .landing {
   position: relative;
-  background: url('./img/prawn11.jpg') no-repeat;
+  background: url('./assets/img/prawn11.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
   GET_RECIPES,
+  GET_RECIPE,
   RECIPE_LOADING,
   GET_ERRORS,
 } from './types';
@@ -17,13 +18,28 @@ export const setRecipeLoading = () => {
 export const getRecipes = () => (dispatch) => {
   dispatch(setRecipeLoading());
   axios
-    .get('/api/recipes/all')
+    .get('/api/recipes')
     .then(res => dispatch({
       type: GET_RECIPES,
       payload: res.data,
     }))
     .catch(err => dispatch({
       type: GET_RECIPES,
+      payload: null,
+    }));
+};
+
+// Get Recipe
+export const getRecipe = id => (dispatch) => {
+  dispatch(setRecipeLoading());
+  axios
+    .get(`/api/recipes/${id}`)
+    .then(res => dispatch({
+      type: GET_RECIPE,
+      payload: res.data,
+    }))
+    .catch(err => dispatch({
+      type: GET_RECIPE,
       payload: null,
     }));
 };

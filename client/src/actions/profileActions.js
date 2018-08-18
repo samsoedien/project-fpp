@@ -12,7 +12,7 @@ import {
 // Profile loading
 export const setProfileLoading = () => {
   return {
-    type: PROFILE_LOADING
+    type: PROFILE_LOADING,
   };
 };
 

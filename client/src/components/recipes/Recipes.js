@@ -6,8 +6,6 @@ import Spinner from '../common/Spinner';
 import RecipeItem from './RecipeItem';
 import { getRecipes } from '../../actions/recipeActions';
 
-import ThreeContainer from '../three/ThreeContainer';
-
 class Recipes extends Component {
   componentDidMount() {
     this.props.getRecipes();
@@ -31,7 +29,6 @@ class Recipes extends Component {
     return (
       <div>
         {recipeItems}
-        <ThreeContainer width="800" height="280" />
         <Link to="/create-recipe" className="btn btn-lg btn-info">
           Create Recipe
         </Link>

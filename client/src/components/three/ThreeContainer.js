@@ -17,13 +17,19 @@ class ThreeContainer extends Component {
   componentDidMount() {
     const { geometry, material, mesh } = this.state;
     threeInit(THREE);
+
+    const width = this.mount.clientWidth
+    const height = this.mount.clientHeight
   }
 
   render() {
     const { width, height } = this.props;
     return (
       <div className="three-container">
-        <canvas ref={(mount => { this.mount = mount })} width={width} height={height} />
+        <canvas
+          style={{ width: '400px', height: '400px' }}
+          ref={(mount) => { this.mount = mount }}
+        />
       </div>
     );
   }
