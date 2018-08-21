@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import TextFieldGroup from '../common/TextFieldGroup';
 import { createRecipe } from '../../actions/recipeActions';
+
+import TextFieldGroup from '../common/TextFieldGroup';
+import SelectListGroup from '../common/SelectListGroup';
 
 class CreateRecipe extends Component {
   constructor(props) {
@@ -41,6 +43,15 @@ class CreateRecipe extends Component {
 
   render() {
     const { errors } = this.state;
+
+    const options = [
+      { label: 'SELECT INGREDIENT', value: 0 },
+      { label: 'Chocolate Pure', value: 'Chocolate Pure' },
+      { label: 'Chocolate Milk', value: 'Chocolate Milk' },
+      { label: 'Cholocate White', value: 'Cholocate White' },
+      { label: 'Chocolate Almond', value: 'Chocolate Almond' },
+    ];
+
     return (
       <div className="create-recipe">
         <div className="container">
@@ -57,13 +68,14 @@ class CreateRecipe extends Component {
                   error={errors.title}
                   info="A title for your created dish."
                 />
-                <TextFieldGroup
+                <SelectListGroup
                   placeholder="Ingredient"
                   name="ingredient"
                   value={this.state.ingredient}
                   onChange={this.onChange}
+                  options={options}
                   error={errors.ingredient}
-                  info="The used ingredient for your created dish."
+                  info="Select Ingredient"
                 />
                 <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
               </form>

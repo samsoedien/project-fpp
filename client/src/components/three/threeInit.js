@@ -1,5 +1,6 @@
+import * as THREE from 'three';
 
-export const threeInit = (THREE) => {
+export const threeInit = () => {
   const width = this.mount.clientWidth;
   const height = this.mount.clientHeight;
 

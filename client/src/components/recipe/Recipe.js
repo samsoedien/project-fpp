@@ -8,6 +8,7 @@ import Spinner from '../common/Spinner';
 import RecipeItem from '../recipes/RecipeItem';
 import ThreeContainer from '../three/ThreeContainer';
 import ThreeScene from '../three/ThreeScene';
+import RecipeNutritions from './RecipeNutritions';
 
 class Recipe extends Component {
   componentDidMount() {
@@ -18,21 +19,23 @@ class Recipe extends Component {
     const { recipe, loading } = this.props.recipe;
     let recipeContent;
 
-    if (recipe === null || loading || Object.keys(recipe).length === 0) {
+    if (recipe === null || loading) {
       recipeContent = <Spinner />;
     } else {
       recipeContent = (
         <div>
           <h1>{recipe.title}</h1>
-          <ThreeContainer width="800" height="280" />
-          <ThreeScene />
+          <ThreeScene width="400" height="280" />
+          <RecipeNutritions kcal="180" />
         </div>
       );
     }
 
     return (
       <div className="recipe">
-        {recipeContent}
+        <div className="">
+          {recipeContent}
+        </div>
       </div>
     )
   }

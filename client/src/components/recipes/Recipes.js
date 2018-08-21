@@ -27,8 +27,27 @@ class Recipes extends Component {
       }
     }
     return (
-      <div>
-        {recipeItems}
+      <div className="recipes">
+        <div className="container">
+          <h1>Search created recipes</h1>
+          <form className="form-inline">
+            <div className="input-group">
+              <div className="input-group-prepend">
+                <span className="input-group-text" id="basic-addon1">@</span>
+              </div>
+              <input type="search" className="form-control form-control-lg" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1" />
+            </div>
+          </form>
+        </div>
+
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4">
+              {recipeItems}
+            </div>
+          </div>
+        </div>
+
         <Link to="/create-recipe" className="btn btn-lg btn-info">
           Create Recipe
         </Link>
