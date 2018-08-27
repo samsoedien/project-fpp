@@ -7,6 +7,8 @@ import { createRecipe } from '../../actions/recipeActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 
+import RecipeModal from './RecipeModal';
+
 class CreateRecipe extends Component {
   constructor(props) {
     super(props);
@@ -81,7 +83,14 @@ class CreateRecipe extends Component {
               </form>
             </div>
           </div>
+          <div className="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Warning Message</strong> You should check in on some of those fields above.
+            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
+        <RecipeModal />
       </div>
     );
   }

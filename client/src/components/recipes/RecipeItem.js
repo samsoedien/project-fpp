@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import img from '../../assets/img/foodprinted_sidedish.jpg';
 
 const RecipeItem = props => (
-  <div className="recipe-item">
+  <div className="col-md-4 col-sm-6">
     <div className="card card-body bg-light mb-3">
       <img src={img} alt="Card image cap" className="card-img-top" />
       <div className="card-block">
@@ -17,3 +17,5 @@ const RecipeItem = props => (
 );
 
 export default RecipeItem;
+
+// TODO: Cannot start with a parent div of className="recipe-item" due to conflicting bootstrap grid system

@@ -5,6 +5,8 @@ import Spinner from '../common/Spinner';
 import ProfileItem from './ProfileItem';
 import { getProfiles } from '../../actions/profileActions';
 
+import ChefProfile from '../chef/ChefProfile';
+
 class Profiles extends Component {
   componentDidMount() {
     this.props.getProfiles();
@@ -31,10 +33,11 @@ class Profiles extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4 text-center">Developer Profiles</h1>
+              <h1 className="display-4 text-center">Chef Profiles</h1>
               <p className="lead text-center">
-                Browse and connect with developers
+                Browse and connect with chefs
               </p>
+              <ChefProfile profile={this.props.profile} />
               {profileItems}
             </div>
           </div>

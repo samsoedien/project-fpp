@@ -7,6 +7,7 @@ import Spinner from '../common/Spinner';
 
 import RecipeItem from '../recipes/RecipeItem';
 import ThreeContainer from '../three/ThreeContainer';
+import RecipeComponent from './RecipeComponent';
 import ThreeScene from '../three/ThreeScene';
 import RecipeNutritions from './RecipeNutritions';
 
@@ -24,7 +25,7 @@ class Recipe extends Component {
     } else {
       recipeContent = (
         <div>
-          <h1>{recipe.title}</h1>
+          <RecipeComponent recipe={recipe} />
           <ThreeScene width="400" height="280" />
           <RecipeNutritions kcal="180" />
         </div>
@@ -33,9 +34,7 @@ class Recipe extends Component {
 
     return (
       <div className="recipe">
-        <div className="">
-          {recipeContent}
-        </div>
+        {recipeContent}
       </div>
     )
   }

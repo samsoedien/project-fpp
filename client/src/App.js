@@ -14,6 +14,7 @@ import Navbar from './components/layout/Navbar';
 import NavbarComponent from './components/layout/NavbarComponent';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
+import Home from './components/front-page/Home';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
@@ -24,12 +25,15 @@ import AddEducation from './components/add-credentials/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
+import PostsContainer from './containers/PostsContainer';
 import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
 
 import Recipes from './components/recipes/Recipes';
 import CreateRecipe from './components/create-recipe/CreateRecipe';
 import Recipe from './components/recipe/Recipe';
+
+import Test from './components/other/Test';
 
 import './App.css';
 
@@ -58,9 +62,9 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <div className="App">
-        <NavbarComponent />
-        <Route exact path="/" component={Landing} />
-        <div className="container">
+        <Navbar />
+        <Route exact path="/" component={Home} />
+        <main role="main">
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/profiles" component={Profiles} />
@@ -99,7 +103,7 @@ const App = () => (
             />
           </Switch>
           <Switch>
-            <PrivateRoute exact path="/feed" component={Posts} />
+            <PrivateRoute exact path="/feed" component={PostsContainer} />
           </Switch>
           <Switch>
             <PrivateRoute exact path="/post/:id" component={Post} />
@@ -111,8 +115,9 @@ const App = () => (
               component={CreateRecipe}
             />
           </Switch>
+          <Route exact path="/test" component={Test} />
           <Route exact path="/not-found" component={NotFound} />
-        </div>
+        </main>
         <Footer />
       </div>
     </Router>
