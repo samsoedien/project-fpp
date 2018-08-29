@@ -12,3 +12,5 @@ export default () => {
     </div>
   );
 };
+
+// TODO: Rename this component and rethink DOM structure.

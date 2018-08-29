@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { deleteExperience } from '../../actions/profileActions';
 
+import ConfirmDeleteModal from '../common/ConfirmDeleteModal';
+
 class Experience extends Component {
   onDeleteClick(id) {
     this.props.deleteExperience(id);
@@ -29,6 +31,7 @@ class Experience extends Component {
           >
             Delete
           </button>
+          <ConfirmDeleteModal />
         </td>
       </tr>
     ));
@@ -56,3 +59,5 @@ Experience.propTypes = {
 };
 
 export default connect(null, { deleteExperience })(Experience);
+
+//TODO: Implement Modal Confirmation to delete experience item

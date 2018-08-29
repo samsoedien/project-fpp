@@ -26,8 +26,16 @@ class Recipe extends Component {
       recipeContent = (
         <div>
           <RecipeComponent recipe={recipe} />
-          <ThreeScene width="400" height="280" />
-          <RecipeNutritions kcal="180" />
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8">
+                <ThreeScene width="400" height="320" />
+              </div>
+              <div className="col-md-4">
+                <RecipeNutritions kcal="180" />
+              </div>
+            </div>
+          </div>
         </div>
       );
     }

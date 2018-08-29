@@ -39,13 +39,6 @@ const Routes = () => (
         />
       </Switch>
       <Switch>
-        <PrivateRoute
-          exact
-          path="/add-education"
-          component={AddEducation}
-        />
-      </Switch>
-      <Switch>
         <PrivateRoute exact path="/feed" component={Posts} />
       </Switch>
       <Switch>

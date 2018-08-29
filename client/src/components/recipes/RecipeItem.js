@@ -5,7 +5,7 @@ import img from '../../assets/img/foodprinted_sidedish.jpg';
 const RecipeItem = props => (
   <div className="col-md-4 col-sm-6">
     <div className="card card-body bg-light mb-3">
-      <img src={img} alt="Card image cap" className="card-img-top" />
+      <img src={img} alt="" className="card-img-top" />
       <div className="card-block">
         <h4 className="card-title">{props.recipe.title}</h4>
         <h6 className="car-subtitle mb-2 text-muted">{props.recipe.ingredient}</h6>

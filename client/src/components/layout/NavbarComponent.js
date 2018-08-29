@@ -23,9 +23,6 @@ const NavbarComponent = ({
               <Link to="/recipes" className="nav-link">Recipes</Link>
             </li>
             <li className="nav-item">
-              <Link to="/ingredients" className="nav-link disabled">Ingredients</Link>
-            </li>
-            <li className="nav-item">
               <Link to="/feed" className="nav-link">Community</Link>
             </li>
           </ul>

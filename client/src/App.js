@@ -21,9 +21,9 @@ import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
 import AddExperience from './components/add-credentials/AddExperience';
-import AddEducation from './components/add-credentials/AddEducation';
-import Profiles from './components/profiles/Profiles';
-import Profile from './components/profile/Profile';
+import ProfileListContainer from './containers/ProfileListContainer';
+import ProfileContainer from './containers/ProfileContainer';
+import Profile from './components/profiles/Profile';
 import Posts from './components/posts/Posts';
 import PostsContainer from './containers/PostsContainer';
 import Post from './components/post/Post';
@@ -67,8 +67,8 @@ const App = () => (
         <main role="main">
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/profiles" component={Profiles} />
-          <Route exact path="/profile/:handle" component={Profile} />
+          <Route exact path="/profiles" component={ProfileListContainer} />
+          <Route exact path="/profile/:handle" component={ProfileContainer} />
           <Route exact path="/recipes" component={Recipes} />
           <Route exact path="/recipes/:id" component={Recipe} />
           <Switch>
@@ -93,13 +93,6 @@ const App = () => (
               exact
               path="/add-experience"
               component={AddExperience}
-            />
-          </Switch>
-          <Switch>
-            <PrivateRoute
-              exact
-              path="/add-education"
-              component={AddEducation}
             />
           </Switch>
           <Switch>
