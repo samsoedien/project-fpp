@@ -8,10 +8,11 @@ import { clearCurrentProfile } from './actions/profileActions';
 
 import store from './store';
 
+// import Routes from './Routes';
 import PrivateRoute from './components/common/PrivateRoute';
 
 import NavbarContainer from './containers/NavbarContainer';
-import Footer from './components/Footer';
+import FooterContainer from './containers/FooterContainer';
 import Landing from './components/layout/Landing';
 import Home from './components/front-page/Home';
 import Register from './components/auth/Register';
@@ -108,7 +109,7 @@ const App = () => (
           <Route exact path="/test" component={Test} />
           <Route exact path="/not-found" component={NotFound} />
         </main>
-        <Footer />
+        <FooterContainer />
       </div>
     </Router>
   </Provider>

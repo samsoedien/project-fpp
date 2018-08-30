@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../actions/authActions';
 import { clearCurrentProfile } from '../actions/profileActions';
 
-import NavbarComponent from '../components/Navbar';
+import Navbar from '../components/Navbar';
 
 class NavbarContainer extends Component {
   onLogoutClick(e) {
@@ -65,7 +65,7 @@ class NavbarContainer extends Component {
 
     return (
       <div>
-        <NavbarComponent isAuthenticated={isAuthenticated} authLinks={authLinks} guestLinks={guestLinks} />
+        <Navbar isAuthenticated={isAuthenticated} authLinks={authLinks} guestLinks={guestLinks} />
       </div>
     );
   }
