@@ -10,9 +10,8 @@ import store from './store';
 
 import PrivateRoute from './components/common/PrivateRoute';
 
-import Navbar from './components/layout/Navbar';
-import NavbarComponent from './components/layout/NavbarComponent';
-import Footer from './components/layout/Footer';
+import NavbarContainer from './containers/NavbarContainer';
+import Footer from './components/Footer';
 import Landing from './components/layout/Landing';
 import Home from './components/front-page/Home';
 import Register from './components/auth/Register';
@@ -23,15 +22,13 @@ import EditProfile from './components/edit-profile/EditProfile';
 import AddExperience from './components/add-credentials/AddExperience';
 import ProfileListContainer from './containers/ProfileListContainer';
 import ProfileContainer from './containers/ProfileContainer';
-import Profile from './components/profiles/Profile';
-import Posts from './components/posts/Posts';
-import PostsContainer from './containers/PostsContainer';
-import Post from './components/post/Post';
+import PostListContainer from './containers/PostListContainer';
+import PostContainer from './containers/PostContainer';
 import NotFound from './components/not-found/NotFound';
 
-import Recipes from './components/recipes/Recipes';
+import RecipeListContainer from './containers/RecipeListContainer';
+import RecipeContainer from './containers/RecipeContainer';
 import CreateRecipe from './components/create-recipe/CreateRecipe';
-import Recipe from './components/recipe/Recipe';
 
 import Test from './components/other/Test';
 
@@ -62,15 +59,15 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <div className="App">
-        <Navbar />
+        <NavbarContainer />
         <Route exact path="/" component={Home} />
         <main role="main">
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/profiles" component={ProfileListContainer} />
           <Route exact path="/profile/:handle" component={ProfileContainer} />
-          <Route exact path="/recipes" component={Recipes} />
-          <Route exact path="/recipes/:id" component={Recipe} />
+          <Route exact path="/recipes" component={RecipeListContainer} />
+          <Route exact path="/recipes/:id" component={RecipeContainer} />
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
           </Switch>
@@ -96,10 +93,10 @@ const App = () => (
             />
           </Switch>
           <Switch>
-            <PrivateRoute exact path="/feed" component={PostsContainer} />
+            <PrivateRoute exact path="/feed" component={PostListContainer} />
           </Switch>
           <Switch>
-            <PrivateRoute exact path="/post/:id" component={Post} />
+            <PrivateRoute exact path="/post/:id" component={PostContainer} />
           </Switch>
           <Switch>
             <PrivateRoute

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const multer = require('multer');
 const path = require('path');
 
 const users = require('./routes/api/users');
@@ -9,6 +10,7 @@ const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 const recipes = require('./routes/api/recipes');
 
+// Init app
 const app = express();
 
 // Body parser middleware
@@ -30,11 +32,14 @@ app.use(passport.initialize());
 // Passport Config
 require('./config/passport')(passport);
 
+// Multer Middleware
+app.use('/uploads', express.static('uploads'));
+
 // Use Routes
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
-app.use('/api/recipes', recipes)
+app.use('/api/recipes', recipes);
 
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {

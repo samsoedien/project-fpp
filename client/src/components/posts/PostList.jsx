@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
-import PostForm from './PostForm';
-import PostFeed from './PostFeed';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 
-const Posts = (props) => {
+import PostForm from './PostForm';
+import PostFeed from './PostFeed';
+
+const PostList = ({ posts, loading }) => {
   let postContent;
-  if (props.posts === null || props.loading) {
+  if (posts === null || loading) {
     postContent = <Spinner />;
   } else {
-    postContent = <PostFeed posts={props.posts} />;
+    postContent = <PostFeed posts={posts} />;
   }
 
   return (
@@ -25,4 +27,9 @@ const Posts = (props) => {
   );
 };
 
-export default Posts;
+PostList.propTypes = {
+  posts: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
+
+export default PostList;

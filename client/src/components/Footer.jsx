@@ -1,7 +1,11 @@
 import React from 'react';
-import PrivacyPolicy from '../other/PrivacyPolicy';
+import PropTypes from 'prop-types';
 
-export default () => {
+import PrivacyPolicy from './other/PrivacyPolicy';
+
+import './Footer.css';
+
+const Footer = () => {
   return (
     <footer className="bg-dark text-white mt-5 p-4 text-center">
       Copyright &copy; {new Date().getFullYear()} Samsoedien
@@ -17,3 +21,4 @@ export default () => {
   );
 };
 
+export default Footer;

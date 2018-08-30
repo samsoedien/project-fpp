@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const NavbarComponent = ({
+//import './Navbar.css';
+
+const Navbar = ({
   isAuthenticated,
   authLinks,
   guestLinks,
@@ -33,4 +35,9 @@ const NavbarComponent = ({
   );
 };
 
-export default NavbarComponent;
+Navbar.propTypes = {
+  guestLinks: PropTypes.object.isRequired,
+  authLinks: PropTypes.object.isRequired,
+}
+
+export default Navbar;

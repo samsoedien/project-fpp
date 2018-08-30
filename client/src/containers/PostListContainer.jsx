@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions/postActions';
 
-import Posts from '../components/posts/Posts';
+import PostList from '../components/posts/PostList';
 
-class PostsContainer extends Component {
+class PostListContainer extends Component {
   componentDidMount() {
     this.props.getPosts();
   }
@@ -13,20 +13,20 @@ class PostsContainer extends Component {
   render() {
     const { posts, loading } = this.props.post;
     return (
-      <div className="posts-container">
-        <Posts posts={posts} loading={loading} />
+      <div className="post-list-container">
+        <PostList posts={posts} loading={loading} />
       </div>
     );
   }
 }
 
-PostsContainer.propTypes = {
+PostListContainer.propTypes = {
   getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   post: state.post,
 });
 
-export default connect(mapStateToProps, { getPosts })(PostsContainer);
+export default connect(mapStateToProps, { getPosts })(PostListContainer);

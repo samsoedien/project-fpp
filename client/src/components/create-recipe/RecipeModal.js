@@ -1,7 +1,7 @@
 import React from 'react';
 import RecipeForm from './RecipeForm';
 
-import ImageUpload from '../other/ImageUpload';
+import ImageUpload from './ImageUpload';
 
 const RecipeModal = () => {
   return (

@@ -7,6 +7,8 @@ import { createRecipe } from '../../actions/recipeActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 
+import FileInput from './FileInput';
+
 import RecipeModal from './RecipeModal';
 
 class CreateRecipe extends Component {
@@ -61,7 +63,7 @@ class CreateRecipe extends Component {
             <div className="col-md-8 m-auto">
               <h2>Create a recipe</h2>
               <p>Add some information to start creating your custom food printing dish.</p>
-              <form onSubmit={this.onSubmit}>
+              <form onSubmit={this.onSubmit} >
                 <TextFieldGroup
                   placeholder="Title"
                   name="title"
@@ -81,6 +83,9 @@ class CreateRecipe extends Component {
                 />
                 <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
               </form>
+
+              <FileInput />
+
             </div>
           </div>
           <div className="alert alert-warning alert-dismissible fade show" role="alert">

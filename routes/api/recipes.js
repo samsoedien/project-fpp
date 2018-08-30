@@ -2,8 +2,38 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const multer = require('multer');
+const path = require('path');
 
-// Recipe model
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.orginalname));
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
+
+
+// Recipe Model
 const Recipe = require('../../models/Recipe');
 
 // Validation
@@ -53,6 +83,41 @@ router.get('/:id', (req, res) => {
     .catch(err =>
       res.status(404).json({ norecipefound: 'No recipe found with that ID' })
     );
+});
+
+// @route   POST api/recipes/:id
+// @desc    Upload an image
+// @access  Public
+router.post('/image', upload.single('recipeImage'), (req, res, next) => {
+  const newRecipe = new Recipe({
+    _id: new mongoose.Types.ObjectId(),
+    title: req.body.title,
+    ingredient: req.body.ingredient,
+    recipeImage: req.file.path
+  });
+  newRecipe
+    .save()
+    .then(result => {
+      console.log(result);
+      res.status(201).json({
+        message: "Created recipe successfully",
+        recipe: {
+          title: result.title,
+          ingredient: result.ingredient,
+          _id: result._id,
+          request: {
+            type: 'GET',
+            url: "http://localhost:4000/api/recipes/" + result._id
+          }
+        }
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
 });
 
 module.exports = router;
