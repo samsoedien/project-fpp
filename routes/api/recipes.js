@@ -5,6 +5,8 @@ const passport = require('passport');
 const multer = require('multer');
 const path = require('path');
 
+const recipeController = require('../../controllers/recipes');
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './uploads/');
@@ -31,8 +33,6 @@ const upload = multer({
   fileFilter: fileFilter
 });
 
-
-
 // Recipe Model
 const Recipe = require('../../models/Recipe');
 
@@ -40,45 +40,52 @@ const Recipe = require('../../models/Recipe');
 const validateRecipeInput = require('../../validation/recipe');
 
 // @route   GET api/recipes/test
-// @desc    Tests post route
+// @desc    Tests recipes route
 // @access  Public
 router.get('/test', (req, res) => res.json({ message: 'Recipes Works' }));
 
 // @route   GET api/recipes
 // @desc    Get recipes
 // @access  Public
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   Recipe.find()
+    .select('_id title ingredient recipeImage')
     .sort({ date: -1 })
-    .then(recipes => res.json(recipes))
+    .exec()
+    .then(recipes => res.status(200).json(recipes))
     .catch(err => res.status(404).json({ norecipesfound: 'No recipes found' }));
 });
 
 // @route   POST api/recipes
 // @desc    Create a recipe
 // @access  Private
-router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const { errors, isValid } = validateRecipeInput(req.body);
+router.post('/', passport.authenticate('jwt', { session: false }), upload.single('recipeImage'), (req, res, next) => {
   // Check Validation
+  const { errors, isValid } = validateRecipeInput(req.body);
   if (!isValid) {
-    // if any errors, send 400 with errors object
     return res.status(400).json(errors);
   }
 
+  console.log(req.file);
+
   const newRecipe = new Recipe({
+    _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
-    ingredient: req.body.ingredient
+    ingredient: req.body.ingredient,
+    recipeImage: req.file.path
   });
 
-  newRecipe.save().then(recipe => res.json(recipe));
+  newRecipe.save().then(recipe => res.status(201).json(recipe)); // added 201 status
 });
 
 
 // @route   GET api/recipes/:id
 // @desc    Get recipe by id
 // @access  Public
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res, next) => {
   Recipe.findById(req.params.id)
+    .select('_id title ingredient recipeImage')
+    .exec()
     .then(recipe => res.json(recipe))
     .catch(err =>
       res.status(404).json({ norecipefound: 'No recipe found with that ID' })
@@ -121,3 +128,5 @@ router.post('/image', upload.single('recipeImage'), (req, res, next) => {
 });
 
 module.exports = router;
+
+//TODO: Setup better structered routes and send detailed responses back

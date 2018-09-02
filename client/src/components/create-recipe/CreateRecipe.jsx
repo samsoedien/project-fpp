@@ -17,11 +17,9 @@ class CreateRecipe extends Component {
     this.state = {
       title: '',
       ingredient: '',
+      recipeImage: '',
       errors: {},
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,23 +28,30 @@ class CreateRecipe extends Component {
     }
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange = (e) => {
+    switch (e.target.name) {
+      case 'recipeImage':
+        this.setState({ recipeImage: e.target.files[0] });
+        break;
+      default:
+        this.setState({ [e.target.name]: e.target.value });
+    }
   }
 
-  onSubmit(e) {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const recipeData = {
       title: this.state.title,
       ingredient: this.state.ingredient,
+      recipeImage: this.state.recipeImage,
     };
 
     this.props.createRecipe(recipeData, this.props.history);
   }
 
   render() {
-    const { errors } = this.state;
+    const { title, ingredient, errors } = this.state;
 
     const options = [
       { label: 'SELECT INGREDIENT', value: 0 },
@@ -67,7 +72,7 @@ class CreateRecipe extends Component {
                 <TextFieldGroup
                   placeholder="Title"
                   name="title"
-                  value={this.state.title}
+                  value={title}
                   onChange={this.onChange}
                   error={errors.title}
                   info="A title for your created dish."
@@ -75,17 +80,19 @@ class CreateRecipe extends Component {
                 <SelectListGroup
                   placeholder="Ingredient"
                   name="ingredient"
-                  value={this.state.ingredient}
+                  value={ingredient}
                   onChange={this.onChange}
                   options={options}
                   error={errors.ingredient}
                   info="Select Ingredient"
                 />
+                <input
+                  type="file"
+                  name="recipeImage"
+                  onChange={this.onChange}
+                />
                 <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
               </form>
-
-              <FileInput />
-
             </div>
           </div>
           <div className="alert alert-warning alert-dismissible fade show" role="alert">
