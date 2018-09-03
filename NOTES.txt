@@ -1,5 +1,0 @@
-Replaced React scripts:
-
-"start": "node config/customized-config start",
-"build": "node config/customized-config build",
-"test": "node config/customized-config test --env=jsdom",

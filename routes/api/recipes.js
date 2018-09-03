@@ -56,6 +56,7 @@ router.get('/', (req, res, next) => {
     .catch(err => res.status(404).json({ norecipesfound: 'No recipes found' }));
 });
 
+
 // @route   POST api/recipes
 // @desc    Create a recipe
 // @access  Private
@@ -130,3 +131,5 @@ router.post('/image', upload.single('recipeImage'), (req, res, next) => {
 module.exports = router;
 
 //TODO: Setup better structered routes and send detailed responses back
+
+//FIXME: rewritten get request doesn't work  

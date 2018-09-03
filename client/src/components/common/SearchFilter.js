@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class SearchFilterComponent extends Component {
+class SearchFilter extends Component {
 
   filterUpdate() {
     const val = this.myValue.value;
@@ -18,7 +18,7 @@ export default class SearchFilterComponent extends Component {
             </div>
             <input
               type="text"
-              ref={(value) => { this.myValue = value }}
+              ref={(value) => { this.myValue = value; }}
               placeholder="Filter Recipes"
               onChange={this.filterUpdate.bind(this)}
               className="form-control"
@@ -34,3 +34,4 @@ export default class SearchFilterComponent extends Component {
   }
 }
 
+export default SearchFilter;

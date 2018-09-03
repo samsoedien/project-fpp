@@ -4,19 +4,14 @@ import { Link } from 'react-router-dom';
 import Spinner from '../common/Spinner';
 
 import RecipeItem from './RecipeItem';
-import SearchFilter from '../layout/SearchFilter';
+import SearchFilter from '../common/SearchFilter';
 
 const RecipeList = ({
   recipes,
   filterText,
+  filterUpdate,
   loading,
 }) => {
-  const filterUpdate = (value) => {
-    this.setState({
-      filterText: value,
-    });
-  };
-
   let recipeItems;
   if (recipes === null || loading) {
     recipeItems = <Spinner />;
@@ -48,7 +43,10 @@ const RecipeList = ({
         </div>
       </section>
 
-      <SearchFilter filterText={this.filterText} filterUpdate={filterUpdate} />
+      <SearchFilter
+        filterText={filterText}
+        filterUpdate={filterUpdate}
+      />
 
       <div className="container">
         <div className="row">
@@ -65,10 +63,9 @@ const RecipeList = ({
 
 RecipeList.propTypes = {
   recipes: PropTypes.object.isRequired,
-  filterText: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
+  filterText: PropTypes.string.isRequired,
+  filterUpdate: PropTypes.func.isRequired,
 }
 
 export default RecipeList;
-
-//FIXME: filter function broke after functional components conversion. Mutating states in functional component should make a class component!
