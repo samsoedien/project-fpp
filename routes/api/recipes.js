@@ -60,7 +60,7 @@ router.get('/', (req, res, next) => {
 // @route   POST api/recipes
 // @desc    Create a recipe
 // @access  Private
-router.post('/', passport.authenticate('jwt', { session: false }), upload.single('recipeImage'), (req, res, next) => {
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   // Check Validation
   const { errors, isValid } = validateRecipeInput(req.body);
   if (!isValid) {
@@ -73,7 +73,6 @@ router.post('/', passport.authenticate('jwt', { session: false }), upload.single
     _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
     ingredient: req.body.ingredient,
-    recipeImage: req.file.path
   });
 
   newRecipe.save().then(recipe => res.status(201).json(recipe)); // added 201 status

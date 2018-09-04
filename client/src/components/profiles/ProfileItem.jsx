@@ -5,17 +5,7 @@ import isEmpty from '../../validation/is-empty';
 
 const ProfileItem = ({ profile }) => {
   return (
-    <div>
-      <div className="profile-item">
-        <div className="card card-body bg-light mb-3">
-          <div className="col-3">
-            <p className="h5">Card title</p>
-            <img src={profile.user.avatar} alt="" className="rounded-circle" />
-            <h6 className="card-title text-primary">{profile.user.name}</h6>
-          </div>
-        </div>
-      </div>
-
+    <div className="profile-item">
       <div className="card card-body bg-light mb-3">
         <div className="row">
           <div className="col-2">
