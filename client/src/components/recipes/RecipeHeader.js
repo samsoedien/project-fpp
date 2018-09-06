@@ -1,15 +1,15 @@
 import React from 'react';
 
+import img from '../../assets/img/foodprinted_sidedish.jpg';
+
 export default (props) => {
   return (
     <div className="recipe-header">
-      <img src={props.img} alt="" className="mb-4" />
-
-
+      <header className="recipe-header" style={{ backgroundImage: `url(${img})` }}>
+        <img src={img} alt="" className="mb-4" />
+      </header>
     </div>
   );
 }
 
-// TODO: jsx-a11y/href-no-hash
-// Should consider using buttons instead of a href for anything that doesn't redirect to another page. 
-// a href="" className="btn" role="button" can be used??
+//FIXME: Choose if recipe image is inserted using img tags or css styling 

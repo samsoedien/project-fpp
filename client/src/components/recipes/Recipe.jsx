@@ -2,24 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 
-import ThreeContainer from '../three/ThreeContainer';
-import RecipeComponent from './RecipeComponent';
+import ThreeContainer from '../../containers/ThreeContainer';
+
 import ThreeScene from '../three/ThreeScene';
 import RecipeNutritions from './RecipeNutritions';
 
-const Recipe = ({ recipe, loading }) => {
-  let recipeContent;
+import RecipeHeader from './RecipeHeader';
+import RecipeFavourite from './RecipeFavourite';
+import RecipeInfo from './RecipeInfo';
 
+const Recipe = ({ 
+  recipe,
+  isFavourited,
+  loading,
+}) => {
+  let recipeContent;
   if (recipe === null || loading) {
     recipeContent = <Spinner />;
   } else {
     recipeContent = (
       <div>
-        <RecipeComponent recipe={recipe} />
+        <RecipeHeader recipeImage={recipe.image}/>
+        <RecipeFavourite isFavourited={isFavourited} />
+        <RecipeInfo recipe={recipe}/>
         <div className="container">
           <div className="row">
             <div className="col-md-8">
-              <ThreeScene width="400" height="320" />
+              <ThreeContainer />
             </div>
             <div className="col-md-4">
               <RecipeNutritions kcal="180" />
@@ -29,16 +38,16 @@ const Recipe = ({ recipe, loading }) => {
       </div>
     );
   }
-
   return (
     <div className="recipe">
       {recipeContent}
     </div>
-  )
-}
+  );
+};
 
 Recipe.propTypes = {
   recipe: PropTypes.object.isRequired,
+  isFavourited: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
 }
 

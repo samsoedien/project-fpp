@@ -10,3 +10,6 @@ export default () => {
     </div>
   )
 }
+
+
+//TODO: map all recipe.printSettings into separate spans like in RecipeList

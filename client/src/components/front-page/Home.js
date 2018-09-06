@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from '../layout/Carousel';
+import Jumbotron from '../layout/Jumbotron';
 
 import img from '../../assets/img/foodprinted_sidedish.jpg';
 import img2 from '../../assets/img/prawn11.jpg';
@@ -9,6 +10,7 @@ export default () => {
   return (
     <div>
       <Carousel img={img} img2={img2} img3={img3} />
+      <Jumbotron />
     </div>
   );
 };

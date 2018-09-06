@@ -6,6 +6,13 @@ import { getRecipe } from '../actions/recipeActions';
 import Recipe from '../components/recipes/Recipe';
 
 class RecipeContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFavourited: false,
+    };
+  }
+
   componentDidMount() {
     this.props.getRecipe(this.props.match.params.id);
   }
@@ -14,7 +21,7 @@ class RecipeContainer extends Component {
     const { recipe, loading } = this.props.recipe;
     return (
       <div className="recipe">
-        <Recipe recipe={recipe} loading={loading} />
+        <Recipe recipe={recipe} loading={loading} isFavourited={this.state.isFavourited} />
       </div>
     )
   }

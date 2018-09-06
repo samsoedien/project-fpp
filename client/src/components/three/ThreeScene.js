@@ -9,7 +9,7 @@ class ThreeScene extends Component {
     super(props);
     this.state = {
       geometry: [2, 2, 2],
-      material: '#433F81'
+      material: '#433F81',
     };
 
     this.start = this.start.bind(this);
@@ -81,9 +81,9 @@ class ThreeScene extends Component {
 
   render() {
     return (
-      <div className="three-scene" >
+      <div className="three-scene">
         <div ref={(mount) => { this.mount = mount; }} />
-      </div >
+      </div>
     );
   }
 }

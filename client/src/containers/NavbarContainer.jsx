@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../actions/authActions';
 import { clearCurrentProfile } from '../actions/profileActions';
 
-import Navbar from '../components/Navbar';
+import Navbar from '../components/layout/Navbar';
 
 class NavbarContainer extends Component {
   onLogoutClick(e) {
