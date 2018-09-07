@@ -6,6 +6,7 @@ import { createRecipe } from '../../actions/recipeActions';
 
 import TextFieldGroup from '../common/TextFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 
 import FileInput from './FileInput';
 
@@ -17,6 +18,7 @@ class CreateRecipe extends Component {
     this.state = {
       title: '',
       ingredient: '',
+      description: '',
       recipeImage: '',
       errors: {},
     };
@@ -44,6 +46,7 @@ class CreateRecipe extends Component {
     const recipeData = {
       title: this.state.title,
       ingredient: this.state.ingredient,
+      description: this.state.description,
       recipeImage: this.state.recipeImage,
     };
 
@@ -51,13 +54,13 @@ class CreateRecipe extends Component {
   }
 
   render() {
-    const { title, ingredient, errors } = this.state;
+    const { title, ingredient, description, errors } = this.state;
 
     const options = [
       { label: 'SELECT INGREDIENT', value: 0 },
       { label: 'Chocolate Pure', value: 'Chocolate Pure' },
       { label: 'Chocolate Milk', value: 'Chocolate Milk' },
-      { label: 'Cholocate White', value: 'Cholocate White' },
+      { label: 'Chocolate White', value: 'Cholocate White' },
       { label: 'Chocolate Almond', value: 'Chocolate Almond' },
     ];
 
@@ -76,6 +79,14 @@ class CreateRecipe extends Component {
                   onChange={this.onChange}
                   error={errors.title}
                   info="A title for your created dish."
+                />
+                <TextAreaFieldGroup 
+                  name="description"
+                  placeholder="Description"
+                  value={description}
+                  onChange={this.onChange}      
+                  error={errors.description}
+                  info="Description for your created recipe"
                 />
                 <SelectListGroup
                   placeholder="Ingredient"

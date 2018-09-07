@@ -10,7 +10,7 @@ const Navbar = ({
   guestLinks,
 }) => {
   return (
-    <nav className="navbar navbar-expand-sm navbar-light bg-light shadow-lg p-2 bg-white rounded ">
+    <nav className="navbar navbar-expand-sm navbar-light bg-light shadow-lg p-2 bg-white rounded">
       <div className="container">
         <Link to="/" className="navbar-brand">Project FPP</Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

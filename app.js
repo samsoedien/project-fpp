@@ -36,13 +36,13 @@ app.use((req, res, next) => {
 });
 
 // DB Config
-const db = require('./config/keys').mongoURI;
+const uri = require('./config/keys').mongoURI;
 
-// Connect to MongoDB
-mongoose
-  .connect(db)
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+// // Connect to MongoDB
+// mongoose
+//   .connect(uri)
+//   .then(() => console.log('MongoDB Connected'))
+//   .catch(err => console.log(err));
 
 // mongoose.connect(
 //   "",
@@ -51,6 +51,13 @@ mongoose
 //   }
 // );
 // mongoose.Promise = global.Promise;
+
+const MongoClient = require('mongodb').MongoClient;
+MongoClient.connect(uri, function(err, client) {
+   const collection = client.db("test").collection("devices");
+   // perform actions on the collection object
+   client.close();
+});
 
 
 // Passport middleware
