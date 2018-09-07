@@ -37,27 +37,14 @@ app.use((req, res, next) => {
 
 // DB Config
 const uri = require('./config/keys').mongoURI;
-
-// // Connect to MongoDB
-// mongoose
-//   .connect(uri)
-//   .then(() => console.log('MongoDB Connected'))
-//   .catch(err => console.log(err));
-
-// mongoose.connect(
-//   "",
-//   {
-//     useMongoClient: true
-//   }
-// );
-// mongoose.Promise = global.Promise;
-
-const MongoClient = require('mongodb').MongoClient;
-MongoClient.connect(uri, function(err, client) {
-   const collection = client.db("test").collection("devices");
-   // perform actions on the collection object
-   client.close();
-});
+const options = {
+  useNewUrlParser: true
+};
+mongoose
+  .connect(uri, options)
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
+mongoose.Promise = global.Promise;
 
 
 // Passport middleware
