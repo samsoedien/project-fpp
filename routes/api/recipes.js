@@ -100,6 +100,7 @@ router.post('/image', upload.single('recipeImage'), (req, res, next) => {
   const newRecipe = new Recipe({
     _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
+    description: req.body.description,
     ingredient: req.body.ingredient,
     recipeImage: req.file.path
   });

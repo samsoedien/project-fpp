@@ -86,4 +86,5 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = app;
 
-//TODO: Organise middleware more cleanly and implement MongoDB atlas database over mlab
+//TODO: Organise middleware more cleanly
+//TODO: Optimise MongoDB Atlas URI connection, limited support by using mongoose api need to reconsider if using MongoClient driver gives relaible results.

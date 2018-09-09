@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
 class SearchFilter extends Component {
-
   filterUpdate() {
     const val = this.myValue.value;
-    this.props.filterUpdate(val);
+    this.props.filterCallback(val);
   }
 
   render() {

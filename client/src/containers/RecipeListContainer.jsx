@@ -9,7 +9,7 @@ class RecipeListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filterText: '',
+      filterText: 'hello',
     };
   }
 
@@ -17,17 +17,19 @@ class RecipeListContainer extends Component {
     this.props.getRecipes();
   }
 
-  filterUpdate(value) {
+  filterListUpdate = (value) => {
+    console.log(value);
     this.setState({
       filterText: value,
     });
   }
 
   render() {
+    console.log(this.state.filterText);
     const { recipes, loading } = this.props.recipe;
     return (
       <div className="recipe-list-container">
-        <RecipeList recipes={recipes} loading={loading} filterText={this.state.filterText} />
+        <RecipeList recipes={recipes} loading={loading} filterText={this.state.filterText} filterUpdate={this.filterListUpdate} />
       </div>
     );
   }

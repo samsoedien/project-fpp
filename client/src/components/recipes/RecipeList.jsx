@@ -12,6 +12,10 @@ const RecipeList = ({
   filterUpdate,
   loading,
 }) => {
+  const filterCallback = (val) => {
+    filterUpdate(val);
+  };
+
   let recipeItems;
   if (recipes === null || loading) {
     recipeItems = <Spinner />;
@@ -46,6 +50,7 @@ const RecipeList = ({
       <SearchFilter
         filterText={filterText}
         filterUpdate={filterUpdate}
+        filterCallback={filterCallback}
       />
 
       <div className="container">
