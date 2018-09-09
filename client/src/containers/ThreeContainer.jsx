@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as THREE from 'three';
+import { threeCalcVol } from '../components/three/threeFunctions';
+
+import ThreeNutritions from '../components/three/ThreeNutritions';
 
 class ThreeContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      volume: '',
+    };
+
 
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
@@ -14,6 +21,8 @@ class ThreeContainer extends Component {
 
   componentDidMount() {
     this.threeInit();
+    const vol = threeCalcVol(THREE, this.mesh);
+    this.updateVol(vol);
   }
 
   componentWillUnmount() {
@@ -21,7 +30,13 @@ class ThreeContainer extends Component {
     this.mount.removeChild(this.renderer.domElement);
   }
 
-  threeInit() {  
+  updateVol(vol) {
+    this.setState({
+      volume: vol,
+    });
+  }
+
+  threeInit() {
     const width = this.mount.clientWidth;
     const height = this.mount.clientHeight;
 
@@ -30,14 +45,14 @@ class ThreeContainer extends Component {
       75,
       width / height,
       0.1,
-      1000
+      1000,
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const geometry = new THREE.BoxGeometry(10, 20, 20);
     const material = new THREE.MeshBasicMaterial({ color: '#433F81' });
     const mesh = new THREE.Mesh(geometry, material);
 
-    camera.position.z = 4;
+    camera.position.z = 50;
     scene.add(mesh);
     renderer.setClearColor('#000000');
     renderer.setSize(width, height);
@@ -76,16 +91,18 @@ class ThreeContainer extends Component {
 
   render() {
     return (
-      <div
-        style={{ width: '400px', height: '400px' }}
-        ref={(mount) => { this.mount = mount; }}
-      />
+      <div>
+        <div
+          style={{ width: '400px', height: '400px' }}
+          ref={(mount) => { this.mount = mount; }}
+        />
+        <ThreeNutritions volume={this.state.volume} />
+      </div>
     );
-  };
+  }
 }
 
-// ThreeContainer.propTypes = {
-//   getCADmodel: 
-// };
+ThreeContainer.propTypes = {
+};
 
 export default connect(null)(ThreeContainer);

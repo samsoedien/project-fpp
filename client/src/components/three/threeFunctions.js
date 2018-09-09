@@ -27,7 +27,6 @@ export const threeInit = (THREE) => {
 };
 
 export const threeCalcVol = (THREE, object) => {
-
   const volumeOfT = (p1, p2, p3) => {
     let v321 = p3.x * p2.y * p1.z;
     let v231 = p2.x * p3.y * p1.z;
@@ -48,10 +47,11 @@ export const threeCalcVol = (THREE, object) => {
     let P = new THREE.Vector3(object.geometry.vertices[Pi].x, object.geometry.vertices[Pi].y, object.geometry.vertices[Pi].z);
     let Q = new THREE.Vector3(object.geometry.vertices[Qi].x, object.geometry.vertices[Qi].y, object.geometry.vertices[Qi].z);
     let R = new THREE.Vector3(object.geometry.vertices[Ri].x, object.geometry.vertices[Ri].y, object.geometry.vertices[Ri].z);
-    volumes += this.volumeOfT(P, Q, R);
+    volumes += volumeOfT(P, Q, R);
   }
 
   let loadedObjectVolume = Math.abs(volumes);
-  console.log('The volume of the object is ' + loadedObjectVolume);
+  console.log(`The volume of the object is ${loadedObjectVolume}`);
 
+  return Math.round(loadedObjectVolume);
 };

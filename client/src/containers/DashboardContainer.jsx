@@ -15,9 +15,9 @@ class DashboardContainer extends Component {
     const { profile, loading } = this.props.profile;
     return (
       <div className="dashboard-conatiner">
-        <Dashboard user={user} profile={profile} loading={loading}/>
+        <Dashboard user={user} profile={profile} loading={loading} />
       </div>
-    )2
+    )
   }
 }
 
@@ -33,4 +33,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(DashboardContainer):
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(DashboardContainer);

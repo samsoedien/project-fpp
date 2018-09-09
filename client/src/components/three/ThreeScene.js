@@ -1,16 +1,9 @@
-import React, { Component } from 'react';
-import * as THREE from 'three';
-import { threeInit } from './threeFunctions';
-
-// import ThreeFileExporter from './ThreeFileExporter';
+import React, { Component } from 'react'
+import * as THREE from 'three'
 
 class ThreeScene extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      geometry: [2, 2, 2],
-      material: '#433F81',
-    };
 
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
@@ -18,32 +11,23 @@ class ThreeScene extends Component {
   }
 
   componentDidMount() {
-    this.init();
-  }
-
-  componentWillUnmount() {
-    this.stop();
-    this.mount.removeChild(this.renderer.domElement);
-  }
-
-  init() {
-    const width = this.props.width;
-    const height = this.props.height;
+    const width = this.mount.clientWidth;
+    const height = this.mount.clientHeight;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
       width / height,
       0.1,
-      1000,
+      1000
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    const geometry = new THREE.BoxGeometry(this.state.geometry[0]);
-    const material = new THREE.MeshBasicMaterial({ color: this.state.material });
-    const mesh = new THREE.Mesh(geometry, material);
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshBasicMaterial({ color: '#433F81' });
+    const cube = new THREE.Mesh(geometry, material);
 
     camera.position.z = 4;
-    scene.add(mesh);
+    scene.add(cube);
     renderer.setClearColor('#000000');
     renderer.setSize(width, height);
 
@@ -51,10 +35,15 @@ class ThreeScene extends Component {
     this.camera = camera;
     this.renderer = renderer;
     this.material = material;
-    this.mesh = mesh;
+    this.cube = cube;
 
     this.mount.appendChild(this.renderer.domElement);
     this.start();
+  }
+
+  componentWillUnmount() {
+    this.stop();
+    this.mount.removeChild(this.renderer.domElement);
   }
 
   start() {
@@ -68,8 +57,8 @@ class ThreeScene extends Component {
   }
 
   animate() {
-    this.mesh.rotation.x += 0.01;
-    this.mesh.rotation.y += 0.01;
+    this.cube.rotation.x += 0.01;
+    this.cube.rotation.y += 0.01;
 
     this.renderScene()
     this.frameId = window.requestAnimationFrame(this.animate);
@@ -81,14 +70,12 @@ class ThreeScene extends Component {
 
   render() {
     return (
-      <div className="three-scene">
-        <div ref={(mount) => { this.mount = mount; }} />
-      </div>
-    );
+      <div
+        style={{ width: '400px', height: '400px' }}
+        ref={(mount) => { this.mount = mount; }}
+      />
+    )
   }
 }
-
-// <ThreeFileExporter name={this.state.title} scene={this.scene} />
-
 
 export default ThreeScene;

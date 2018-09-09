@@ -9,7 +9,7 @@ class RecipeListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filterText: 'hello',
+      filterText: '',
     };
   }
 
@@ -25,15 +25,20 @@ class RecipeListContainer extends Component {
   }
 
   render() {
-    console.log(this.state.filterText);
     const { recipes, loading } = this.props.recipe;
+    const { filterText } = this.state;
     return (
       <div className="recipe-list-container">
-        <RecipeList recipes={recipes} loading={loading} filterText={this.state.filterText} filterUpdate={this.filterListUpdate} />
+        <RecipeList
+          recipes={recipes}
+          loading={loading}
+          filterText={filterText}
+          filterUpdate={this.filterListUpdate}
+        />
       </div>
     );
   }
-};
+}
 
 RecipeListContainer.propTypes = {
   getRecipes: PropTypes.func.isRequired,

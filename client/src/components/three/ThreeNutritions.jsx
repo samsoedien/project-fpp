@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RecipeNutritions = (props) => (
+const ThreeNutritions = (props) => (
   <div className="recipe-nutritions">
     <div className="container mb-3">
       <h4>Nutrition Values</h4>
@@ -23,8 +23,12 @@ const RecipeNutritions = (props) => (
         <td>Fats</td>
         <td>23 mg</td>
       </tr>
+      <tr>
+        <td>Volume</td>
+        <td>{props.volume} mm2</td>
+      </tr>
     </table>
   </div>
 );
 
-export default RecipeNutritions;
+export default ThreeNutritions;

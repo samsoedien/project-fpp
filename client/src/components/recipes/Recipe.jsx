@@ -4,14 +4,11 @@ import Spinner from '../common/Spinner';
 
 import ThreeContainer from '../../containers/ThreeContainer';
 
-import ThreeScene from '../three/ThreeScene';
-import RecipeNutritions from './RecipeNutritions';
-
 import RecipeHeader from './RecipeHeader';
 import RecipeFavourite from './RecipeFavourite';
 import RecipeInfo from './RecipeInfo';
 
-const Recipe = ({ 
+const Recipe = ({
   recipe,
   isFavourited,
   loading,
@@ -22,19 +19,10 @@ const Recipe = ({
   } else {
     recipeContent = (
       <div>
-        <RecipeHeader recipeImage={recipe.image}/>
+        <RecipeHeader recipeImage={recipe.image} />
         <RecipeFavourite isFavourited={isFavourited} />
-        <RecipeInfo recipe={recipe}/>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8">
-              <ThreeContainer />
-            </div>
-            <div className="col-md-4">
-              <RecipeNutritions kcal="180" />
-            </div>
-          </div>
-        </div>
+        <RecipeInfo recipe={recipe} />
+        <ThreeContainer />
       </div>
     );
   }
