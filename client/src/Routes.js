@@ -18,6 +18,7 @@ import NotFound from './components/not-found/NotFound';
 import RecipeListContainer from './containers/RecipeListContainer';
 import RecipeContainer from './containers/RecipeContainer';
 import CreateRecipe from './components/create-recipe/CreateRecipe';
+import IngredientListContainer from './containers/IngredientListContainer';
 
 import Test from './components/other/Test';
 
@@ -30,6 +31,7 @@ const Routes = () => (
     <Route exact path="/profile/:handle" component={ProfileContainer} />
     <Route exact path="/recipes" component={RecipeListContainer} />
     <Route exact path="/recipes/:id" component={RecipeContainer} />
+    <Route exact path="/ingredients" component={IngredientListContainer} />
     <Switch>
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
     </Switch>

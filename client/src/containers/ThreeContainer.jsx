@@ -54,12 +54,21 @@ class ThreeContainer extends Component {
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     const geometry = new THREE.BoxGeometry(10, 20, 20);
-    const material = new THREE.MeshBasicMaterial({ color: '#433F81' });
+    const material = new THREE.MeshLambertMaterial({ color: '#0x3b240e', wireframe: false });
     const mesh = new THREE.Mesh(geometry, material);
+
+    const ambiLight = new THREE.AmbientLight(0xffffff, 0.4);
+    const pointLight = new THREE.PointLight(0xffffff, 1.6);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 4);
+    pointLight.position.set(20, 120, 400);
+    dirLight.position.set(-60, 0, 60)
+
+    scene.add(ambiLight);
+    scene.add(pointLight);
 
     camera.position.z = 50;
     scene.add(mesh);
-    renderer.setClearColor('#000000');
+    renderer.setClearColor('#eeeeee');
     renderer.setSize(width, height);
 
     const controls = new THREE.OrbitControls(camera, renderer.domElement);

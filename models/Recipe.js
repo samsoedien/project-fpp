@@ -19,12 +19,18 @@ const RecipeSchema = new Schema({
     type: String,
     required: true
   },
-  ingredient: {
-    type: String,
-    required: true
+  directions: {
+    type: [String],
   },
   recipeImage: {
     type: String,
+  },
+  printSetting: {
+    type: String,
+  },
+  ingredient: {
+    type: String,
+    required: true
   },
   date: {
     type: Date,

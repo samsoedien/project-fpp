@@ -1,80 +1,29 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { createRecipe } from '../../actions/recipeActions';
+import React from 'react';
 
 import TextFieldGroup from '../common/TextFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 
-import FileInput from './FileInput';
+export default ({
+  title,
+  culinary,
+  description,
+  directions,
+  recipeImage,
+  printSettings,
+  ingredient,
 
-import RecipeModal from './RecipeModal';
+}) => {
+  const options = [
+    { label: 'SELECT INGREDIENT', value: 0 },
+    { label: 'Chocolate Pure', value: 'Chocolate Pure' },
+    { label: 'Chocolate Milk', value: 'Chocolate Milk' },
+    { label: 'Chocolate White', value: 'Cholocate White' },
+    { label: 'Chocolate Almond', value: 'Chocolate Almond' },
+  ];
 
-class CreateRecipe extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-      culinary: '',
-      description: '',
-      directions: '',
-      recipeImage: '',
-      printSettings: '',
-      ingredient: '',
-      errors: {},
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-  }
-
-  onChange = (e) => {
-    switch (e.target.name) {
-      case 'recipeImage':
-        this.setState({ recipeImage: e.target.files[0] });
-        break;
-      default:
-        this.setState({ [e.target.name]: e.target.value });
-    }
-  }
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    const { user } = this.props.auth;
-
-    const recipeData = {
-      title: this.state.title,
-      culinary: this.state.culinary,
-      description: this.state.description,
-      directions: this.state.directions,
-      recipeImage: this.state.recipeImage,
-      printSettings: this.state.printSettings,
-      ingredient: this.state.ingredient,
-      name: user.name,
-      avatar: user.avatar,
-    };
-
-    this.props.createRecipe(recipeData, this.props.history);
-  }
-
-  render() {
-    const { title, culinary, ingredient, description, errors } = this.state;
-
-    const options = [
-      { label: 'SELECT INGREDIENT', value: 0 },
-      { label: 'Chocolate Pure', value: 'Chocolate Pure' },
-      { label: 'Chocolate Milk', value: 'Chocolate Milk' },
-      { label: 'Chocolate White', value: 'Cholocate White' },
-      { label: 'Chocolate Almond', value: 'Chocolate Almond' },
-    ];
-
-    return (
-      <div className="create-recipe">
+  return (
+    <div className="recipe-form">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -130,22 +79,8 @@ class CreateRecipe extends Component {
             </button>
           </div>
         </div>
-        <RecipeModal />
       </div>
-    );
-  }
+  )
 }
 
-CreateRecipe.propTypes = {
-  recipe: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = state => ({
-  recipe: state.recipe,
-  auth: state.auth,
-  errors: state.errors,
-});
-
-export default connect(mapStateToProps, { createRecipe })(withRouter(CreateRecipe));
+// FIXME: Need eventhandler and parent callbacks

@@ -72,8 +72,15 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res, ne
   const newRecipe = new Recipe({
     _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
+    culinary: req.body.culinary,
     description: req.body.description,
+    directions: req.body.directions,
+    recipeImage: req.body.recipeImage,
+    printSettings: req.body.printSettings,
     ingredient: req.body.ingredient,
+    name: req.body.name,
+    avatar: req.body.avatar,
+    user: req.user.id
   });
 
   newRecipe.save().then(recipe => res.status(201).json(recipe)); // added 201 status
@@ -85,7 +92,6 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res, ne
 // @access  Public
 router.get('/:id', (req, res, next) => {
   Recipe.findById(req.params.id)
-    .select('_id title ingredient recipeImage')
     .exec()
     .then(recipe => res.json(recipe))
     .catch(err =>
