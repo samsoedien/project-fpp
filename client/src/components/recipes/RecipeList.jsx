@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Spinner from '../common/Spinner';
 
 import RecipeItem from './RecipeItem';
-import SearchFilter from '../common/SearchFilter';
+import SearchBar from '../common/SearchBar';
 
 const RecipeList = ({
   recipes,
@@ -47,7 +47,7 @@ const RecipeList = ({
         </div>
       </section>
 
-      <SearchFilter
+      <SearchBar
         filterText={filterText}
         filterUpdate={filterUpdate}
         filterCallback={filterCallback}

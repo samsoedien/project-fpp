@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-//import * as THREE from 'three';
+// import * as THREE from 'three';
 import THREE from './three';
 import { threeCalcVol } from '../components/three/threeFunctions';
 
 import ThreeNutritions from '../components/three/ThreeNutritions';
+import ThreeFileExporter from '../components/three/ThreeFileExporter';
+import MODEL from '../components/three/utah-teapot.json';
+
 
 class ThreeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       volume: '',
+      title: 'Cad model',
     };
 
 
@@ -98,12 +102,13 @@ class ThreeContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <div
           style={{ width: '400px', height: '400px' }}
           ref={(mount) => { this.mount = mount; }}
         />
         <ThreeNutritions volume={this.state.volume} />
+        <ThreeFileExporter name={this.state.title} scene={this.scene} />
       </div>
     );
   }

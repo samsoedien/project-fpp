@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class SearchFilter extends Component {
+class SearchBar extends Component {
   filterUpdate() {
     const val = this.myValue.value;
     this.props.filterCallback(val);
@@ -33,4 +33,4 @@ class SearchFilter extends Component {
   }
 }
 
-export default SearchFilter;
+export default SearchBar;
