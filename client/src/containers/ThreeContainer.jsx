@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as THREE from 'three';
+//import * as THREE from 'three';
+import THREE from './three';
 import { threeCalcVol } from '../components/three/threeFunctions';
 
 import ThreeNutritions from '../components/three/ThreeNutritions';
@@ -57,6 +58,11 @@ class ThreeContainer extends Component {
     renderer.setClearColor('#000000');
     renderer.setSize(width, height);
 
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+    controls.enableZoom = true;
+
     this.scene = scene;
     this.camera = camera;
     this.renderer = renderer;
@@ -82,6 +88,7 @@ class ThreeContainer extends Component {
     this.mesh.rotation.y += 0.01;
 
     this.renderScene();
+    //controls.update();
     this.frameId = window.requestAnimationFrame(this.animate);
   }
 
