@@ -103,12 +103,18 @@ class ThreeContainer extends Component {
   render() {
     return (
       <div className="container">
-        <div
-          style={{ width: '400px', height: '400px' }}
-          ref={(mount) => { this.mount = mount; }}
-        />
-        <ThreeNutritions volume={this.state.volume} />
-        <ThreeFileExporter name={this.state.title} scene={this.scene} />
+        <div className="row">
+          <div
+            className="col-md-8"
+            style={{ width: '600px', height: '400px' }}
+            ref={(mount) => { this.mount = mount; }}
+          />
+          <div className="col-md-4">
+            <ThreeNutritions volume={this.state.volume} />
+          </div>
+          <ThreeFileExporter name={this.state.title} scene={this.scene} />
+        </div>
+        
       </div>
     );
   }

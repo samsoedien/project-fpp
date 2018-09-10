@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './ThreeFileExporter.css';
 
 // import * as THREE from 'three';
 // import { STLExporter } from 'three/STLExporter';
@@ -26,7 +25,9 @@ class ThreeFileExporter extends Component {
 
   render() {
     return (
-      <button className="three-file-exporter-button" onClick={this.onFileDownload}>Download File (.STL)</button>
+      <div className="container">
+        <button className="three-file-exporter btn btn-primary mt-2" onClick={this.onFileDownload}>Download File (.STL)</button>
+      </div>
     );
   }
 }
