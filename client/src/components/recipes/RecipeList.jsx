@@ -58,10 +58,12 @@ const RecipeList = ({
           {recipeItems}
         </div>
       </div>
-
-      <Link to="/create-recipe" className="btn btn-lg btn-info">
-        Create Recipe
+      
+      <div className="container">
+        <Link to="/create-recipe" className="btn btn-lg btn-info">
+          Create Recipe
         </Link>
+      </div>
     </div>
   );
 };

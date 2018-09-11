@@ -8,6 +8,7 @@ import { threeCalcVol } from '../components/three/threeFunctions';
 import ThreeNutritions from '../components/three/ThreeNutritions';
 import ThreeFileExporter from '../components/three/ThreeFileExporter';
 import MODEL from '../components/three/utah-teapot.json';
+import IngredientForm from '../components/ingredients/IngredientForm';
 
 
 class ThreeContainer extends Component {
@@ -16,6 +17,11 @@ class ThreeContainer extends Component {
     this.state = {
       volume: '',
       title: 'Cad model',
+      ingredient: {
+        nutritions: {
+          kcal: 220,
+        },
+      },
     };
 
 
@@ -61,7 +67,7 @@ class ThreeContainer extends Component {
     const pointLight = new THREE.PointLight(0xffffff, 1.6);
     const dirLight = new THREE.DirectionalLight(0xffffff, 4);
     pointLight.position.set(20, 120, 400);
-    dirLight.position.set(-60, 0, 60)
+    dirLight.position.set(-60, 0, 60);
 
     scene.add(ambiLight);
     scene.add(pointLight);
@@ -119,7 +125,7 @@ class ThreeContainer extends Component {
             ref={(mount) => { this.mount = mount; }}
           />
           <div className="col-md-4">
-            <ThreeNutritions volume={this.state.volume} />
+            <ThreeNutritions volume={this.state.volume} nutritions={this.state.ingredient.nutritions} />
           </div>
           <ThreeFileExporter name={this.state.title} scene={this.scene} />
         </div>

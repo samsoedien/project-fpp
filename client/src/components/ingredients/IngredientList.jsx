@@ -30,7 +30,17 @@ const IngredientList = ({
   }
   return (
     <div className="ingredient-list">
-      {ingredientItems}
+      <div className="container">
+        <div className="input-group mb-3 mt-5">
+          <div className="input-group-prepend">
+            <label className="input-group-text" htmlFor="inputGroupSelect01">Ingredients</label>
+          </div>
+         <input type="text"/>
+         <ul>
+           
+         </ul>
+        </div>
+      </div>
       <IngredientForm />
     </div>
   );

@@ -19,7 +19,7 @@ const RecipeFavourite = (props) => {
 
   return (
     <div className="recipe-favourite">
-      <div id="recipe-fav" className="recipe-fav" onClick={this.onClickHandler} />
+      <div id="recipe-fav" className="recipe-fav" onClick={onClickHandler} />
     </div>
   );
 };

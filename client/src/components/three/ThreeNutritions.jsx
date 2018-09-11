@@ -1,4 +1,6 @@
 import React from 'react';
+import isEmpty from '../../validation/is-empty';
+
 
 const ThreeNutritions = props => (
   <div className="recipe-nutritions">
@@ -27,7 +29,12 @@ const ThreeNutritions = props => (
           </tr>
           <tr>
             <th scope="row" className="text-left pl-5">Calories</th>
-            <td className="text-right pr-5">220 kCal</td>
+            <td className="text-right pr-5">
+              {isEmpty(props.nutritions.kcal) ? (
+                <span>No nutrition data available.</span>
+              ) : (
+                <span>{props.nutritions.kcal} kCal</span>
+              )}</td>
           </tr>
           <tr>
             <th scope="row" className="text-left pl-5">Fats</th>
@@ -40,3 +47,5 @@ const ThreeNutritions = props => (
 );
 
 export default ThreeNutritions;
+
+

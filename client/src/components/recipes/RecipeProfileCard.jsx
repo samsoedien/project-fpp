@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classnames from 'classnames';
-import { Link } from 'react-router-dom';
-import { deletePost, addLike, removeLike } from '../../actions/postActions';
 
-class ProfileRecipeCard extends Component {
+class RecipeProfileCard extends Component {
   render() {
     const { recipe, auth } = this.props
     return (
@@ -26,4 +23,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps)(ProfileRecipeCard);
+export default connect(mapStateToProps)(RecipeProfileCard);

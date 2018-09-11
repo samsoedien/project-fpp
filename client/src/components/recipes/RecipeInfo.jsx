@@ -13,7 +13,6 @@ export default (props) => {
             <RecipeBadges recipe={props.recipe} />
           </div>
         </div>
-
       </div>
     </div>
   )

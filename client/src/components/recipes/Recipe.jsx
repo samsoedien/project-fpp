@@ -7,7 +7,7 @@ import ThreeContainer from '../../containers/ThreeContainer';
 import RecipeHeader from './RecipeHeader';
 import RecipeFavourite from './RecipeFavourite';
 import RecipeInfo from './RecipeInfo';
-import ProfileRecipeCard from './ProfileRecipeCard';
+import RecipeProfileCard from './RecipeProfileCard';
 
 const Recipe = ({
   recipe,

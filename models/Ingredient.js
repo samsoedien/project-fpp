@@ -8,6 +8,23 @@ const IngredientSchema = new Schema({
     type: String,
     required: true
   },
+  nutritions: {
+    kcal: {
+      type: String,
+    },
+    fats: {
+      type: String,
+    },
+    carbohydrates: {
+      type: String,
+    },
+    proteins: {
+      type: String,
+    },
+    allergies: {
+      type: String,
+    },
+  },
   date: {
     type: Date,
     default: Date.now

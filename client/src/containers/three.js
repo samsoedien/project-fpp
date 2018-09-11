@@ -1,8 +1,8 @@
 const THREE = require('three');
 
 global.THREE = THREE;
-if (!window.addEventListener)
-    window.addEventListener = () => { };
+if (!window.addEventListener) window.addEventListener = () => { };
+
 // require('three/examples/js/renderers/Projector');
 require('three/examples/js/controls/OrbitControls');
 require('three/examples/js/loaders/MTLLoader');
