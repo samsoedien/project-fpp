@@ -19,7 +19,7 @@ class ThreeScene extends Component {
       75,
       width / height,
       0.1,
-      1000
+      1000,
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     const geometry = new THREE.BoxGeometry(1, 1, 1);

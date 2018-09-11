@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import * as THREE from 'three';
-import THREE from './three';
-import { threeCalcVol } from '../components/three/threeFunctions';
+import { saveThreeScene } from '../actions/threeActions';
+
+import THREE from '../helpers/three';
+import { threeCalcVol } from '../helpers/threeHelpers';
 
 import ThreeNutritions from '../components/three/ThreeNutritions';
 import ThreeFileExporter from '../components/three/ThreeFileExporter';
-import MODEL from '../components/three/utah-teapot.json';
+import MODEL from '../assets/models/utah-teapot.json';
 import IngredientForm from '../components/ingredients/IngredientForm';
 
 
@@ -22,9 +23,8 @@ class ThreeContainer extends Component {
           kcal: 220,
         },
       },
+      cadData: '',
     };
-
-
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.animate = this.animate.bind(this);
@@ -115,6 +115,20 @@ class ThreeContainer extends Component {
     this.renderer.render(this.scene, this.camera);
   }
 
+  onFileSave = () => {
+    // Instantiate a exporter
+    let exporter = new THREE.GLTFExporter();
+
+    // Parse the input and generate the glTF output
+    exporter.parse( this.scene, function ( gltf ) {
+      console.log( gltf );
+      //downloadJSON( gltf );
+    });
+
+
+
+  }
+
   render() {
     return (
       <div className="container">
@@ -128,6 +142,7 @@ class ThreeContainer extends Component {
             <ThreeNutritions volume={this.state.volume} nutritions={this.state.ingredient.nutritions} />
           </div>
           <ThreeFileExporter name={this.state.title} scene={this.scene} />
+          <button type="button" onClick={this.onFileSave} className="btn btn-secondary"></button>
         </div>
         
       </div>

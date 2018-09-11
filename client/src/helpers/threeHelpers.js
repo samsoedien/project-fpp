@@ -1,3 +1,12 @@
+// export const threeDetector = () => {
+//   if (Detector.webgl) {
+//     // Initiate function or other initializations here
+//   } else {
+//     let warning = Detector.getWebGLErrorMessage();
+//     document.getElementById('container').appendChild(warning);
+//   }
+// };
+
 export const threeInit = (THREE) => {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -23,8 +32,53 @@ export const threeInit = (THREE) => {
   };
 
   animate();
-
+  return mesh;
 };
+
+export const threeInitialise = (THREE) => {
+  const width = this.mount.clientWidth;
+  const height = this.mount.clientHeight;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    width / height,
+    0.1,
+    1000,
+  );
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  const geometry = new THREE.BoxGeometry(10, 20, 20);
+  const material = new THREE.MeshLambertMaterial({ color: '#0x3b240e', wireframe: false });
+  const mesh = new THREE.Mesh(geometry, material);
+
+  const ambiLight = new THREE.AmbientLight(0xffffff, 0.4);
+  const pointLight = new THREE.PointLight(0xffffff, 1.6);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 4);
+  pointLight.position.set(20, 120, 400);
+  dirLight.position.set(-60, 0, 60);
+
+  scene.add(ambiLight);
+  scene.add(pointLight);
+
+  camera.position.z = 50;
+  scene.add(mesh);
+  renderer.setClearColor('#eeeeee');
+  renderer.setSize(width, height);
+
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.25;
+  controls.enableZoom = true;
+
+  this.scene = scene;
+  this.camera = camera;
+  this.renderer = renderer;
+  this.material = material;
+  this.mesh = mesh;
+
+  this.mount.appendChild(this.renderer.domElement);
+  this.start();
+}
 
 export const threeCalcVol = (THREE, object) => {
   const volumeOfT = (p1, p2, p3) => {

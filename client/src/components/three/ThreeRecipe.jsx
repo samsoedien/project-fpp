@@ -15,7 +15,7 @@ const ThreeRecipe = (props) => {
   );
 };
 
-Three.propTypes = {
+ThreeRecipe.propTypes = {
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
 };
