@@ -12,8 +12,19 @@ export default ({
   recipeImage,
   printSettings,
   ingredient,
-
+  errors,
+  onChangeCallback,
+  onSubmitCallback,
 }) => {
+  const onChange = (e) => {
+    onChangeCallback(e);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    onSubmitCallback();
+  };
+
   const options = [
     { label: 'SELECT INGREDIENT', value: 0 },
     { label: 'Chocolate Pure', value: 'Chocolate Pure' },
@@ -29,12 +40,12 @@ export default ({
             <div className="col-md-8 m-auto">
               <h2>Create a recipe</h2>
               <p>Add some information to start creating your custom food printing dish.</p>
-              <form onSubmit={this.onSubmit}>
+              <form onSubmit={onSubmit}>
                 <TextFieldGroup
                   placeholder="Title"
                   name="title"
                   value={title}
-                  onChange={this.onChange}
+                  onChange={onChange}
                   error={errors.title}
                   info="A title for your created dish."
                 />
@@ -42,7 +53,7 @@ export default ({
                   placeholder="Culinary"
                   name="culinary"
                   value={culinary}
-                  onChange={this.onChange}
+                  onChange={onChange}
                   error={errors.culinary}
                   info="Country of Origin"
                 />
@@ -50,7 +61,7 @@ export default ({
                   name="description"
                   placeholder="Description"
                   value={description}
-                  onChange={this.onChange}      
+                  onChange={onChange}      
                   error={errors.description}
                   info="Description for your created recipe"
                 />
@@ -58,7 +69,7 @@ export default ({
                   placeholder="Ingredient"
                   name="ingredient"
                   value={ingredient}
-                  onChange={this.onChange}
+                  onChange={onChange}
                   options={options}
                   error={errors.ingredient}
                   info="Select Ingredient"
@@ -66,7 +77,7 @@ export default ({
                 <input
                   type="file"
                   name="recipeImage"
-                  onChange={this.onChange}
+                  onChange={onChange}
                 />
                 <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
               </form>

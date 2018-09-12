@@ -78,6 +78,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res, ne
     recipeImage: req.body.recipeImage,
     printSettings: req.body.printSettings,
     ingredient: req.body.ingredient,
+    cadData: req.body.cadData,
     name: req.body.name,
     avatar: req.body.avatar,
     user: req.user.id

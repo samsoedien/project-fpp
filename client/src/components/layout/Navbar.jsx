@@ -5,10 +5,61 @@ import { Link } from 'react-router-dom';
 //import './Navbar.css';
 
 const Navbar = ({
+  user,
   isAuthenticated,
-  authLinks,
-  guestLinks,
+  onLogoutClickCallback,
 }) => {
+  const onLogoutClick = (e) => {
+    e.preventDefault();
+    onLogoutClickCallback();
+  };
+
+  const guestLinks = (
+    <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+        <Link className="nav-link" to="/register">
+          Signup
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/login">
+          Login
+        </Link>
+      </li>
+    </ul>
+  );
+
+  const authLinks = (
+    <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+        <Link className="nav-link" to="/dashboard">
+          Messages
+        </Link>
+      </li>
+      <li className="nav-item dropdown">
+        <a href="" className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img
+            className="rounded-circle"
+            src={user.avatar}
+            alt={user.name}
+            style={{ width: '25px', marginRight: '5px' }}
+            title="You must have a Gravatar connected to your email to display an image"
+          />
+          {' '}
+          {user.name}
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <Link to="/" className="dropdown-item">My profile</Link>
+          <div className="dropdown-divider"></div>
+          <Link to="/dashboard" className="dropdown-item">Dashboard</Link>
+          <Link to="/recipes" className="dropdown-item">Recipes</Link>
+          <div className="dropdown-divider"></div>
+          <a href="" onClick={onLogoutClick} className="dropdown-item">Log out</a>
+        </div>
+      </li>
+    </ul>
+  );
+
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-light shadow-lg p-2 bg-white rounded">
       <div className="container">
@@ -36,8 +87,9 @@ const Navbar = ({
 };
 
 Navbar.propTypes = {
-  guestLinks: PropTypes.object.isRequired,
-  authLinks: PropTypes.object.isRequired,
-}
+  user: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  onLogoutClickCallback: PropTypes.func.isRequired,
+};
 
 export default Navbar;

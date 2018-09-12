@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { getProfileByHandle } from '../actions/profileActions';
 
 import Profile from '../components/profiles/Profile';

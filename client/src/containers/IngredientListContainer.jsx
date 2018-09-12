@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { getIngredients } from '../actions/ingredientActions';
 
 import IngredientList from '../components/ingredients/IngredientList';

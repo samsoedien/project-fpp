@@ -39,8 +39,17 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res, ne
   const newIngredient = new Ingredient({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
+    image: req.body.image,
   });
-  newIngredient.save().then(ingredient => res.status(201).json(ingredient)); // added 201 status
+  newIngredient.save().then(ingredient => res.status(201).json(ingredient));
+});
+
+
+// @route   POST api/ingredients/nutritions
+// @desc    Create a nutritions dataset
+// @access  Private
+router.post('/nutritions', passport.authenticate('jwt', { session: false}), (req, res, next) => {
+  // use same structure as profile.experience
 });
 
 // @route   GET api/ingredients/:id

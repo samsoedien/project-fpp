@@ -12,3 +12,5 @@ export default () => {
 };
 
 //TODO: map all recipe.printSettings into separate spans like in RecipeList
+//TODO: Make if statement; if recommend printsettings = true, use them else use default
+// TODO: Callback notice for default setting to trigger warning alert that print settings not optimised

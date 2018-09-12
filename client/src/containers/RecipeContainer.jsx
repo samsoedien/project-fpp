@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { getRecipe } from '../actions/recipeActions';
 
 import Recipe from '../components/recipes/Recipe';
@@ -20,14 +20,14 @@ class RecipeContainer extends Component {
   render() {
     const { recipe, loading } = this.props.recipe;
     return (
-      <div className="recipe">
+      <div className="recipe-container">
         <Recipe recipe={recipe} loading={loading} isFavourited={this.state.isFavourited} />
       </div>
     )
   }
 }
 
-Recipe.propTypes = {
+RecipeContainer.propTypes = {
   getRecipe: PropTypes.func.isRequired,
   recipe: PropTypes.object.isRequired,
 }

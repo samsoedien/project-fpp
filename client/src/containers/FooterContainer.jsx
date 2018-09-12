@@ -13,4 +13,4 @@ class FooterContainer extends Component {
   }
 }
 
-export default FooterContainer;
+export default connect(null)(FooterContainer);

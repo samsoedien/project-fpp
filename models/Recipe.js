@@ -6,7 +6,7 @@ const RecipeSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'User'
   },
   title: {
     type: String,
@@ -29,8 +29,11 @@ const RecipeSchema = new Schema({
     type: String,
   },
   ingredient: {
-    type: String,
-    required: true
+    type: Schema.Types.ObjectId,
+    ref: 'Ingredient'
+  },
+  cadData: {
+    type: Object,
   },
   date: {
     type: Date,
@@ -38,4 +41,4 @@ const RecipeSchema = new Schema({
   }
 });
 
-module.exports = Recipe = mongoose.model('recipe', RecipeSchema);
+module.exports = Recipe = mongoose.model('Recipe', RecipeSchema);

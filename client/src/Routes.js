@@ -3,8 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/common/PrivateRoute';
 
 import Home from './components/front-page/Home';
-import Register from './components/auth/Register';
-import Login from './components/auth/Login';
+import Register from './components/auth/RegisterTemp';
+import Login from './components/auth/LoginTemp';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
@@ -17,7 +17,7 @@ import NotFound from './components/not-found/NotFound';
 
 import RecipeListContainer from './containers/RecipeListContainer';
 import RecipeContainer from './containers/RecipeContainer';
-import CreateRecipe from './components/create-recipe/CreateRecipe';
+import RecipeFormContainer from './containers/RecipeFormContainer';
 import IngredientListContainer from './containers/IngredientListContainer';
 
 import Test from './components/other/Test';
@@ -66,7 +66,7 @@ const Routes = () => (
       <PrivateRoute
         exact
         path="/create-recipe"
-        component={CreateRecipe}
+        component={RecipeFormContainer}
       />
     </Switch>
     <Route exact path="/test" component={Test} />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { saveThreeScene } from '../actions/threeActions';
 
 import THREE from '../helpers/three';
@@ -124,9 +124,10 @@ class ThreeContainer extends Component {
       console.log( gltf );
       //downloadJSON( gltf );
     });
-
-
-
+    const threeData = {
+      cadModel: threeData,
+    }
+    this.props.saveThreeScene(threeData);
   }
 
   render() {
@@ -142,15 +143,19 @@ class ThreeContainer extends Component {
             <ThreeNutritions volume={this.state.volume} nutritions={this.state.ingredient.nutritions} />
           </div>
           <ThreeFileExporter name={this.state.title} scene={this.scene} />
-          <button type="button" onClick={this.onFileSave} className="btn btn-secondary"></button>
+          <button type="button" onClick={this.onFileSave} className="btn btn-secondary">Save Handler</button>
         </div>
-        
       </div>
     );
   }
 }
 
 ThreeContainer.propTypes = {
+  saveThreeScene: PropTypes.func.isRequired,
 };
 
-export default connect(null)(ThreeContainer);
+const mapStateToProps = state => ({
+  three: state.three,
+});
+
+export default connect(mapStateToProps, { saveThreeScene })(ThreeContainer);

@@ -8,27 +8,36 @@ const IngredientSchema = new Schema({
     type: String,
     required: true
   },
-  nutritions: {
-    kcal: {
-      type: String,
-    },
-    fats: {
-      type: String,
-    },
-    carbohydrates: {
-      type: String,
-    },
-    proteins: {
-      type: String,
-    },
-    allergies: {
-      type: String,
-    },
+  image: {
+    type: String,
+    required: true,
+  },
+  nutritions: [
+    {
+      kcal: {
+        type: String,
+      },
+      fats: {
+        type: String,
+      },
+      carbohydrates: {
+        type: String,
+      },
+      proteins: {
+        type: String,
+      },
+      allergies: {
+        type: String,
+      }
+    }
+  ],
+  printSettings: {
+    type: String,
   },
   date: {
     type: Date,
     default: Date.now
-  }
+  },
 });
 
-module.exports = Ingredient = mongoose.model('ingredient', IngredientSchema);
+module.exports = Ingredient = mongoose.model('Ingredient', IngredientSchema);

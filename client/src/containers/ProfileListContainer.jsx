@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { getProfiles } from '../actions/profileActions';
 
 import ProfileList from '../components/profiles/ProfileList';
@@ -10,7 +10,7 @@ class ProfileListContainer extends Component {
     super(props);
     this.state = {
       filterText: '',
-    }
+    };
   }
 
   componentDidMount() {
@@ -38,7 +38,7 @@ class ProfileListContainer extends Component {
   }
 }
 
-ProfileList.propTypes = {
+ProfileListContainer.propTypes = {
   getProfiles: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -48,5 +48,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { getProfiles })(ProfileListContainer);
-
-//TODO: Are props correct: ProfileList.propTypes instead of ProfileListContainer.propTypes??
