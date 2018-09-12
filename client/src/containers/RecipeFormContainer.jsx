@@ -19,6 +19,8 @@ class RecipeFormContainer extends Component {
       ingredient: '',
       errors: {},
     };
+    this.onChangeCallback = this.onChangeCallback.bind(this);
+    this.onSubmitCallback = this.onSubmitCallback.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,7 +30,7 @@ class RecipeFormContainer extends Component {
   }
 
  
-  onChangeCallback = (e) => {
+  onChangeCallback(e) {
     switch (e.target.name) {
       case 'recipeImage':
         this.setState({ recipeImage: e.target.files[0] });
@@ -38,19 +40,19 @@ class RecipeFormContainer extends Component {
     }
   }
 
-  onSubmitCallback = () => {
+  onSubmitCallback() {
     const { user } = this.props.auth;
 
     const recipeData = {
       title: this.state.title,
       culinary: this.state.culinary,
       description: this.state.description,
-      directions: this.state.directions,
-      recipeImage: this.state.recipeImage,
-      printSettings: this.state.printSettings,
-      ingredient: this.state.ingredient,
-      name: user.name,
-      avatar: user.avatar,
+      //directions: this.state.directions,
+      //recipeImage: this.state.recipeImage,
+      //printSettings: this.state.printSettings,
+      //ingredient: this.state.ingredient,
+      //name: user.name,
+      //avatar: user.avatar,
     };
     this.props.createRecipe(recipeData, this.props.history);
   }
@@ -68,6 +70,8 @@ class RecipeFormContainer extends Component {
           printSettings={printSettings}
           ingredient={ingredient}
           errors={errors}
+          onChangeCallback={this.onChangeCallback}
+          onSubmitCallback={this.onSubmitCallback}
         />
       </div>
     );

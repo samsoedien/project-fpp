@@ -1,14 +1,14 @@
 import React from 'react';
-import RecipeForm from './RecipeForm';
-
-import ImageUpload from './ImageUpload';
+import PropTypes from 'prop-types';
 
 const RecipeModal = () => {
   return (
     <div className="recipe-modal">
-      <button type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#recipeModal">
+      <div className="container">
+        <button type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#recipeModal">
         Create New Recipe
-      </button>
+        </button>
+      </div>
 
       <div className="modal fade" id="recipeModal" tabIndex="-1" role="dialog" aria-labelledby="recipeModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
@@ -51,6 +51,10 @@ const RecipeModal = () => {
 
     </div>
   );
+};
+
+RecipeModal.propTypes = {
+
 };
 
 export default RecipeModal;

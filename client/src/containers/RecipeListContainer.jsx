@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getRecipes } from '../actions/recipeActions';
 
 import RecipeList from '../components/recipes/RecipeList';
+import RecipeFormContainer from './RecipeFormContainer';
 
 class RecipeListContainer extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class RecipeListContainer extends Component {
     const { filterText } = this.state;
     return (
       <div className="recipe-list-container">
+        <RecipeFormContainer />
         <RecipeList
           recipes={recipes}
           loading={loading}

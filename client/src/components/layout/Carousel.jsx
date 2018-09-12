@@ -60,8 +60,8 @@ const Carousel = props => (
 );
 
 Carousel.propTypes = {
-  img: PropTypes.object.isRequired,
-  img2: PropTypes.object.isRequired,
+  img: PropTypes.string.isRequired,
+  img2: PropTypes.string.isRequired,
 };
 
 export default Carousel;

@@ -69,7 +69,7 @@ const RecipeList = ({
 };
 
 RecipeList.propTypes = {
-  recipes: PropTypes.object.isRequired,
+  recipes: PropTypes.array,
   loading: PropTypes.bool.isRequired,
   filterText: PropTypes.string.isRequired,
   filterUpdate: PropTypes.func.isRequired,

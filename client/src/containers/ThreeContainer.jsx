@@ -8,9 +8,6 @@ import { threeCalcVol } from '../helpers/threeHelpers';
 
 import ThreeNutritions from '../components/three/ThreeNutritions';
 import ThreeFileExporter from '../components/three/ThreeFileExporter';
-import MODEL from '../assets/models/utah-teapot.json';
-import IngredientForm from '../components/ingredients/IngredientForm';
-
 
 class ThreeContainer extends Component {
   constructor(props) {
@@ -23,11 +20,12 @@ class ThreeContainer extends Component {
           kcal: 220,
         },
       },
-      cadData: '',
+      scene: '',
     };
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.animate = this.animate.bind(this);
+    this.onFileSave = this.onFileSave.bind(this);
   }
 
   componentDidMount() {
@@ -39,12 +37,6 @@ class ThreeContainer extends Component {
   componentWillUnmount() {
     this.stop();
     this.mount.removeChild(this.renderer.domElement);
-  }
-
-  updateVol(vol) {
-    this.setState({
-      volume: vol,
-    });
   }
 
   threeInit() {
@@ -60,7 +52,7 @@ class ThreeContainer extends Component {
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     const geometry = new THREE.BoxGeometry(10, 20, 20);
-    const material = new THREE.MeshLambertMaterial({ color: '#0x3b240e', wireframe: false });
+    const material = new THREE.MeshLambertMaterial({ color: 0x3b240e, wireframe: false });
     const mesh = new THREE.Mesh(geometry, material);
 
     const ambiLight = new THREE.AmbientLight(0xffffff, 0.4);
@@ -92,6 +84,27 @@ class ThreeContainer extends Component {
     this.start();
   }
 
+  onFileSave() {
+    // Instantiate a exporter
+    const exporter = new THREE.GLTFExporter();
+
+    // Parse the input and generate the glTF output
+    exporter.parse(this.scene, function ( gltf ) {
+      console.log( gltf );
+      //downloadJSON( gltf );
+    });
+    const threeData = {
+      scene: exporter,
+    };
+    this.props.saveThreeScene(threeData);
+  }
+
+  updateVol(vol) {
+    this.setState({
+      volume: vol,
+    });
+  }
+
   start() {
     if (!this.frameId) {
       this.frameId = requestAnimationFrame(this.animate);
@@ -113,21 +126,6 @@ class ThreeContainer extends Component {
 
   renderScene() {
     this.renderer.render(this.scene, this.camera);
-  }
-
-  onFileSave = () => {
-    // Instantiate a exporter
-    let exporter = new THREE.GLTFExporter();
-
-    // Parse the input and generate the glTF output
-    exporter.parse( this.scene, function ( gltf ) {
-      console.log( gltf );
-      //downloadJSON( gltf );
-    });
-    const threeData = {
-      cadModel: threeData,
-    }
-    this.props.saveThreeScene(threeData);
   }
 
   render() {

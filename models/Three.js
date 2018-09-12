@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 // Create Schema
 const ThreeSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  mesh: {
-    type: String,
+  scene: {
+    type: Object,
     isRequired: true,
   },
   date: {

@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TextFieldGroup from '../common/TextFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 
-export default ({
+const RecipeForm = ({
   title,
   culinary,
   description,
@@ -24,74 +25,98 @@ export default ({
     e.preventDefault();
     onSubmitCallback();
   };
-
-  const options = [
-    { label: 'SELECT INGREDIENT', value: 0 },
-    { label: 'Chocolate Pure', value: 'Chocolate Pure' },
-    { label: 'Chocolate Milk', value: 'Chocolate Milk' },
-    { label: 'Chocolate White', value: 'Cholocate White' },
-    { label: 'Chocolate Almond', value: 'Chocolate Almond' },
-  ];
-
   return (
     <div className="recipe-form">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h2>Create a recipe</h2>
-              <p>Add some information to start creating your custom food printing dish.</p>
-              <form onSubmit={onSubmit}>
-                <TextFieldGroup
-                  placeholder="Title"
-                  name="title"
-                  value={title}
-                  onChange={onChange}
-                  error={errors.title}
-                  info="A title for your created dish."
-                />
-                <TextFieldGroup
-                  placeholder="Culinary"
-                  name="culinary"
-                  value={culinary}
-                  onChange={onChange}
-                  error={errors.culinary}
-                  info="Country of Origin"
-                />
-                <TextAreaFieldGroup
-                  name="description"
-                  placeholder="Description"
-                  value={description}
-                  onChange={onChange}      
-                  error={errors.description}
-                  info="Description for your created recipe"
-                />
-                <SelectListGroup
-                  placeholder="Ingredient"
-                  name="ingredient"
-                  value={ingredient}
-                  onChange={onChange}
-                  options={options}
-                  error={errors.ingredient}
-                  info="Select Ingredient"
-                />
-                <input
-                  type="file"
-                  name="recipeImage"
-                  onChange={onChange}
-                />
-                <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
-              </form>
+      <div className="recipe-modal">
+        <button type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#recipeModal">
+          Create New Recipe
+        </button>
+
+        <div className="modal fade" id="recipeModal" tabIndex="-1" role="dialog" aria-labelledby="recipeModalLabel" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="recipeModalLabel">Create New Recipe</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div className="modal-body">
+                <div role="tabpanel">
+                  <ul className="nav nav-tabs" role="tablist">
+                    <li className="active" role="presentation">
+                      <a href="#formTab" aria-controls="formTab" role="tab" data-toggle="tab">Recipe Info</a>
+                    </li>
+                    <li role="presentation">
+                      <a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Upload CAD model</a>
+                    </li>
+                  </ul>
+                  <div className="tab-content">
+                    <div className="tab-pane active" id="formTab" role="tabpanel">
+                      <div className="container">
+                        <div className="row">
+                          <div className="col-md-8 m-auto">
+                            <h2>Create a recipe</h2>
+                            <p>Add some information to start creating your custom food printing dish.</p>
+                            <form onSubmit={onSubmit}>
+                              <TextFieldGroup
+                                placeholder="Title"
+                                name="title"
+                                value={title}
+                                onChange={onChange}
+                                error={errors.title}
+                                info="A title for your created dish."
+                              />
+                              <TextFieldGroup
+                                placeholder="Culinary"
+                                name="culinary"
+                                value={culinary}
+                                onChange={onChange}
+                                error={errors.culinary}
+                                info="Country of Origin"
+                              />
+                              <TextAreaFieldGroup
+                                name="description"
+                                placeholder="Description"
+                                value={description}
+                                onChange={onChange}      
+                                error={errors.description}
+                                info="Description for your created recipe"
+                              />
+                              <input
+                                type="file"
+                                name="recipeImage"
+                                onChange={onChange}
+                              />
+                              <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
+                            </form>
+                          </div>
+                        </div>
+                      </div>                    
+                    </div>
+                    <div className="tab-pane active" id="uploadTab" role="tabpanel">
+                      <span>No content yet</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-primary">Save changes</button>
+              </div>
             </div>
-          </div>
-          <div className="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Warning Message</strong> You should check in on some of those fields above.
-            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
           </div>
         </div>
       </div>
-  )
-}
+    </div>
+  );
+};
 
-// FIXME: Need eventhandler and parent callbacks
+RecipeForm.propTypes = {
+
+};
+
+export default RecipeForm;
+
+//TODO: Form over entire modal? Submit hander on save button. Need to search for examples 
