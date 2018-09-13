@@ -9,10 +9,10 @@ import Navbar from '../components/layout/Navbar';
 class NavbarContainer extends Component {
   constructor(props) {
     super(props);
-    this.onLogoutClickCallback = this.onLogoutClickCallback.bind(this);
+    this.onLogoutCallback = this.onLogoutCallback.bind(this);
   }
 
-  onLogoutClickCallback() {
+  onLogoutCallback() {
     this.props.clearCurrentProfile();
     this.props.logoutUser();
   }
@@ -21,7 +21,7 @@ class NavbarContainer extends Component {
     const { isAuthenticated, user } = this.props.auth;
     return (
       <div>
-        <Navbar user={user} isAuthenticated={isAuthenticated} onLogoutClickCallback={this.onLogoutClickCallback} />
+        <Navbar user={user} isAuthenticated={isAuthenticated} onLogoutCallback={this.onLogoutCallback} />
       </div>
     );
   }
@@ -38,4 +38,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(NavbarContainer);
 
-//FIXME: Logout gives infinite spinner.
+//FIXME: Logout gives infinite spinner. Seems fixed now??

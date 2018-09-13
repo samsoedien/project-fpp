@@ -34,6 +34,9 @@ const RecipeSchema = new Schema({
   cadData: {
     type: Object,
   },
+  seasonal: {
+    type: String,
+  },
   date: {
     type: Date,
     default: Date.now

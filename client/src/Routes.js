@@ -8,7 +8,6 @@ import Login from './components/auth/LoginTemp';
 import Dashboard from './components/dashboard/Dashboard';
 import ProfileFormContainer from './containers/ProfileFormContainer';
 import ProfileUpdateContainer from './containers/ProfileUpdateContainer';
-import AddExperience from './components/dashboard/AddExperience';
 import ExperienceFormContainer from './containers/ExperienceFormContainer';
 import ProfileListContainer from './containers/ProfileListContainer';
 import ProfileContainer from './containers/ProfileContainer';

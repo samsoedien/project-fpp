@@ -57,7 +57,3 @@ router.get('/:id', (req, res, next) => {
 });
 
 module.exports = router;
-
-//TODO: Setup better structered routes and send detailed responses back
-
-//FIXME: rewritten get request doesn't work  

@@ -34,6 +34,10 @@ const IngredientSchema = new Schema({
   printSettings: {
     type: String,
   },
+  familyGroup: {
+    type: String,
+    default: 'Chocolate',
+  },
   date: {
     type: Date,
     default: Date.now

@@ -17,7 +17,7 @@ export const setThreeLoading = () => {
 export const getThreeScene = id => (dispatch) => {
   dispatch(setThreeLoading());
   axios
-    .get(`/api/recipes/${id}`)
+    .get(`/api/three/${id}`)
     .then(res => dispatch({
       type: GET_THREE_SCENE,
       payload: res.data,
@@ -31,7 +31,7 @@ export const getThreeScene = id => (dispatch) => {
 // Save Three Scene
 export const saveThreeScene = (threeData, history) => (dispatch) => {
   axios
-    .post('/api/recipes', threeData)
+    .post('/api/three', threeData)
     .then(res => history.push('/dashboard'))
     .catch(err => dispatch({
       type: GET_ERRORS,

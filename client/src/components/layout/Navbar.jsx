@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom';
 const Navbar = ({
   user,
   isAuthenticated,
-  onLogoutClickCallback,
+  onLogoutCallback,
 }) => {
-  const onLogoutClick = (e) => {
+  const onLogout = (e) => {
     e.preventDefault();
-    onLogoutClickCallback();
+    onLogoutCallback();
   };
 
   const guestLinks = (
@@ -55,7 +55,7 @@ const Navbar = ({
           <Link to="/profiles" className="dropdown-item">Chefs</Link>
           <Link to="/ingredients" className="dropdown-item">Ingredients</Link>
           <div className="dropdown-divider"></div>
-          <a href="" onClick={onLogoutClick} className="dropdown-item">Log out</a>
+          <a href="" onClick={onLogout} className="dropdown-item">Log out</a>
         </div>
       </li>
     </ul>
@@ -90,7 +90,7 @@ const Navbar = ({
 Navbar.propTypes = {
   user: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  onLogoutClickCallback: PropTypes.func.isRequired,
+  onLogoutCallback: PropTypes.func.isRequired,
 };
 
 export default Navbar;
