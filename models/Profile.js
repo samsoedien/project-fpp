@@ -12,18 +12,16 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
-  company: {
-    type: String
+  profession: {
+    type: String,
+    required: true
   },
-  website: {
-    type: String
+  reputation: {
+    type: String,
+    default: 'Apprentice',
   },
   location: {
     type: String
-  },
-  status: {
-    type: String,
-    required: true
   },
   skills: {
     type: [String],

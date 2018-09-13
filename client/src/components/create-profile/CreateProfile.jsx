@@ -14,12 +14,11 @@ class CreateProfile extends Component {
     this.state = {
       displaySocialInputs: false,
       handle: '',
-      company: '',
-      website: '',
+      profession: '',
       location: '',
-      status: '',
-      skills: '',
       bio: '',
+      skills: '',
+
       twitter: '',
       facebook: '',
       linkedin: '',
@@ -47,12 +46,11 @@ class CreateProfile extends Component {
 
     const profileData = {
       handle: this.state.handle,
-      company: this.state.company,
-      website: this.state.website,
+      profession: this.state.profession,
       location: this.state.location,
-      status: this.state.status,
-      skills: this.state.skills,
       bio: this.state.bio,
+      skills: this.state.skills,
+
       twitter: this.state.twitter,
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
@@ -151,29 +149,13 @@ class CreateProfile extends Component {
                   info="A unique handle for your profile URL. Your full name, company name, nickname"
                 />
                 <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
+                  placeholder="Profession"
+                  name="profession"
+                  value={this.state.profession}
                   onChange={this.onChange}
                   options={options}
-                  error={errors.status}
+                  error={errors.profession}
                   info="Give us an idea of where you are at in your career"
-                />
-                <TextFieldGroup
-                  placeholder="Company"
-                  name="company"
-                  value={this.state.company}
-                  onChange={this.onChange}
-                  error={errors.company}
-                  info="Could be your own company or one you work for"
-                />
-                <TextFieldGroup
-                  placeholder="Website"
-                  name="website"
-                  value={this.state.website}
-                  onChange={this.onChange}
-                  error={errors.website}
-                  info="Could be your own website or a company one"
                 />
                 <TextFieldGroup
                   placeholder="Location"

@@ -5,7 +5,7 @@ module.exports = function validateProfileInput(data) {
   let errors = {};
 
   data.handle = !isEmpty(data.handle) ? data.handle : '';
-  data.status = !isEmpty(data.status) ? data.status : '';
+  data.profession = !isEmpty(data.profession) ? data.profession : '';
   data.skills = !isEmpty(data.skills) ? data.skills : '';
 
   if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
@@ -16,12 +16,12 @@ module.exports = function validateProfileInput(data) {
     errors.handle = 'Profile handle is required';
   }
 
-  if (Validator.isEmpty(data.status)) {
-    errors.status = 'Status field is required';
+  if (Validator.isEmpty(data.profession)) {
+    errors.profession = 'Profession field is required';
   }
 
   if (Validator.isEmpty(data.skills)) {
-    errors.skills = 'Skills field is required';
+    errors.skills = 'Status field is required';
   }
 
   if (!isEmpty(data.website)) {
