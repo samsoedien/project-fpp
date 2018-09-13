@@ -6,8 +6,8 @@ import Home from './components/front-page/Home';
 import Register from './components/auth/RegisterTemp';
 import Login from './components/auth/LoginTemp';
 import Dashboard from './components/dashboard/Dashboard';
-import CreateProfile from './components/create-profile/CreateProfile';
-import EditProfile from './components/edit-profile/EditProfile';
+import ProfileFormContainer from './containers/ProfileFormContainer';
+import ProfileUpdateContainer from './containers/ProfileUpdateContainer';
 import AddExperience from './components/add-credentials/AddExperience';
 import ProfileListContainer from './containers/ProfileListContainer';
 import ProfileContainer from './containers/ProfileContainer';
@@ -39,14 +39,14 @@ const Routes = () => (
       <PrivateRoute
         exact
         path="/create-profile"
-        component={CreateProfile}
+        component={ProfileFormContainer}
       />
     </Switch>
     <Switch>
       <PrivateRoute
         exact
         path="/edit-profile"
-        component={EditProfile}
+        component={ProfileUpdateContainer}
       />
     </Switch>
     <Switch>
