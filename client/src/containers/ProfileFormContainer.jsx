@@ -20,8 +20,6 @@ class ProfileFormContainer extends Component {
 
       twitter: '',
       facebook: '',
-      linkedin: '',
-      youtube: '',
       instagram: '',
       errors: {},
     };
@@ -50,8 +48,6 @@ class ProfileFormContainer extends Component {
 
       twitter: this.state.twitter,
       facebook: this.state.facebook,
-      linkedin: this.state.linkedin,
-      youtube: this.state.youtube,
       instagram: this.state.instagram
     };
 

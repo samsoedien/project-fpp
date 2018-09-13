@@ -16,8 +16,6 @@ const ProfileForm = ({
   skills,
   twitter,
   facebook,
-  linkedin,
-  youtube,
   instagram,
   errors,
   onChangeCallback,
@@ -52,24 +50,6 @@ const ProfileForm = ({
           value={facebook}
           onChange={onChange}
           error={errors.facebook}
-        />
-
-        <InputGroup
-          placeholder="Linkedin Profile URL"
-          name="linkedin"
-          icon="fab fa-linkedin"
-          value={linkedin}
-          onChange={onChange}
-          error={errors.linkedin}
-        />
-
-        <InputGroup
-          placeholder="YouTube Channel URL"
-          name="youtube"
-          icon="fab fa-youtube"
-          value={youtube}
-          onChange={onChange}
-          error={errors.youtube}
         />
 
         <InputGroup

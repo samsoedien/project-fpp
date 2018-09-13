@@ -21,8 +21,6 @@ class ProfileUpdateContainer extends Component {
 
       twitter: '',
       facebook: '',
-      linkedin: '',
-      youtube: '',
       instagram: '',
       errors: {},
     };
@@ -57,12 +55,6 @@ class ProfileUpdateContainer extends Component {
       profile.facebook = !isEmpty(profile.social.facebook)
         ? profile.social.facebook
         : '';
-      profile.linkedin = !isEmpty(profile.social.linkedin)
-        ? profile.social.linkedin
-        : '';
-      profile.youtube = !isEmpty(profile.social.youtube)
-        ? profile.social.youtube
-        : '';
       profile.instagram = !isEmpty(profile.social.instagram)
         ? profile.social.instagram
         : '';
@@ -76,8 +68,6 @@ class ProfileUpdateContainer extends Component {
         skills: skillsCSV,
         twitter: profile.twitter,
         facebook: profile.facebook,
-        linkedin: profile.linkedin,
-        youtube: profile.youtube,
         instagram: profile.instagram
       });
     }
@@ -96,8 +86,6 @@ class ProfileUpdateContainer extends Component {
       skills: this.state.skills,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
-      linkedin: this.state.linkedin,
-      youtube: this.state.youtube,
       instagram: this.state.instagram
     };
 
@@ -121,8 +109,6 @@ class ProfileUpdateContainer extends Component {
           skills={this.state.skills}
           twitter={this.state.twitter}
           facebook={this.state.facebook}
-          linkedin={this.state.linkedin}
-          youtube={this.state.youtube}
           instagram={this.state.instagram}
         />
       </div>
