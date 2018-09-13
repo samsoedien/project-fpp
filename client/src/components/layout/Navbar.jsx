@@ -52,7 +52,8 @@ const Navbar = ({
           <Link to="/" className="dropdown-item">My profile</Link>
           <div className="dropdown-divider"></div>
           <Link to="/dashboard" className="dropdown-item">Dashboard</Link>
-          <Link to="/recipes" className="dropdown-item">Recipes</Link>
+          <Link to="/profiles" className="dropdown-item">Chefs</Link>
+          <Link to="/ingredients" className="dropdown-item">Ingredients</Link>
           <div className="dropdown-divider"></div>
           <a href="" onClick={onLogoutClick} className="dropdown-item">Log out</a>
         </div>
@@ -70,16 +71,13 @@ const Navbar = ({
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <Link to="/profiles" className="nav-link">Chefs<span className="sr-only">(current)</span></Link>
+              <Link to="/recipes" className="nav-link">Recipes<span className="sr-only">(current)</span></Link>
             </li>
             <li className="nav-item">
-              <Link to="/recipes" className="nav-link">Recipes</Link>
+              <Link to="/restaurants" className="nav-link">Restaurants</Link>
             </li>
             <li className="nav-item">
               <Link to="/feed" className="nav-link">Community</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/ingredients" className="nav-link">Ingredients</Link>
             </li>
           </ul>
           {isAuthenticated ? authLinks : guestLinks}

@@ -2,13 +2,14 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/common/PrivateRoute';
 
-import Home from './components/front-page/Home';
+import Home from './components/layout/Home';
 import Register from './components/auth/RegisterTemp';
 import Login from './components/auth/LoginTemp';
 import Dashboard from './components/dashboard/Dashboard';
 import ProfileFormContainer from './containers/ProfileFormContainer';
 import ProfileUpdateContainer from './containers/ProfileUpdateContainer';
-import AddExperience from './components/add-credentials/AddExperience';
+import AddExperience from './components/dashboard/AddExperience';
+import ExperienceFormContainer from './containers/ExperienceFormContainer';
 import ProfileListContainer from './containers/ProfileListContainer';
 import ProfileContainer from './containers/ProfileContainer';
 import PostListContainer from './containers/PostListContainer';
@@ -53,7 +54,7 @@ const Routes = () => (
       <PrivateRoute
         exact
         path="/add-experience"
-        component={AddExperience}
+        component={ExperienceFormContainer}
       />
     </Switch>
     <Switch>
