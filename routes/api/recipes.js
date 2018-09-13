@@ -49,7 +49,7 @@ router.get('/test', (req, res) => res.json({ message: 'Recipes Works' }));
 // @access  Public
 router.get('/', (req, res, next) => {
   Recipe.find()
-    .select('_id title ingredient recipeImage')
+    .populate('user', ['name', 'avatar'])
     .sort({ date: -1 })
     .exec()
     .then(recipes => res.status(200).json(recipes))
@@ -71,6 +71,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res, ne
     title: req.body.title,
     culinary: req.body.culinary,
     description: req.body.description,
+    user: req.user.id,
   });
   newRecipe.save().then(recipe => res.status(201).json(recipe)); // added 201 status
 });
@@ -81,6 +82,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res, ne
 // @access  Public
 router.get('/:id', (req, res, next) => {
   Recipe.findById(req.params.id)
+    .populate('user', ['name', 'avatar'])
     .exec()
     .then(recipe => res.json(recipe))
     .catch(err =>

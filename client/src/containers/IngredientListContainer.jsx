@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getIngredients } from '../actions/ingredientActions';
 
 import IngredientList from '../components/ingredients/IngredientList';
+import NutritionsTable from '../components/ingredients/NutritionsTable';
 
 class IngredientListContainer extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class IngredientListContainer extends Component {
     const { filterText } = this.state;
     return (
       <div className="ingredient-list-container">
-        <IngredientList ingredients={ingredients} filterText={filterText} loading={loading}/>
+        <IngredientList ingredients={ingredients} filterText={filterText} loading={loading} />
+        <NutritionsTable />
       </div>
     );
   }

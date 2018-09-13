@@ -32,4 +32,4 @@ class RecipeNutritionsContainer extends Component {
 
 export default connect(null)(RecipeNutritionsContainer);
 
-//FIXME: Not tested yet.
+//FIXME: Not tested yet/completed yet

@@ -1,5 +1,8 @@
 import React from 'react';
+import isEmpty from '../../validation/is-empty';
+
 import RecipeBadges from './RecipeBadges';
+import RecipeProfileCard from './RecipeProfileCard';
 
 export default (props) => {
   return (
@@ -9,11 +12,19 @@ export default (props) => {
           <div className="col-md-8">
             <small className="text-muted text-left text-uppercase">Culinary: {props.recipe.culinary}</small>
             <h1 className="page-header text-left text-capitalize mb-2">{props.recipe.title}</h1>
-            <p className="lead text-left">{props.recipe.description}</p>
-            <RecipeBadges recipe={props.recipe} />
+            <p className="lead text-left">
+              {isEmpty(props.recipe.description) ? (
+               <span>
+                No description written yet
+               </span>
+              ) : (
+                props.recipe.description)}
+            </p>
           </div>
         </div>
+        <RecipeBadges recipe={props.recipe} />
       </div>
+      <RecipeProfileCard recipe={props.recipe} />
     </div>
-  )
+  );
 }

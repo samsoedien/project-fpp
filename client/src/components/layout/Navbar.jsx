@@ -78,6 +78,9 @@ const Navbar = ({
             <li className="nav-item">
               <Link to="/feed" className="nav-link">Community</Link>
             </li>
+            <li className="nav-item">
+              <Link to="/ingredients" className="nav-link">Ingredients</Link>
+            </li>
           </ul>
           {isAuthenticated ? authLinks : guestLinks}
         </div>

@@ -41,11 +41,9 @@ const ThreeNutritions = props => (
             <td className="text-right pr-5">23 mg</td>
           </tr>
         </tbody>
-      </table>     
+      </table>
     </div>
   </div>
 );
 
 export default ThreeNutritions;
-
-
