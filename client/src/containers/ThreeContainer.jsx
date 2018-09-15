@@ -6,6 +6,7 @@ import { saveThreeScene } from '../actions/threeActions';
 import THREE from '../helpers/three';
 import { threeCalcVol } from '../helpers/threeHelpers';
 
+import ThreeVolume from '../components/three/ThreeVolume';
 import ThreeNutritions from '../components/three/ThreeNutritions';
 import ThreeFileExporter from '../components/three/ThreeFileExporter';
 
@@ -26,6 +27,7 @@ class ThreeContainer extends Component {
     this.stop = this.stop.bind(this);
     this.animate = this.animate.bind(this);
     this.onFileSave = this.onFileSave.bind(this);
+    this.volumeCallback = this.volumeCallback.bind(this);
   }
 
   componentDidMount() {
@@ -89,14 +91,20 @@ class ThreeContainer extends Component {
     const exporter = new THREE.GLTFExporter();
 
     // Parse the input and generate the glTF output
-    exporter.parse(this.scene, function ( gltf ) {
-      console.log( gltf );
+    exporter.parse(this.scene, function (gltf) {
+      console.log(gltf);
       //downloadJSON( gltf );
     });
     const threeData = {
       scene: exporter,
     };
     this.props.saveThreeScene(threeData);
+  }
+
+  volumeCallback(vol) {
+    // this.setState({
+    //   volume: vol,
+    // });
   }
 
   updateVol(vol) {
@@ -136,11 +144,13 @@ class ThreeContainer extends Component {
             className="col-md-8"
             style={{ width: '600px', height: '400px' }}
             ref={(mount) => { this.mount = mount; }}
-          />
+          >
+            <ThreeVolume mesh={this.mesh} volumeCallback={this.volumeCallback} />
+            <ThreeFileExporter name={this.state.title} scene={this.scene} />
+          </div>
           <div className="col-md-4">
             <ThreeNutritions volume={this.state.volume} nutritions={this.state.ingredient.nutritions} />
           </div>
-          <ThreeFileExporter name={this.state.title} scene={this.scene} />
           <button type="button" onClick={this.onFileSave} className="btn btn-secondary">Save Handler</button>
         </div>
       </div>

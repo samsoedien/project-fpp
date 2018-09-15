@@ -19,7 +19,9 @@ const ThreeFileExporter = ({
   return (
     <div className="three-file-exporter">
       <div className="container">
-        <button type="button" className="btn btn-primary mt-2" onClick={onFileDownload}>Download File (.STL)</button>
+        <div className="position-absolute" style={{ bottom: '8px', right: '30px' }}>
+          <button type="button" className="btn btn-primary btn-sm text-uppercase" onClick={onFileDownload}>Download File (.STL)</button>
+        </div>
       </div>
     </div>
   );

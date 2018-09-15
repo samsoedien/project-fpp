@@ -1,12 +1,16 @@
 import React from 'react';
 
+import RecipeFavourite from './RecipeFavourite';
+
 import img from '../../assets/img/foodprinted_sidedish.jpg';
 
 export default (props) => {
   return (
     <div className="recipe-header">
       <header className="recipe-header">
-        <img src={img} alt="" className="mb-4" />
+        <div style={{ backgroundImage: `url(${img})`, height: '620px' }}>
+          <RecipeFavourite />
+        </div>
       </header>
     </div>
   );
