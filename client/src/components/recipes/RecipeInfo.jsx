@@ -24,7 +24,6 @@ export default (props) => {
         </div>
         <RecipeBadges recipe={props.recipe} />
       </div>
-      <RecipeProfileCard recipe={props.recipe} />
     </div>
   );
 }

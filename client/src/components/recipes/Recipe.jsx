@@ -23,7 +23,8 @@ const Recipe = ({
         <RecipeHeader recipeImage={recipe.image} />
         <RecipeFavourite isFavourited={isFavourited} />
         <RecipeInfo recipe={recipe} />
-        <ThreeContainer />
+        <RecipeProfileCard recipe={recipe} />
+        <ThreeContainer recipe={recipe} width="600px" height="400px" />
       </div>
     );
   }
