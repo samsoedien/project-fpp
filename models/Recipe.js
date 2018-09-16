@@ -27,10 +27,14 @@ const RecipeSchema = new Schema({
   printSetting: {
     type: String,
   },
-  ingredient: {
-    type: Schema.Types.ObjectId,
-    ref: 'Ingredient'
-  },
+  ingredients: [
+    {
+      ingredient: {
+        type: Schema.Types.ObjectId,
+        ref: 'Ingredient'
+      }
+    }
+  ],
   cadData: {
     type: Object,
   },

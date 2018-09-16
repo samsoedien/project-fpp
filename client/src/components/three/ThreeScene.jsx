@@ -106,6 +106,10 @@ class ThreeScene extends Component {
     this.renderer.setSize(this.width, this.height)
   }
 
+  volumeCallback(vol) {
+    const volume = vol;
+  }
+
   render() {
     return (
       <div className="three-scene">
@@ -116,11 +120,11 @@ class ThreeScene extends Component {
               style={{ width: '600px', height: '400px' }}
               ref={(mount) => { this.mount = mount; }}
             >
-              <button type="button" className="btn btn-secondary btn-sm position-absolute" style={{top: '8px', right: '4px'}}>larger</button>
+              <button type="button" className="btn btn-secondary btn-sm position-absolute" style={{ top: '8px', right: '4px' }}>larger</button>
               <ThreeVolume mesh={this.mesh} volumeCallback={this.volumeCallback} />
               <ThreeFileExporter name={this.props.title} scene={this.state.scene} />
             </div>
-           
+
           </div>
         </div>
       </div>

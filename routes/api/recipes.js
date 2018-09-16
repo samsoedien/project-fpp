@@ -90,6 +90,24 @@ router.get('/:id', (req, res, next) => {
     );
 });
 
+// @route   POST api/recipes/ingredient
+// @desc    Add an ingredient to the recipe
+// @access  Private
+router.post('/ingredient', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Recipe.findOne({ user: req.user.id })
+    .then(recipe => {
+      const newIngredient = {
+        ingredient: req.body.ingredient
+      }
+      // Add to recipe array
+      recipe.ingredients.unshift(newIngredient);
+      recipe.save().then(recipe => res.json(recipe));
+    })
+});
+
+
+
+
 // @route   POST api/recipes/:id
 // @desc    Upload an image
 // @access  Public

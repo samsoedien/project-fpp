@@ -114,47 +114,57 @@ router.post(
       return res.status(400).json(errors);
     }
 
-    // Get fields
-    const profileFields = {};
-    profileFields.user = req.user.id;
-    if (req.body.handle) profileFields.handle = req.body.handle;
-    if (req.body.profession) profileFields.profession = req.body.profession;
-    if (req.body.location) profileFields.location = req.body.location;
-    if (req.body.bio) profileFields.bio = req.body.bio;
-    // Skills - Spilt into array
-    if (typeof req.body.skills !== 'undefined') {
-      profileFields.skills = req.body.skills.split(',');
-    }
+    const { skills, twitter, facebook, instagram } = req.body;
 
-    // Social
-    profileFields.social = {};
-    if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
-    if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
-    if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
+    const profileFields = {
+      ...req.body,
+      user: req.user.id,
+      skills: skills.split(','),
+      social: { twitter, facebook, instagram }
+    };
 
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      if (profile) {
-        // Update
-        Profile.findOneAndUpdate(
-          { user: req.user.id },
-          { $set: profileFields },
-          { new: true }
-        ).then(profile => res.json(profile));
-      } else {
-        // Create
+    // // Get fields
+    // const profileFields = {};
+    // profileFields.user = req.user.id;
+    // if (req.body.handle) profileFields.handle = req.body.handle;
+    // if (req.body.profession) profileFields.profession = req.body.profession;
+    // if (req.body.location) profileFields.location = req.body.location;
+    // if (req.body.bio) profileFields.bio = req.body.bio;
+    // // Skills - Spilt into array
+    // if (typeof req.body.skills !== 'undefined') {
+    //   profileFields.skills = req.body.skills.split(',');
+    // }
 
-        // Check if handle exists
-        Profile.findOne({ handle: profileFields.handle }).then(profile => {
-          if (profile) {
-            errors.handle = 'That handle already exists';
-            res.status(400).json(errors);
-          }
+    // // Social
+    // profileFields.social = {};
+    // if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
+    // if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
+    // if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
 
-          // Save Profile
-          new Profile(profileFields).save().then(profile => res.json(profile));
-        });
-      }
-    });
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        if (profile) {
+          // Update
+          Profile.findOneAndUpdate(
+            { user: req.user.id },
+            { $set: profileFields },
+            { new: true }
+          ).then(profile => res.json(profile));
+        } else {
+          // Create
+
+          // Check if handle exists
+          Profile.findOne({ handle: profileFields.handle }).then(profile => {
+            if (profile) {
+              errors.handle = 'That handle already exists';
+              res.status(400).json(errors);
+            }
+
+            // Save Profile
+            new Profile(profileFields).save().then(profile => res.json(profile));
+          });
+        }
+      });
   }
 );
 
@@ -186,7 +196,6 @@ router.post(
 
       // Add to exp array
       profile.experience.unshift(newExp);
-
       profile.save().then(profile => res.json(profile));
     });
   }
