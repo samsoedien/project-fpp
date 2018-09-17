@@ -20,7 +20,7 @@ import RecipeContainer from './containers/RecipeContainer';
 import RecipeFormContainer from './containers/RecipeFormContainer';
 import IngredientFormContainer from './containers/IngredientFormContainer';
 
-import RestaurantFormContainer from './containers/RestaurantFormContainer';
+import RestaurantListContainer from './containers/RestaurantListContainer';
 
 import Test from './components/other/Test';
 
@@ -33,7 +33,7 @@ const Routes = () => (
     <Route exact path="/profile/:handle" component={ProfileContainer} />
     <Route exact path="/recipes" component={RecipeListContainer} />
     <Route exact path="/recipes/:id" component={RecipeContainer} />
-    <Route exact path="/restaurants" component={RestaurantFormContainer} />
+    <Route exact path="/restaurants" component={RestaurantListContainer} />
     <Switch>
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
     </Switch>
