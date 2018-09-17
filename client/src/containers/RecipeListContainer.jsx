@@ -12,13 +12,14 @@ class RecipeListContainer extends Component {
     this.state = {
       filterText: '',
     };
+    this.filterListUpdate = this.filterListUpdate.bind(this);
   }
 
   componentDidMount() {
     this.props.getRecipes();
   }
 
-  filterListUpdate = (value) => {
+  filterListUpdate(value) {
     console.log(value);
     this.setState({
       filterText: value,

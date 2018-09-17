@@ -12,10 +12,18 @@ class IngredientListContainer extends Component {
     this.state = {
       filterText: '',
     };
+    this.filterListUpdate = this.filterListUpdate.bind(this);
   }
 
   componentDidMount() {
     this.props.getIngredients();
+  }
+
+  filterListUpdate(value) {
+    console.log(value);
+    this.setState({
+      filterText: value,
+    });
   }
 
   render() {
@@ -23,8 +31,12 @@ class IngredientListContainer extends Component {
     const { filterText } = this.state;
     return (
       <div className="ingredient-list-container">
-        <IngredientList ingredients={ingredients} filterText={filterText} loading={loading} />
-        <NutritionsTable />
+        <IngredientList
+          ingredients={ingredients}
+          loading={loading}
+          filterText={filterText}
+          filterUpdate={this.filterListUpdate}
+        />
       </div>
     );
   }

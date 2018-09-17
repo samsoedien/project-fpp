@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
@@ -10,7 +10,7 @@ import store from './store';
 import Routes from './Routes';
 import NavbarContainer from './containers/NavbarContainer';
 import FooterContainer from './containers/FooterContainer';
-import Landing from './components/layout/Landing';
+// import Landing from './components/layout/Landing';
 import './App.css';
 
 // Check for token

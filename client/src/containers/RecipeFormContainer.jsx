@@ -29,7 +29,6 @@ class RecipeFormContainer extends Component {
     }
   }
 
- 
   onChangeCallback(e) {
     switch (e.target.name) {
       case 'recipeImage':

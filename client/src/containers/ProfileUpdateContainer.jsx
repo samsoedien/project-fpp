@@ -129,5 +129,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { createProfile, getCurrentProfile })(withRouter(ProfileUpdateContainer));
-
-// FIXME: Edit fields are not filled in from previous data.

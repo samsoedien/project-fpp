@@ -158,6 +158,23 @@ const ProfileForm = ({
   );
 };
 
+ProfileForm.propTypes = {
+  updateProfile: PropTypes.bool.isRequired,
+  displaySocialInputs: PropTypes.bool.isRequired,
+  handle: PropTypes.string.isRequired,
+  profession: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  bio: PropTypes.string.isRequired,
+  skills: PropTypes.array.isRequired,
+  twitter: PropTypes.string.isRequired,
+  facebook: PropTypes.string.isRequired,
+  instagram: PropTypes.string.isRequired,
+  errors: PropTypes.object.isRequired,
+  onChangeCallback: PropTypes.func.isRequired,
+  onSubmitCallback: PropTypes.func.isRequired,
+};
+
+
 export default ProfileForm;
 
 // FIXME: SetState in sociallink button toggler,  need to be moved to parent container.

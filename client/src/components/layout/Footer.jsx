@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import PrivacyPolicy from '../other/PrivacyPolicy';
 
@@ -20,5 +20,9 @@ const Footer = () => (
     </footer>
   </div>
 );
+
+// Footer.propTypes = {
+
+// };
 
 export default Footer;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addExperience } from '../actions/profileActions';
@@ -65,12 +65,12 @@ class ExperienceFormContainer extends Component {
         <ExperienceForm
           errors={errors}
           disabled={disabled}
-          company={company} 
-          title={title} 
-          location={location} 
-          from={from} 
-          to={to} 
-          current={current} 
+          company={company}
+          title={title}
+          location={location}
+          from={from}
+          to={to}
+          current={current}
           description={description}
           onCheckCallback={this.onCheckCallback}
           onChangeCallback={this.onChangeCallback}

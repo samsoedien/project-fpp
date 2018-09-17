@@ -9,6 +9,8 @@ import RecipeFavourite from './RecipeFavourite';
 import RecipeInfo from './RecipeInfo';
 import RecipeProfileCard from './RecipeProfileCard';
 
+import IngredientListContainer from '../../containers/IngredientListContainer';
+
 const Recipe = ({
   recipe,
   isFavourited,
@@ -23,6 +25,7 @@ const Recipe = ({
         <RecipeHeader recipeImage={recipe.image} />
         <RecipeFavourite isFavourited={isFavourited} />
         <RecipeInfo recipe={recipe} />
+        <IngredientListContainer />
         <RecipeProfileCard recipe={recipe} />
         <ThreeContainer recipe={recipe} width="600px" height="400px" />
       </div>

@@ -9,11 +9,11 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 const ExperienceForm = ({
   errors,
   disabled,
-  company, 
-  title, 
-  location, 
-  from, 
-  to, 
+  company,
+  title,
+  location,
+  from,
+  to,
   current,
   description,
   onCheckCallback,
@@ -121,7 +121,13 @@ const ExperienceForm = ({
 };
 
 ExperienceForm.propTypes = {
-
+  errors: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  current: PropTypes.bool.isRequired,
+  description: PropTypes.string.isRequired,
+  onCheckCallback: PropTypes.func.isRequired,
+  onChangeCallback: PropTypes.func.isRequired,
+  onSubmitCallback: PropTypes.func.isRequired,
 };
 
 export default ExperienceForm;

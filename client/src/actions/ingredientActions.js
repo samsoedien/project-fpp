@@ -4,7 +4,7 @@ import {
   GET_INGREDIENTS,
   GET_INGREDIENT,
   INGREDIENT_LOADING,
-  GET_ERRORS, 
+  GET_ERRORS,
 } from './types';
 
 // Set loading state

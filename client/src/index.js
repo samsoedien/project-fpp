@@ -11,5 +11,3 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
-
-//FIXME: jquery and popper are unused, can these be removed?

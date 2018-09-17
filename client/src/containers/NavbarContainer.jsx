@@ -37,5 +37,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(NavbarContainer);
-
-//FIXME: Logout gives infinite spinner. Seems fixed now??

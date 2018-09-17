@@ -10,7 +10,6 @@ const IngredientSchema = new Schema({
   },
   image: {
     type: String,
-    required: true,
   },
   nutritions: [
     {
@@ -45,3 +44,5 @@ const IngredientSchema = new Schema({
 });
 
 module.exports = Ingredient = mongoose.model('Ingredient', IngredientSchema);
+
+//TODO: Need to set image to required after multer implementation

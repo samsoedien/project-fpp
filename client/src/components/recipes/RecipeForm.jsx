@@ -80,7 +80,7 @@ const RecipeForm = ({
                                 name="description"
                                 placeholder="Description"
                                 value={description}
-                                onChange={onChange}      
+                                onChange={onChange}
                                 error={errors.description}
                                 info="Description for your created recipe"
                               />
@@ -93,7 +93,7 @@ const RecipeForm = ({
                             </form>
                           </div>
                         </div>
-                      </div>                    
+                      </div>
                     </div>
                     <div className="tab-pane active" id="uploadTab" role="tabpanel">
                       <span>No content yet</span>
@@ -114,7 +114,16 @@ const RecipeForm = ({
 };
 
 RecipeForm.propTypes = {
-
+  title: PropTypes.string.isRequired,
+  culinary: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  directions: PropTypes.array.isRequired,
+  recipeImage: PropTypes.string.isRequired,
+  printSettings: PropTypes.string.isRequired,
+  ingredient: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  onChangeCallback: PropTypes.func.isRequired,
+  onSubmitCallback: PropTypes.func.isRequired,
 };
 
 export default RecipeForm;

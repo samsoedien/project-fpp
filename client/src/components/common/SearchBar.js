@@ -10,7 +10,6 @@ class SearchBar extends Component {
     return (
       <div>
         <div className="container">
-          <h1>Search created recipes</h1>
           <div className="input-group input-group-lg shadow-sm mb-4">
             <div className="input-group-prepend">
               <span className="input-group-text" id="inputGroup-sizing-lg">Recipes</span>

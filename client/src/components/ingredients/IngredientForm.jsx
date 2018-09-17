@@ -18,14 +18,16 @@ const IngredientForm = ({
     onSubmitCallback();
   };
 
-  const Seasonaloptions = [
-    { label: '* Select Seasonal Tag', value: 0 },
-    { label: 'Birthday', value: 'Birthday' },
-    { label: 'Christmas', value: 'Christmas' },
-    { label: 'Eastern', value: 'Eastern' },
-    { label: 'Valentine', value: 'Food Designer' },
-    { label: 'Other', value: 'Other' },
-  ];
+  // const Seasonaloptions = [
+  //   { label: '* Select Seasonal Tag', value: 0 },
+  //   { label: 'Birthday', value: 'Birthday' },
+  //   { label: 'Christmas', value: 'Christmas' },
+  //   { label: 'Eastern', value: 'Eastern' },
+  //   { label: 'Valentine', value: 'Food Designer' },
+  //   { label: 'Other', value: 'Other' },
+  // ];
+
+  console.log('errors ' + errors);
 
   return (
     <div className="ingredient-form">
@@ -40,7 +42,7 @@ const IngredientForm = ({
                 name="name"
                 value={name}
                 onChange={onChange}
-                error={errors.name}
+                errors={errors.name}
                 info="A created ingredient."
               />
               <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />

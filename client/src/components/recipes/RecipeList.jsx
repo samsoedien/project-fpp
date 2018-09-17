@@ -41,24 +41,28 @@ const RecipeList = ({
           <h1 className="jumbotron-heading">Album example</h1>
           <p className="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
           <p>
-            <a href="#" className="btn btn-primary my-2">Main call to action</a>
-            <a href="#" className="btn btn-secondary my-2">Secondary action</a>
+            <a href="" className="btn btn-primary my-2">Main call to action</a>
+            <a href="" className="btn btn-secondary my-2">Secondary action</a>
           </p>
         </div>
       </section>
 
-      <SearchBar
-        filterText={filterText}
-        filterUpdate={filterUpdate}
-        filterCallback={filterCallback}
-      />
+      <div className="container">
+        <h4 className="text-center text-uppercase">Search Recipes</h4>
+        <SearchBar
+          filterText={filterText}
+          filterUpdate={filterUpdate}
+          filterCallback={filterCallback}
+        />
+      </div>
+
 
       <div className="container">
         <div className="row">
           {recipeItems}
         </div>
       </div>
-      
+
       <div className="container">
         <Link to="/create-recipe" className="btn btn-lg btn-info">
           Create Recipe

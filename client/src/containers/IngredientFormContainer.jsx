@@ -27,7 +27,7 @@ class IngredientFormContainer extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmit(e) {
+  onSubmitCallback(e) {
     const ingredientData = {
       name: this.state.name,
     };
@@ -39,10 +39,10 @@ class IngredientFormContainer extends Component {
     return (
       <div className="ingredient-form-container">
         <IngredientForm
-          name={name} 
+          name={name}
           errors={errors}
           onChangeCallback={this.onChangeCallback}
-          onSubmitCallback={this.onSubmitCallback}  
+          onSubmitCallback={this.onSubmitCallback}
         />
       </div>
     );
@@ -51,14 +51,14 @@ class IngredientFormContainer extends Component {
 
 IngredientFormContainer.propTypes = {
   ingredient: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   ingredient: state.ingredient,
+  auth: state.auth,
   errors: state.errors,
 });
 
 export default connect(mapStateToProps, { createIngredient })(withRouter(IngredientFormContainer));
-
-//FIXME: Not tested yet
