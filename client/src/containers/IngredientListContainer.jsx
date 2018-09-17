@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getIngredients } from '../actions/ingredientActions';
 
 import IngredientList from '../components/ingredients/IngredientList';
-import NutritionsTable from '../components/ingredients/NutritionsTable';
 
 class IngredientListContainer extends Component {
   constructor(props) {

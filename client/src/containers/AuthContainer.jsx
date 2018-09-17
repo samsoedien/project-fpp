@@ -77,14 +77,14 @@ class AuthContainer extends Component {
             onSubmitCallback={this.onSubmitCallback}
           />
         ) : (
-          <Login
-            email={email}
-            password={password}
-            errors={errors}
-            onChangeCallback={this.onChangeCallback}
-            onSubmitCallback={this.onSubmitCallback}
-          />
-        )}
+            <Login
+              email={email}
+              password={password}
+              errors={errors}
+              onChangeCallback={this.onChangeCallback}
+              onSubmitCallback={this.onSubmitCallback}
+            />
+          )}
       </div>
     );
   }

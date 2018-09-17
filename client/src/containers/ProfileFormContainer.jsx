@@ -59,7 +59,7 @@ class ProfileFormContainer extends Component {
 
     return (
       <div className="profile-form-container">
-        <ProfileForm 
+        <ProfileForm
           errors={errors}
           updateProfile={updateProfile}
           displaySocialInputs={displaySocialInputs}

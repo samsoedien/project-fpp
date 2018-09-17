@@ -176,6 +176,3 @@ ProfileForm.propTypes = {
 
 
 export default ProfileForm;
-
-// FIXME: SetState in sociallink button toggler,  need to be moved to parent container.
-// TODO: Add user avatar upload functionality

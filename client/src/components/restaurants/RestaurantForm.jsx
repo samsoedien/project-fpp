@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import TextFieldGroup from '../common/TextFieldGroup';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
-import SelectListGroup from '../common/SelectListGroup';
 
 const RestaurantForm = ({
   displaySocialInputs,
@@ -108,13 +106,7 @@ const RestaurantForm = ({
 };
 
 RestaurantForm.propTypes = {
-  updateProfile: PropTypes.bool.isRequired,
   displaySocialInputs: PropTypes.bool.isRequired,
-  handle: PropTypes.string.isRequired,
-  profession: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
-  bio: PropTypes.string.isRequired,
-  skills: PropTypes.array.isRequired,
   twitter: PropTypes.string.isRequired,
   facebook: PropTypes.string.isRequired,
   instagram: PropTypes.string.isRequired,
@@ -123,8 +115,4 @@ RestaurantForm.propTypes = {
   onSubmitCallback: PropTypes.func.isRequired,
 };
 
-
 export default RestaurantForm;
-
-// FIXME: SetState in sociallink button toggler,  need to be moved to parent container.
-// TODO: Add user avatar upload functionality

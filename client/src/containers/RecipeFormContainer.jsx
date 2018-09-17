@@ -40,8 +40,6 @@ class RecipeFormContainer extends Component {
   }
 
   onSubmitCallback() {
-    const { user } = this.props.auth;
-
     const recipeData = {
       title: this.state.title,
       culinary: this.state.culinary,
@@ -79,13 +77,11 @@ class RecipeFormContainer extends Component {
 
 RecipeFormContainer.propTypes = {
   recipe: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   recipe: state.recipe,
-  auth: state.auth,
   errors: state.errors,
 });
 

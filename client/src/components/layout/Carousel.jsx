@@ -9,7 +9,7 @@ const Carousel = props => (
         <li data-target="#myCarousel" data-slide-to="1" />
         <li data-target="#myCarousel" data-slide-to="2" />
       </ol>
-      <div className="carousel-inner">
+      <div className="carousel-inner" style={{ height: '640px' }}>
         <div className="carousel-item active">
           <img className="first-slide" src={props.img} alt="First slide" />
           <div className="container">
@@ -42,7 +42,7 @@ const Carousel = props => (
             <div className="carousel-caption text-right">
               <h1>One more for good measure.</h1>
               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a className="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+              <p><a className="btn btn-lg btn-primary" href="" role="button">Browse gallery</a></p>
             </div>
           </div>
         </div>
@@ -65,3 +65,5 @@ Carousel.propTypes = {
 };
 
 export default Carousel;
+
+// FIXME: Fix height to crop images correctly and display child elements

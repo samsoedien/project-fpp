@@ -50,5 +50,3 @@ ProfileItem.propTypes = {
 };
 
 export default ProfileItem;
-
-//FIXME: Need to display one profile in correct way, fix formatting

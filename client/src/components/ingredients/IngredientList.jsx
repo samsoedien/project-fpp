@@ -4,7 +4,6 @@ import Spinner from '../common/Spinner';
 import SearchBar from '../common/SearchBar';
 
 import IngredientItem from './IngredientItem';
-import IngredientFormContainer from '../../containers/IngredientFormContainer';
 
 const IngredientList = ({
   ingredients,
