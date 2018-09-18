@@ -46,10 +46,16 @@ export const threeInit = (width, height) => {
 
     renderer.render(scene, camera);
   };
-
   animate();
 
-  return this;
+  const threeObject = {
+    scene,
+    camera,
+    renderer,
+    material,
+    mesh,
+  };
+  return threeObject;
 };
 
 export const threeLights = (scene) => {
@@ -63,7 +69,7 @@ export const threeLights = (scene) => {
   scene.add(pointLight);
 };
 
-export const threeCalcVol = (THREE, object) => {
+export const threeCalcVol = (object) => {
   const volumeOfT = (p1, p2, p3) => {
     let v321 = p3.x * p2.y * p1.z;
     let v231 = p2.x * p3.y * p1.z;

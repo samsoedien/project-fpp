@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import THREE from '../../helpers/three';
+import PropTypes from 'prop-types';
 import { threeCalcVol } from '../../helpers/threeHelpers';
 
 class ThreeVolume extends Component {
@@ -13,7 +12,7 @@ class ThreeVolume extends Component {
 
   componentWillReceiveProps(newProps) {
     console.log(newProps.mesh);
-    const vol = threeCalcVol(THREE, newProps.mesh);
+    const vol = threeCalcVol(newProps.mesh);
     this.setState({
       volume: vol,
     });
@@ -30,6 +29,10 @@ class ThreeVolume extends Component {
     );
   }
 }
+
+ThreeVolume.propTypes = {
+  volume: PropTypes.number.isRequired,
+};
 
 export default ThreeVolume;
 

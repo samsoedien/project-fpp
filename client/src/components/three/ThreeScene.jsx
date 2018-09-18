@@ -12,27 +12,26 @@ class ThreeScene extends Component {
     super(props);
     this.state = {
       volume: '',
+      largerWindowSizeActive: false,
     };
 
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.animate = this.animate.bind(this);
-    this.onWindowResize = this.onWindowResize.bind(this)
+    this.onWindowResize = this.onWindowResize.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   componentDidMount() {
+    // const threeObject = threeInit();
+    // threeLights(threeObject.scene);
     this.threeInit();
-
-    this.mount.appendChild(this.renderer.domElement);
     this.start();
-    window.addEventListener('resize', this.onWindowResize, false);
     this.setState({ scene: this.scene });
   }
 
   componentWillUnmount() {
     this.stop();
-    this.mount.removeChild(this.renderer.domElement);
-    window.removeEventListener('resize', this.onWindowResize, false);
   }
 
   threeInit() {
@@ -87,13 +86,17 @@ class ThreeScene extends Component {
 
 
   start() {
+    this.mount.appendChild(this.renderer.domElement);
     if (!this.frameId) {
       this.frameId = requestAnimationFrame(this.animate);
     }
+    window.addEventListener('resize', this.onWindowResize, false);
   }
 
   stop() {
+    this.mount.removeChild(this.renderer.domElement);
     cancelAnimationFrame(this.frameId);
+    window.removeEventListener('resize', this.onWindowResize, false);
   }
 
   renderScene() {
@@ -103,7 +106,13 @@ class ThreeScene extends Component {
   onWindowResize() {
     this.camera.aspect = this.width / this.height;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(this.width, this.height)
+    this.renderer.setSize(this.width, this.height);
+  }
+
+  onClick() {
+    this.setState({
+      largerWindowSizeActive: !this.state.largerWindowSizeActive,
+    });
   }
 
   volumeCallback(vol) {
@@ -116,11 +125,11 @@ class ThreeScene extends Component {
         <div className="container">
           <div className="row">
             <div
-              className="col-md-8"
-              style={{ width: '600px', height: '400px' }}
+              className={this.state.largerWindowSizeActive ? 'col-md-12' : 'col-md-8'}
+              style={{ height: '600px', width: '400px' }}
               ref={(mount) => { this.mount = mount; }}
             >
-              <button type="button" className="btn btn-secondary btn-sm position-absolute" style={{ top: '8px', right: '4px' }}>larger</button>
+              <button type="button" onClick={this.onClick} className="btn btn-secondary btn-sm position-absolute" style={{ top: '8px', right: '4px' }}>{this.state.largerWindowSizeActive ? 'Smaller' : 'Larger'}</button>
               <ThreeVolume mesh={this.mesh} volumeCallback={this.volumeCallback} />
               <ThreeFileExporter name={this.props.title} scene={this.state.scene} />
             </div>

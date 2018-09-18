@@ -12,6 +12,7 @@ const posts = require('./routes/api/posts');
 const recipes = require('./routes/api/recipes');
 const ingredients = require('./routes/api/ingredients');
 const three = require('./routes/api/three'); 
+const restaurants = require('./routes/api/restaurants');
 
 // Init app
 const app = express();
@@ -62,6 +63,7 @@ app.use('/api/posts', posts);
 app.use('/api/recipes', recipes);
 app.use('/api/ingredients', ingredients);
 app.use('/api/three', three);
+app.use('/api/restaurants', restaurants)
 
 // Morgan setup 
 app.use((req, res, next) => {
