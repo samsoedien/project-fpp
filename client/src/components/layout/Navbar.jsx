@@ -54,6 +54,7 @@ const Navbar = ({
           <Link to="/dashboard" className="dropdown-item">Dashboard</Link>
           <Link to="/profiles" className="dropdown-item">Chefs</Link>
           <Link to="/ingredients" className="dropdown-item">Ingredients</Link>
+          <Link to="/editor" className="dropdown-item">Editor</Link>
           <div className="dropdown-divider"></div>
           <a href="" onClick={onLogout} className="dropdown-item">Log out</a>
         </div>

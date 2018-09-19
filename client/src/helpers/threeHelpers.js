@@ -98,3 +98,43 @@ export const threeCalcVol = (object) => {
 
   return Math.round(loadedObjectVolume);
 };
+
+export const threeMaterialSelector = (mesh) => {
+  const phongMaterial = new THREE.MeshPhongMaterial( { ambient: 0x555555, color: 0x555555, specular: 0xffffff, shininess: 50, shading: THREE.SmoothShading } );
+  const basicMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, opacity: 1, wireframe: true } );
+
+  const materials = {
+    phongMaterial,
+    basicMaterial,
+  };
+  return materials;
+};
+
+export const threeNewGeometry = (geo) => {
+
+  let geometry = {};
+
+  switch (geo) {
+    case 'box': {
+      geometry = new THREE.BoxGeometry(20, 20, 20);
+      break;
+    }
+    case 'cone': {
+      geometry = new THREE.ConeGeometry(5, 20, 32);
+      break;
+    }
+    case 'cylinder': {
+      geometry = new THREE.CylinderGeometry(5, 5, 20, 32);
+      break;
+    }
+    case 'sphere': {
+      geometry = new THREE.SphereGeometry(5, 32, 32);
+      break;
+    }
+    default: {
+      geometry = new THREE.BoxGeometry(20, 20, 20);
+      break;
+    }
+  }
+  return geometry;
+};

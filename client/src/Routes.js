@@ -22,6 +22,8 @@ import IngredientFormContainer from './containers/IngredientFormContainer';
 
 import RestaurantListContainer from './containers/RestaurantListContainer';
 
+import ThreeEditorContainer from './containers/ThreeEditorContainer';
+
 import Test from './components/other/Test';
 
 const Routes = () => (
@@ -73,6 +75,9 @@ const Routes = () => (
         path="/create-recipe"
         component={RecipeFormContainer}
       />
+    </Switch>
+    <Switch>
+      <PrivateRoute exact path="/editor" component={ThreeEditorContainer} />
     </Switch>
     <Route exact path="/test" component={Test} />
     <Route exact path="/not-found" component={NotFound} />
