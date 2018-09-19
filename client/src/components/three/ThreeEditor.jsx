@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import THREE from '../../helpers/three';
-import { threeInit, threeLights, threeCalcVol } from '../../helpers/threeHelpers';
+import { threeInit, threeAnimate, threeLights, threeCalcVol } from '../../helpers/threeHelpers';
 
 import ThreeVolume from './ThreeVolume';
 import ThreeNutritions from './ThreeNutritions';
@@ -20,18 +20,21 @@ class ThreeScene extends Component {
 
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
-    this.animate = this.animate.bind(this);
+    // this.animate = this.animate.bind(this);
     this.onWindowResize = this.onWindowResize.bind(this);
     this.onWireframeToggleCallback = this.onWireframeToggleCallback.bind(this);
     this.cubeSelectorCallback = this.cubeSelectorCallback.bind(this);
   }
 
   componentDidMount() {
-    // const threeObject = threeInit();
-    // threeLights(threeObject.scene);
-    this.threeInit();
+    const threeObject = threeInit(window.innerWidth, window.innerHeight);
+    this.frameId = threeAnimate();
+    threeLights(threeObject.scene);
+    this.renderer = threeObject.renderer;
+    this.scene = threeObject.scene;
+    this.mesh = threeObject.mesh;
+    //this.threeInit();
     this.start();
-    this.setState({ scene: this.scene });
   }
 
   componentWillUnmount() {
@@ -83,14 +86,14 @@ class ThreeScene extends Component {
     this.mesh = mesh;
   }
 
-  animate() {
-    this.mesh.rotation.x += 0.01;
-    this.mesh.rotation.y += 0.01;
+  // animate() {
+  //   this.mesh.rotation.x += 0.01;
+  //   this.mesh.rotation.y += 0.01;
 
-    this.renderScene();
-    // controls.update();
-    this.frameId = window.requestAnimationFrame(this.animate);
-  }
+  //   this.renderScene();
+  //   // controls.update();
+  //   this.frameId = window.requestAnimationFrame(this.animate);
+  // }
 
 
   start() {
@@ -107,9 +110,9 @@ class ThreeScene extends Component {
     window.removeEventListener('resize', this.onWindowResize, false);
   }
 
-  renderScene() {
-    this.renderer.render(this.scene, this.camera);
-  }
+  // renderScene() {
+  //   this.renderer.render(this.scene, this.camera);
+  // }
 
   onWindowResize() {
     this.camera.aspect = this.width / this.height;

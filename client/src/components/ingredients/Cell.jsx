@@ -4,7 +4,7 @@ class Cell extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      editing: false 
+      editing: false,
     };
   }
 
@@ -21,8 +21,8 @@ class Cell extends Component {
   render() {
     const { value, onChange } = this.props; 
     return this.state.editing ?
-      <input ref='input' value={value} onChange={e => onChange(e.target.value)} onBlur={() => this.onBlur()} /> : 
-      <div onClick={() => this.onFocus()}>{value}</div>
+      <input ref='input' name="value" value={value} onChange={e => onChange(e.target.value)} onBlur={() => this.onBlur()} /> 
+      : <div onClick={() => this.onFocus()}>{value}mg</div>
   }  
 }
 

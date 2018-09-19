@@ -39,15 +39,6 @@ export const threeInit = (width, height) => {
 
   camera.position.z = 50;
 
-  const animate = () => {
-    requestAnimationFrame(animate);
-    mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.01;
-
-    renderer.render(scene, camera);
-  };
-  animate();
-
   const threeObject = {
     scene,
     camera,
@@ -56,6 +47,15 @@ export const threeInit = (width, height) => {
     mesh,
   };
   return threeObject;
+};
+
+export const threeAnimate = () => {
+  this.mesh.rotation.x += 0.01;
+  this.mesh.rotation.y += 0.01;
+
+  this.renderer.render(this.scene, this.camera);
+  this.frameId = window.requestAnimationFrame(this.animate);
+  return this.frameId;
 };
 
 export const threeLights = (scene) => {

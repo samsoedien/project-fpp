@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-//import './Navbar.css';
+// import './Navbar.css';
 
 const Navbar = ({
   user,
@@ -50,12 +50,12 @@ const Navbar = ({
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
           <Link to="/" className="dropdown-item">My profile</Link>
-          <div className="dropdown-divider"></div>
+          <div className="dropdown-divider" />
           <Link to="/dashboard" className="dropdown-item">Dashboard</Link>
           <Link to="/profiles" className="dropdown-item">Chefs</Link>
           <Link to="/ingredients" className="dropdown-item">Ingredients</Link>
           <Link to="/editor" className="dropdown-item">Editor</Link>
-          <div className="dropdown-divider"></div>
+          <div className="dropdown-divider" />
           <a href="" onClick={onLogout} className="dropdown-item">Log out</a>
         </div>
       </li>
