@@ -30,7 +30,7 @@ class RecipeContainer extends Component {
 RecipeContainer.propTypes = {
   getRecipe: PropTypes.func.isRequired,
   recipe: PropTypes.object.isRequired,
-}
+};
 
 const mapStateToProps = state => ({
   recipe: state.recipe,

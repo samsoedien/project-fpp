@@ -26,7 +26,7 @@ export default function (state = initialState, action) {
     case GET_INGREDIENT:
       return {
         ...state,
-        recipe: action.payload,
+        ingredient: action.payload,
         loading: false,
       };
     default:

@@ -19,10 +19,10 @@ class Cell extends Component {
   }
 
   render() {
-    const { value, onChange } = this.props; 
+    const { kcal, onChange } = this.props; 
     return this.state.editing ?
-      <input ref='input' name="value" value={value} onChange={e => onChange(e.target.value)} onBlur={() => this.onBlur()} /> 
-      : <div onClick={() => this.onFocus()}>{value}mg</div>
+      <input ref='input' name="value" value={kcal} onChange={e => onChange(e.target.value)} onBlur={() => this.onBlur()} /> 
+      : <div onClick={() => this.onFocus()}>{kcal}</div>
   }
 }
 

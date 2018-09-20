@@ -19,8 +19,9 @@ import RecipeListContainer from './containers/RecipeListContainer';
 import RecipeContainer from './containers/RecipeContainer';
 import RecipeFormContainer from './containers/RecipeFormContainer';
 import IngredientFormContainer from './containers/IngredientFormContainer';
+import IngredientContainer from './containers/IngredientContainer';
 
-import NutritionsFormContainer from './containers/NutritionsFormContainer';
+import NutritionContainer from './containers/NutritionContainer';
 
 import RestaurantListContainer from './containers/RestaurantListContainer';
 
@@ -38,6 +39,8 @@ const Routes = () => (
     <Route exact path="/recipes" component={RecipeListContainer} />
     <Route exact path="/recipes/:id" component={RecipeContainer} />
     <Route exact path="/restaurants" component={RestaurantListContainer} />
+    <Route exact path="/ingredients/:id" component={IngredientContainer} />
+
     <Switch>
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
     </Switch>
@@ -69,7 +72,7 @@ const Routes = () => (
       <PrivateRoute
         exact
         path="/add-nutritions"
-        component={NutritionsFormContainer}
+        component={NutritionContainer}
       />
     </Switch>
     <Switch>

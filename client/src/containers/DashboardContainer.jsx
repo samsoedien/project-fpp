@@ -14,7 +14,7 @@ class DashboardContainer extends Component {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
     return (
-      <div className="dashboard-conatiner">
+      <div className="dashboard-container">
         <Dashboard user={user} profile={profile} loading={loading} />
       </div>
     )

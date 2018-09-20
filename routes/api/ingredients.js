@@ -46,7 +46,6 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res, ne
   newIngredient.save().then(ingredient => res.status(201).json(ingredient));
 });
 
-
 // @route   POST api/ingredients/nutritions
 // @desc    Create a nutritions dataset
 // @access  Private

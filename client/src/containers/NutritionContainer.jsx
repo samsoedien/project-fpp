@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { addNutrition } from '../actions/ingredientActions';
 
-import NutritionForm from '../components/ingredients/NutritionForm';
+// import NutritionForm from '../components/ingredients/NutritionForm';
 import NutritionsTable from '../components/ingredients/NutritionsTable';
 
-class NutritionsFormContainers extends Component {
+class NutritionContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      kcal: '',
+      nutritions: {
+        kcal: '',
+      },
       errors: {},
-      disabled: false,
+      isEditable: true,
     };
 
     this.onChangeCallback = this.onChangeCallback.bind(this);
@@ -36,8 +38,11 @@ class NutritionsFormContainers extends Component {
   }
 
   onChangeCallback(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ kcal: e });
   }
+  // onChangeCallback(e) {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // }
 
   onCheckCallback() {
     this.setState({
@@ -47,12 +52,14 @@ class NutritionsFormContainers extends Component {
   }
 
   render() {
-    const { kcal, errors, disabled } = this.state;
+    const { kcal, errors } = this.state;
+    const { nutritions } = this.props;
 
     return (
-      <div className="experience-form-container">
+      <div className="nutrition-container">
         <NutritionsTable
-          isEditable={true}
+          nutritions={nutritions}
+          isEditable={this.state.isEditable}
           errors={errors}
           kcal={kcal}
           onCheckCallback={this.onCheckCallback}
@@ -64,7 +71,7 @@ class NutritionsFormContainers extends Component {
   }
 }
 
-NutritionsFormContainers.propTypes = {
+NutritionContainer.propTypes = {
   addNutrition: PropTypes.func.isRequired,
   ingredient: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -75,4 +82,4 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { addNutrition })(withRouter(NutritionsFormContainers));
+export default connect(mapStateToProps, { addNutrition })(withRouter(NutritionContainer));

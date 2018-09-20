@@ -30,7 +30,7 @@ export const getIngredients = () => (dispatch) => {
 };
 
 
-// Get Recipe
+// Get Ingredient
 export const getIngredient = id => (dispatch) => {
   dispatch(setIngredientLoading());
   axios
@@ -45,7 +45,7 @@ export const getIngredient = id => (dispatch) => {
     }));
 };
 
-// Create Recipe
+// Create Ingredient
 export const createIngredient = (ingredientData, history) => (dispatch) => {
   axios
     .post('/api/ingredients', ingredientData)
@@ -59,7 +59,7 @@ export const createIngredient = (ingredientData, history) => (dispatch) => {
 // Add nutritions
 export const addNutrition = (nutritionData, history) => (dispatch) => {
   axios
-    .post('api/ingredients/nutritions', nutritionData)
+    .post('/api/ingredients/nutritions', nutritionData)
     .then(res => history.push('/ingredients'))
     .catch(err => dispatch({
       type: GET_ERRORS,

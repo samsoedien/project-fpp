@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import isEmpty from '../../validation/is-empty'
+import isEmpty from '../../validation/is-empty';
+
 import Cell from './Cell';
 
 class NutritionsTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '23',
+      value: '300',
       ingredient: {
         nutritions: {
           kcal: 220,
@@ -15,10 +16,15 @@ class NutritionsTable extends Component {
       },
     };
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  onChange(e) {
+    this.props.onChangeCallback(e);
   }
 
-  onChange(e) {
-    this.setState({ value: e });
+  onSubmit(e) {
+    e.preventDefault();
+    this.props.onSubmitCallback();
   }
 
   render() {
@@ -48,6 +54,8 @@ class NutritionsTable extends Component {
     //   </td>
     // ));
 
+    const { nutritions } = this.props;
+
     return (
       <div className="">
         <div className="container">
@@ -66,11 +74,10 @@ class NutritionsTable extends Component {
                   <td className="text-right pr-5">
                     {this.props.isEditable ? (
                     <Cell  
-                      value={this.state.value}
+                      kcal={this.state.value}
                       //value={el.contents}
                       //onChange={v => { this.props.handleChangeEvent(v, i) }}
                       onChange={this.onChange}
-                      isEditable={this.props.isEditable}
                     /> 
                     ) : (
                       <span>{this.state.value}</span>
@@ -80,18 +87,18 @@ class NutritionsTable extends Component {
                 <tr>
                   <th scope="row" className="text-left pl-5">Fats</th>
                   <td className="text-right pr-5">
-                    <Cell  
-                      value={this.state.ingredient.nutritions.kcal}
-                      //value={el.contents}
-                      //onChange={v => { this.props.handleChangeEvent(v, i) }}
-                      onChange={this.onChange}
-                    />
+                    {isEmpty(nutritions.kcal) ? (<span>Not specified</span>) : (
+                      <span>{nutritions.kcal}</span>
+                    )}
                   </td>
                 </tr>
               </tbody>
             </table>
             </div>
           </div>
+        </div>
+        <div className="container">
+          {this.props.isEditable ? <button onClick={this.onSubmit}className="btn btn-success btn-sm">Save Changes</button> : null}
         </div>
       </div>
     )

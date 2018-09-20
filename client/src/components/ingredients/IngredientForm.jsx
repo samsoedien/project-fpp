@@ -52,7 +52,7 @@ const IngredientForm = ({
               <Link to="/add-nutritions" className="btn btn-light">
                 <i className="fas fa-user-circle text-info mr-1" />
                 Add Nutritions
-              </Link>   
+              </Link> 
             </div>
           </div>
         </div>
