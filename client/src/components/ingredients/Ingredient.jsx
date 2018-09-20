@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 
-import NutritionContainer from '../../containers/NutritionContainer';
-
 const Ingredient = ({
   ingredient,
   loading,
@@ -14,8 +12,10 @@ const Ingredient = ({
   } else {
     ingredientContent = (
       <div>
-        <span>{ingredient.name}</span>
-        <NutritionContainer nutritions={ingredient.nutritions} />
+        <div className="container pt-5">
+          <p className="lead">Please specify the nutrition values of the ingredient per 100 grams</p>
+          <span>{ingredient.name}</span>
+        </div>
       </div>
     );
   }

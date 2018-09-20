@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { addNutrition } from '../actions/ingredientActions';
+import isEmpty from '../validation/is-empty';
 
-// import NutritionForm from '../components/ingredients/NutritionForm';
-import NutritionsTable from '../components/ingredients/NutritionsTable';
+import Nutrition from '../components/ingredients/Nutrition';
 
 class NutritionContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       nutritions: {
-        kcal: '',
+        type: 'kcal',
+        value: 200,
       },
       errors: {},
       isEditable: true,
@@ -27,6 +28,18 @@ class NutritionContainer extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
+    if (nextProps.ingredient.ingredient) {
+      const nutritions = nextProps.ingredient.ingredient;
+
+      // If nutrition field doesnt exist, make empty string
+      nutritions.kcal = !isEmpty(nutritions.kcal) ? nutritions.kcal: '';
+      //nutritions.fats = !isEmpty(nutritions.fats) ? nutritions.fats: '';
+
+      // Set component fields state
+      this.setState({
+        value: nutritions.kcal,
+      });
+    }
   }
 
   onSubmitCallback(e) {
@@ -40,6 +53,7 @@ class NutritionContainer extends Component {
   onChangeCallback(e) {
     this.setState({ kcal: e });
   }
+
   // onChangeCallback(e) {
   //   this.setState({ [e.target.name]: e.target.value });
   // }
@@ -52,16 +66,15 @@ class NutritionContainer extends Component {
   }
 
   render() {
-    const { kcal, errors } = this.state;
+    const { errors } = this.state;
     const { nutritions } = this.props;
 
     return (
       <div className="nutrition-container">
-        <NutritionsTable
-          nutritions={nutritions}
+        <Nutrition
+          nutritions={nutritions} // should be from props: nutritions={nutritions}
           isEditable={this.state.isEditable}
           errors={errors}
-          kcal={kcal}
           onCheckCallback={this.onCheckCallback}
           onChangeCallback={this.onChangeCallback}
           onSubmitCallback={this.onSubmitCallback}
@@ -74,6 +87,7 @@ class NutritionContainer extends Component {
 NutritionContainer.propTypes = {
   addNutrition: PropTypes.func.isRequired,
   ingredient: PropTypes.object.isRequired,
+  nutritions: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 

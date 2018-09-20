@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getIngredient } from '../actions/ingredientActions';
 
+import NutritionContainer from './NutritionContainer';
 import Ingredient from '../components/ingredients/Ingredient';
 
 class IngredientContainer extends Component {
@@ -15,8 +16,9 @@ class IngredientContainer extends Component {
     return (
       <div className="ingredient-container">
         <Ingredient ingredient={ingredient} loading={loading} />
+        <NutritionContainer nutritions={ingredient.nutritions} />
       </div>
-    )
+    );
   }
 }
 
