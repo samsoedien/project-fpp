@@ -55,3 +55,14 @@ export const createIngredient = (ingredientData, history) => (dispatch) => {
       payload: err.response.data,
     }));
 };
+
+// Add nutritions
+export const addNutrition = (nutritionData, history) => (dispatch) => {
+  axios
+    .post('api/ingredients/nutritions', nutritionData)
+    .then(res => history.push('/ingredients'))
+    .catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    }));
+};

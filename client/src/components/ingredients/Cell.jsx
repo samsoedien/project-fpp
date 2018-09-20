@@ -23,7 +23,7 @@ class Cell extends Component {
     return this.state.editing ?
       <input ref='input' name="value" value={value} onChange={e => onChange(e.target.value)} onBlur={() => this.onBlur()} /> 
       : <div onClick={() => this.onFocus()}>{value}mg</div>
-  }  
+  }
 }
 
 export default Cell;

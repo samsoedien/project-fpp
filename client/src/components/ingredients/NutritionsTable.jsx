@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 // import isEmpty from '../../validation/is-empty'
 import Cell from './Cell';
 
@@ -6,13 +7,12 @@ class NutritionsTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editting: false,
       value: '23',
       ingredient: {
         nutritions: {
           kcal: 220,
-        }
-      }
+        },
+      },
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -62,18 +62,19 @@ class NutritionsTable extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row" className="text-left pl-5">Volume</th>
-                  <td className="text-right pr-5"><Cell /></td>
-                </tr>
-                <tr>
                   <th scope="row" className="text-left pl-5">Calories</th>
                   <td className="text-right pr-5">
+                    {this.props.isEditable ? (
                     <Cell  
                       value={this.state.value}
                       //value={el.contents}
                       //onChange={v => { this.props.handleChangeEvent(v, i) }}
                       onChange={this.onChange}
-                    />  
+                      isEditable={this.props.isEditable}
+                    /> 
+                    ) : (
+                      <span>{this.state.value}</span>
+                    )}
                   </td>
                 </tr>
                 <tr>
@@ -95,6 +96,13 @@ class NutritionsTable extends Component {
       </div>
     )
   }
+}
+NutritionsTable.defaultProps = {
+  isEditable: false,
+}
+
+NutritionsTable.propTypes = {
+  isEditable: PropTypes.bool.isRequired,
 }
 
 export default NutritionsTable;

@@ -20,6 +20,8 @@ import RecipeContainer from './containers/RecipeContainer';
 import RecipeFormContainer from './containers/RecipeFormContainer';
 import IngredientFormContainer from './containers/IngredientFormContainer';
 
+import NutritionsFormContainer from './containers/NutritionsFormContainer';
+
 import RestaurantListContainer from './containers/RestaurantListContainer';
 
 import ThreeEditorContainer from './containers/ThreeEditorContainer';
@@ -61,6 +63,13 @@ const Routes = () => (
         exact
         path="/add-experience"
         component={ExperienceFormContainer}
+      />
+    </Switch>
+    <Switch>
+      <PrivateRoute
+        exact
+        path="/add-nutritions"
+        component={NutritionsFormContainer}
       />
     </Switch>
     <Switch>

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import TextFieldGroup from '../common/TextFieldGroup';
 
@@ -47,6 +48,12 @@ const IngredientForm = ({
               />
               <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
             </form>
+            <div className="btn-group mb-4" role="group">
+              <Link to="/add-nutritions" className="btn btn-light">
+                <i className="fas fa-user-circle text-info mr-1" />
+                Add Nutritions
+              </Link>   
+            </div>
           </div>
         </div>
       </div>
