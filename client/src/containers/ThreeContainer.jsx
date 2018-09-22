@@ -16,8 +16,8 @@ class ThreeContainer extends Component {
   }
   
   componentDidMount() {
-    //this.props.getThreeScene(this.props.match.params.id);
-    this.props.saveThreeScene(this.state.scene);
+    // this.props.getThreeScene(this.props.match.params.id);
+    // this.props.saveThreeScene(this.state.scene);
   }
 
   render() {

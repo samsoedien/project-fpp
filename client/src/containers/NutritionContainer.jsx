@@ -21,26 +21,25 @@ class NutritionContainer extends Component {
 
     this.onChangeCallback = this.onChangeCallback.bind(this);
     this.onSubmitCallback = this.onSubmitCallback.bind(this);
-    this.onCheckCallback = this.onCheckCallback.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-    if (nextProps.ingredient.ingredient) {
-      const nutritions = nextProps.ingredient.ingredient;
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.errors) {
+  //     this.setState({ errors: nextProps.errors });
+  //   }
+  //   if (nextProps.ingredient.ingredient) {
+  //     const nutritions = nextProps.ingredient.ingredient;
 
-      // If nutrition field doesnt exist, make empty string
-      nutritions.kcal = !isEmpty(nutritions.kcal) ? nutritions.kcal: '';
-      //nutritions.fats = !isEmpty(nutritions.fats) ? nutritions.fats: '';
+  //     // If nutrition field doesnt exist, make empty string
+  //     nutritions.kcal = !isEmpty(nutritions.kcal) ? nutritions.kcal: '';
+  //     //nutritions.fats = !isEmpty(nutritions.fats) ? nutritions.fats: '';
 
-      // Set component fields state
-      this.setState({
-        value: nutritions.kcal,
-      });
-    }
-  }
+  //     // Set component fields state
+  //     this.setState({
+  //       value: nutritions.kcal,
+  //     });
+  //   }
+  // }
 
   onSubmitCallback(e) {
     const nutritionData = {
@@ -58,13 +57,6 @@ class NutritionContainer extends Component {
   //   this.setState({ [e.target.name]: e.target.value });
   // }
 
-  onCheckCallback() {
-    this.setState({
-      disabled: !this.state.disabled,
-      current: !this.state.current
-    });
-  }
-
   render() {
     const { errors } = this.state;
     const { nutritions } = this.props;
@@ -75,7 +67,6 @@ class NutritionContainer extends Component {
           nutritions={nutritions} // should be from props: nutritions={nutritions}
           isEditable={this.state.isEditable}
           errors={errors}
-          onCheckCallback={this.onCheckCallback}
           onChangeCallback={this.onChangeCallback}
           onSubmitCallback={this.onSubmitCallback}
         />
@@ -92,7 +83,7 @@ NutritionContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  ingredient: state.ingredient,
+  // ingredient: state.ingredient,
   errors: state.errors,
 });
 

@@ -14,23 +14,24 @@ const IngredientSchema = new Schema({
   nutritions: [
     {
       kcal: {
-        type: String,
+        type: Number,
+        default: 10,
       },
       fats: {
-        type: String,
+        type: Number,
       },
       carbohydrates: {
-        type: String,
+        type: Number,
       },
       proteins: {
-        type: String,
-      },
-      allergies: {
-        type: String,
+        type: Number,
       }
     }
   ],
   printSettings: {
+    type: String,
+  },
+  allergies: {
     type: String,
   },
   familyGroup: {

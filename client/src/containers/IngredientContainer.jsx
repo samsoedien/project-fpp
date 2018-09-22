@@ -12,7 +12,7 @@ class IngredientContainer extends Component {
   }
 
   render() {
-    const { ingredient, loading } = this.props.ingredient;
+    const { ingredient, loading } = this.props;
     return (
       <div className="ingredient-container">
         <Ingredient ingredient={ingredient} loading={loading} />

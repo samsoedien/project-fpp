@@ -29,11 +29,11 @@ const Nutrition = ({
         nutritionItems = nutritions
         .map(nutrition => (
           <tr>
-            <th scope="row" className="text-left pl-5">{nutrition.type}</th>
+            <th scope="row" className="text-left pl-5">Calories</th>
             <td className="text-right pr-5">
             { isEditable
-              ? <NutritionCellData value={nutrition.value} isEditable={isEditable} onChange={onChange}  />
-              : <span>{isEmpty(nutrition.value) ? null : nutrition.value} </span>
+              ? <NutritionCellData value={nutrition.kcal} isEditable={isEditable} onChange={onChange}  />
+              : <span>{isEmpty(nutrition.kcal) ? null : nutrition.kcal} </span>
             }
             </td>
           </tr>

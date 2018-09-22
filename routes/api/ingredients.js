@@ -53,7 +53,7 @@ router.post('/nutritions', passport.authenticate('jwt', { session: false}), (req
   const { errors, isValid } = validateNutritionInput(req.body);
   if (!isValid) return res.status(400).json(errors);
 
-  Ingredient.finOne({ user: req.user.id }).then(ingredient => { // Should I find on user or ingredient name?
+  Ingredient.findOne({ user: req.user.id }).then(ingredient => { // Should I find on user or ingredient name? Ingredient.findOne({ user: req.user.id }).then(ingredient => {
     const newNutrition = {
       kcal: req.body.kcal,
     };
