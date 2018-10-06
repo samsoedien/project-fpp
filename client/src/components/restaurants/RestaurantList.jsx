@@ -4,6 +4,7 @@ import Spinner from '../common/Spinner';
 
 import RestaurantItem from './RestaurantItem';
 import SearchBar from '../common/SearchBar';
+import Three from '../three/Three';
 
 const RestaurantList = ({
   restaurants,
@@ -60,6 +61,7 @@ const RestaurantList = ({
         <div className="row">
           {restaurantItems}
         </div>
+        <Three />
       </div>
     </div>
   );

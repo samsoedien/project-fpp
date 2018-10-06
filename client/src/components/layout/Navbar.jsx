@@ -95,3 +95,7 @@ Navbar.propTypes = {
 };
 
 export default Navbar;
+
+// <li className="nav-item">
+// <Link to="/restaurants" className="nav-link">Restaurants</Link>
+// </li>

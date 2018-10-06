@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import THREE from '../../helpers/three';
-import { threeInit, threeAnimate, threeLights, threeCalcVol, threeNewGeometry, threeTextGeometry } from '../../helpers/threeHelpers';
+import { threeInit, threeAnimate, threeLights, threeCalcVol } from '../../helpers/threeHelpers';
 
 import ThreeVolume from './ThreeVolume';
 import ThreeNutritions from './ThreeNutritions';
 import ThreeFileExporter from './ThreeFileExporter';
 import ThreeFeatures from './ThreeFeatures';
 import ThreeNewOverlay from './ThreeNewOverlay';
-import ThreeFileImporter from './ThreeFileImporter';
 
 class ThreeScene extends Component {
   constructor(props) {
     super(props);
     this.state = {
       volume: '',
-      mesh: '',
       wireframe: false,
       overlayActive: true,
     };
@@ -25,13 +23,17 @@ class ThreeScene extends Component {
     this.animate = this.animate.bind(this);
     this.onWindowResize = this.onWindowResize.bind(this);
     this.onWireframeToggleCallback = this.onWireframeToggleCallback.bind(this);
-    this.shapeSelectorCallback = this.shapeSelectorCallback.bind(this);
-    this.textSelectorCallback = this.textSelectorCallback.bind(this);
-    this.sceneCallback = this.sceneCallback.bind(this);
+    this.cubeSelectorCallback = this.cubeSelectorCallback.bind(this);
   }
 
   componentDidMount() {
-    this.threeInit();
+    const threeObject = threeInit(window.innerWidth, window.innerHeight);
+    this.frameId = threeAnimate();
+    threeLights(threeObject.scene);
+    this.renderer = threeObject.renderer;
+    this.scene = threeObject.scene;
+    this.mesh = threeObject.mesh;
+    //this.threeInit();
     this.start();
   }
 
@@ -41,7 +43,6 @@ class ThreeScene extends Component {
 
   componentWillUpdate() {
     this.mesh.material.wireframe = this.state.wireframe;
-    //this.mesh = this.state.mesh;
   }
 
   threeInit() {
@@ -85,14 +86,14 @@ class ThreeScene extends Component {
     this.mesh = mesh;
   }
 
-  animate() {
-    this.mesh.rotation.x += 0.01;
-    this.mesh.rotation.y += 0.01;
+  // animate() {
+  //   this.mesh.rotation.x += 0.01;
+  //   this.mesh.rotation.y += 0.01;
 
-    this.renderScene();
-    // controls.update();
-    this.frameId = window.requestAnimationFrame(this.animate);
-  }
+  //   this.renderScene();
+  //   // controls.update();
+  //   this.frameId = window.requestAnimationFrame(this.animate);
+  // }
 
 
   start() {
@@ -109,9 +110,9 @@ class ThreeScene extends Component {
     window.removeEventListener('resize', this.onWindowResize, false);
   }
 
-  renderScene() {
-    this.renderer.render(this.scene, this.camera);
-  }
+  // renderScene() {
+  //   this.renderer.render(this.scene, this.camera);
+  // }
 
   onWindowResize() {
     this.camera.aspect = this.width / this.height;
@@ -129,28 +130,10 @@ class ThreeScene extends Component {
     }));
   }
 
-  shapeSelectorCallback(shapeString) {
-    const geometry = threeNewGeometry(shapeString);
-    this.setState({
-      overlayActive: false,
-      mesh: geometry,
-    });
-    this.scene.remove(this.mesh);
-    this.scene.add(geometry);
-  }
-
-  textSelectorCallback() {
+  cubeSelectorCallback() {
     this.setState({
       overlayActive: false,
     });
-    const geometry = threeTextGeometry();
-    this.scene.remove(this.mesh);
-    this.scene.add(geometry);
-  }
-
-
-  sceneCallback(scene) {
-    this.scene = scene;
   }
 
   render() {
@@ -160,8 +143,7 @@ class ThreeScene extends Component {
           <ThreeVolume mesh={this.mesh} volumeCallback={this.volumeCallback} />
           <ThreeFileExporter name={this.props.title} scene={this.state.scene} />
           <ThreeFeatures onWireframeToggleCallback={this.onWireframeToggleCallback} />
-          {this.state.overlayActive ? (<ThreeNewOverlay shapeSelectorCallback={this.shapeSelectorCallback} textSelectorCallback={this.textSelectorCallback} />) : null}
-          <ThreeFileImporter sceneCallback={this.sceneCallback} scene={this.scene} />
+          {this.state.overlayActive ? (<ThreeNewOverlay cubeSelectorCallback={this.cubeSelectorCallback} />) : null}
         </div>
       </div>
     );

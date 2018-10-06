@@ -45,7 +45,7 @@ class ThreeScene extends Component {
       1000,
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    const geometry = new THREE.BoxGeometry(10, 20, 20);
+    const geometry = new THREE.CylinderGeometry(20, 20, 15, 64);
     const material = new THREE.MeshLambertMaterial({ color: 0x3b240e, wireframe: false });
     const mesh = new THREE.Mesh(geometry, material);
 
@@ -76,8 +76,8 @@ class ThreeScene extends Component {
   }
 
   animate() {
-    this.mesh.rotation.x += 0.01;
-    this.mesh.rotation.y += 0.01;
+    //this.mesh.rotation.x += 0.01;
+    //this.mesh.rotation.y += 0.01;
 
     this.renderScene();
     // controls.update();

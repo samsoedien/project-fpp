@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import './ThreeFileImporter.css';
+import THREE from '../../helpers/three';
+import { threeLoader } from '../../helpers/threeHelpers';
 
-import { OBJLoader } from 'three/OBJLoader';
-import { MTLLoader } from 'three/MTLLoader';
-import { STLLoader } from 'three/STLLoader';
-
-import MODEL from './utah-teapot.json';
+import MODELJSON from '../../assets/models/utah-teapot.json';
+import MODEL from '../../assets/models/dome.stl';
 
 class ThreeFileImporter extends Component {
   constructor(props) {
@@ -14,7 +13,7 @@ class ThreeFileImporter extends Component {
     this.onDragOverHandler = this.onDragOverHandler.bind(this);
     this.onDragLeaveHandler = this.onDragLeaveHandler.bind(this);
     this.onDragEndHandler = this.onDragEndHandler.bind(this);
-
+    this.onClick = this.onClick.bind(this);
     this.fileLoader = this.fileLoader.bind(this);
   }
 
@@ -47,6 +46,11 @@ class ThreeFileImporter extends Component {
     );
   }
 
+  onClick() {
+    threeLoader(this.props.scene, MODEL);
+    console.log(threeLoader);
+    this.props.sceneCallback(threeLoader);
+  }
 
   render() {
     return (
@@ -61,6 +65,7 @@ class ThreeFileImporter extends Component {
           >
             <span>filename</span>
           </label>
+          <button onClick={this.onClick}>Load Model</button>
         </form>
       </div>
     );

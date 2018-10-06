@@ -12,5 +12,7 @@ require('three/examples/js/loaders/OBJLoader');
 require('three/examples/js/loaders/STLLoader');
 require('three/examples/js/exporters/STLExporter');
 require('three/examples/js/exporters/GLTFExporter');
+//require('three/src/loaders/FontLoader');
+require('three/examples/fonts/helvetiker_bold.typeface.json');
 
 export default THREE;

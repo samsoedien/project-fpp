@@ -21,7 +21,7 @@ const ThreeFeatures = ({
     <div className="three-features">
       <div className="container">
         <div className="position-absolute">
-        <button onClick={onWireframeToggle} className="btn btn-primary btn-sm">Wireframe</button>
+          <button onClick={onWireframeToggle} className="btn btn-primary btn-sm">Wireframe</button>
         </div>
       </div> 
     </div>
@@ -32,7 +32,7 @@ ThreeFeatures.propTypes = {
   onWireframeToggleCallback: PropTypes.func.isRequired,
 };
 
-export default ThreeFeatures;  
+export default ThreeFeatures;
 
 
 

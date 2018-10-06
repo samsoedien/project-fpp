@@ -1,4 +1,5 @@
 import THREE from './three';
+import FONT from '../assets/fonts/helvetiker_bold.typeface.json';
 
 // export const threeDetector = () => {
 //   if (Detector.webgl) {
@@ -49,14 +50,16 @@ export const threeInit = (width, height) => {
   return threeObject;
 };
 
-export const threeAnimate = () => {
+export const animate = () => {
   this.mesh.rotation.x += 0.01;
   this.mesh.rotation.y += 0.01;
 
-  this.renderer.render(this.scene, this.camera);
+  this.renderScene();
+  // controls.update();
   this.frameId = window.requestAnimationFrame(this.animate);
-  return this.frameId;
 };
+
+
 
 export const threeLights = (scene) => {
   const ambiLight = new THREE.AmbientLight(0xffffff, 0.4);
@@ -124,7 +127,7 @@ export const threeNewGeometry = (geo) => {
       break;
     }
     case 'cylinder': {
-      geometry = new THREE.CylinderGeometry(5, 5, 20, 32);
+      geometry = new THREE.CylinderGeometry(20, 20, 15, 64);
       break;
     }
     case 'sphere': {
@@ -136,5 +139,47 @@ export const threeNewGeometry = (geo) => {
       break;
     }
   }
-  return geometry;
+  const material = new THREE.MeshLambertMaterial({ color: 0x3b240e });
+  const mesh = new THREE.Mesh(geometry, material);
+  return mesh;
+};
+
+export const threeTextGeometry = () => {
+  const loader = new THREE.FontLoader();
+  const fontName = 'helvetiker';
+  const fontWeight = 'bold';
+
+  let geometry;
+  loader.load( '//raw.githubusercontent.com/mrdoob/three.js/master/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+    geometry = new THREE.TextGeometry( 'Hello three.js!', {
+      font: font,
+      size: 80,
+      height: 5,
+      curveSegments: 12,
+      bevelEnabled: true,
+      bevelThickness: 10,
+      bevelSize: 8,
+      bevelSegments: 5
+    });
+  });
+  const material = new THREE.MeshLambertMaterial({ color: 0x3b240e });
+  const mesh = new THREE.Mesh(geometry, material);
+  return mesh;
+};
+
+export const threeLoader = (scene, model) => {
+  const loader = new THREE.ObjectLoader();
+  loader.load(
+    model,
+    (obj) => {
+      scene.add(obj);
+    },
+    (xhr) => {
+      console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+    },
+    (err) => {
+      console.error( 'An error happened' );
+    },
+  );
+  return scene;
 };
