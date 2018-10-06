@@ -1,0 +1,15 @@
+* {
+  z-index: 100;
+  background: white;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%; 
+  z-index: -100;
+  background: black;
+  color: white;
+  margin-bottom: -320px;
+  padding: 40px 0;
+}

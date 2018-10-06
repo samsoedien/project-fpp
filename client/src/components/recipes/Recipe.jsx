@@ -24,11 +24,10 @@ const Recipe = ({
     recipeContent = (
       <div>
         <RecipeHeader recipeImage={recipe.image} />
-        <RecipeFavourite isFavourited={isFavourited} />
         <RecipeInfo recipe={recipe} />
         <RecipeProfileCard recipe={recipe} />
         <ThreeContainer recipe={recipe} width="600px" height="400px" />
-        <ThreeNutritions kcal="220 "/>
+        <ThreeNutritions kcal="220 " />
       </div>
     );
   }

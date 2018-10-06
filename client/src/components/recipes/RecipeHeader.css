@@ -1,0 +1,39 @@
+.header-parallax {
+  position: relative;
+  height: 600px;
+  background-image: url('../../assets/img/foodprinted_sidedish.jpg');
+  background-size: auto 600px;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.header-title {
+  height: 100px;
+  width: 100%;
+  /* 
+  background-image: url('../../assets/img/foodprinted_sidedish.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  */
+  position: absolute ;
+  top: 50%;
+  margin-top: -50px;
+}
+
+.header-foreground {
+  position: relative;
+  height: 600px;
+  /* 
+  background-image: url('../../assets/img/foodprinted_sidedish.jpg');
+  background-size: contain;
+  background-position: top center;
+  background-attachment: fixed;
+  */
+}
+
+.header-background {
+
+}
+
+/* https://www.youtube.com/watch?v=WTZpNAbz3jg */
