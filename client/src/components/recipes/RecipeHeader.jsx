@@ -21,9 +21,6 @@ const RecipeHeader = () => {
       </ScrollWrapper>
     </div>
   );
-}
+};
 
 export default RecipeHeader;
-
-//  <div style={{ backgroundImage: `url(${img})`, height: '620px' }}>
-//</div>
