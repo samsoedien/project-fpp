@@ -10,6 +10,7 @@ Contact me for more info at: n.samsoedien(at)gmail(dot)com.
 TODO: 
 - Fix table nutrition redux container and functional component.
 - Fix image multer uploads directory and api post requests.
+- Save threejs scenes through POST request.
 - implement threejs geometry transformations feautures
 - threejs renderer for better aesthetics
 - Integrate post comment into recipe and give recipe creater OP indicator.
