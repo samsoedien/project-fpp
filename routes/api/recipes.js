@@ -8,10 +8,10 @@ const path = require('path');
 const recipeController = require('../../controllers/recipes');
 
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
+  destination: function(req, file, cb) {
     cb(null, './uploads/');
   },
-  filename: function (req, file, cb) {
+  filename: function(req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.orginalname));
   }
 });
@@ -70,11 +70,10 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res, ne
     title: req.body.title,
     culinary: req.body.culinary,
     description: req.body.description,
-    user: req.user.id,
+    user: req.user.id
   });
   newRecipe.save().then(recipe => res.status(201).json(recipe)); // added 201 status
 });
-
 
 // @route   GET api/recipes/:id
 // @desc    Get recipe by id
@@ -84,28 +83,22 @@ router.get('/:id', (req, res, next) => {
     .populate('user', ['name', 'avatar'])
     .exec()
     .then(recipe => res.json(recipe))
-    .catch(err =>
-      res.status(404).json({ norecipefound: 'No recipe found with that ID' })
-    );
+    .catch(err => res.status(404).json({ norecipefound: 'No recipe found with that ID' }));
 });
 
 // @route   POST api/recipes/ingredient
 // @desc    Add an ingredient to the recipe
 // @access  Private
 router.post('/ingredient', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Recipe.findOne({ user: req.user.id })
-    .then(recipe => {
-      const newIngredient = {
-        ingredient: req.body.ingredient
-      }
-      // Add to recipe array
-      recipe.ingredients.unshift(newIngredient);
-      recipe.save().then(recipe => res.json(recipe));
-    })
+  Recipe.findOne({ user: req.user.id }).then(recipe => {
+    const newIngredient = {
+      ingredient: req.body.ingredient
+    };
+    // Add to recipe array
+    recipe.ingredients.unshift(newIngredient);
+    recipe.save().then(recipe => res.json(recipe));
+  });
 });
-
-
-
 
 // @route   POST api/recipes/:id
 // @desc    Upload an image
@@ -123,14 +116,14 @@ router.post('/image', upload.single('recipeImage'), (req, res, next) => {
     .then(result => {
       console.log(result);
       res.status(201).json({
-        message: "Created recipe successfully",
+        message: 'Created recipe successfully',
         recipe: {
           title: result.title,
           ingredient: result.ingredient,
           _id: result._id,
           request: {
             type: 'GET',
-            url: "http://localhost:4000/api/recipes/" + result._id
+            url: 'http://localhost:4000/api/recipes/' + result._id
           }
         }
       });
@@ -147,4 +140,4 @@ module.exports = router;
 
 //TODO: Setup better structered routes and send detailed responses back
 
-//FIXME: rewritten get request doesn't work  
+//FIXME: rewritten get request doesn't work

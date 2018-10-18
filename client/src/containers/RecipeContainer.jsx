@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getRecipe } from '../actions/recipeActions';
 
 import Recipe from '../components/recipes/Recipe';
+import PostListContainer from './PostListContainer';
 
 class RecipeContainer extends Component {
   constructor(props) {

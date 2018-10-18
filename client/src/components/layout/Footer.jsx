@@ -3,7 +3,7 @@ import React from 'react';
 
 import PrivacyPolicy from '../other/PrivacyPolicy';
 
-import './Footer.css';
+//import './Footer.css';
 
 const Footer = () => (
   <div className="footer">

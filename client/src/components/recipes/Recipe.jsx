@@ -8,6 +8,7 @@ import RecipeHeader from './RecipeHeader';
 import RecipeFavourite from './RecipeFavourite';
 import RecipeInfo from './RecipeInfo';
 import RecipeProfileCard from './RecipeProfileCard';
+import RecipeComments from './RecipeComments';
 
 import IngredientListContainer from '../../containers/IngredientListContainer';
 import ThreeNutritions from '../three/ThreeNutritions';
@@ -28,6 +29,7 @@ const Recipe = ({
         <RecipeProfileCard recipe={recipe} />
         <ThreeContainer recipe={recipe} width="600px" height="400px" />
         <ThreeNutritions kcal="220 " />
+        <RecipeComments />
       </div>
     );
   }

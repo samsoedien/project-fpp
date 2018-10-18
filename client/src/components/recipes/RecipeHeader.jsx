@@ -1,7 +1,7 @@
 import React from 'react';
-import './RecipeHeader.css';
+//import './RecipeHeader.css';
 
-import ScrollWrapper from '../wrappers/ScrollWrapper';
+import ScrollWrapper from '../../wrappers/ScrollWrapper';
 import RecipeFavourite from './RecipeFavourite';
 
 import img from '../../assets/img/foodprinted_sidedish.jpg';

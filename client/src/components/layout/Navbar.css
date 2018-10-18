@@ -9,7 +9,7 @@
   z-index: 200;
   /*margin-bottom: 320px;*/
 }
-
+/*
 nav, .navbar {
   position: fixed;
   width: 100%;
@@ -17,7 +17,7 @@ nav, .navbar {
   background-color: rgba(44, 60, 204, 0);
   z-index: 500;
   transition: .5s;
-}
+}*/
 
 .navbar--container {
   width: 96%;
@@ -62,3 +62,14 @@ nav, .navbar {
   transition: .5s;
 }
 
+.navbar {
+  height: 72px;
+  background-color: rgba(255,255,255, 0); /* Fully opaque background color for nav-shrink animation. */
+  transition: .5s; /* Transition for nav-shrink animation. */
+}
+
+.navbar--shrink {
+  height: 42px;
+  background-color: rgba(255,255,255,0.97); 
+  transition: .5s;
+}

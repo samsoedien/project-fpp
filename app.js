@@ -11,7 +11,7 @@ const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 const recipes = require('./routes/api/recipes');
 const ingredients = require('./routes/api/ingredients');
-const three = require('./routes/api/three'); 
+const three = require('./routes/api/three');
 const restaurants = require('./routes/api/restaurants');
 
 // Init app
@@ -30,7 +30,10 @@ app.use(bodyParser.json());
 // Handling CORS errors
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
   if (req.method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
     return res.status(200).json({});
@@ -44,11 +47,13 @@ const options = {
   useNewUrlParser: true
 };
 mongoose
-  .connect(uri, options)
+  .connect(
+    uri,
+    options
+  )
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 mongoose.Promise = global.Promise;
-
 
 // Passport middleware
 app.use(passport.initialize());
@@ -63,9 +68,9 @@ app.use('/api/posts', posts);
 app.use('/api/recipes', recipes);
 app.use('/api/ingredients', ingredients);
 app.use('/api/three', three);
-app.use('/api/restaurants', restaurants)
+app.use('/api/restaurants', restaurants);
 
-// Morgan setup 
+// Morgan setup
 app.use((req, res, next) => {
   const error = new Error('Not Found');
   error.status = 404;
