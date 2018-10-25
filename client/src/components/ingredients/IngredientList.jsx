@@ -5,13 +5,8 @@ import SearchBar from '../common/SearchBar';
 
 import IngredientItem from './IngredientItem';
 
-const IngredientList = ({
-  ingredients,
-  filterText,
-  filterUpdate,
-  loading,
-}) => {
-  const filterCallback = (val) => {
+const IngredientList = ({ ingredients, filterText, filterUpdate, loading }) => {
+  const filterCallback = val => {
     filterUpdate(val);
   };
 
@@ -24,11 +19,9 @@ const IngredientList = ({
       ingredientItems = ingredients
         .filter(ingredient => {
           // remove names that do not match current filter text
-          return ingredient.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
+          return ingredient.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0;
         })
-        .map(ingredient => (
-          <IngredientItem key={ingredient._id} ingredient={ingredient} />
-        ));
+        .map(ingredient => <IngredientItem key={ingredient._id} ingredient={ingredient} />);
     } else {
       ingredientItems = <h4>No Ingredients found...</h4>;
     }
@@ -43,9 +36,7 @@ const IngredientList = ({
             filterCallback={filterCallback}
           />
         </div>
-        <ul className="bg-light">
-          {ingredientItems}
-        </ul>
+        <ul className="bg-light">{ingredientItems}</ul>
       </div>
     </div>
   );
@@ -55,7 +46,9 @@ IngredientList.propTypes = {
   ingredients: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   filterText: PropTypes.string.isRequired,
-  filterUpdate: PropTypes.string.isRequired,
+  filterUpdate: PropTypes.string.isRequired
 };
 
 export default IngredientList;
+
+//TODO: Use Code Splitting ( dynamic import() )
