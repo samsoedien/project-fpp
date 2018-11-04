@@ -5,13 +5,13 @@ const passport = require('passport');
 const multer = require('multer');
 const path = require('path');
 
-const recipeController = require('../../controllers/recipes');
+const recipesController = require('../controllers/recipes');
 
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
+  destination: function (req, file, cb) {
     cb(null, './uploads/');
   },
-  filename: function(req, file, cb) {
+  filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.orginalname));
   }
 });
@@ -34,10 +34,9 @@ const upload = multer({
 });
 
 // Recipe Model
-const Recipe = require('../../models/Recipe');
+const Recipe = require('../models/Recipe');
 
 // Validation
-const validateRecipeInput = require('../../validation/recipe');
 
 // @route   GET api/recipes/test
 // @desc    Tests recipes route
@@ -47,58 +46,33 @@ router.get('/test', (req, res) => res.json({ message: 'Recipes Works' }));
 // @route   GET api/recipes
 // @desc    Get recipes
 // @access  Public
-router.get('/', (req, res, next) => {
-  Recipe.find()
-    .populate('user', ['name', 'avatar'])
-    .sort({ date: -1 })
-    .exec()
-    .then(recipes => res.status(200).json(recipes))
-    .catch(err => res.status(404).json({ norecipesfound: 'No recipes found' }));
-});
-
-// @route   POST api/recipes
-// @desc    Create a recipe
-// @access  Private
-router.post('/', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-  // Check Validation
-  const { errors, isValid } = validateRecipeInput(req.body);
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-  const newRecipe = new Recipe({
-    _id: new mongoose.Types.ObjectId(),
-    title: req.body.title,
-    culinary: req.body.culinary,
-    description: req.body.description,
-    user: req.user.id
-  });
-  newRecipe.save().then(recipe => res.status(201).json(recipe)); // added 201 status
-});
+router.get('/', recipesController.getRecipes);
 
 // @route   GET api/recipes/:id
 // @desc    Get recipe by id
 // @access  Public
-router.get('/:id', (req, res, next) => {
-  Recipe.findById(req.params.id)
-    .populate('user', ['name', 'avatar'])
-    .exec()
-    .then(recipe => res.json(recipe))
-    .catch(err => res.status(404).json({ norecipefound: 'No recipe found with that ID' }));
-});
+router.get('/:id', recipesController.getRecipeById);
 
-// @route   POST api/recipes/ingredient
-// @desc    Add an ingredient to the recipe
+// @route   POST api/recipes
+// @desc    Create a recipe
 // @access  Private
-router.post('/ingredient', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Recipe.findOne({ user: req.user.id }).then(recipe => {
-    const newIngredient = {
-      ingredient: req.body.ingredient
-    };
-    // Add to recipe array
-    recipe.ingredients.unshift(newIngredient);
-    recipe.save().then(recipe => res.json(recipe));
-  });
-});
+router.post('/', passport.authenticate('jwt', { session: false }), recipesController.postRecipe);
+
+router.patch('/:id', passport.authenticate('jwt', { session: false }), recipesController.updateRecipe);
+
+router.delete('/:id', passport.authenticate('jwt', { session: false }), recipesController.deleteRecipe);
+
+
+
+
+// // @route   POST api/recipes/ingredient
+// // @desc    Add an ingredient to the recipe
+// // @access  Private
+// router.post(
+//   '/ingredient',
+//   passport.authenticate('jwt', { session: false }),
+//   recipesController.postIngredient
+// );
 
 // @route   POST api/recipes/:id
 // @desc    Upload an image

@@ -30,7 +30,7 @@ import ThreeEditorContainer from './containers/ThreeEditorContainer';
 import Test from './components/other/Test';
 
 const Routes = () => (
-  <main role="main">
+  <React.Fragment>
     <Route exact path="/" component={Home} />
     <Route exact path="/register" component={Register} />
     <Route exact path="/login" component={Login} />
@@ -59,7 +59,11 @@ const Routes = () => (
       />
     </Switch>
     <Switch>
-      <PrivateRoute exact path="/ingredients" component={IngredientFormContainer} />
+      <PrivateRoute
+        exact
+        path="/ingredients"
+        component={IngredientFormContainer}
+      />
     </Switch>
     <Switch>
       <PrivateRoute
@@ -93,7 +97,7 @@ const Routes = () => (
     </Switch>
     <Route exact path="/test" component={Test} />
     <Route exact path="/not-found" component={NotFound} />
-  </main>
+  </React.Fragment>
 );
 
 export default Routes;

@@ -6,13 +6,15 @@ const passport = require('passport');
 const multer = require('multer');
 const path = require('path');
 
-const users = require('./routes/api/users');
-const profile = require('./routes/api/profile');
-const posts = require('./routes/api/posts');
-const recipes = require('./routes/api/recipes');
-const ingredients = require('./routes/api/ingredients');
-const three = require('./routes/api/three');
-const restaurants = require('./routes/api/restaurants');
+const mongoConnect = require('./config/database');
+
+const users = require('./routes/users');
+const profiles = require('./routes/profiles');
+const posts = require('./routes/posts');
+const recipes = require('./routes/recipes');
+const ingredients = require('./routes/ingredients');
+const three = require('./routes/three');
+const restaurants = require('./routes/restaurants');
 
 // Init app
 const app = express();
@@ -63,7 +65,7 @@ require('./config/passport')(passport);
 
 // Use Routes
 app.use('/api/users', users);
-app.use('/api/profile', profile);
+app.use('/api/profiles', profiles);
 app.use('/api/posts', posts);
 app.use('/api/recipes', recipes);
 app.use('/api/ingredients', ingredients);
@@ -94,6 +96,10 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
+
+// mongoConnect(() => {
+//   app.listen(3000);
+// });
 
 module.exports = app;
 

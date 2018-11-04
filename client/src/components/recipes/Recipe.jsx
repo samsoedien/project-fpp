@@ -13,11 +13,7 @@ import RecipeComments from './RecipeComments';
 import IngredientListContainer from '../../containers/IngredientListContainer';
 import ThreeNutritions from '../three/ThreeNutritions';
 
-const Recipe = ({
-  recipe,
-  isFavourited,
-  loading,
-}) => {
+const Recipe = ({ recipe, isFavourited, loading }) => {
   let recipeContent;
   if (recipe === null || loading) {
     recipeContent = <Spinner />;
@@ -29,21 +25,16 @@ const Recipe = ({
         <RecipeProfileCard recipe={recipe} />
         <ThreeContainer recipe={recipe} width="600px" height="400px" />
         <ThreeNutritions kcal="220 " />
-        <RecipeComments />
       </div>
     );
   }
-  return (
-    <div className="recipe">
-      {recipeContent}
-    </div>
-  );
+  return <div className="recipe">{recipeContent}</div>;
 };
 
 Recipe.propTypes = {
   recipe: PropTypes.object.isRequired,
   isFavourited: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
-}
+  loading: PropTypes.bool.isRequired
+};
 
 export default Recipe;

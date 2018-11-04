@@ -5,10 +5,10 @@ const passport = require('passport');
 const path = require('path');
 
 // Recipe Model
-const Three = require('../../models/Three');
+const Three = require('../models/Three');
 
 // Validation
-const validateThreeInput = require('../../validation/three');
+const validateThreeInput = require('../validation/three');
 
 // @route   GET api/three/test
 // @desc    Tests recipes route
@@ -38,7 +38,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res, ne
 
   const newThree = new Three({
     _id: new mongoose.Types.ObjectId(),
-    scene: req.body.scene,
+    scene: req.body.scene
   });
 
   newThree.save().then(scenes => res.status(201).json(scenes)); // added 201 status
@@ -51,9 +51,7 @@ router.get('/:id', (req, res, next) => {
   Three.findById(req.params.id)
     .exec()
     .then(scene => res.json(scene))
-    .catch(err =>
-      res.status(404).json({ noscenesfound: 'No three scene found with that ID' })
-    );
+    .catch(err => res.status(404).json({ noscenesfound: 'No three scene found with that ID' }));
 });
 
 module.exports = router;
