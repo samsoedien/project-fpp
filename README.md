@@ -27,3 +27,7 @@ TODO:
 DEV TODO:
 
 - Developing Components in Isolation (Use Storybook or Styleguidist)
+
+
+Backend
+Is made in nodejs using express framework. Using MVC with EJS as template engine for returning error pages.

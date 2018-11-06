@@ -19,7 +19,7 @@ exports.getRestaurantById = (req, res, next) => {
   Restaurant.findById(req.params.id)
     .populate('user', ['name', 'avatar'])
     .exec()
-    .then(restaurant => res.json(restaurant))
+    .then(restaurant => res.status(200).json(restaurant))
     .catch(err => res.status(404).json({ norestaurantfound: 'No restaurant found with that ID' }));
 };
 

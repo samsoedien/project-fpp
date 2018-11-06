@@ -8,13 +8,32 @@ const path = require('path');
 
 const mongoConnect = require('./config/database');
 
-const users = require('./routes/users');
-const profiles = require('./routes/profiles');
-const posts = require('./routes/posts');
-const recipes = require('./routes/recipes');
-const ingredients = require('./routes/ingredients');
-const three = require('./routes/three');
-const restaurants = require('./routes/restaurants');
+const usersRoutes = require('./routes/users');
+const profilesRoutes = require('./routes/profiles');
+const postsRoutes = require('./routes/posts');
+const recipesRoutes = require('./routes/recipes');
+const ingredientsRoutes = require('./routes/ingredients');
+const threeRoutes = require('./routes/three');
+const restaurantsRoutes = require('./routes/restaurants');
+
+const errorsControllers = require('./controllers/errors');
+
+// const fileStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, '/uploads');
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, new Date().toISOString() + '-' + file.originalname);
+//   }
+// });
+
+// const fileFilter = (req, file, cb) => {
+//   if (file.mimetype === 'image.png' || file.mimetype === 'image.jpg' || file.mimetype === 'image.jpeg') {
+//     cb(null, true);
+//   } else {
+//     cb(null, false);
+//   }
+// }
 
 // Init app
 const app = express();
@@ -22,12 +41,19 @@ const app = express();
 // Morgan Middleware
 app.use(morgan('dev'));
 
+// Set EJS Middleware
+app.set("view engine", "ejs");
+app.set("views", "views");
+
 // Multer Middleware
 app.use('/uploads', express.static('uploads'));
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Multer middleware
+//app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'));
 
 // Handling CORS errors
 app.use((req, res, next) => {
@@ -44,17 +70,17 @@ app.use((req, res, next) => {
 });
 
 // DB Config
-const uri = require('./config/keys').mongoURI;
-const options = {
-  useNewUrlParser: true
-};
+const URI = require('./config/keys').mongoURI;
+// const options = {
+//   useNewUrlParser: true
+// };
 mongoose
-  .connect(
-    uri,
-    options
-  )
+  .connect(URI, { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+  //.catch(err => console.log(err));
+  .catch(err => {
+    throw new Error(err);
+  });
 mongoose.Promise = global.Promise;
 
 // Passport middleware
@@ -64,13 +90,16 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 // Use Routes
-app.use('/api/users', users);
-app.use('/api/profiles', profiles);
-app.use('/api/posts', posts);
-app.use('/api/recipes', recipes);
-app.use('/api/ingredients', ingredients);
-app.use('/api/three', three);
-app.use('/api/restaurants', restaurants);
+app.use('/api/users', usersRoutes);
+app.use('/api/profiles', profilesRoutes);
+app.use('/api/posts', postsRoutes);
+app.use('/api/recipes', recipesRoutes);
+app.use('/api/ingredients', ingredientsRoutes);
+app.use('/api/three', threeRoutes);
+app.use('/api/restaurants', restaurantsRoutes);
+
+app.get('/500', errorsControllers.get500);
+app.use(errorsControllers.get404);
 
 // Morgan setup
 app.use((req, res, next) => {
@@ -87,12 +116,12 @@ app.use((error, req, res, next) => {
   });
 });
 
+
+
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {
-  // Set static folder
   app.use(express.static('client/build'));
-
-  app.get('*', (req, res) => {
+  app.get('*', (req, res, next) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }

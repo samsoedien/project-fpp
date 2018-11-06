@@ -11,13 +11,13 @@ exports.testPosts = (req, res, next) => res.json({ message: 'Posts Works' });
 exports.getPosts = (req, res, next) => {
   Post.find()
     .sort({ date: -1 })
-    .then(posts => res.json(posts))
+    .then(posts => res.status(200).json(posts))
     .catch(err => res.status(404).json({ nopostsfound: 'No posts found' }));
 };
 
 exports.getPostById = (req, res, next) => {
   Post.findById(req.params.id)
-    .then(post => res.json(post))
+    .then(post => res.status(200).json(post))
     .catch(err => res.status(404).json({ nopostfound: 'No post found with that ID' }));
 };
 

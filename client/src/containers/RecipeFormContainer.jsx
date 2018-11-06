@@ -17,7 +17,7 @@ class RecipeFormContainer extends Component {
       recipeImage: '',
       printSettings: '',
       ingredient: '',
-      errors: {},
+      errors: {}
     };
     this.onChangeCallback = this.onChangeCallback.bind(this);
     this.onSubmitCallback = this.onSubmitCallback.bind(this);
@@ -45,17 +45,33 @@ class RecipeFormContainer extends Component {
       culinary: this.state.culinary,
       description: this.state.description,
       //directions: this.state.directions,
-      //recipeImage: this.state.recipeImage,
+      recipeImage: this.state.recipeImage
       //printSettings: this.state.printSettings,
       //ingredient: this.state.ingredient,
       //name: user.name,
       //avatar: user.avatar,
     };
-    this.props.createRecipe(recipeData, this.props.history);
+    const formData = new FormData();
+
+    formData.append('title', this.state.title);
+    formData.append('culinary', this.state.culinary);
+    formData.append('description', this.state.description);
+    formData.append('recipeImage', this.state.recipeImage);
+
+    this.props.createRecipe(formData, this.props.history);
   }
 
   render() {
-    const { title, culinary, description, directions, recipeImage, printSettings, ingredient, errors } = this.state;
+    const {
+      title,
+      culinary,
+      description,
+      directions,
+      recipeImage,
+      printSettings,
+      ingredient,
+      errors
+    } = this.state;
     return (
       <div className="create-recipe-container">
         <RecipeForm
@@ -77,12 +93,15 @@ class RecipeFormContainer extends Component {
 
 RecipeFormContainer.propTypes = {
   recipe: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   recipe: state.recipe,
-  errors: state.errors,
+  errors: state.errors
 });
 
-export default connect(mapStateToProps, { createRecipe })(withRouter(RecipeFormContainer));
+export default connect(
+  mapStateToProps,
+  { createRecipe }
+)(withRouter(RecipeFormContainer));

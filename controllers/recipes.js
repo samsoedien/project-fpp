@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const multer = require('multer');
+const path = require('path');
 
 const Recipe = require('../models/Recipe');
 
@@ -16,22 +18,27 @@ exports.getRecipeById = (req, res, next) => {
   Recipe.findById(req.params.id)
     .populate('user', ['name', 'avatar'])
     .exec()
-    .then(recipe => res.json(recipe))
+    .then(recipe => res.status(200).json(recipe))
     .catch(err => res.status(404).json({ norecipefound: 'No recipe found with that ID' }));
 };
 exports.postRecipe = (req, res, next) => {
+  console.log(req.file);
   const { errors, isValid } = validateRecipeInput(req.body);
   if (!isValid) {
     return res.status(422).json(errors);
   }
-  const newRecipe = new Recipe({
-    _id: new mongoose.Types.ObjectId(),
-    title: req.body.title,
-    culinary: req.body.culinary,
-    description: req.body.description,
-    user: req.user.id
-  });
-  newRecipe.save().then(recipe => res.status(201).json(recipe)); // added 201 status
+  // const newRecipe = new Recipe({
+  //   _id: new mongoose.Types.ObjectId(),
+  //   title: req.body.title,
+  //   culinary: req.body.culinary,
+  //   description: req.body.description,
+  //   imageUrl: req.file.path,
+  //   user: req.user.id
+  // });
+  // newRecipe
+  //   .save()
+  //   .then(recipe => res.status(201).json(recipe))
+  //   .catch(err => console.log(err));
 };
 
 exports.updateRecipe = (req, res, next) => {
@@ -51,3 +58,6 @@ exports.deleteRecipe = (req, res, next) => {
 //     recipe.save().then(recipe => res.json(recipe));
 //   });
 // };
+
+
+// FIXME: fix file uploads 

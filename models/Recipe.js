@@ -21,7 +21,7 @@ const RecipeSchema = new Schema({
   directions: {
     type: [String],
   },
-  recipeImage: {
+  imageUrl: {
     type: String,
   },
   printSetting: {
