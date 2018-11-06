@@ -35,7 +35,7 @@ const Routes = () => (
     <Route exact path="/register" component={Register} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/profiles" component={ProfileListContainer} />
-    <Route exact path="/profile/:handle" component={ProfileContainer} />
+    <Route exact path="/profiles/:handle" component={ProfileContainer} />
     <Route exact path="/recipes" component={RecipeListContainer} />
     <Route exact path="/recipes/:id" component={RecipeContainer} />
     <Route exact path="/restaurants" component={RestaurantListContainer} />

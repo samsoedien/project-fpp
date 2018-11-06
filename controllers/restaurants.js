@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Restaurant = require('../models/Restaurant');
 const validateRestaurantInput = require('../validation/restaurant');
 
-exports.testRestaurant = (req, res, next) => res.json({ message: 'Restaurants Works' });
+exports.testRestaurants = (req, res, next) => res.json({ message: 'Restaurants Works' });
 
 exports.getRestaurants = (req, res, next) => {
   Restaurant.find()
@@ -32,4 +32,4 @@ exports.postRestaurant = (req, res, next) => {
   newRestaurant.save().then(restaurant => res.status(201).json(restaurant));
 };
 
-exports.deleteRestaurant = (req, res, next) => {};
+exports.deleteRestaurant = (req, res, next) => { };

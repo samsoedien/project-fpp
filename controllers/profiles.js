@@ -23,7 +23,7 @@ exports.getProfile = (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
-// @route   GET api/profile/all
+// @route   GET api/profiles/all
 // @desc    Get all profiles
 // @access  Public
 router.get('/all', (req, res) => {
@@ -42,7 +42,7 @@ router.get('/all', (req, res) => {
     .catch(err => res.status(404).json({ profile: 'There are no profiles' }));
 });
 
-// @route   GET api/profile/handle/:handle
+// @route   GET api/profiles/handle/:handle
 // @desc    Get profile by handle
 // @access  Public
 router.get('/handle/:handle', (req, res) => {
@@ -61,7 +61,7 @@ router.get('/handle/:handle', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
-// @route   GET api/profile/user/:user_id
+// @route   GET api/profiles/user/:user_id
 // @desc    Get profile by user ID
 // @access  Public
 
@@ -143,7 +143,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   });
 });
 
-// @route   POST api/profile/experience
+// @route   POST api/profiles/experience
 // @desc    Add experience to profile
 // @access  Private
 router.post('/experience', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -172,7 +172,7 @@ router.post('/experience', passport.authenticate('jwt', { session: false }), (re
   });
 });
 
-// @route   DELETE api/profile/experience/:exp_id
+// @route   DELETE api/profiles/experience/:exp_id
 // @desc    Delete experience from profile
 // @access  Private
 router.delete(

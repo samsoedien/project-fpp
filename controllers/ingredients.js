@@ -24,7 +24,6 @@ exports.getIngredientByID = (req, res, next) => {
 };
 
 exports.postIngredient = (req, res, next) => {
-  // Check Validation
   const { errors, isValid } = validateIngredientInput(req.body);
   if (!isValid) {
     return res.status(400).json(errors);

@@ -5,17 +5,17 @@ const passport = require('passport');
 const path = require('path');
 
 // Restaurant Controller
-const restaurantController = require('../controllers/restaurants');
+const restaurantsController = require('../controllers/restaurants');
 
 // @route   GET api/restaurants/test
 // @desc    Tests restaurants route
 // @access  Public
-router.get('/test', restaurantController.testRestaurant);
+router.get('/test', restaurantsController.testRestaurants);
 
 // @route   GET api/restaurants
 // @desc    Get restaurant
 // @access  Public
-router.get('/', restaurantController.getRestaurants);
+router.get('/', restaurantsController.getRestaurants);
 
 // @route   POST api/restaurants
 // @desc    Create a restaurant
@@ -23,12 +23,12 @@ router.get('/', restaurantController.getRestaurants);
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
-  restaurantController.postRestaurant
+  restaurantsController.postRestaurant
 );
 
 // @route   GET api/restaurants/:id
 // @desc    Get restaurant by id
 // @access  Public
-router.get('/:id', restaurantController.getRestaurantById);
+router.get('/:id', restaurantsController.getRestaurantById);
 
 module.exports = router;
