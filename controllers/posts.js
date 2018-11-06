@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 
-// Post model
 const Post = require('../models/Post');
-// Profile model
 const Profile = require('../models/Profile');
 
 const validatePostInput = require('../validation/post');
+
 
 exports.testPosts = (req, res, next) => res.json({ message: 'Posts Works' });
 
@@ -25,7 +24,7 @@ exports.getPostById = (req, res, next) => {
 exports.postPost = (req, res, next) => {
   const { errors, isValid } = validatePostInput(req.body);
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(422).json(errors);
   }
 
   const newPost = new Post({
@@ -92,7 +91,7 @@ exports.postUnlike = (req, res, next) => {
 exports.postComment = (req, res, next) => {
   const { errors, isValid } = validatePostInput(req.body);
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(422).json(errors);
   }
   Post.findById(req.params.id)
     .then(post => {

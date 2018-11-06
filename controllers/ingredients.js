@@ -5,7 +5,7 @@ const Ingredient = require('../models/Ingredient');
 const validateIngredientInput = require('../validation/ingredient');
 const validateNutritionInput = require('../validation/nutrition');
 
-exports.testIngredient = (req, res, next) => res.json({ message: 'Ingredients Works' });
+exports.testIngredients = (req, res, next) => res.json({ message: 'Ingredients Works' });
 
 exports.getIngredients = (req, res, next) => {
   Ingredient.find()
@@ -26,7 +26,7 @@ exports.getIngredientByID = (req, res, next) => {
 exports.postIngredient = (req, res, next) => {
   const { errors, isValid } = validateIngredientInput(req.body);
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(422).json(errors);
   }
   const newIngredient = new Ingredient({
     _id: new mongoose.Types.ObjectId(),
@@ -44,7 +44,7 @@ exports.getNutritions = (req, res, next) => { };
 
 exports.postNutritions = (req, res, next) => {
   const { errors, isValid } = validateNutritionInput(req.body);
-  if (!isValid) return res.status(400).json(errors);
+  if (!isValid) return res.status(422).json(errors);
 
   Ingredient.findOne({ user: req.user.id }).then(ingredient => {
     // Should I find on user or ingredient name? Ingredient.findOne({ user: req.user.id }).then(ingredient => {

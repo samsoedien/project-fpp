@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
 const Restaurant = require('../models/Restaurant');
+
 const validateRestaurantInput = require('../validation/restaurant');
+
 
 exports.testRestaurants = (req, res, next) => res.json({ message: 'Restaurants Works' });
 
@@ -24,7 +26,7 @@ exports.getRestaurantById = (req, res, next) => {
 exports.postRestaurant = (req, res, next) => {
   const { errors, isValid } = validateRestaurantInput(req.body);
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(422).json(errors);
   }
   const newRestaurant = new Restaurant({
     name: req.body.name

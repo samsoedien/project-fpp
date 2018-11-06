@@ -4,19 +4,18 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 
-// Load Input Validation
+const User = require('../models/User');
+
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
 
-// Load User model
-const User = require('../models/User');
 
 exports.testUsers = (req, res, next) => res.json({ message: 'Users Works' });
 
 exports.registerUser = (req, res, next) => {
   const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(422).json(errors);
   }
 
   User.findOne({ email: req.body.email }).then(user => {
@@ -53,7 +52,7 @@ exports.registerUser = (req, res, next) => {
 exports.loginUser = (req, res, next) => {
   const { errors, isValid } = validateLoginInput(req.body);
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(422).json(errors);
   }
 
   const email = req.body.email;

@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const passport = require('passport');
-const path = require('path');
 
 // Restaurant Controller
 const restaurantsController = require('../controllers/restaurants');
@@ -20,11 +18,7 @@ router.get('/', restaurantsController.getRestaurants);
 // @route   POST api/restaurants
 // @desc    Create a restaurant
 // @access  Private
-router.post(
-  '/',
-  passport.authenticate('jwt', { session: false }),
-  restaurantsController.postRestaurant
-);
+router.post('/', passport.authenticate('jwt', { session: false }), restaurantsController.postRestaurant);
 
 // @route   GET api/restaurants/:id
 // @desc    Get restaurant by id

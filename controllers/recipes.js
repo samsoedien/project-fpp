@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const Recipe = require('../models/Recipe');
+
 const validateRecipeInput = require('../validation/recipe');
 
 exports.getRecipes = (req, res, next) => {
@@ -19,10 +20,9 @@ exports.getRecipeById = (req, res, next) => {
     .catch(err => res.status(404).json({ norecipefound: 'No recipe found with that ID' }));
 };
 exports.postRecipe = (req, res, next) => {
-  // Check Validation
   const { errors, isValid } = validateRecipeInput(req.body);
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(422).json(errors);
   }
   const newRecipe = new Recipe({
     _id: new mongoose.Types.ObjectId(),

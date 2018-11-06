@@ -22,6 +22,7 @@ TODO:
 - Commercial-like video about technology on home page.
 - Parallax and scrolling effects for engaging user experience.
 - Styling
+- fix routs and controllers for ingredients
 
 DEV TODO:
 

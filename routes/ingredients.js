@@ -1,16 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const passport = require('passport');
-const multer = require('multer');
-const path = require('path');
 
 const ingredientsController = require('../controllers/ingredients');
 
 // @route   GET api/ingredients/test
 // @desc    Tests ingredients route
 // @access  Public
-router.get('/test', ingredientsController.testIngredient);
+router.get('/test', ingredientsController.testIngredients);
 
 // @route   GET api/ingredients
 // @desc    Get ingredients
