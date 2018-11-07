@@ -35,6 +35,32 @@ exports.postPost = (req, res, next) => {
   });
 
   newPost.save().then(post => res.json(post));
+
+  // newPost
+  //   .save()
+  //   .then(result => {
+  //     console.log(result);
+  //     res.status(201).json({
+  //       message: 'Post created succesfully!',
+  //       post: result
+  //     });
+  //   })
+  //   .catch(err => {
+  //     if (!err.statusCode) {
+  //       err.statusCode = 500;
+  //     }
+  //     next(err);
+  //   });
+};
+
+exports.putPost = (req, res, next) => {
+  const newPost = {
+    postId: req.params.postId,
+    text: req.body.text,
+    name: req.body.name,
+    avatar: req.body.avatar,
+    user: req.user.id
+  }
 };
 
 exports.deletePost = (req, res, next) => {

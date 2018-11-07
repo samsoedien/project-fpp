@@ -1,12 +1,10 @@
+const path = require('path');
 const express = require('express');
-const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const passport = require('passport');
 const multer = require('multer');
-const path = require('path');
-
-const mongoConnect = require('./config/database');
+const mongoose = require('mongoose');
+const passport = require('passport');
 
 const usersRoutes = require('./routes/users');
 const profilesRoutes = require('./routes/profiles');
@@ -16,27 +14,28 @@ const ingredientsRoutes = require('./routes/ingredients');
 const threeRoutes = require('./routes/three');
 const restaurantsRoutes = require('./routes/restaurants');
 
-const errorsControllers = require('./controllers/errors');
-
-// const fileStorage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, '/uploads');
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, new Date().toISOString() + '-' + file.originalname);
-//   }
-// });
-
-// const fileFilter = (req, file, cb) => {
-//   if (file.mimetype === 'image.png' || file.mimetype === 'image.jpg' || file.mimetype === 'image.jpeg') {
-//     cb(null, true);
-//   } else {
-//     cb(null, false);
-//   }
-// }
-
-// Init app
 const app = express();
+
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().toISOString() + '-' + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/jpeg'
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
 
 // Morgan Middleware
 app.use(morgan('dev'));
@@ -45,15 +44,17 @@ app.use(morgan('dev'));
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-// Multer Middleware
-//app.use('/uploads', express.static('uploads'));
-
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Multer middleware
-//app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'));
+// Multer Middleware
+app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Passport middleware
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
 // Handling CORS errors
 app.use((req, res, next) => {
@@ -77,26 +78,6 @@ app.use((req, res, next) => {
 //   next();
 // });
 
-// DB Config
-const URI = require('./config/keys').mongoURI;
-// const options = {
-//   useNewUrlParser: true
-// };
-mongoose
-  .connect(URI, { useNewUrlParser: true })
-  .then(() => console.log('MongoDB Connected'))
-  //.catch(err => console.log(err));
-  .catch(err => {
-    throw new Error(err);
-  });
-mongoose.Promise = global.Promise;
-
-// Passport middleware
-app.use(passport.initialize());
-
-// Passport Config
-require('./config/passport')(passport);
-
 // Use Routes
 app.use('/api/users', usersRoutes);
 app.use('/api/profiles', profilesRoutes);
@@ -106,8 +87,12 @@ app.use('/api/ingredients', ingredientsRoutes);
 app.use('/api/three', threeRoutes);
 app.use('/api/restaurants', restaurantsRoutes);
 
-app.get('/500', errorsControllers.get500);
-app.use(errorsControllers.get404);
+app.use((error, req, res, next) => {
+  console.log(error);
+  const status = error.statusCode || 500;
+  const message = error.message;
+  res.status(status).json({ message: message });
+});
 
 // Morgan setup
 app.use((req, res, next) => {
@@ -124,8 +109,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-
-
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
@@ -134,11 +117,15 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// mongoConnect(() => {
-//   app.listen(3000);
-// });
+// DB Config
+const URI = require('./config/keys').mongoURI;
+mongoose
+  .connect(URI, { useNewUrlParser: true })
+  .then(() => console.log('MongoDB Connected'))
+  //.catch(err => console.log(err));
+  .catch(err => {
+    throw new Error(err);
+  });
+mongoose.Promise = global.Promise;
 
 module.exports = app;
-
-//TODO: Organise middleware more cleanly
-//TODO: Optimise MongoDB Atlas URI connection, limited support by using mongoose api need to reconsider if using MongoClient driver gives relaible results.

@@ -24,6 +24,8 @@ router.get('/:id', postsController.getPostById);
 // @access  Private
 router.post('/', passport.authenticate('jwt', { session: false }), postsController.postPost);
 
+router.put('/', passport.authenticate('jwt', { session: false }), postsController.putPost);
+
 // @route   DELETE api/posts/:id
 // @desc    Delete post
 // @access  Private

@@ -58,9 +58,8 @@ class RecipeFormContainer extends Component {
     recipeData.append('title', this.state.title);
     recipeData.append('culinary', this.state.culinary);
     recipeData.append('description', this.state.description);
-    recipeData.append('recipeImage', this.state.recipeImage);
+    recipeData.append('image', this.state.recipeImage);
 
-    console.log(recipeData.get('recipeImage'));
     this.props.createRecipe(recipeData, this.props.history);
   }
 
@@ -73,7 +72,7 @@ class RecipeFormContainer extends Component {
       recipeImage,
       printSettings,
       ingredient,
-      errors
+      errors,
     } = this.state;
     return (
       <div className="create-recipe-container">
