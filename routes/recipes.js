@@ -40,20 +40,22 @@ const fileStorage = multer.diskStorage({
     cb(null, '/uploads');
   },
   filename: (req, file, cb) => {
-    cb(null, new Date().toISOString() + '-' + file.originalname);
+    // cb(null, new Date().toISOString() + '-' + file.fieldname);
+    cb(null, new Date().toISOString());
   }
 });
 
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'image.png' || file.mimetype === 'image.jpg' || file.mimetype === 'image.jpeg') {
+  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
     cb(null, true);
   } else {
     cb(null, false);
+    console.log("file type not supported");
   }
-}
+};
 
-const upload = multer({ storage: fileStorage, fileFilter: fileFilter });
-
+// const upload = multer({ storage: fileStorage, fileFilter: fileFilter });
+const upload = multer({ storage: fileStorage });
 
 
 // @route   GET api/recipes/test

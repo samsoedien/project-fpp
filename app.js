@@ -46,7 +46,7 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 // Multer Middleware
-app.use('/uploads', express.static('uploads'));
+//app.use('/uploads', express.static('uploads'));
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -68,6 +68,14 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+// CORS from Nodejs course
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type', 'Authorization');
+//   next();
+// });
 
 // DB Config
 const URI = require('./config/keys').mongoURI;

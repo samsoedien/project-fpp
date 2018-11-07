@@ -27,18 +27,18 @@ exports.postRecipe = (req, res, next) => {
   if (!isValid) {
     return res.status(422).json(errors);
   }
-  // const newRecipe = new Recipe({
-  //   _id: new mongoose.Types.ObjectId(),
-  //   title: req.body.title,
-  //   culinary: req.body.culinary,
-  //   description: req.body.description,
-  //   imageUrl: req.file.path,
-  //   user: req.user.id
-  // });
-  // newRecipe
-  //   .save()
-  //   .then(recipe => res.status(201).json(recipe))
-  //   .catch(err => console.log(err));
+  const newRecipe = new Recipe({
+    _id: new mongoose.Types.ObjectId(),
+    title: req.body.title,
+    culinary: req.body.culinary,
+    description: req.body.description,
+    imageUrl: req.file.path,
+    user: req.user.id
+  });
+  newRecipe
+    .save()
+    .then(recipe => res.status(201).json(recipe))
+    .catch(err => console.log(err));
 };
 
 exports.updateRecipe = (req, res, next) => {

@@ -98,12 +98,7 @@ const RecipeForm = ({
                               Add some information to start creating your custom
                               food printing dish.
                             </p>
-                            <form
-                              onSubmit={onSubmit}
-                              action="/upload"
-                              method="post"
-                              encType="multipart/form-data"
-                            >
+                            <form onSubmit={onSubmit}>
                               <TextFieldGroup
                                 placeholder="Title"
                                 name="title"

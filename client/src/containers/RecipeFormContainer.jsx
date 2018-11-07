@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { createRecipe } from '../actions/recipeActions';
 
+// import axios from 'axios';
+
 import RecipeForm from '../components/recipes/RecipeForm';
 
 class RecipeFormContainer extends Component {
@@ -40,25 +42,26 @@ class RecipeFormContainer extends Component {
   }
 
   onSubmitCallback() {
-    const recipeData = {
-      title: this.state.title,
-      culinary: this.state.culinary,
-      description: this.state.description,
-      //directions: this.state.directions,
-      recipeImage: this.state.recipeImage
-      //printSettings: this.state.printSettings,
-      //ingredient: this.state.ingredient,
-      //name: user.name,
-      //avatar: user.avatar,
-    };
-    const formData = new FormData();
+    // const recipeData = {
+    //   title: this.state.title,
+    //   culinary: this.state.culinary,
+    //   description: this.state.description,
+    //   //directions: this.state.directions,
+    //   recipeImage: this.state.recipeImage
+    //   //printSettings: this.state.printSettings,
+    //   //ingredient: this.state.ingredient,
+    //   //name: user.name,
+    //   //avatar: user.avatar,
+    // };
 
-    formData.append('title', this.state.title);
-    formData.append('culinary', this.state.culinary);
-    formData.append('description', this.state.description);
-    formData.append('recipeImage', this.state.recipeImage);
+    const recipeData = new FormData();
+    recipeData.append('title', this.state.title);
+    recipeData.append('culinary', this.state.culinary);
+    recipeData.append('description', this.state.description);
+    recipeData.append('recipeImage', this.state.recipeImage);
 
-    this.props.createRecipe(formData, this.props.history);
+    console.log(recipeData.get('recipeImage'));
+    this.props.createRecipe(recipeData, this.props.history);
   }
 
   render() {
