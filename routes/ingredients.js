@@ -1,8 +1,9 @@
 const express = require('express');
-const router = express.Router();
 const passport = require('passport');
 
 const ingredientsController = require('../controllers/ingredients');
+
+const router = express.Router();
 
 // @route   GET api/ingredients/test
 // @desc    Tests ingredients route
@@ -10,14 +11,14 @@ const ingredientsController = require('../controllers/ingredients');
 router.get('/test', ingredientsController.testIngredients);
 
 // @route   GET api/ingredients
-// @desc    Get ingredients
+// @desc    Get all ingredients
 // @access  Public
 router.get('/', ingredientsController.getIngredients);
 
 // @route   GET api/ingredients/:id
 // @desc    Get ingredient by id
 // @access  Public
-router.get('/:id', ingredientsController.getIngredientByID);
+router.get('/:id', ingredientsController.getIngredientById);
 
 // @route   POST api/ingredients
 // @desc    Create a ingredient
@@ -42,7 +43,5 @@ router.post('/nutritions', passport.authenticate('jwt', { session: false }), ing
 router.patch('/nutritions/:id', passport.authenticate('jwt', { session: false }), ingredientsController.updateNutritions);
 
 router.delete('/nutritions/:id', passport.authenticate('jwt', { session: false }), ingredientsController.deleteNutritions);
-
-
 
 module.exports = router;

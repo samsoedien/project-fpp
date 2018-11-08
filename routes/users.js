@@ -1,9 +1,9 @@
 const express = require('express');
 const passport = require('passport');
 
-const router = express.Router();
-
 const usersController = require('../controllers/users');
+
+const router = express.Router();
 
 // @route   GET api/users/test
 // @desc    Tests users route

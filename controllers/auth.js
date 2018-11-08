@@ -1,7 +1,9 @@
-const bcrypt = require(bcrypt);
-const jwt = require('jwt');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
+
+exports.testAuth = (req, res, next) => res.json({ message: 'Auth Works' });
 
 exports.registerUser = (req, res, next) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -18,7 +20,7 @@ exports.registerUser = (req, res, next) => {
       const avatar = gravatar.url(req.body.email, {
         s: '200', // Size
         r: 'pg', // Rating
-        d: 'mm' // Default
+        d: 'mm', // Default
       });
       const newUser = new User({
         name: req.body.name,
@@ -41,7 +43,7 @@ exports.registerUser = (req, res, next) => {
           })
           .catch(err => console.log(err));
       });
-    })
+    });
 };
 
 exports.loginUser = (req, res, next) => {

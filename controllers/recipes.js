@@ -59,5 +59,50 @@ exports.deleteRecipe = (req, res, next) => {
 //   });
 // };
 
+// // @route   POST api/recipes/ingredient
+// // @desc    Add an ingredient to the recipe
+// // @access  Private
+// router.post(
+//   '/ingredient',
+//   passport.authenticate('jwt', { session: false }),
+//   recipesController.postIngredient
+// );
+
+// @route   POST api/recipes/:id
+// @desc    Upload an image
+// @access  Public
+// router.post('/image', upload.single('recipeImage'), (req, res, next) => {
+//   const newRecipe = new Recipe({
+//     _id: new mongoose.Types.ObjectId(),
+//     title: req.body.title,
+//     description: req.body.description,
+//     ingredient: req.body.ingredient,
+//     recipeImage: req.file.path
+//   });
+//   newRecipe
+//     .save()
+//     .then(result => {
+//       console.log(result);
+//       res.status(201).json({
+//         message: 'Created recipe successfully',
+//         recipe: {
+//           title: result.title,
+//           ingredient: result.ingredient,
+//           _id: result._id,
+//           request: {
+//             type: 'GET',
+//             url: 'http://localhost:4000/api/recipes/' + result._id
+//           }
+//         }
+//       });
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json({
+//         error: err
+//       });
+//     });
+// });
+
 
 // FIXME: fix file uploads 

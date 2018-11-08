@@ -11,7 +11,16 @@ exports.testPosts = (req, res, next) => res.json({ message: 'Posts Works' });
 exports.getPosts = (req, res, next) => {
   Post.find()
     .sort({ date: -1 })
-    .then(posts => res.status(200).json(posts))
+    // .then(posts => res.status(200).json(posts))
+    .then(result => res.status(200).json({
+      posts: {
+        posts: result,
+        request: {
+          type: 'GET',
+          url: 'http://localhost:4000/api/posts/',
+        },
+      },
+    }))
     .catch(err => res.status(404).json({ nopostsfound: 'No posts found' }));
 };
 
@@ -26,12 +35,11 @@ exports.postPost = (req, res, next) => {
   if (!isValid) {
     return res.status(422).json(errors);
   }
-
   const newPost = new Post({
     text: req.body.text,
     name: req.body.name,
     avatar: req.body.avatar,
-    user: req.user.id
+    user: req.user.id,
   });
 
   newPost.save().then(post => res.json(post));
@@ -59,7 +67,7 @@ exports.putPost = (req, res, next) => {
     text: req.body.text,
     name: req.body.name,
     avatar: req.body.avatar,
-    user: req.user.id
+    user: req.user.id,
   }
 };
 

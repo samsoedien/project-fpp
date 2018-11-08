@@ -1,62 +1,9 @@
 const express = require('express');
-const router = express.Router();
 const passport = require('passport');
-
-const mongoose = require('mongoose');
-const multer = require('multer');
-const path = require('path');
 
 const recipesController = require('../controllers/recipes');
 
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, 'uploads');
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.orginalname));
-//   }
-// });
-
-// const fileFilter = (req, file, cb) => {
-//   // reject a file
-//   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-//     cb(null, true);
-//   } else {
-//     cb(null, false);
-//   }
-// };
-
-// const upload = multer({
-//   storage: storage,
-//   limits: {
-//     fileSize: 1024 * 1024 * 10
-//   },
-//   fileFilter: fileFilter
-// });
-
-
-const fileStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, '/uploads');
-  },
-  filename: (req, file, cb) => {
-    // cb(null, new Date().toISOString() + '-' + file.fieldname);
-    cb(null, new Date().toISOString());
-  }
-});
-
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
-    cb(null, true);
-  } else {
-    cb(null, false);
-    console.log("file type not supported");
-  }
-};
-
-// const upload = multer({ storage: fileStorage, fileFilter: fileFilter });
-const upload = multer({ storage: fileStorage });
-
+const router = express.Router();
 
 // @route   GET api/recipes/test
 // @desc    Tests recipes route
@@ -76,62 +23,12 @@ router.get('/:id', recipesController.getRecipeById);
 // @route   POST api/recipes
 // @desc    Create a recipe
 // @access  Private
-router.post('/', passport.authenticate('jwt', { session: false }), upload.single('recipeImage'), recipesController.postRecipe);
+// router.post('/', passport.authenticate('jwt', { session: false }), upload.single('recipeImage'), recipesController.postRecipe);
+
+router.post('/', passport.authenticate('jwt', { session: false }), recipesController.postRecipe);
 
 router.patch('/:id', passport.authenticate('jwt', { session: false }), recipesController.updateRecipe);
 
 router.delete('/:id', passport.authenticate('jwt', { session: false }), recipesController.deleteRecipe);
 
-
-
-
-// // @route   POST api/recipes/ingredient
-// // @desc    Add an ingredient to the recipe
-// // @access  Private
-// router.post(
-//   '/ingredient',
-//   passport.authenticate('jwt', { session: false }),
-//   recipesController.postIngredient
-// );
-
-// @route   POST api/recipes/:id
-// @desc    Upload an image
-// @access  Public
-// router.post('/image', upload.single('recipeImage'), (req, res, next) => {
-//   const newRecipe = new Recipe({
-//     _id: new mongoose.Types.ObjectId(),
-//     title: req.body.title,
-//     description: req.body.description,
-//     ingredient: req.body.ingredient,
-//     recipeImage: req.file.path
-//   });
-//   newRecipe
-//     .save()
-//     .then(result => {
-//       console.log(result);
-//       res.status(201).json({
-//         message: 'Created recipe successfully',
-//         recipe: {
-//           title: result.title,
-//           ingredient: result.ingredient,
-//           _id: result._id,
-//           request: {
-//             type: 'GET',
-//             url: 'http://localhost:4000/api/recipes/' + result._id
-//           }
-//         }
-//       });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json({
-//         error: err
-//       });
-//     });
-// });
-
 module.exports = router;
-
-//TODO: Setup better structered routes and send detailed responses back
-
-//FIXME: rewritten get request doesn't work

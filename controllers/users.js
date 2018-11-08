@@ -54,7 +54,6 @@ exports.loginUser = (req, res, next) => {
   if (!isValid) {
     return res.status(422).json(errors);
   }
-
   const email = req.body.email;
   const password = req.body.password;
   // Find user by email
@@ -75,7 +74,7 @@ exports.loginUser = (req, res, next) => {
         jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
           res.json({
             success: true,
-            token: 'Bearer ' + token
+            token: 'Bearer ' + token,
           });
         });
       } else {
@@ -93,6 +92,6 @@ exports.getCurrentUser = (req, res, next) => {
   res.json({
     id: req.user.id,
     name: req.user.name,
-    email: req.user.email
+    email: req.user.email,
   });
 };

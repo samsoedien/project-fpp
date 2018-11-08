@@ -16,7 +16,7 @@ exports.getIngredients = (req, res, next) => {
     .catch(err => res.status(404).json({ noingredientsfound: 'No ingredients found' }));
 };
 
-exports.getIngredientByID = (req, res, next) => {
+exports.getIngredientById = (req, res, next) => {
   Ingredient.findById(req.params.id)
     .exec()
     .then(ingredient => res.json(ingredient))

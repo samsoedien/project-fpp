@@ -6,6 +6,7 @@ const multer = require('multer');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+const authRoutes = require('./routes/auth');
 const usersRoutes = require('./routes/users');
 const profilesRoutes = require('./routes/profiles');
 const postsRoutes = require('./routes/posts');
@@ -16,7 +17,7 @@ const restaurantsRoutes = require('./routes/restaurants');
 
 const app = express();
 
-const fileStorage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads');
   },
@@ -41,15 +42,15 @@ const fileFilter = (req, file, cb) => {
 app.use(morgan('dev'));
 
 // Set EJS Middleware
-app.set("view engine", "ejs");
-app.set("views", "views");
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Multer Middleware
-app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'));
+app.use(multer({ storage, fileFilter }).single('image'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Passport middleware
@@ -79,6 +80,7 @@ app.use((req, res, next) => {
 // });
 
 // Use Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/profiles', profilesRoutes);
 app.use('/api/posts', postsRoutes);
@@ -104,8 +106,8 @@ app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
     error: {
-      message: error.message
-    }
+      message: error.message,
+    },
   });
 });
 
@@ -119,10 +121,11 @@ if (process.env.NODE_ENV === 'production') {
 
 // DB Config
 const URI = require('./config/keys').mongoURI;
+
 mongoose
   .connect(URI, { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected'))
-  //.catch(err => console.log(err));
+  // .catch(err => console.log(err));
   .catch(err => {
     throw new Error(err);
   });

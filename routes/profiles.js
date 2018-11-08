@@ -1,8 +1,9 @@
 const express = require('express');
-const router = express.Router();
 const passport = require('passport');
 
 const profilesController = require('../controllers/profiles');
+
+const router = express.Router();
 
 // @route   GET api/profiles/test
 // @desc    Tests profile route

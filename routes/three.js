@@ -1,8 +1,9 @@
 const express = require('express');
-const router = express.Router();
 const passport = require('passport');
 
 const threeController = require('../controllers/three');
+
+const router = express.Router();
 
 // @route   GET api/three/test
 // @desc    Tests recipes route
@@ -23,7 +24,5 @@ router.get('/:id', threeController.getThreeById);
 // @desc    Create a recipe
 // @access  Private
 router.post('/', passport.authenticate('jwt', { session: false }), threeController.postThree);
-
-
 
 module.exports = router;
