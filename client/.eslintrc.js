@@ -17,6 +17,11 @@ module.exports = {
             "jsx": true
         }
     },
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import"
+    ],
     "rules": {
         "comma-dangle": "warn",
         "no-console": "off",
