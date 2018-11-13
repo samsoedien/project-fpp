@@ -11,16 +11,16 @@ exports.testPosts = (req, res, next) => res.json({ message: 'Posts Works' });
 exports.getPosts = (req, res, next) => {
   Post.find()
     .sort({ date: -1 })
-    // .then(posts => res.status(200).json(posts))
-    .then(result => res.status(200).json({
-      posts: {
-        posts: result,
-        request: {
-          type: 'GET',
-          url: 'http://localhost:4000/api/posts/',
-        },
-      },
-    }))
+    .then(posts => res.status(200).json(posts))
+    // .then(result => res.status(200).json({
+    //   posts: {
+    //     posts: result,
+    //     request: {
+    //       type: 'GET',
+    //       url: 'http://localhost:4000/api/posts/',
+    //     },
+    //   },
+    // }))
     .catch(err => res.status(404).json({ nopostsfound: 'No posts found' }));
 };
 

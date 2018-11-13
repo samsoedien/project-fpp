@@ -7,7 +7,7 @@ import {
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
   SET_CURRENT_USER
-} from './types';
+} from '../constants/types';
 
 // Profile Loading
 export const setProfileLoading = () => {

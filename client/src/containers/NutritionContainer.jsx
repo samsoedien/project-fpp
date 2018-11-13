@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { addNutrition } from '../actions/ingredientActions';
-import isEmpty from '../validation/is-empty';
+import isEmpty from '../utils/is-empty';
 
 import Nutrition from '../components/ingredients/Nutrition';
 
@@ -13,10 +13,10 @@ class NutritionContainer extends Component {
     this.state = {
       nutritions: {
         type: 'kcal',
-        value: 200,
+        value: 200
       },
       errors: {},
-      isEditable: true,
+      isEditable: true
     };
 
     this.onChangeCallback = this.onChangeCallback.bind(this);
@@ -43,7 +43,7 @@ class NutritionContainer extends Component {
 
   onSubmitCallback(e) {
     const nutritionData = {
-      kcal: this.state.kcal,
+      kcal: this.state.kcal
     };
 
     this.props.addNutrition(nutritionData, this.props.history);
@@ -84,7 +84,10 @@ NutritionContainer.propTypes = {
 
 const mapStateToProps = state => ({
   // ingredient: state.ingredient,
-  errors: state.errors,
+  errors: state.errors
 });
 
-export default connect(mapStateToProps, { addNutrition })(withRouter(NutritionContainer));
+export default connect(
+  mapStateToProps,
+  { addNutrition }
+)(withRouter(NutritionContainer));

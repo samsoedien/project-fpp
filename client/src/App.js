@@ -5,13 +5,14 @@ import jwtDecode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 import { clearCurrentProfile } from './actions/profileActions';
-import store from './store';
+import store from './store/store';
 
 import Routes from './Routes';
 import NavbarContainer from './containers/NavbarContainer';
 import FooterContainer from './containers/FooterContainer';
 // import Landing from './components/layout/Landing';
 import './App.css';
+import './other/animations.css';
 
 // Check for token
 if (localStorage.jwtToken) {

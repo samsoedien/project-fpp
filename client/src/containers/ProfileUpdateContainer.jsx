@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { createProfile, getCurrentProfile } from '../actions/profileActions';
-import isEmpty from '../validation/is-empty';
+import isEmpty from '../utils/is-empty';
 
 import ProfileForm from '../components/profiles/ProfileForm';
 
@@ -22,7 +22,7 @@ class ProfileUpdateContainer extends Component {
       twitter: '',
       facebook: '',
       instagram: '',
-      errors: {},
+      errors: {}
     };
 
     this.onChangeCallback = this.onChangeCallback.bind(this);
@@ -128,4 +128,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(withRouter(ProfileUpdateContainer));
+export default connect(
+  mapStateToProps,
+  { createProfile, getCurrentProfile }
+)(withRouter(ProfileUpdateContainer));

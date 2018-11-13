@@ -27,6 +27,7 @@ TODO:
 DEV TODO:
 
 - Developing Components in Isolation (Use Storybook or Styleguidist)
+- Decide on best animation library, also look into CSSTransitionGroup
 
 
 Backend

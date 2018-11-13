@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import isEmpty from '../../validation/is-empty';
+import isEmpty from '../../utils/is-empty';
 
 class ProfileHeader extends Component {
   render() {
@@ -56,7 +56,7 @@ class ProfileHeader extends Component {
                   >
                     <i className="fab fa-facebook fa-2x" />
                   </a>
-                )}              
+                )}
 
                 {isEmpty(profile.social && profile.social.instagram) ? null : (
                   <a

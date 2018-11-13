@@ -1,33 +1,29 @@
-import {
-  GET_RECIPES,
-  GET_RECIPE,
-  RECIPE_LOADING,
-} from '../actions/types';
+import { GET_RECIPES, GET_RECIPE, RECIPE_LOADING } from '../constants/types';
 
 const initialState = {
   recipes: null,
   recipe: null,
-  loading: false,
+  loading: false
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case RECIPE_LOADING:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     case GET_RECIPES:
       return {
         ...state,
         recipes: action.payload,
-        loading: false,
+        loading: false
       };
     case GET_RECIPE:
       return {
         ...state,
         recipe: action.payload,
-        loading: false,
+        loading: false
       };
     default:
       return state;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import isEmpty from '../../validation/is-empty';
+import isEmpty from '../../utils/is-empty';
 
 const ProfileItem = ({ profile }) => {
   return (
