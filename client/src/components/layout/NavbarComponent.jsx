@@ -16,7 +16,7 @@ import {
 } from 'reactstrap';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
-import './Navbar.css';
+import './NavbarComponent.css';
 
 const NavbarComponent = ({
   user,

@@ -11,3 +11,8 @@
   color: rgba(50, 50, 50, 1);
   transition: 0.5s;
 }
+
+Navbar {
+  font-family: 'SnellRoundhand';
+  font-size: 1.2rem;
+}

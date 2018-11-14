@@ -5,7 +5,7 @@ import { logoutUser } from '../actions/authActions';
 import { clearCurrentProfile } from '../actions/profileActions';
 
 // import Navbar from '../components/layout/Navbar';
-import NavbarComponent from '../components/temp/NavbarComponent';
+import NavbarComponent from '../components/layout/NavbarComponent';
 
 class NavbarContainer extends Component {
   constructor(props) {

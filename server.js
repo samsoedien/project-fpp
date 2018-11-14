@@ -2,11 +2,11 @@ const http = require('http');
 const mongoose = require('mongoose');
 
 const app = require('./app');
+const URI = require('./config/keys').MONGODB_URI;
 
 const port = process.env.PORT || 4000;
 const server = http.createServer(app);
 
-const URI = require('./config/keys').mongoURI;
 
 mongoose
   .connect(URI, { useCreateIndex: true, useNewUrlParser: true })
