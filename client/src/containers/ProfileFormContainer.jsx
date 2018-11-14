@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { createProfile } from '../actions/profileActions';
 
-import ProfileForm from '../components/profiles/ProfileForm';
+import ProfileForm from '../components/temp/ProfileForm';
 
 class ProfileFormContainer extends Component {
   constructor(props) {
