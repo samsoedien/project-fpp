@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-import PrivacyPolicy from '../other/PrivacyPolicy';
+import PrivacyPolicy from '../temp/PrivacyPolicy';
 
 //import './Footer.css';
 
@@ -13,9 +13,15 @@ const Footer = () => (
         <li>Footer Link</li>
       </ul>
       <ul className="list-inline">
-        <li className="list-inline-item"><a href="">Terms of Service</a></li>
-        <li className="list-inline-item"><PrivacyPolicy /></li>
-        <li className="list-inline-item"><a href="">Cookie Policy</a></li>
+        <li className="list-inline-item">
+          <a href="">Terms of Service</a>
+        </li>
+        <li className="list-inline-item">
+          <PrivacyPolicy />
+        </li>
+        <li className="list-inline-item">
+          <a href="">Cookie Policy</a>
+        </li>
       </ul>
     </footer>
   </div>

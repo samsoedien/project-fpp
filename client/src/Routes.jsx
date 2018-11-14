@@ -2,7 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/common/PrivateRoute';
 
-import Home from './components/layout/Home';
+import Frontpage from './components/layout/Frontpage';
+import Home from './components/temp/Home';
 import Register from './components/auth/RegisterTemp';
 import Login from './components/auth/LoginTemp';
 import Dashboard from './components/dashboard/Dashboard';
@@ -27,11 +28,12 @@ import RestaurantListContainer from './containers/RestaurantListContainer';
 
 import ThreeEditorContainer from './containers/ThreeEditorContainer';
 
-import Test from './components/other/Test';
+import TestComponent from './components/temp/TestComponent';
 
 const Routes = () => (
   <React.Fragment>
-    <Route exact path="/" component={Home} />
+    <Route exact path="/" component={Frontpage} />
+    <Route exact path="/home" component={Home} />
     <Route exact path="/register" component={Register} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/profiles" component={ProfileListContainer} />
@@ -95,7 +97,7 @@ const Routes = () => (
     <Switch>
       <PrivateRoute exact path="/editor" component={ThreeEditorContainer} />
     </Switch>
-    <Route exact path="/test" component={Test} />
+    <Route exact path="/test" component={TestComponent} />
     <Route exact path="/not-found" component={NotFound} />
   </React.Fragment>
 );

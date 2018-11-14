@@ -6,11 +6,11 @@ const RecipeSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
   },
   title: {
     type: String,
-    required: true
+    required: true,
   },
   culinary: {
     type: String
@@ -45,35 +45,35 @@ const RecipeSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
       },
       text: {
         type: String,
-        required: true
+        required: true,
       },
       name: {
-        type: String
+        type: String,
       },
       avatar: {
-        type: String
+        type: String,
       },
       likes: [
         {
           user: {
             type: Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
           }
         }
       ],
       date: {
         type: Date,
-        default: Date.now
+        default: Date.now,
       }
     }
   ],
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   }
 });
 

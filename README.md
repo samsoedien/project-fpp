@@ -28,7 +28,7 @@ DEV TODO:
 
 - Developing Components in Isolation (Use Storybook or Styleguidist)
 - Decide on best animation library, also look into CSSTransitionGroup
-
+- Decide on JSON response formatting for structuring data: JSON:API / JSEND specification
 
 Backend
 Is made in nodejs using express framework. Using MVC with EJS as template engine for returning error pages.

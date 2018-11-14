@@ -12,10 +12,10 @@ export default props => {
             <small className="text-muted text-left text-uppercase">
               Culinary: {props.recipe.culinary}
             </small>
-            <h1 className="page-header text-left text-capitalize mb-2">
+            <h1 className="page-header text-left text-capitalize mb-2 fancy-font">
               {props.recipe.title}
             </h1>
-            <p className="lead text-left">
+            <p className="lead text-left paragraph-font">
               {isEmpty(props.recipe.description) ? (
                 <span>No description written yet</span>
               ) : (

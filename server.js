@@ -6,11 +6,15 @@ const app = require('./app');
 const port = process.env.PORT || 4000;
 const server = http.createServer(app);
 
-// mongoose
-//   .connect('mongodb+srv://samsoedien:7W02CX9LE9QUi7i0@fpp-cluster-ziafo.gcp.mongodb.net/test?retryWrites=true', { useNewUrlParser: true })
-//   .then(result => {
-//     server.listen(port, () => console.log(`Server running on port ${port}`));
-//   })
-//   .catch(err => console.log(err));
+const URI = require('./config/keys').mongoURI;
 
-server.listen(port, () => console.log(`Server running on port ${port}`));
+mongoose
+  .connect(URI, { useCreateIndex: true, useNewUrlParser: true })
+  .then(() => {
+    console.log('MongoDB connected');
+    server.listen(port, () => console.log(`Server running on port ${port}`));
+  })
+  .catch(err => {
+    throw new Error(err);
+  });
+mongoose.Promise = global.Promise;

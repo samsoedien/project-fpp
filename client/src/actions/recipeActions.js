@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { formatListing } from '../helpers/fileHelpers';
 
 import {
   GET_RECIPES,
@@ -29,7 +28,7 @@ export const getRecipes = () => dispatch => {
     .then(res =>
       dispatch({
         type: GET_RECIPES,
-        payload: res.data
+        payload: res.data.recipes
       })
     )
     .catch(err =>
@@ -48,7 +47,7 @@ export const getRecipe = id => dispatch => {
     .then(res =>
       dispatch({
         type: GET_RECIPE,
-        payload: res.data
+        payload: res.data.recipe
       })
     )
     .catch(err =>
@@ -73,3 +72,4 @@ export const createRecipe = (recipeData, history) => async dispatch => {
 };
 
 // FIXME: fix helper function
+// FIXME: Look into async await dispatch

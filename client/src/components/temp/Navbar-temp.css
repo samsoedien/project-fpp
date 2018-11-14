@@ -1,0 +1,64 @@
+/* ==================== HEADER & NAVIGATION RULES ==================== */
+
+/*header, conflicting with section header*/
+.header-main {
+  position: static;
+  width: 100%;
+  height: 10vh; /*was 100vh*/
+  top: 0;
+  left: 0;
+  z-index: 200;
+  /*margin-bottom: 320px;*/
+}
+
+nav,
+.navbar {
+  position: fixed;
+  width: 100%;
+  height: 72px;
+  background-color: rgba(44, 60, 204, 0);
+  z-index: 500;
+  transition: 0.5s;
+}
+
+.navbar--container {
+  width: 96%;
+  margin: 0 auto;
+}
+
+.navbar-list {
+  float: left;
+  width: auto;
+  height: inherit;
+  overflow: hidden;
+  list-style-type: none;
+}
+
+.navbar-list--float-right {
+  float: right;
+}
+
+.navbar-list-item {
+  position: relative;
+  display: inline-block;
+  float: left;
+  height: inherit;
+  /*font-family: 'lato', sans-serif;*/
+  /*font-weight: 300;*/
+  /* text-transform: uppercase; */
+  font-size: 12px;
+}
+
+.navbar-link {
+  display: inline-block;
+  height: inherit;
+  width: auto;
+  text-align: left;
+  color: #407272; /*inherit*/
+  padding: 30px 16px;
+  margin: auto 0;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.5s;
+}

@@ -8,8 +8,12 @@ const RecipeItem = props => (
       <div className="card bg-light mb-3">
         <img src={img} alt="" className="card-img-top" />
         <div className="card-block card-body">
-          <h4 className="card-title text-capitalize">{props.recipe.title}</h4>
-          <h6 className="car-subtitle mb-2 text-muted">{props.recipe.ingredient}</h6>
+          <h4 className="card-title text-capitalize fancy-font">
+            {props.recipe.title}
+          </h4>
+          <h6 className="car-subtitle mb-2 text-muted">
+            {props.recipe.ingredient}
+          </h6>
           <p className="card-text">Description of recipe</p>
         </div>
       </div>

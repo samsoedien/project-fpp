@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 
-const recipesController = require('../controllers/recipes');
+const recipesController = require('../tests/controllers/recipes');
 
 const router = express.Router();
 
@@ -32,3 +32,5 @@ router.patch('/:id', passport.authenticate('jwt', { session: false }), recipesCo
 router.delete('/:id', passport.authenticate('jwt', { session: false }), recipesController.deleteRecipe);
 
 module.exports = router;
+
+// FIXME: temp test controller

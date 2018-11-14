@@ -3,7 +3,6 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const multer = require('multer');
-const mongoose = require('mongoose');
 const passport = require('passport');
 
 const authRoutes = require('./routes/auth');
@@ -118,17 +117,5 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
-
-// DB Config
-const URI = require('./config/keys').mongoURI;
-
-mongoose
-  .connect(URI, { useNewUrlParser: true })
-  .then(() => console.log('MongoDB Connected'))
-  // .catch(err => console.log(err));
-  .catch(err => {
-    throw new Error(err);
-  });
-mongoose.Promise = global.Promise;
 
 module.exports = app;
