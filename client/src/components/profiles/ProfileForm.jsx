@@ -1,10 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import TextFieldGroup from '../common/TextFieldGroup';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import InputGroup from '../common/InputGroup';
-import SelectListGroup from '../common/SelectListGroup';
+import classnames from 'classnames';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Button
+} from 'reactstrap';
 
 const ProfileForm = ({
   updateProfile,
@@ -19,13 +26,13 @@ const ProfileForm = ({
   instagram,
   errors,
   onChangeCallback,
-  onSubmitCallback,
+  onSubmitCallback
 }) => {
-  const onChange = (e) => {
+  const onChange = e => {
     onChangeCallback(e);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     onSubmitCallback();
   };
@@ -34,37 +41,57 @@ const ProfileForm = ({
   if (displaySocialInputs) {
     socialInputs = (
       <div>
-        <InputGroup
-          placeholder="Twitter Profile URL"
-          name="twitter"
-          icon="fab fa-twitter"
-          value={twitter}
-          onChange={onChange}
-          error={errors.twitter}
-        />
+        <FormGroup>
+          <Label for="">
+            <i className="fab fa-twitter" />
+          </Label>
+          <Input
+            type="text"
+            name="twitter"
+            placeholder="Twitter Profile URL"
+            value={twitter}
+            onChange={onChange}
+            className={classnames('form-control form-control-lg', {
+              'is-invalid': errors.handle
+            })}
+          />
+        </FormGroup>
 
-        <InputGroup
-          placeholder="Facebook Page URL"
-          name="facebook"
-          icon="fab fa-facebook"
-          value={facebook}
-          onChange={onChange}
-          error={errors.facebook}
-        />
+        <FormGroup>
+          <Label for="">
+            <i className="fab fa-facebook" />
+          </Label>
+          <Input
+            type="text"
+            name="facebook"
+            placeholder="Facebook Profile URL"
+            value={facebook}
+            onChange={onChange}
+            className={classnames('form-control form-control-lg', {
+              'is-invalid': errors.handle
+            })}
+          />
+        </FormGroup>
 
-        <InputGroup
-          placeholder="Instagram Page URL"
-          name="instagram"
-          icon="fab fa-instagram"
-          value={instagram}
-          onChange={onChange}
-          error={errors.instagram}
-        />
+        <FormGroup>
+          <Label for="">
+            <i className="fab fa-instagram" />
+          </Label>
+          <Input
+            type="text"
+            name="instagram"
+            placeholder="Instagram Profile URL"
+            value={instagram}
+            onChange={onChange}
+            className={classnames('form-control form-control-lg', {
+              'is-invalid': errors.handle
+            })}
+          />
+        </FormGroup>
       </div>
     );
   }
 
-  // Select options for status
   const options = [
     { label: '* Select Professional Status', value: 0 },
     { label: 'Head Chef', value: 'Head Chef' },
@@ -75,85 +102,139 @@ const ProfileForm = ({
     { label: 'Intern', value: 'Intern' },
     { label: 'Other', value: 'Other' }
   ];
-
+  const selectOptions = options.map(option => (
+    <option key={option.label} value={option.value}>
+      {option.label}
+    </option>
+  ));
 
   return (
     <div className="profile-form">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 m-auto">
-            {(!updateProfile) ? (<h2 className="display-4 text-center">Create Your Profile</h2>) : (<h2 className="display-4 text-center">Edit Your Profile</h2>)}
+      <Container>
+        <Row>
+          <Col md="8" className="m-auto">
+            {!updateProfile ? (
+              <h2 className="display-4 text-center">Create Your Profile</h2>
+            ) : (
+              <h2 className="display-4 text-center">Edit Your Profile</h2>
+            )}
             <p className="lead text-center">
               Let's get some information to make your profile stand out
             </p>
-            <small className="d-block pb-3">* = required fields</small>
-            <form onSubmit={onSubmit}>
-              <TextFieldGroup
-                placeholder="* Profile Handle"
-                name="handle"
-                value={handle}
-                onChange={onChange}
-                error={errors.handle}
-                info="A unique handle for your profile URL. Your full name, company name, nickname"
-              />
-              <SelectListGroup
-                placeholder="Profession"
-                name="profession"
-                value={profession}
-                onChange={onChange}
-                options={options}
-                error={errors.profession}
-                info="Give us an idea of where you are at in your career"
-              />
-              <TextFieldGroup
-                placeholder="Location"
-                name="location"
-                value={location}
-                onChange={onChange}
-                error={errors.location}
-                info="City or city & state suggested (eg. Boston, MA)"
-              />
-              <TextFieldGroup
-                placeholder="* Skills"
-                name="skills"
-                value={skills}
-                onChange={onChange}
-                error={errors.skills}
-                info="Please use comma separated values (eg.
-                  HTML,CSS,JavaScript,PHP"
-              />
-              <TextAreaFieldGroup
-                placeholder="Short Bio"
-                name="bio"
-                value={bio}
-                onChange={onChange}
-                error={errors.bio}
-                info="Tell us a little about yourself"
-              />
+
+            <Form onSubmit={onSubmit}>
+              <FormGroup>
+                <Label for="">Handle</Label>
+                <Input
+                  type="text"
+                  name="handle"
+                  placeholder="* Profile Handle"
+                  value={handle}
+                  onChange={onChange}
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.handle
+                  })}
+                />
+                <FormText color="muted">
+                  A unique handle for your profile URL. Your full name, company
+                  name, nickname
+                </FormText>
+              </FormGroup>
+
+              <FormGroup>
+                <Label>Profession</Label>
+                <Input
+                  type="select"
+                  name="profession"
+                  value={profession}
+                  onChange={onChange}
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.profession
+                  })}
+                >
+                  {selectOptions}
+                </Input>
+                <FormText color="muted">
+                  Select your current occupation.
+                </FormText>
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="">Location</Label>
+                <Input
+                  type="text"
+                  name="location"
+                  placeholder="Location"
+                  value={location}
+                  onChange={onChange}
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.location
+                  })}
+                />
+                <FormText color="muted">
+                  Put here the city and/or region your are active.
+                </FormText>
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="">Skills</Label>
+                <Input
+                  type="text"
+                  name="skills"
+                  placeholder="* Skills"
+                  value={skills}
+                  onChange={onChange}
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.skills
+                  })}
+                />
+                <FormText color="muted">
+                  Please use comma separated values
+                </FormText>
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="">About me</Label>
+                <Input
+                  type="textarea"
+                  name="bio"
+                  placeholder="Short Bio"
+                  value={bio}
+                  onChange={onChange}
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.bio
+                  })}
+                />
+                <FormText color="muted">
+                  Tell us something about yourself.
+                </FormText>
+              </FormGroup>
+
               <div className="mb-3">
-                <button
+                <Button
                   type="button"
+                  className="btn btn-light"
                   onClick={() => {
                     this.setState(prevState => ({
                       displaySocialInputs: !prevState.displaySocialInputs
                     }));
                   }}
-                  className="btn btn-light"
                 >
+                  {' '}
                   Add Social Network Links
-                </button>
+                </Button>
                 <span className="text-muted">Optional</span>
               </div>
               {socialInputs}
-              <input
+              <Input
                 type="submit"
                 value="Submit"
                 className="btn btn-info btn-block mt-4"
               />
-            </form>
-          </div>
-        </div>
-      </div>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
@@ -171,8 +252,7 @@ ProfileForm.propTypes = {
   instagram: PropTypes.string.isRequired,
   errors: PropTypes.object.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
-  onSubmitCallback: PropTypes.func.isRequired,
+  onSubmitCallback: PropTypes.func.isRequired
 };
-
 
 export default ProfileForm;

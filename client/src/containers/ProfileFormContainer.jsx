@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { createProfile } from '../actions/profileActions';
 
-import ProfileForm from '../components/temp/ProfileForm';
+import ProfileForm from '../components/profiles/ProfileForm';
 
 class ProfileFormContainer extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class ProfileFormContainer extends Component {
       twitter: '',
       facebook: '',
       instagram: '',
-      errors: {},
+      errors: {}
     };
 
     this.onChangeCallback = this.onChangeCallback.bind(this);
@@ -72,12 +72,15 @@ class ProfileFormContainer extends Component {
 }
 ProfileFormContainer.propTypes = {
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.errors,
+  errors: state.errors
 });
 
-export default connect(mapStateToProps, { createProfile })(withRouter(ProfileFormContainer));
+export default connect(
+  mapStateToProps,
+  { createProfile }
+)(withRouter(ProfileFormContainer));

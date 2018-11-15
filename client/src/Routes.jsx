@@ -4,6 +4,7 @@ import PrivateRoute from './components/common/PrivateRoute';
 
 import Frontpage from './components/layout/Frontpage';
 import Home from './components/temp/Home';
+import AuthContainer from './containers/AuthContainer';
 import Register from './components/auth/RegisterTemp';
 import Login from './components/auth/LoginTemp';
 import Dashboard from './components/dashboard/Dashboard';
@@ -34,8 +35,16 @@ const Routes = () => (
   <React.Fragment>
     <Route exact path="/" component={Frontpage} />
     <Route exact path="/home" component={Home} />
-    <Route exact path="/register" component={Register} />
-    <Route exact path="/login" component={Login} />
+    <Route
+      exact
+      path="/register"
+      render={() => <AuthContainer hasAccount={false} />}
+    />
+    <Route
+      exact
+      path="/login"
+      render={() => <AuthContainer hasAccount={true} />}
+    />
     <Route exact path="/profiles" component={ProfileListContainer} />
     <Route exact path="/profiles/:handle" component={ProfileContainer} />
     <Route exact path="/recipes" component={RecipeListContainer} />

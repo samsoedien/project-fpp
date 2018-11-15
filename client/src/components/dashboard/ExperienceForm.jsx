@@ -1,7 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
+import classnames from 'classnames';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Button
+} from 'reactstrap';
 
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
@@ -18,26 +29,26 @@ const ExperienceForm = ({
   description,
   onCheckCallback,
   onChangeCallback,
-  onSubmitCallback,
+  onSubmitCallback
 }) => {
   const onCheck = () => {
     onCheckCallback();
   };
 
-  const onChange = (e) => {
+  const onChange = e => {
     onChangeCallback(e);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     onSubmitCallback();
   };
 
   return (
     <div className="experience-form">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 m-auto">
+      <Container>
+        <Row>
+          <Col md="8" className="m-auto">
             <Link to="/dashboard" className="btn btn-light">
               Go Back
             </Link>
@@ -46,45 +57,77 @@ const ExperienceForm = ({
               Add any job or position that you have had in the past or current
             </p>
             <small className="d-block pb-3">* = required fields</small>
-            <form onSubmit={onSubmit}>
-              <TextFieldGroup
-                placeholder="* Company"
-                name="company"
-                value={company}
-                onChange={onChange}
-                error={errors.company}
-              />
-              <TextFieldGroup
-                placeholder="* Job Title"
-                name="title"
-                value={title}
-                onChange={onChange}
-                error={errors.title}
-              />
-              <TextFieldGroup
-                placeholder="Location"
-                name="location"
-                value={location}
-                onChange={onChange}
-                error={errors.location}
-              />
-              <h6>From Date</h6>
-              <TextFieldGroup
-                name="from"
-                type="date"
-                value={from}
-                onChange={onChange}
-                error={errors.from}
-              />
-              <h6>To Date</h6>
-              <TextFieldGroup
-                name="to"
-                type="date"
-                value={to}
-                onChange={onChange}
-                error={errors.to}
-                disabled={disabled ? 'disabled' : ''}
-              />
+
+            <Form onSubmit={onSubmit}>
+              <FormGroup>
+                <Label for="">Company</Label>
+                <Input
+                  type="text"
+                  name="company"
+                  placeholder="* Company"
+                  value={company}
+                  onChange={onChange}
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.company
+                  })}
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="">Job Title</Label>
+                <Input
+                  type="text"
+                  name="title"
+                  placeholder="* Job title"
+                  value={title}
+                  onChange={onChange}
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.title
+                  })}
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="">Location</Label>
+                <Input
+                  type="text"
+                  name="location"
+                  placeholder="Location"
+                  value={location}
+                  onChange={onChange}
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.location
+                  })}
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="">From Date</Label>
+                <Input
+                  type="date"
+                  name="from"
+                  value={from}
+                  onChange={onChange}
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.from
+                  })}
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="">To Date</Label>
+                <Input
+                  type="date"
+                  name="to"
+                  value={to}
+                  onChange={onChange}
+                  disabled={disabled ? 'disabled' : ''}
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.to
+                  })}
+                />
+              </FormGroup>
+
               <div className="form-check mb-4">
                 <input
                   type="checkbox"
@@ -99,23 +142,33 @@ const ExperienceForm = ({
                   Current Job
                 </label>
               </div>
-              <TextAreaFieldGroup
-                placeholder="Job Description"
-                name="description"
-                value={description}
-                onChange={onChange}
-                error={errors.description}
-                info="Tell us about the the position"
-              />
-              <input
+
+              <FormGroup>
+                <Label for="">Job description</Label>
+                <Input
+                  type="type"
+                  name="description"
+                  placeholder="Job Description"
+                  value={description}
+                  onChange={onChange}
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.description
+                  })}
+                />
+                <FormText color="muted">
+                  Tell us about the the position.
+                </FormText>
+              </FormGroup>
+
+              <Input
                 type="submit"
                 value="Submit"
-                className="btn btn-info btn-block mt-4"
+                className="btn-info btn-block mt-4"
               />
-            </form>
-          </div>
-        </div>
-      </div>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
@@ -127,7 +180,7 @@ ExperienceForm.propTypes = {
   description: PropTypes.string.isRequired,
   onCheckCallback: PropTypes.func.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
-  onSubmitCallback: PropTypes.func.isRequired,
+  onSubmitCallback: PropTypes.func.isRequired
 };
 
 export default ExperienceForm;

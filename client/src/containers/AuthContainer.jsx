@@ -15,17 +15,18 @@ class AuthContainer extends Component {
       email: '',
       password: '',
       password2: '',
-      errors: {},
+      errors: {}
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeCallback = this.onChangeCallback.bind(this);
+    this.onSubmitRegisterCallback = this.onSubmitRegisterCallback.bind(this);
+    this.onSubmitLoginCallback = this.onSubmitLoginCallback.bind(this);
   }
 
   componentDidMount() {
     const { history } = this.props;
     const { isAuthenticated } = this.props.auth;
     if (isAuthenticated) {
-      history.push('/dashboard')
+      history.push('/dashboard');
     }
   }
 
@@ -43,12 +44,12 @@ class AuthContainer extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmitCallback() {
+  onSubmitRegisterCallback() {
     const newUser = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2,
+      password2: this.state.password2
     };
     this.props.registerUser(newUser, this.props.history);
   }
@@ -56,7 +57,7 @@ class AuthContainer extends Component {
   onSubmitLoginCallback() {
     const userData = {
       email: this.state.email,
-      password: this.state.password,
+      password: this.state.password
     };
     this.props.loginUser(userData);
   }
@@ -66,7 +67,15 @@ class AuthContainer extends Component {
     const noAccount = true;
     return (
       <div className="auth-container">
-        {noAccount ? (
+        {this.props.hasAccount ? (
+          <Login
+            email={email}
+            password={password}
+            errors={errors}
+            onChangeCallback={this.onChangeCallback}
+            onSubmitLoginCallback={this.onSubmitLoginCallback}
+          />
+        ) : (
           <Register
             name={name}
             email={email}
@@ -74,37 +83,31 @@ class AuthContainer extends Component {
             password2={password2}
             errors={errors}
             onChangeCallback={this.onChangeCallback}
-            onSubmitCallback={this.onSubmitCallback}
+            onSubmitRegisterCallback={this.onSubmitRegisterCallback}
           />
-        ) : (
-            <Login
-              email={email}
-              password={password}
-              errors={errors}
-              onChangeCallback={this.onChangeCallback}
-              onSubmitCallback={this.onSubmitCallback}
-            />
-          )}
+        )}
       </div>
     );
   }
 }
 
-AuthContainer.defaultProps = {
-};
+AuthContainer.defaultProps = {};
 
 AuthContainer.propTypes = {
   registerUser: PropTypes.func.isRequired,
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors,
+  errors: state.errors
 });
 
-export default connect(mapStateToProps, { registerUser, loginUser })(withRouter(AuthContainer));
+export default connect(
+  mapStateToProps,
+  { registerUser, loginUser }
+)(withRouter(AuthContainer));
 
 // FIXME: Integrated both Login and Register redux connection in one container. Need to verify workings with withRouter (Login component did not used withRouter).
