@@ -90,7 +90,7 @@ class PostItem extends Component {
 }
 
 PostItem.defaultProps = {
-  showActions: true,
+  showActions: true
 };
 
 PostItem.propTypes = {
@@ -98,11 +98,16 @@ PostItem.propTypes = {
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  auth: state.auth
 });
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike })(PostItem);
+export default connect(
+  mapStateToProps,
+  { deletePost, addLike, removeLike }
+)(PostItem);
+
+// TODO: Separate in functional and container components and remove classnames module

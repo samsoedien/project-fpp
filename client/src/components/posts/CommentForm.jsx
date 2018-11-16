@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addComment } from '../../actions/postActions';
 
-import classnames from 'classnames';
 import {
   Container,
   Row,
@@ -40,10 +39,8 @@ const CommentForm = ({ text, errors, onChangeCallback, onSubmitCallback }) => {
                 placeholder="Reply to Post"
                 value={text}
                 onChange={onChange}
-                className={classnames('form-control form-control-lg', {
-                  'is-invalid': errors.text
-                })}
               />
+              <FormText color="danger">{errors ? errors.text : ''}</FormText>
             </FormGroup>
             <Input type="submit" value="Submit" className="btn btn-dark" />
           </Form>

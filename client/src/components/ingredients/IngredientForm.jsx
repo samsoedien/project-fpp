@@ -27,17 +27,6 @@ const IngredientForm = ({
     onSubmitCallback();
   };
 
-  // const Seasonaloptions = [
-  //   { label: '* Select Seasonal Tag', value: 0 },
-  //   { label: 'Birthday', value: 'Birthday' },
-  //   { label: 'Christmas', value: 'Christmas' },
-  //   { label: 'Eastern', value: 'Eastern' },
-  //   { label: 'Valentine', value: 'Food Designer' },
-  //   { label: 'Other', value: 'Other' },
-  // ];
-
-  console.log('errors ' + errors);
-
   return (
     <div className="ingredient-form">
       <Container>
@@ -58,7 +47,7 @@ const IngredientForm = ({
                   value={name}
                   onChange={onChange}
                 />
-                <FormText color="muted">A created ingredient.</FormText>
+                <FormText color="danger">{errors ? errors.name : ''}</FormText>
               </FormGroup>
               <Input
                 type="submit"
@@ -81,7 +70,9 @@ const IngredientForm = ({
 };
 
 IngredientForm.propTypes = {
-  ingredient: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  onChangeCallback: PropTypes.func.isRequired,
+  onSubmitCallback: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 

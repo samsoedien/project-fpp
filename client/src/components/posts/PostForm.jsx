@@ -9,6 +9,12 @@ import {
   Label,
   Input,
   FormText,
+  Card,
+  CardHeader,
+  CardFooter,
+  CardBody,
+  CardTitle,
+  CardText,
   Button
 } from 'reactstrap';
 
@@ -23,26 +29,40 @@ const PostForm = ({ text, errors, onChangeCallback, onSubmitCallback }) => {
   };
   return (
     <div className="post-form mb-3">
-      <div className="card card-info">
-        <div className="card-header bg-info text-white">Ask a Question...</div>
-        <div className="card-body">
-          <Form onSubmit={onSubmit} noValidate>
-            <FormGroup>
-              <Label for="">Create Post</Label>
-              <FormText color="muted">Type a comment.</FormText>
-              <Input
-                type="text"
-                name="text"
-                placeholder="Write a Post"
-                value={text}
-                onChange={onChange}
-              />
-              <FormText color="danger">{errors ? errors.text : ''}</FormText>
-            </FormGroup>
-            <Input type="submit" value="Submit" className="btn btn-dark" />
-          </Form>
-        </div>
-      </div>
+      <Container>
+        <Card>
+          <CardHeader className="bg-info text-white">
+            Ask a Question...
+          </CardHeader>
+          <Row>
+            <Col md="10" className="m-auto">
+              <CardBody>
+                <Form onSubmit={onSubmit} noValidate>
+                  <FormGroup>
+                    <Label for="">Create Post</Label>
+                    <FormText color="muted">Type a comment.</FormText>
+                    <Input
+                      type="text"
+                      name="text"
+                      placeholder="Write a Post"
+                      value={text}
+                      onChange={onChange}
+                    />
+                    <FormText color="danger">
+                      {errors ? errors.text : ''}
+                    </FormText>
+                  </FormGroup>
+                  <Input
+                    type="submit"
+                    value="Submit"
+                    className="btn btn-dark"
+                  />
+                </Form>
+              </CardBody>
+            </Col>
+          </Row>
+        </Card>
+      </Container>
     </div>
   );
 };

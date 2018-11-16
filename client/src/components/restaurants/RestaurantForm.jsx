@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import {
   Container,
   Row,
@@ -52,11 +51,8 @@ const RestaurantForm = ({
                   placeholder="Restaurant Name"
                   value={name}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.name
-                  })}
                 />
-                <FormText color="muted">The name of your restaurant.</FormText>
+                <FormText color="danger">{errors ? errors.name : ''}</FormText>
               </FormGroup>
             </Form>
           </Col>

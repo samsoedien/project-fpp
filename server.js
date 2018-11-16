@@ -7,7 +7,6 @@ const URI = require('./config/keys').MONGODB_URI;
 const port = process.env.PORT || 4000;
 const server = http.createServer(app);
 
-
 mongoose
   .connect(URI, { useCreateIndex: true, useNewUrlParser: true })
   .then(() => {

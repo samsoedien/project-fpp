@@ -4,7 +4,7 @@ import PrivateRoute from './components/common/PrivateRoute';
 
 import Home from './components/layout/Home';
 import AuthContainer from './containers/AuthContainer';
-import Dashboard from './components/dashboard/Dashboard';
+import DashboardContainer from './containers/DashboardContainer';
 import ProfileFormContainer from './containers/ProfileFormContainer';
 import ProfileUpdateContainer from './containers/ProfileUpdateContainer';
 import ExperienceFormContainer from './containers/ExperienceFormContainer';
@@ -49,7 +49,7 @@ const Routes = () => (
     <Route exact path="/ingredients/:id" component={IngredientContainer} />
 
     <Switch>
-      <PrivateRoute exact path="/dashboard" component={Dashboard} />
+      <PrivateRoute exact path="/dashboard" component={DashboardContainer} />
     </Switch>
     <Switch>
       <PrivateRoute

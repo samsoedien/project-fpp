@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import {
   Container,
   Row,
@@ -116,15 +115,9 @@ const RecipeForm = ({
                                   placeholder="Title"
                                   value={title}
                                   onChange={onChange}
-                                  className={classnames(
-                                    'form-control form-control-lg',
-                                    {
-                                      'is-invalid': errors.title
-                                    }
-                                  )}
                                 />
-                                <FormText color="muted">
-                                  Title for your dish.
+                                <FormText color="danger">
+                                  {errors ? errors.title : ''}
                                 </FormText>
                               </FormGroup>
 
@@ -136,15 +129,9 @@ const RecipeForm = ({
                                   placeholder="Culinary"
                                   value={culinary}
                                   onChange={onChange}
-                                  className={classnames(
-                                    'form-control form-control-lg',
-                                    {
-                                      'is-invalid': errors.culinary
-                                    }
-                                  )}
                                 />
-                                <FormText color="muted">
-                                  Country of Origin.
+                                <FormText color="danger">
+                                  {errors ? errors.culinary : ''}
                                 </FormText>
                               </FormGroup>
 
@@ -156,15 +143,9 @@ const RecipeForm = ({
                                   placeholder="Description"
                                   value={description}
                                   onChange={onChange}
-                                  className={classnames(
-                                    'form-control form-control-lg',
-                                    {
-                                      'is-invalid': errors.description
-                                    }
-                                  )}
                                 />
-                                <FormText color="muted">
-                                  Description for your created recipe.
+                                <FormText color="danger">
+                                  {errors ? errors.description : ''}
                                 </FormText>
                               </FormGroup>
 

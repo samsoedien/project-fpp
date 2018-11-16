@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import {
   Container,
   Row,
@@ -51,10 +50,8 @@ const ProfileForm = ({
             placeholder="Twitter Profile URL"
             value={twitter}
             onChange={onChange}
-            className={classnames('form-control form-control-lg', {
-              'is-invalid': errors.handle
-            })}
           />
+          <FormText color="danger">{errors ? errors.twitter : ''}</FormText>
         </FormGroup>
 
         <FormGroup>
@@ -67,10 +64,8 @@ const ProfileForm = ({
             placeholder="Facebook Profile URL"
             value={facebook}
             onChange={onChange}
-            className={classnames('form-control form-control-lg', {
-              'is-invalid': errors.handle
-            })}
           />
+          <FormText color="danger">{errors ? errors.facebook : ''}</FormText>
         </FormGroup>
 
         <FormGroup>
@@ -83,10 +78,8 @@ const ProfileForm = ({
             placeholder="Instagram Profile URL"
             value={instagram}
             onChange={onChange}
-            className={classnames('form-control form-control-lg', {
-              'is-invalid': errors.handle
-            })}
           />
+          <FormText color="danger">{errors ? errors.instagram : ''}</FormText>
         </FormGroup>
       </div>
     );
@@ -94,12 +87,14 @@ const ProfileForm = ({
 
   const options = [
     { label: '* Select Professional Status', value: 0 },
-    { label: 'Head Chef', value: 'Head Chef' },
+    { label: 'Chef de Cuisine', value: 'Chef de Cuisine' },
     { label: 'Sous Chef', value: 'Sous Chef' },
     { label: 'Pastry Chef', value: 'Pastry Chef' },
+    { label: 'Chocolatier', value: 'Chocolatier' },
+    { label: 'Confectonary', value: 'Confectonary' },
     { label: 'Food Designer', value: 'Food Designer' },
     { label: 'Food Scientist', value: 'Food Scientist' },
-    { label: 'Intern', value: 'Intern' },
+    { label: 'Student/Intern', value: 'Student/Intern' },
     { label: 'Other', value: 'Other' }
   ];
   const selectOptions = options.map(option => (
@@ -131,13 +126,13 @@ const ProfileForm = ({
                   placeholder="* Profile Handle"
                   value={handle}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.handle
-                  })}
                 />
                 <FormText color="muted">
                   A unique handle for your profile URL. Your full name, company
                   name, nickname
+                </FormText>
+                <FormText color="danger">
+                  {errors ? errors.handle : ''}
                 </FormText>
               </FormGroup>
 
@@ -148,14 +143,11 @@ const ProfileForm = ({
                   name="profession"
                   value={profession}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.profession
-                  })}
                 >
                   {selectOptions}
                 </Input>
-                <FormText color="muted">
-                  Select your current occupation.
+                <FormText color="danger">
+                  {errors ? errors.profession : ''}
                 </FormText>
               </FormGroup>
 
@@ -167,12 +159,9 @@ const ProfileForm = ({
                   placeholder="Location"
                   value={location}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.location
-                  })}
                 />
-                <FormText color="muted">
-                  Put here the city and/or region your are active.
+                <FormText color="danger">
+                  {errors ? errors.location : ''}
                 </FormText>
               </FormGroup>
 
@@ -184,12 +173,9 @@ const ProfileForm = ({
                   placeholder="* Skills"
                   value={skills}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.skills
-                  })}
                 />
-                <FormText color="muted">
-                  Please use comma separated values
+                <FormText color="danger">
+                  {errors ? errors.skills : ''}
                 </FormText>
               </FormGroup>
 
@@ -201,13 +187,8 @@ const ProfileForm = ({
                   placeholder="Short Bio"
                   value={bio}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.bio
-                  })}
                 />
-                <FormText color="muted">
-                  Tell us something about yourself.
-                </FormText>
+                <FormText color="danger">{errors ? errors.bio : ''}</FormText>
               </FormGroup>
 
               <div className="mb-3">
