@@ -1,83 +1,59 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import { addPost } from '../../actions/postActions';
+import classnames from 'classnames';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Button
+} from 'reactstrap';
 
-class PostForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: '',
-      errors: {}
-    };
+const PostForm = ({ text, errors, onChangeCallback, onSubmitCallback }) => {
+  const onChange = e => {
+    onChangeCallback(e);
+  };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (newProps.errors) {
-      this.setState({ errors: newProps.errors });
-    }
-  }
-
-  onSubmit(e) {
+  const onSubmit = e => {
     e.preventDefault();
-    const { user } = this.props.auth;
-
-    const newPost = {
-      text: this.state.text,
-      name: user.name,
-      avatar: user.avatar
-    };
-
-    this.props.addPost(newPost);
-    this.setState({ text: '' });
-  }
-
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  render() {
-    const { errors } = this.state;
-
-    return (
-      <div className="post-form mb-3">
-        <div className="card card-info">
-          <div className="card-header bg-info text-white">Ask a Question...</div>
-          <div className="card-body">
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <TextAreaFieldGroup
-                  placeholder="Create a post"
-                  name="text"
-                  value={this.state.text}
-                  onChange={this.onChange}
-                  error={errors.text}
-                />
-              </div>
-              <button type="submit" className="btn btn-dark">
-                Submit
-              </button>
-            </form>
-          </div>
+    onSubmitCallback();
+  };
+  return (
+    <div className="post-form mb-3">
+      <div className="card card-info">
+        <div className="card-header bg-info text-white">Ask a Question...</div>
+        <div className="card-body">
+          <Form onSubmit={onSubmit}>
+            <FormGroup>
+              <Label for="">Create Post</Label>
+              <Input
+                type="text"
+                name="text"
+                placeholder="Write a Post"
+                value={text}
+                onChange={onChange}
+                className={classnames('form-control form-control-lg', {
+                  'is-invalid': errors.text
+                })}
+              />
+              <FormText color="muted">Type a comment.</FormText>
+            </FormGroup>
+            <Input type="submit" value="Submit" className="btn btn-dark" />
+          </Form>
         </div>
       </div>
-    );
-  }
-}
-
-PostForm.propTypes = {
-  addPost: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+    </div>
+  );
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors
-});
+PostForm.propTypes = {
+  errors: PropTypes.object.isRequired,
+  onChangeCallback: PropTypes.func.isRequired,
+  onSubmitCallback: PropTypes.func.isRequired
+};
 
-export default connect(mapStateToProps, { addPost })(PostForm);
+export default PostForm;

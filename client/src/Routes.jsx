@@ -2,11 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/common/PrivateRoute';
 
-import Frontpage from './components/layout/Frontpage';
-import Home from './components/temp/Home';
+import Home from './components/layout/Home';
 import AuthContainer from './containers/AuthContainer';
-import Register from './components/auth/RegisterTemp';
-import Login from './components/auth/LoginTemp';
 import Dashboard from './components/dashboard/Dashboard';
 import ProfileFormContainer from './containers/ProfileFormContainer';
 import ProfileUpdateContainer from './containers/ProfileUpdateContainer';
@@ -33,8 +30,7 @@ import TestComponent from './components/temp/TestComponent';
 
 const Routes = () => (
   <React.Fragment>
-    <Route exact path="/" component={Frontpage} />
-    <Route exact path="/home" component={Home} />
+    <Route exact path="/" component={Home} />
     <Route
       exact
       path="/register"

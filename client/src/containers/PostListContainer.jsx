@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions/postActions';
 
+import PostFormContainer from './PostFormContainer';
 import PostList from '../components/posts/PostList';
 
 class PostListContainer extends Component {
@@ -14,6 +15,7 @@ class PostListContainer extends Component {
     const { posts, loading } = this.props.post;
     return (
       <div className="post-list-container">
+        <PostFormContainer />
         <PostList posts={posts} loading={loading} />
       </div>
     );
@@ -22,11 +24,14 @@ class PostListContainer extends Component {
 
 PostListContainer.propTypes = {
   getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  post: state.post,
+  post: state.post
 });
 
-export default connect(mapStateToProps, { getPosts })(PostListContainer);
+export default connect(
+  mapStateToProps,
+  { getPosts }
+)(PostListContainer);

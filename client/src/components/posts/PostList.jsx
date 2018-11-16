@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 
-import PostForm from './PostForm';
+import PostFormContainer from './PostForm';
 import PostFeed from './PostFeed';
 
 const PostList = ({ posts, loading }) => {
@@ -17,10 +17,7 @@ const PostList = ({ posts, loading }) => {
     <div className="feed">
       <div className="container">
         <div className="row">
-          <div className="col-md-12">
-            <PostForm />
-            {postContent}
-          </div>
+          <div className="col-md-12">{postContent}</div>
         </div>
       </div>
     </div>
@@ -29,7 +26,7 @@ const PostList = ({ posts, loading }) => {
 
 PostList.propTypes = {
   posts: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default PostList;

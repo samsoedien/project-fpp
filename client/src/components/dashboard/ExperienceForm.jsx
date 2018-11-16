@@ -14,9 +14,6 @@ import {
   Button
 } from 'reactstrap';
 
-import TextFieldGroup from '../common/TextFieldGroup';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-
 const ExperienceForm = ({
   errors,
   disabled,

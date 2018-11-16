@@ -3,7 +3,7 @@ import { Jumbotron, Button } from 'reactstrap';
 
 import HeroBanner from './HeroBanner';
 
-const Frontpage = () => {
+const Home = () => {
   return (
     <div className="front-page">
       <HeroBanner />
@@ -24,4 +24,4 @@ const Frontpage = () => {
   );
 };
 
-export default Frontpage;
+export default Home;

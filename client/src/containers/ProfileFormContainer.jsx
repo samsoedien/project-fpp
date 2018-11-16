@@ -45,12 +45,10 @@ class ProfileFormContainer extends Component {
       location: this.state.location,
       bio: this.state.bio,
       skills: this.state.skills,
-
       twitter: this.state.twitter,
       facebook: this.state.facebook,
       instagram: this.state.instagram
     };
-
     this.props.createProfile(profileData, this.props.history);
   }
 

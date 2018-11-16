@@ -1,20 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
-import TextFieldGroup from '../common/TextFieldGroup';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText
+} from 'reactstrap';
 
 const IngredientForm = ({
   name,
   errors,
   onChangeCallback,
-  onSubmitCallback,
+  onSubmitCallback
 }) => {
-  const onChange = (e) => {
+  const onChange = e => {
     onChangeCallback(e);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     onSubmitCallback();
   };
@@ -32,38 +40,49 @@ const IngredientForm = ({
 
   return (
     <div className="ingredient-form">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 m-auto">
+      <Container>
+        <Row>
+          <Col md="8" className="m-auto">
             <h2>Create a recipe</h2>
-            <p>Add some information to start creating your custom food printing dish.</p>
-            <form onSubmit={onSubmit}>
-              <TextFieldGroup
-                placeholder="Name"
-                name="name"
-                value={name}
-                onChange={onChange}
-                errors={errors.name}
-                info="A created ingredient."
+            <p>
+              Add some information to start creating your custom food printing
+              dish.
+            </p>
+            <Form onSubmit={onSubmit}>
+              <FormGroup>
+                <Label for="">Ingredient Name</Label>
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Ingredient"
+                  value={name}
+                  onChange={onChange}
+                />
+                <FormText color="muted">A created ingredient.</FormText>
+              </FormGroup>
+              <Input
+                type="submit"
+                value="Submit"
+                className="btn btn-info btn-block mt-4"
               />
-              <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
-            </form>
+            </Form>
+
             <div className="btn-group mb-4" role="group">
               <Link to="/add-nutritions" className="btn btn-light">
                 <i className="fas fa-user-circle text-info mr-1" />
                 Add Nutritions
-              </Link> 
+              </Link>
             </div>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
 
 IngredientForm.propTypes = {
   ingredient: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 export default IngredientForm;

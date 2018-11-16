@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Spinner from '../common/Spinner';
 
 import PostItem from './PostItem';
-import CommentForm from './CommentForm';
+import CommentFormContainer from '../../containers/CommentFormContainer';
 import CommentFeed from './CommentFeed';
 
 const Post = ({ post, loading }) => {
@@ -16,7 +16,7 @@ const Post = ({ post, loading }) => {
     postContent = (
       <div>
         <PostItem post={post} showActions={false} />
-        <CommentForm postId={post._id} />
+        <CommentFormContainer postId={post._id} />
         <CommentFeed postId={post._id} comments={post.comments} />
       </div>
     );
@@ -29,7 +29,7 @@ const Post = ({ post, loading }) => {
           <div className="col-md-12">
             <Link to="/feed" className="btn btn-light mb-3">
               Back To Feed
-              </Link>
+            </Link>
             {postContent}
           </div>
         </div>
@@ -40,7 +40,7 @@ const Post = ({ post, loading }) => {
 
 Post.propTypes = {
   post: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default Post;
