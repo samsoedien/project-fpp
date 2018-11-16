@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import {
   Container,
   Row,
@@ -27,20 +26,18 @@ const PostForm = ({ text, errors, onChangeCallback, onSubmitCallback }) => {
       <div className="card card-info">
         <div className="card-header bg-info text-white">Ask a Question...</div>
         <div className="card-body">
-          <Form onSubmit={onSubmit}>
+          <Form onSubmit={onSubmit} noValidate>
             <FormGroup>
               <Label for="">Create Post</Label>
+              <FormText color="muted">Type a comment.</FormText>
               <Input
                 type="text"
                 name="text"
                 placeholder="Write a Post"
                 value={text}
                 onChange={onChange}
-                className={classnames('form-control form-control-lg', {
-                  'is-invalid': errors.text
-                })}
               />
-              <FormText color="muted">Type a comment.</FormText>
+              <FormText color="danger">{errors ? errors.text : ''}</FormText>
             </FormGroup>
             <Input type="submit" value="Submit" className="btn btn-dark" />
           </Form>

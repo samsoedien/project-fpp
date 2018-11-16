@@ -122,7 +122,7 @@ const ProfileForm = ({
               Let's get some information to make your profile stand out
             </p>
 
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={onSubmit} noValidate>
               <FormGroup>
                 <Label for="">Handle</Label>
                 <Input

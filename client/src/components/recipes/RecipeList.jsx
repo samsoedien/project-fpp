@@ -84,3 +84,5 @@ RecipeList.propTypes = {
 };
 
 export default RecipeList;
+
+// FIXME: implement CSS transition

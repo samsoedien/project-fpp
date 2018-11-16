@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import classnames from 'classnames';
 import {
   Container,
   Row,
@@ -15,8 +14,6 @@ import {
 } from 'reactstrap';
 
 const ExperienceForm = ({
-  errors,
-  disabled,
   company,
   title,
   location,
@@ -26,7 +23,9 @@ const ExperienceForm = ({
   description,
   onCheckCallback,
   onChangeCallback,
-  onSubmitCallback
+  onSubmitCallback,
+  disabled,
+  errors
 }) => {
   const onCheck = () => {
     onCheckCallback();
@@ -55,7 +54,7 @@ const ExperienceForm = ({
             </p>
             <small className="d-block pb-3">* = required fields</small>
 
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={onSubmit} noValidate>
               <FormGroup>
                 <Label for="">Company</Label>
                 <Input
@@ -64,10 +63,10 @@ const ExperienceForm = ({
                   placeholder="* Company"
                   value={company}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.company
-                  })}
                 />
+                <FormText color="danger">
+                  {errors ? errors.company : ''}
+                </FormText>
               </FormGroup>
 
               <FormGroup>
@@ -78,10 +77,8 @@ const ExperienceForm = ({
                   placeholder="* Job title"
                   value={title}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.title
-                  })}
                 />
+                <FormText color="danger">{errors ? errors.title : ''}</FormText>
               </FormGroup>
 
               <FormGroup>
@@ -92,10 +89,10 @@ const ExperienceForm = ({
                   placeholder="Location"
                   value={location}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.location
-                  })}
                 />
+                <FormText color="danger">
+                  {errors ? errors.location : ''}
+                </FormText>
               </FormGroup>
 
               <FormGroup>
@@ -105,10 +102,8 @@ const ExperienceForm = ({
                   name="from"
                   value={from}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.from
-                  })}
                 />
+                <FormText color="danger">{errors ? errors.from : ''}</FormText>
               </FormGroup>
 
               <FormGroup>
@@ -119,25 +114,20 @@ const ExperienceForm = ({
                   value={to}
                   onChange={onChange}
                   disabled={disabled ? 'disabled' : ''}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.to
-                  })}
                 />
+                <FormText color="danger">{errors ? errors.to : ''}</FormText>
               </FormGroup>
 
               <div className="form-check mb-4">
-                <input
+                <Input
                   type="checkbox"
-                  className="form-check-input"
                   name="current"
                   value={current}
                   checked={current}
                   onChange={onCheck}
                   id="current"
                 />
-                <label htmlFor="current" className="form-check-label">
-                  Current Job
-                </label>
+                <Label for="current">Current Job</Label>
               </div>
 
               <FormGroup>
@@ -148,12 +138,12 @@ const ExperienceForm = ({
                   placeholder="Job Description"
                   value={description}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.description
-                  })}
                 />
                 <FormText color="muted">
                   Tell us about the the position.
+                </FormText>
+                <FormText color="danger">
+                  {errors ? errors.discription : ''}
                 </FormText>
               </FormGroup>
 
@@ -171,13 +161,18 @@ const ExperienceForm = ({
 };
 
 ExperienceForm.propTypes = {
-  errors: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  company: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  from: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
   current: PropTypes.bool.isRequired,
   description: PropTypes.string.isRequired,
   onCheckCallback: PropTypes.func.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
-  onSubmitCallback: PropTypes.func.isRequired
+  onSubmitCallback: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  errors: PropTypes.func.isRequired
 };
 
 export default ExperienceForm;

@@ -31,7 +31,7 @@ const CommentForm = ({ text, errors, onChangeCallback, onSubmitCallback }) => {
       <div className="card card-info">
         <div className="card-header bg-info text-white">Make a comment...</div>
         <div className="card-body">
-          <Form onSubmit={onSubmit}>
+          <Form onSubmit={onSubmit} noValidate>
             <FormGroup>
               <Label for="">Reply to Post</Label>
               <Input

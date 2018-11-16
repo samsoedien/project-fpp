@@ -1,11 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from 'reactstrap';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
 import './Navbar.css';
 
-const Navbar = ({ user, isAuthenticated, onLogoutCallback }) => {
+const NavbarComponent = ({
+  user,
+  isAuthenticated,
+  isOpen,
+  onNavbarToggleCallback,
+  onLogoutCallback
+}) => {
+  const onNavbarToggle = () => {
+    onNavbarToggleCallback();
+  };
+
   const onLogout = e => {
     e.preventDefault();
     onLogoutCallback();
@@ -13,7 +36,6 @@ const Navbar = ({ user, isAuthenticated, onLogoutCallback }) => {
 
   const handleScroll = scrollDistance => {
     const navElement = document.getElementById('myNav');
-
     if (scrollDistance > 50) {
       navElement.classList.add('navbar--shrink');
     } else {
@@ -22,37 +44,29 @@ const Navbar = ({ user, isAuthenticated, onLogoutCallback }) => {
   };
 
   const guestLinks = (
-    <ul className="navbar-nav ml-auto">
-      <li className="nav-item">
-        <Link className="nav-link" to="/register">
+    <Nav navbar>
+      <NavItem>
+        <NavLink tag={Link} to="/register">
           Signup
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/login">
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink tag={Link} to="/login">
           Login
-        </Link>
-      </li>
-    </ul>
+        </NavLink>
+      </NavItem>
+    </Nav>
   );
 
   const authLinks = (
-    <ul className="navbar-nav ml-auto">
-      <li className="nav-item">
-        <Link className="nav-link" to="/dashboard">
+    <Nav navbar>
+      <NavItem>
+        <NavLink tag={Link} to="/dashboard">
           Messages
-        </Link>
-      </li>
-      <li className="nav-item dropdown">
-        <a
-          href=""
-          className="nav-link dropdown-toggle"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
+        </NavLink>
+      </NavItem>
+      <UncontrolledDropdown nav inNavbar>
+        <DropdownToggle nav caret>
           <img
             className="rounded-circle"
             src={user.avatar}
@@ -61,85 +75,71 @@ const Navbar = ({ user, isAuthenticated, onLogoutCallback }) => {
             title="You must have a Gravatar connected to your email to display an image"
           />{' '}
           {user.name}
-        </a>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <Link to="/" className="dropdown-item">
-            My profile
-          </Link>
-          <div className="dropdown-divider" />
-          <Link to="/dashboard" className="dropdown-item">
-            Dashboard
-          </Link>
-          <Link to="/profiles" className="dropdown-item">
-            Chefs
-          </Link>
-          <Link to="/ingredients" className="dropdown-item">
-            Ingredients
-          </Link>
-          <Link to="/editor" className="dropdown-item">
-            Editor
-          </Link>
-          <div className="dropdown-divider" />
-          <a href="" onClick={onLogout} className="dropdown-item">
-            Log out
-          </a>
-        </div>
-      </li>
-    </ul>
+        </DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem>
+            <NavLink tag={Link} to="/dashboard">
+              Dashboard
+            </NavLink>
+          </DropdownItem>
+          <DropdownItem>
+            <NavLink tag={Link} to="/profiles">
+              Chefs
+            </NavLink>
+          </DropdownItem>
+          <DropdownItem>
+            <NavLink tag={Link} to="/ingredients">
+              Ingredients
+            </NavLink>
+          </DropdownItem>
+          <DropdownItem>
+            <NavLink tag={Link} to="/editor">
+              Editor
+            </NavLink>
+          </DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem onClick={onLogout}>Logout</DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
+    </Nav>
   );
 
   return (
     <ScrollWrapper onWindowScroll={handleScroll}>
-      <nav className="navbar fixed-top navbar-expand-sm p-2" id="myNav">
-        <div className="container">
-          <Link to="/" className="navbar-brand">
-            Project FPP
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <Link to="/recipes" className="nav-link">
-                  Recipes<span className="sr-only">(current)</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/restaurants" className="nav-link">
-                  Restaurants
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/feed" className="nav-link">
-                  Community
-                </Link>
-              </li>
-            </ul>
-            {isAuthenticated ? authLinks : guestLinks}
-          </div>
-        </div>
-      </nav>
+      <Navbar fixed="top" color="light" light expand="sm" id="myNav">
+        <NavbarBrand href="/">Project FPP</NavbarBrand>
+        <NavbarToggler onClick={onNavbarToggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ml-auto pr-4" navbar>
+            <NavItem>
+              <NavLink tag={Link} to="/recipes">
+                Recipes
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} to="/restaurants">
+                Restaurants
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} to="/feed">
+                Community
+              </NavLink>
+            </NavItem>
+          </Nav>
+          {isAuthenticated ? authLinks : guestLinks}
+        </Collapse>
+      </Navbar>
     </ScrollWrapper>
   );
 };
 
-Navbar.propTypes = {
+NavbarComponent.propTypes = {
   user: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
+  onNavbarToggleCallback: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   onLogoutCallback: PropTypes.func.isRequired
 };
 
-export default Navbar;
-
-// <li className="nav-item">
-// <Link to="/restaurants" className="nav-link">Restaurants</Link>
-// </li>
+export default NavbarComponent;

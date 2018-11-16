@@ -14,7 +14,7 @@ class AuthContainer extends Component {
       name: '',
       email: '',
       password: '',
-      password2: '',
+      passwordConfirm: '',
       errors: {}
     };
     this.onChangeCallback = this.onChangeCallback.bind(this);
@@ -49,7 +49,7 @@ class AuthContainer extends Component {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
+      passwordConfirm: this.state.passwordConfirm
     };
     this.props.registerUser(newUser, this.props.history);
   }
@@ -63,7 +63,7 @@ class AuthContainer extends Component {
   }
 
   render() {
-    const { name, email, password, password2, errors } = this.state;
+    const { name, email, password, passwordConfirm, errors } = this.state;
     const noAccount = true;
     return (
       <div className="auth-container">
@@ -80,7 +80,7 @@ class AuthContainer extends Component {
             name={name}
             email={email}
             password={password}
-            password2={password2}
+            passwordConfirm={passwordConfirm}
             errors={errors}
             onChangeCallback={this.onChangeCallback}
             onSubmitRegisterCallback={this.onSubmitRegisterCallback}
@@ -91,7 +91,9 @@ class AuthContainer extends Component {
   }
 }
 
-AuthContainer.defaultProps = {};
+AuthContainer.defaultProps = {
+  hasAccount: true
+};
 
 AuthContainer.propTypes = {
   registerUser: PropTypes.func.isRequired,

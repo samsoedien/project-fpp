@@ -43,7 +43,7 @@ const RestaurantForm = ({
             </p>
             <small className="d-block pb-3">* = required fields</small>
 
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={onSubmit} noValidate>
               <FormGroup>
                 <Label for="">Restaurant Name</Label>
                 <Input

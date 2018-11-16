@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import {
   Container,
   Row,
@@ -15,9 +14,9 @@ import {
 const Login = ({
   email,
   password,
-  errors,
   onChangeCallback,
-  onSubmitLoginCallback
+  onSubmitLoginCallback,
+  errors
 }) => {
   const onChange = e => {
     onChangeCallback(e);
@@ -33,9 +32,9 @@ const Login = ({
       <Container>
         <Row>
           <Col md="8" className="m-auto">
-            <h1 className="display-4 text-center">Log In</h1>
+            <h1 className="display-4 text-center">Login</h1>
             <p className="lead text-center">Sign in to your account</p>
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={onSubmit} noValidate>
               <FormGroup>
                 <Label for="">Email</Label>
                 <Input
@@ -44,10 +43,8 @@ const Login = ({
                   placeholder="Email Address"
                   value={email}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.email
-                  })}
                 />
+                <FormText color="danger">{errors ? errors.email : ''}</FormText>
               </FormGroup>
 
               <FormGroup>
@@ -58,10 +55,10 @@ const Login = ({
                   placeholder="Password"
                   value={password}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.password
-                  })}
                 />
+                <FormText color="danger">
+                  {errors ? errors.password : ''}
+                </FormText>
               </FormGroup>
               <Input type="submit" className="btn btn-info btn-block mt-4" />
             </Form>
@@ -73,6 +70,8 @@ const Login = ({
 };
 
 Login.propTypes = {
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired

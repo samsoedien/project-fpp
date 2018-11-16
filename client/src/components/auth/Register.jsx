@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import {
   Container,
   Row,
@@ -16,10 +15,10 @@ const Register = ({
   name,
   email,
   password,
-  password2,
-  errors,
+  passwordConfirm,
   onChangeCallback,
-  onSubmitRegisterCallback
+  onSubmitRegisterCallback,
+  errors
 }) => {
   const onChange = e => {
     onChangeCallback(e);
@@ -35,9 +34,9 @@ const Register = ({
       <Container>
         <Row>
           <Col md="8" className="m-auto">
-            <h1 className="display-4 text-center">Sign Up</h1>
+            <h1 className="display-4 text-center">Signup</h1>
             <p className="lead text-center">Create your FPP account</p>
-            <Form noValidate onSubmit={onSubmit}>
+            <Form onSubmit={onSubmit} noValidate>
               <FormGroup>
                 <Label for="">Name</Label>
                 <Input
@@ -46,10 +45,8 @@ const Register = ({
                   placeholder="Name"
                   value={name}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.name
-                  })}
                 />
+                <FormText color="danger">{errors ? errors.name : ''}</FormText>
               </FormGroup>
 
               <FormGroup>
@@ -60,14 +57,8 @@ const Register = ({
                   placeholder="Email"
                   value={email}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.email
-                  })}
                 />
-                <FormText color="muted">
-                  This site uses Gravatar so if you want a profile image, use a
-                  Gravatar email
-                </FormText>
+                <FormText color="danger">{errors ? errors.email : ''}</FormText>
               </FormGroup>
 
               <FormGroup>
@@ -78,24 +69,24 @@ const Register = ({
                   placeholder="Password"
                   value={password}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.password
-                  })}
                 />
+                <FormText color="danger">
+                  {errors ? errors.password : ''}
+                </FormText>
               </FormGroup>
 
               <FormGroup>
                 <Label for="">Confirm Password</Label>
                 <Input
                   type="password"
-                  name="password2"
+                  name="passwordConfirm"
                   placeholder="Confirm Password"
-                  value={password2}
+                  value={passwordConfirm}
                   onChange={onChange}
-                  className={classnames('form-control form-control-lg', {
-                    'is-invalid': errors.password2
-                  })}
                 />
+                <FormText color="danger">
+                  {errors ? errors.passwordConfirm : ''}
+                </FormText>
               </FormGroup>
 
               <Input type="submit" className="btn btn-info btn-block mt-4" />
@@ -108,6 +99,10 @@ const Register = ({
 };
 
 Register.propTypes = {
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  passwordConfirm: PropTypes.string.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired

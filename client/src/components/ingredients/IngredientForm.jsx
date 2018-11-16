@@ -48,7 +48,7 @@ const IngredientForm = ({
               Add some information to start creating your custom food printing
               dish.
             </p>
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={onSubmit} noValidate>
               <FormGroup>
                 <Label for="">Ingredient Name</Label>
                 <Input
