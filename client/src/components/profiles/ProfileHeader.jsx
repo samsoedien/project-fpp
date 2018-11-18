@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Container, Row, Col, Card, CardBody } from 'reactstrap';
 import isEmpty from '../../utils/is-empty';
 
-class ProfileHeader extends Component {
-  render() {
-    const { profile } = this.props;
-
-    return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card card-body bg-info text-white mb-3">
-            <div className="row">
-              <div className="col-4 col-md-3 m-auto">
+const ProfileHeader = ({ profile }) => {
+  return (
+    <Row>
+      <Col md="12">
+        <Card className="bg-info text-white mb-3">
+          <CardBody>
+            <Row>
+              <Col md="3" className="col-4 m-auto">
                 <img
                   className="rounded-circle"
                   src={profile.user.avatar}
                   alt=""
                 />
-              </div>
-            </div>
+              </Col>
+            </Row>
             <div className="text-center">
               <h1 className="display-4 text-center">{profile.user.name}</h1>
               <p className="lead text-center">
@@ -69,11 +69,11 @@ class ProfileHeader extends Component {
                 )}
               </p>
             </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+          </CardBody>
+        </Card>
+      </Col>
+    </Row>
+  );
+};
 
 export default ProfileHeader;

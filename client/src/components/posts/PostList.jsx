@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spinner from '../common/Spinner';
+import { Container, Row, Col } from 'reactstrap';
 
-import PostFormContainer from './PostForm';
+import Spinner from '../common/Spinner';
 import PostFeed from './PostFeed';
 
 const PostList = ({ posts, loading }) => {
@@ -15,11 +15,11 @@ const PostList = ({ posts, loading }) => {
 
   return (
     <div className="feed">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">{postContent}</div>
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <Col md="12">{postContent}</Col>
+        </Row>
+      </Container>
     </div>
   );
 };

@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Spinner from '../common/Spinner';
+import { Container, Row, Col } from 'reactstrap';
 
+import Spinner from '../common/Spinner';
 import PostItem from './PostItem';
 import CommentFormContainer from '../../containers/CommentFormContainer';
 import CommentFeed from './CommentFeed';
 
 const Post = ({ post, loading }) => {
   let postContent;
-
   if (post === null || loading || Object.keys(post).length === 0) {
     postContent = <Spinner />;
   } else {
@@ -24,16 +24,16 @@ const Post = ({ post, loading }) => {
 
   return (
     <div className="post">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
+      <Container>
+        <Row>
+          <Col md="12">
             <Link to="/feed" className="btn btn-light mb-3">
               Back To Feed
             </Link>
             {postContent}
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
