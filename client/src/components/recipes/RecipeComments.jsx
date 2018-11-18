@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Container, Row, Col } from 'reactstrap';
 import Spinner from '../common/Spinner';
 
 import PostForm from '../posts/PostForm';
@@ -14,22 +15,22 @@ const RecipeComments = ({ posts, loading }) => {
   }
 
   return (
-    <div className="feed">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
+    <div className="recipe-comments">
+      <Container>
+        <Row>
+          <Col md="12">
             <PostForm />
             {postContent}
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
 
 RecipeComments.propTypes = {
   posts: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default RecipeComments;

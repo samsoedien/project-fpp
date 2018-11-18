@@ -64,7 +64,6 @@ class AuthContainer extends Component {
 
   render() {
     const { name, email, password, passwordConfirm, errors } = this.state;
-    const noAccount = true;
     return (
       <div className="auth-container">
         {this.props.hasAccount ? (

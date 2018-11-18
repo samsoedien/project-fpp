@@ -1,16 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
 
-const RestaurantItem = props => (
+const RestaurantItem = ({ restaurant }) => (
   <div className="restaurant-item">
-    <div className="col-md-10">
-      <Link to={`/restaurants/${props.restaurant._id}`} className="btn text-dark">
-        <div className="card bg-light mb-3">
-          {props.restaurant.name}
-        </div>
+    <Col md="10">
+      <Link to={`/restaurants/${restaurant._id}`} className="btn text-dark">
+        <div className="card bg-light mb-3">{restaurant.name}</div>
       </Link>
-    </div>
+    </Col>
   </div>
 );
+
+RestaurantItem.PropTypes = {
+  restaurant: PropTypes.object.isRequired
+};
 
 export default RestaurantItem;

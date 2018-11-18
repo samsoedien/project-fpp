@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Row, Col } from 'reactstrap';
 import isEmpty from '../../utils/is-empty';
 
 import RecipeBadges from './RecipeBadges';
@@ -6,9 +7,9 @@ import RecipeBadges from './RecipeBadges';
 export default props => {
   return (
     <div className="recipe-info">
-      <div className="container p-3">
-        <div className="row">
-          <div className="col-md-8" style={{ minHeight: '360px' }}>
+      <Container className="p-3">
+        <Row>
+          <Col md="8" style={{ minHeight: '360px' }}>
             <small className="text-muted text-left text-uppercase">
               Culinary: {props.recipe.culinary}
             </small>
@@ -22,10 +23,10 @@ export default props => {
                 props.recipe.description
               )}
             </p>
-          </div>
-        </div>
+          </Col>
+        </Row>
         <RecipeBadges recipe={props.recipe} />
-      </div>
+      </Container>
     </div>
   );
 };
