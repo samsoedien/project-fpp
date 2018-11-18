@@ -19,18 +19,14 @@ export const getIngredients = () => dispatch => {
   dispatch(setIngredientLoading());
   axios
     .get('/api/ingredients')
-    .then(res =>
-      dispatch({
-        type: GET_INGREDIENTS,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_INGREDIENTS,
-        payload: null
-      })
-    );
+    .then(res => dispatch({
+      type: GET_INGREDIENTS,
+      payload: res.data,
+    }))
+    .catch(err => dispatch({
+      type: GET_INGREDIENTS,
+      payload: null,
+    }));
 };
 
 // Get Ingredient
