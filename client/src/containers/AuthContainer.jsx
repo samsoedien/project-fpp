@@ -45,19 +45,23 @@ class AuthContainer extends Component {
   }
 
   onSubmitRegisterCallback() {
+    const { name, email, password, passwordConfirm } = this.state;
+
     const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      passwordConfirm: this.state.passwordConfirm
+      name,
+      email,
+      password,
+      passwordConfirm,
     };
     this.props.registerUser(newUser, this.props.history);
   }
 
   onSubmitLoginCallback() {
+    const { email, password } = this.state;
+
     const userData = {
-      email: this.state.email,
-      password: this.state.password
+      email,
+      password,
     };
     this.props.loginUser(userData);
   }
@@ -75,40 +79,35 @@ class AuthContainer extends Component {
             onSubmitLoginCallback={this.onSubmitLoginCallback}
           />
         ) : (
-          <Register
-            name={name}
-            email={email}
-            password={password}
-            passwordConfirm={passwordConfirm}
-            errors={errors}
-            onChangeCallback={this.onChangeCallback}
-            onSubmitRegisterCallback={this.onSubmitRegisterCallback}
-          />
-        )}
+            <Register
+              name={name}
+              email={email}
+              password={password}
+              passwordConfirm={passwordConfirm}
+              errors={errors}
+              onChangeCallback={this.onChangeCallback}
+              onSubmitRegisterCallback={this.onSubmitRegisterCallback}
+            />
+          )}
       </div>
     );
   }
 }
 
 AuthContainer.defaultProps = {
-  hasAccount: true
+  hasAccount: true,
 };
 
 AuthContainer.propTypes = {
   registerUser: PropTypes.func.isRequired,
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
 });
 
-export default connect(
-  mapStateToProps,
-  { registerUser, loginUser }
-)(withRouter(AuthContainer));
-
-// FIXME: Integrated both Login and Register redux connection in one container. Need to verify workings with withRouter (Login component did not used withRouter).
+export default connect(mapStateToProps, { registerUser, loginUser })(withRouter(AuthContainer));

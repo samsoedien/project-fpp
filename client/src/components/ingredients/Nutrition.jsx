@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {
+  Container,
+  Row,
+  Col,
+  Table,
+  Button,
+} from 'reactstrap';
+
 import isEmpty from '../../utils/is-empty';
 import Spinner from '../common/Spinner';
 
@@ -9,7 +17,7 @@ const Nutrition = ({
   nutritions,
   isEditable,
   onChangeCallback,
-  onSubmitCallback
+  onSubmitCallback,
 }) => {
   const onChange = e => {
     onChangeCallback(e);
@@ -38,8 +46,8 @@ const Nutrition = ({
                 onChange={onChange}
               />
             ) : (
-              <span>{isEmpty(nutrition.kcal) ? null : nutrition.kcal} </span>
-            )}
+                <span>{isEmpty(nutrition.kcal) ? null : nutrition.kcal} </span>
+              )}
           </td>
         </tr>
       ));
@@ -50,10 +58,10 @@ const Nutrition = ({
 
   return (
     <div className="">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <table className="table table-hover">
+      <Container>
+        <Row>
+          <Col md="6">
+            <Table className="table-hover">
               <thead>
                 <tr>
                   <th scope="col" className="text-muted text-left pl-5">
@@ -65,28 +73,30 @@ const Nutrition = ({
                 </tr>
               </thead>
               <tbody>{nutritionItems}</tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div className="container">
+            </Table>
+          </Col>
+        </Row>
+      </Container>
+      <Container>
         {isEditable ? (
-          <button onClick={onSubmit} className="btn btn-success btn-sm">
+          <Button onClick={onSubmit} className="btn btn-success btn-sm">
             Save Changes
-          </button>
+          </Button>
         ) : null}
-      </div>
+      </Container>
     </div>
   );
 };
 
 Nutrition.defaultProps = {
-  isEditable: false
+  isEditable: false,
 };
 
 Nutrition.propTypes = {
   isEditable: PropTypes.bool.isRequired,
-  nutritions: PropTypes.object.isRequired
+  nutritions: PropTypes.object.isRequired,
+  onChangeCallback: PropTypes.func.isRequired,
+  onSubmitCallback: PropTypes.func.isRequired,
 };
 
 export default Nutrition;

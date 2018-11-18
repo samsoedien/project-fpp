@@ -11,13 +11,14 @@ class ProfileListContainer extends Component {
     this.state = {
       filterText: '',
     };
+    this.filterUpdate = this.filterUpdate.bind(this);
   }
 
   componentDidMount() {
     this.props.getProfiles();
   }
 
-  filterUpdate = (value) => {
+  filterUpdate(value) {
     this.setState({
       filterText: value,
     });

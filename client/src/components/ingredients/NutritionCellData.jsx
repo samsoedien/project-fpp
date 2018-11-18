@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class NutritionCellData extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       editing: false,
     };
   }
@@ -19,9 +19,9 @@ class NutritionCellData extends Component {
   }
 
   render() {
-    const { value, onChange } = this.props; 
+    const { value, onChange } = this.props;
     return this.state.editing
-      ? <input ref='input' name="value" value={value} onChange={e => onChange(e.target.value)} onBlur={() => this.onBlur()} /> 
+      ? <input ref='input' name="value" value={value} onChange={e => onChange(e.target.value)} onBlur={() => this.onBlur()} />
       : <div onClick={() => this.onFocus()}>{value}</div>
   }
 }
