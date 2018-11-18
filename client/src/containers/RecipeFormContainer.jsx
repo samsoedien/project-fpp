@@ -19,8 +19,10 @@ class RecipeFormContainer extends Component {
       recipeImage: '',
       printSettings: '',
       ingredient: '',
-      errors: {}
+      errors: {},
+      modal: false,
     };
+    this.onModalToggleCallback = this.onModalToggleCallback.bind(this);
     this.onChangeCallback = this.onChangeCallback.bind(this);
     this.onSubmitCallback = this.onSubmitCallback.bind(this);
   }
@@ -29,6 +31,12 @@ class RecipeFormContainer extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
+  }
+
+  onModalToggleCallback() {
+    this.setState({
+      modal: !this.state.modal,
+    });
   }
 
   onChangeCallback(e) {
@@ -73,6 +81,7 @@ class RecipeFormContainer extends Component {
       printSettings,
       ingredient,
       errors,
+      modal,
     } = this.state;
     return (
       <div className="create-recipe-container">
@@ -85,6 +94,8 @@ class RecipeFormContainer extends Component {
           printSettings={printSettings}
           ingredient={ingredient}
           errors={errors}
+          modal={modal}
+          onModalToggleCallback={this.onModalToggleCallback}
           onChangeCallback={this.onChangeCallback}
           onSubmitCallback={this.onSubmitCallback}
         />

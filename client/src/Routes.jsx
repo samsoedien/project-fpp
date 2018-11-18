@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import PrivateRoute from './components/common/PrivateRoute';
+import PrivateRouteWrapper from './wrappers/PrivateRouteWrapper';
 
 import Home from './components/layout/Home';
 import AuthContainer from './containers/AuthContainer';
@@ -49,58 +49,58 @@ const Routes = () => (
     <Route exact path="/ingredients/:id" component={IngredientContainer} />
 
     <Switch>
-      <PrivateRoute exact path="/dashboard" component={DashboardContainer} />
+      <PrivateRouteWrapper exact path="/dashboard" component={DashboardContainer} />
     </Switch>
     <Switch>
-      <PrivateRoute
+      <PrivateRouteWrapper
         exact
         path="/create-profile"
         component={ProfileFormContainer}
       />
     </Switch>
     <Switch>
-      <PrivateRoute
+      <PrivateRouteWrapper
         exact
         path="/edit-profile"
         component={ProfileUpdateContainer}
       />
     </Switch>
     <Switch>
-      <PrivateRoute
+      <PrivateRouteWrapper
         exact
         path="/ingredients"
         component={IngredientFormContainer}
       />
     </Switch>
     <Switch>
-      <PrivateRoute
+      <PrivateRouteWrapper
         exact
         path="/add-experience"
         component={ExperienceFormContainer}
       />
     </Switch>
     <Switch>
-      <PrivateRoute
+      <PrivateRouteWrapper
         exact
         path="/add-nutritions"
         component={NutritionContainer}
       />
     </Switch>
     <Switch>
-      <PrivateRoute exact path="/feed" component={PostListContainer} />
+      <PrivateRouteWrapper exact path="/feed" component={PostListContainer} />
     </Switch>
     <Switch>
-      <PrivateRoute exact path="/post/:id" component={PostContainer} />
+      <PrivateRouteWrapper exact path="/post/:id" component={PostContainer} />
     </Switch>
     <Switch>
-      <PrivateRoute
+      <PrivateRouteWrapper
         exact
         path="/create-recipe"
         component={RecipeFormContainer}
       />
     </Switch>
     <Switch>
-      <PrivateRoute exact path="/editor" component={ThreeEditorContainer} />
+      <PrivateRouteWrapper exact path="/editor" component={ThreeEditorContainer} />
     </Switch>
     <Route exact path="/test" component={TestComponent} />
     <Route exact path="/not-found" component={NotFound} />

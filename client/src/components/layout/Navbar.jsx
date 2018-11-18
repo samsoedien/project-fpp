@@ -23,7 +23,7 @@ const NavbarComponent = ({
   isAuthenticated,
   isOpen,
   onNavbarToggleCallback,
-  onLogoutCallback
+  onLogoutCallback,
 }) => {
   const onNavbarToggle = () => {
     onNavbarToggleCallback();
@@ -46,14 +46,10 @@ const NavbarComponent = ({
   const guestLinks = (
     <Nav navbar>
       <NavItem>
-        <NavLink tag={Link} to="/register">
-          Signup
-        </NavLink>
+        <NavLink tag={Link} to="/register">Signup</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink tag={Link} to="/login">
-          Login
-        </NavLink>
+        <NavLink tag={Link} to="/login">Login</NavLink>
       </NavItem>
     </Nav>
   );
@@ -61,9 +57,7 @@ const NavbarComponent = ({
   const authLinks = (
     <Nav navbar>
       <NavItem>
-        <NavLink tag={Link} to="/dashboard">
-          Messages
-        </NavLink>
+        <NavLink tag={Link} to="/dashboard">Messages</NavLink>
       </NavItem>
       <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav caret>
@@ -78,24 +72,17 @@ const NavbarComponent = ({
         </DropdownToggle>
         <DropdownMenu right>
           <DropdownItem>
-            <NavLink tag={Link} to="/dashboard">
-              Dashboard
+            <NavLink tag={Link} to="/dashboard">Dashboard</NavLink>
+          </DropdownItem>
+          <DropdownItem>
+            <NavLink tag={Link} to="/profiles">Chefs</NavLink>
+          </DropdownItem>
+          <DropdownItem>
+            <NavLink tag={Link} to="/ingredients">Ingredients
             </NavLink>
           </DropdownItem>
           <DropdownItem>
-            <NavLink tag={Link} to="/profiles">
-              Chefs
-            </NavLink>
-          </DropdownItem>
-          <DropdownItem>
-            <NavLink tag={Link} to="/ingredients">
-              Ingredients
-            </NavLink>
-          </DropdownItem>
-          <DropdownItem>
-            <NavLink tag={Link} to="/editor">
-              Editor
-            </NavLink>
+            <NavLink tag={Link} to="/editor">Editor</NavLink>
           </DropdownItem>
           <DropdownItem divider />
           <DropdownItem onClick={onLogout}>Logout</DropdownItem>
@@ -112,19 +99,13 @@ const NavbarComponent = ({
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto pr-4" navbar>
             <NavItem>
-              <NavLink tag={Link} to="/recipes">
-                Recipes
-              </NavLink>
+              <NavLink tag={Link} to="/recipes">Recipes</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/restaurants">
-                Restaurants
-              </NavLink>
+              <NavLink tag={Link} to="/restaurants">Restaurants</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/feed">
-                Community
-              </NavLink>
+              <NavLink tag={Link} to="/feed">Community</NavLink>
             </NavItem>
           </Nav>
           {isAuthenticated ? authLinks : guestLinks}
@@ -139,7 +120,7 @@ NavbarComponent.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   onNavbarToggleCallback: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  onLogoutCallback: PropTypes.func.isRequired
+  onLogoutCallback: PropTypes.func.isRequired,
 };
 
 export default NavbarComponent;

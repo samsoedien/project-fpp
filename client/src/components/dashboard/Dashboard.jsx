@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Button } from 'reactstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+} from 'reactstrap';
 
 import Spinner from '../common/Spinner';
 import ProfileActions from './ProfileActions';
 import Experience from './Experience';
+import DeleteConfirmWrapper from '../../wrappers/DeleteConfirmWrapper';
 
 const Dashboard = ({ user, profile, loading, onDeleteCallback }) => {
   const onDeleteClick = () => {
@@ -30,6 +36,8 @@ const Dashboard = ({ user, profile, loading, onDeleteCallback }) => {
           <Button color="danger" onClick={onDeleteClick}>
             Delete My Account
           </Button>
+
+          <DeleteConfirmWrapper buttonLabel="Delete my account">Are you sure you want to delete your account? This action can not be undone</DeleteConfirmWrapper>
         </div>
       );
     } else {
@@ -64,7 +72,7 @@ Dashboard.propTypes = {
   user: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
-  onDeleteCallback: PropTypes.func.isRequired
+  onDeleteCallback: PropTypes.func.isRequired,
 };
 
 export default Dashboard;

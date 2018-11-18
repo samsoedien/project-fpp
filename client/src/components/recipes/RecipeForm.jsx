@@ -9,7 +9,11 @@ import {
   Label,
   Input,
   FormText,
-  Button
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from 'reactstrap';
 
 const RecipeForm = ({
@@ -21,9 +25,15 @@ const RecipeForm = ({
   printSettings,
   ingredient,
   errors,
+  modal,
+  onModalToggleCallback,
   onChangeCallback,
-  onSubmitCallback
+  onSubmitCallback,
 }) => {
+  const onModalToggle = () => {
+    onModalToggleCallback();
+  };
+
   const onChange = e => {
     onChangeCallback(e);
   };
@@ -32,8 +42,24 @@ const RecipeForm = ({
     e.preventDefault();
     onSubmitCallback();
   };
+
+
   return (
     <div className="recipe-form">
+      <div className="modal-component">
+        <Button color="danger" onClick={onModalToggle}>Create a Recipe</Button>
+        <Modal isOpen={modal} toggle={onModalToggle}>
+          <ModalHeader toggle={onModalToggle}>Modal Title</ModalHeader>
+          <ModalBody>
+            Hi There
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={onModalToggle}>Do Something</Button>{' '}
+            <Button color="secondary" onClick={onModalToggle}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
+      </div>
+
       <div className="recipe-modal">
         <button
           type="button"
@@ -182,9 +208,7 @@ const RecipeForm = ({
                 >
                   Close
                 </button>
-                <button type="button" className="btn btn-primary">
-                  Save changes
-                </button>
+                <button type="button" className="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
@@ -203,8 +227,10 @@ RecipeForm.propTypes = {
   printSettings: PropTypes.string.isRequired,
   ingredient: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  modal: PropTypes.bool.isRequired,
+  onModalToggleCallback: PropTypes.func.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
-  onSubmitCallback: PropTypes.func.isRequired
+  onSubmitCallback: PropTypes.func.isRequired,
 };
 
 export default RecipeForm;
