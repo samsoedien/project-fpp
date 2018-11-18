@@ -45,7 +45,6 @@ const ProfileForm = ({
             <i className="fab fa-twitter" />
           </Label>
           <Input
-            type="text"
             name="twitter"
             placeholder="Twitter Profile URL"
             value={twitter}
@@ -59,7 +58,6 @@ const ProfileForm = ({
             <i className="fab fa-facebook" />
           </Label>
           <Input
-            type="text"
             name="facebook"
             placeholder="Facebook Profile URL"
             value={facebook}
@@ -73,7 +71,6 @@ const ProfileForm = ({
             <i className="fab fa-instagram" />
           </Label>
           <Input
-            type="text"
             name="instagram"
             placeholder="Instagram Profile URL"
             value={instagram}
@@ -111,8 +108,8 @@ const ProfileForm = ({
             {!updateProfile ? (
               <h2 className="display-4 text-center">Create Your Profile</h2>
             ) : (
-              <h2 className="display-4 text-center">Edit Your Profile</h2>
-            )}
+                <h2 className="display-4 text-center">Edit Your Profile</h2>
+              )}
             <p className="lead text-center">
               Let's get some information to make your profile stand out
             </p>
@@ -121,19 +118,14 @@ const ProfileForm = ({
               <FormGroup>
                 <Label for="">Handle</Label>
                 <Input
-                  type="text"
                   name="handle"
                   placeholder="* Profile Handle"
                   value={handle}
                   onChange={onChange}
                 />
-                <FormText color="muted">
-                  A unique handle for your profile URL. Your full name, company
-                  name, nickname
-                </FormText>
-                <FormText color="danger">
-                  {errors ? errors.handle : ''}
-                </FormText>
+                <FormText color="muted"> A unique handle for your profile URL. Your full name, company
+                  name, nickname</FormText>
+                <FormText color="danger">{errors ? errors.handle : ''}</FormText>
               </FormGroup>
 
               <FormGroup>
@@ -146,37 +138,29 @@ const ProfileForm = ({
                 >
                   {selectOptions}
                 </Input>
-                <FormText color="danger">
-                  {errors ? errors.profession : ''}
-                </FormText>
+                <FormText color="danger">{errors ? errors.profession : ''}</FormText>
               </FormGroup>
 
               <FormGroup>
                 <Label for="">Location</Label>
                 <Input
-                  type="text"
                   name="location"
                   placeholder="Location"
                   value={location}
                   onChange={onChange}
                 />
-                <FormText color="danger">
-                  {errors ? errors.location : ''}
-                </FormText>
+                <FormText color="danger">{errors ? errors.location : ''}</FormText>
               </FormGroup>
 
               <FormGroup>
                 <Label for="">Skills</Label>
                 <Input
-                  type="text"
                   name="skills"
                   placeholder="* Skills"
                   value={skills}
                   onChange={onChange}
                 />
-                <FormText color="danger">
-                  {errors ? errors.skills : ''}
-                </FormText>
+                <FormText color="danger">{errors ? errors.skills : ''}</FormText>
               </FormGroup>
 
               <FormGroup>
@@ -197,7 +181,7 @@ const ProfileForm = ({
                   className="btn btn-light"
                   onClick={() => {
                     this.setState(prevState => ({
-                      displaySocialInputs: !prevState.displaySocialInputs
+                      displaySocialInputs: !prevState.displaySocialInputs,
                     }));
                   }}
                 >

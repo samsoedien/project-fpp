@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Container,
   InputGroup,
   InputGroupAddon,
   Input,
-  Button
+  Button,
 } from 'reactstrap';
 
-class SearchBar extends Component {
+export default class SearchBar extends Component {
   filterUpdate() {
+    const { filterCallback } = this.props;
+
     const val = this.myValue.value;
-    this.props.filterCallback(val);
+    filterCallback(val);
   }
 
   render() {
@@ -20,7 +23,6 @@ class SearchBar extends Component {
           <InputGroup size="lg" className="shadow-sm mb-4">
             <InputGroupAddon addonType="prepend">Recipes</InputGroupAddon>
             <input
-              type="text"
               placeholder="Filter Recipes"
               ref={value => {
                 this.myValue = value;
@@ -38,6 +40,8 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar;
+SearchBar.propTypes = {
+  filterCallback: PropTypes.func.isRequired,
+}
 
 // FIXME: refs do not work with reactstrap Input component. regular input is used with form-control className.

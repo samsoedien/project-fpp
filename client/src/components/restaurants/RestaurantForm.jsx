@@ -46,7 +46,6 @@ const RestaurantForm = ({
               <FormGroup>
                 <Label for="">Restaurant Name</Label>
                 <Input
-                  type="text"
                   name="name"
                   placeholder="Restaurant Name"
                   value={name}

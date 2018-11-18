@@ -11,7 +11,7 @@ import {
 import Spinner from '../common/Spinner';
 import ProfileActions from './ProfileActions';
 import Experience from './Experience';
-import DeleteConfirmWrapper from '../../wrappers/DeleteConfirmWrapper';
+import ConfirmDeleteWrapper from '../../wrappers/ConfirmDeleteWrapper';
 
 const Dashboard = ({ user, profile, loading, onDeleteCallback }) => {
   const onDeleteClick = () => {
@@ -33,11 +33,7 @@ const Dashboard = ({ user, profile, loading, onDeleteCallback }) => {
           <Experience experience={profile.experience} />
 
           <div style={{ marginBottom: '60px' }} />
-          <Button color="danger" onClick={onDeleteClick}>
-            Delete My Account
-          </Button>
-
-          <DeleteConfirmWrapper buttonLabel="Delete my account">Are you sure you want to delete your account? This action can not be undone</DeleteConfirmWrapper>
+          <ConfirmDeleteWrapper onDeleteClick={onDeleteClick} buttonLabel="Delete my account" >Are you sure you want to delete your account? This action can not be undone</ConfirmDeleteWrapper>
         </div>
       );
     } else {

@@ -42,7 +42,6 @@ const PostForm = ({ text, errors, onChangeCallback, onSubmitCallback }) => {
                     <Label for="">Create Post</Label>
                     <FormText color="muted">Type a comment.</FormText>
                     <Input
-                      type="text"
                       name="text"
                       placeholder="Write a Post"
                       value={text}

@@ -51,168 +51,57 @@ const RecipeForm = ({
         <Modal isOpen={modal} toggle={onModalToggle}>
           <ModalHeader toggle={onModalToggle}>Modal Title</ModalHeader>
           <ModalBody>
-            Hi There
+            <Form onSubmit={onSubmit} noValidate>
+              <FormGroup>
+                <Label for=""></Label>
+                <Input
+                  name="title"
+                  placeholder="Title"
+                  value={title}
+                  onChange={onChange}
+                />
+                <FormText color="danger">{errors ? errors.title : ''}</FormText>
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="" />
+                <Input
+                  name="culinary"
+                  placeholder="Culinary"
+                  value={culinary}
+                  onChange={onChange}
+                />
+                <FormText color="danger">{errors ? errors.culinary : ''}</FormText>
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="" />
+                <Input
+                  name="description"
+                  placeholder="Description"
+                  value={description}
+                  onChange={onChange}
+                />
+                <FormText color="danger">{errors ? errors.description : ''}</FormText>
+              </FormGroup>
+
+              <Input
+                type="file"
+                name="recipeImage"
+                onChange={onChange}
+              />
+              <Input
+                type="submit"
+                value="Submit"
+                className="btn btn-info btn-block mt-4"
+              />
+            </Form>
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={onModalToggle}>Do Something</Button>{' '}
             <Button color="secondary" onClick={onModalToggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
-      </div>
-
-      <div className="recipe-modal">
-        <button
-          type="button"
-          className="btn btn-primary btn-lg"
-          data-toggle="modal"
-          data-target="#recipeModal"
-        >
-          Create New Recipe
-        </button>
-
-        <div
-          className="modal fade"
-          id="recipeModal"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="recipeModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="recipeModalLabel">
-                  Create New Recipe
-                </h5>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-
-              <div className="modal-body">
-                <div role="tabpanel">
-                  <ul className="nav nav-tabs" role="tablist">
-                    <li className="active" role="presentation">
-                      <a
-                        href="#formTab"
-                        aria-controls="formTab"
-                        role="tab"
-                        data-toggle="tab"
-                      >
-                        Recipe Info
-                      </a>
-                    </li>
-                    <li role="presentation">
-                      <a
-                        href="#uploadTab"
-                        aria-controls="uploadTab"
-                        role="tab"
-                        data-toggle="tab"
-                      >
-                        Upload CAD model
-                      </a>
-                    </li>
-                  </ul>
-                  <div className="tab-content">
-                    <div
-                      className="tab-pane active"
-                      id="formTab"
-                      role="tabpanel"
-                    >
-                      <div className="container">
-                        <div className="row">
-                          <div className="col-md-8 m-auto">
-                            <h2>Create a recipe</h2>
-                            <p>
-                              Add some information to start creating your custom
-                              food printing dish.
-                            </p>
-                            <Form onSubmit={onSubmit} noValidate>
-                              <FormGroup>
-                                <Label for="" />
-                                <Input
-                                  type="text"
-                                  name="title"
-                                  placeholder="Title"
-                                  value={title}
-                                  onChange={onChange}
-                                />
-                                <FormText color="danger">
-                                  {errors ? errors.title : ''}
-                                </FormText>
-                              </FormGroup>
-
-                              <FormGroup>
-                                <Label for="" />
-                                <Input
-                                  type="text"
-                                  name="culinary"
-                                  placeholder="Culinary"
-                                  value={culinary}
-                                  onChange={onChange}
-                                />
-                                <FormText color="danger">
-                                  {errors ? errors.culinary : ''}
-                                </FormText>
-                              </FormGroup>
-
-                              <FormGroup>
-                                <Label for="" />
-                                <Input
-                                  type="text"
-                                  name="description"
-                                  placeholder="Description"
-                                  value={description}
-                                  onChange={onChange}
-                                />
-                                <FormText color="danger">
-                                  {errors ? errors.description : ''}
-                                </FormText>
-                              </FormGroup>
-
-                              <Input
-                                type="file"
-                                name="recipeImage"
-                                onChange={onChange}
-                              />
-                              <Input
-                                type="submit"
-                                value="Submit"
-                                className="btn btn-info btn-block mt-4"
-                              />
-                            </Form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="tab-pane active"
-                      id="uploadTab"
-                      role="tabpanel"
-                    >
-                      <span>No content yet</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" className="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -235,4 +124,4 @@ RecipeForm.propTypes = {
 
 export default RecipeForm;
 
-//TODO: Form over entire modal? Submit hander on save button. Need to search for examples
+    //TODO: Form over entire modal? Submit hander on save button. Need to search for examples

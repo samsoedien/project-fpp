@@ -58,7 +58,6 @@ const ExperienceForm = ({
               <FormGroup>
                 <Label for="">Company</Label>
                 <Input
-                  type="text"
                   name="company"
                   placeholder="* Company"
                   value={company}
@@ -72,7 +71,6 @@ const ExperienceForm = ({
               <FormGroup>
                 <Label for="">Job Title</Label>
                 <Input
-                  type="text"
                   name="title"
                   placeholder="* Job title"
                   value={title}
@@ -84,7 +82,6 @@ const ExperienceForm = ({
               <FormGroup>
                 <Label for="">Location</Label>
                 <Input
-                  type="text"
                   name="location"
                   placeholder="Location"
                   value={location}
@@ -133,7 +130,6 @@ const ExperienceForm = ({
               <FormGroup>
                 <Label for="">Job description</Label>
                 <Input
-                  type="type"
                   name="description"
                   placeholder="Job Description"
                   value={description}

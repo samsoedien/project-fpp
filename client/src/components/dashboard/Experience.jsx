@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { deleteExperience } from '../../actions/profileActions';
 
-import ConfirmDeleteModal from '../common/ConfirmDeleteModal';
+import ConfirmDeleteWrapper from '../../wrappers/ConfirmDeleteWrapper';
 
 class Experience extends Component {
   onDeleteClick(id) {
-    this.props.deleteExperience(id);
+    const { deleteExperience } = this.props;
+    deleteExperience(id);
   }
 
   render() {
@@ -31,7 +32,7 @@ class Experience extends Component {
           >
             Delete
           </button>
-          <ConfirmDeleteModal />
+          <ConfirmDeleteWrapper />
         </td>
       </tr>
     ));
@@ -55,9 +56,11 @@ class Experience extends Component {
 }
 
 Experience.propTypes = {
-  deleteExperience: PropTypes.func.isRequired
+  deleteExperience: PropTypes.func.isRequired,
 };
 
 export default connect(null, { deleteExperience })(Experience);
 
 //TODO: Implement Modal Confirmation to delete experience item
+
+//TODO: No mapstatetoprops here??

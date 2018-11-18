@@ -40,7 +40,6 @@ const Register = ({
               <FormGroup>
                 <Label for="">Name</Label>
                 <Input
-                  type="text"
                   name="name"
                   placeholder="Name"
                   value={name}

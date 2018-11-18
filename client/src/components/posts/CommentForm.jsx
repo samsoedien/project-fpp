@@ -34,7 +34,6 @@ const CommentForm = ({ text, errors, onChangeCallback, onSubmitCallback }) => {
             <FormGroup>
               <Label for="">Reply to Post</Label>
               <Input
-                type="text"
                 name="text"
                 placeholder="Reply to Post"
                 value={text}
