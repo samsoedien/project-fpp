@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'reactstrap';
 
@@ -11,7 +12,7 @@ const PostItem = ({
   onLikeCallback,
   onUnlikeCallback
 }) => {
-  const onDelete = id => {
+  const onDeleteClick = id => {
     onDeleteCallback(id);
   };
 
@@ -22,6 +23,14 @@ const PostItem = ({
   const onUnlikeClick = id => {
     onUnlikeCallback(id);
   };
+
+  const findUserLike = (likes) => {
+    if (likes.filter(like => like.user === auth.user.id).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   return (
     <div className="card card-body mb-3">
@@ -47,26 +56,24 @@ const PostItem = ({
                 type="button"
                 className="btn btn-light mr-1"
               >
-                <i
+                {/* <i
                   className={classnames('fas fa-thumbs-up', {
                     'text-info': this.findUserLike(post.likes)
                   })}
-                />
+                /> */}
                 <span className="badge badge-light">{post.likes.length}</span>
               </Button>
               <Button
-                onClick={this.onUnlikeClick.bind(this, post._id)}
+                onClick={onUnlikeClick.bind(this, post._id)}
                 type="button"
                 className="btn btn-light mr-1"
               >
                 <i className="text-secondary fas fa-thumbs-down" />
               </Button>
-              <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-                Comments
-              </Link>
+              <Link to={`/post/${post._id}`} className="btn btn-info mr-1">Comments</Link>
               {post.user === auth.user.id ? (
                 <Button
-                  onClick={this.onDeleteClick.bind(this, post._id)}
+                  onClick={onDeleteClick.bind(this, post._id)}
                   type="button"
                   className="btn btn-danger mr-1"
                 >
@@ -93,14 +100,7 @@ PostItem.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-export default connect(
-  mapStateToProps,
-  { deletePost, addLike, removeLike }
-)(PostItem);
+export default PostItem;
 
 // TODO: Separate in functional and container components and remove classnames module
 // FIXME: started implementing functional but does not work due to onhandler binding. need to look into how this binding works. Also look into showactions..

@@ -28,7 +28,7 @@ class ProfileContainer extends Component {
   }
 }
 
-Profile.propTypes = {
+ProfileContainer.propTypes = {
   getProfileByHandle: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -38,5 +38,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { getProfileByHandle })(ProfileContainer);
-
-//TODO: Are props correct: Profile.propTypes instead of ProfileContainer.propTypes??

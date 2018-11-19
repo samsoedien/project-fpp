@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getIngredients } from '../actions/ingredientActions';
 
+import IngredientFormContainer from './IngredientFormContainer';
 import IngredientList from '../components/ingredients/IngredientList';
 
 class IngredientListContainer extends Component {
@@ -30,6 +31,7 @@ class IngredientListContainer extends Component {
     const { filterText } = this.state;
     return (
       <div className="ingredient-list-container">
+        <IngredientFormContainer />
         <IngredientList
           ingredients={ingredients}
           loading={loading}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { getIngredient } from '../actions/ingredientActions';
 
 import NutritionContainer from './NutritionContainer';
@@ -16,7 +17,7 @@ class IngredientContainer extends Component {
     return (
       <div className="ingredient-container">
         <Ingredient ingredient={ingredient} loading={loading} />
-        <NutritionContainer nutritions={ingredient.nutritions} />
+        {/* <NutritionContainer nutritions={ingredient.nutritions} /> */}
       </div>
     );
   }
@@ -25,6 +26,7 @@ class IngredientContainer extends Component {
 IngredientContainer.propTypes = {
   getIngredient: PropTypes.func.isRequired,
   ingredient: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({

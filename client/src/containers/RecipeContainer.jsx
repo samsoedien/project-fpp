@@ -20,9 +20,11 @@ class RecipeContainer extends Component {
 
   render() {
     const { recipe, loading } = this.props.recipe;
+    const { isFavourited } = this.state;
     return (
       <div className="recipe-container">
-        <Recipe recipe={recipe} loading={loading} isFavourited={this.state.isFavourited} />
+        <Recipe recipe={recipe} loading={loading} isFavourited={isFavourited} />
+        {/* <PostListContainer /> */}
       </div>
     )
   }

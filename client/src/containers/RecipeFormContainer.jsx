@@ -34,9 +34,9 @@ class RecipeFormContainer extends Component {
   }
 
   onModalToggleCallback() {
-    this.setState({
-      modal: !this.state.modal,
-    });
+    this.setState(prevState => ({
+      modal: !prevState.modal,
+    }));
   }
 
   onChangeCallback(e) {

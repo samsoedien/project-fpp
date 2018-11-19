@@ -51,9 +51,9 @@ export const getRecipe = id => dispatch => {
 };
 
 // Create Recipe
-export const createRecipe = (recipeData, history) => async dispatch => {
-  await axios
-    .post('/api/recipes', recipeData, config)
+export const createRecipe = (recipeData, history) => dispatch => {
+  axios
+    .post('/api/recipes', recipeData)
     .then(res => history.push('/dashboard'))
     .catch(err => dispatch({
       type: GET_ERRORS,
@@ -62,4 +62,4 @@ export const createRecipe = (recipeData, history) => async dispatch => {
 };
 
 // FIXME: fix helper function
-// FIXME: Look into async await dispatch
+// TODO: Look into async await dispatch

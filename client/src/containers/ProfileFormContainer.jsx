@@ -17,7 +17,6 @@ class ProfileFormContainer extends Component {
       location: '',
       bio: '',
       skills: '',
-
       twitter: '',
       facebook: '',
       instagram: '',
@@ -39,15 +38,16 @@ class ProfileFormContainer extends Component {
   }
 
   onSubmitCallback() {
+    const { handle, profession, location, bio, skills, twitter, facebook, instagram } = this.state;
     const profileData = {
-      handle: this.state.handle,
-      profession: this.state.profession,
-      location: this.state.location,
-      bio: this.state.bio,
-      skills: this.state.skills,
-      twitter: this.state.twitter,
-      facebook: this.state.facebook,
-      instagram: this.state.instagram
+      handle,
+      profession,
+      location,
+      bio,
+      skills,
+      twitter,
+      facebook,
+      instagram,
     };
     this.props.createProfile(profileData, this.props.history);
   }
@@ -70,15 +70,12 @@ class ProfileFormContainer extends Component {
 }
 ProfileFormContainer.propTypes = {
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.errors
+  errors: state.errors,
 });
 
-export default connect(
-  mapStateToProps,
-  { createProfile }
-)(withRouter(ProfileFormContainer));
+export default connect(mapStateToProps, { createProfile })(withRouter(ProfileFormContainer));

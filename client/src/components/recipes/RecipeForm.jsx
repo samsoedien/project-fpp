@@ -53,7 +53,7 @@ const RecipeForm = ({
           <ModalBody>
             <Form onSubmit={onSubmit} noValidate>
               <FormGroup>
-                <Label for=""></Label>
+                <Label for="" />
                 <Input
                   name="title"
                   placeholder="Title"
@@ -98,7 +98,8 @@ const RecipeForm = ({
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={onModalToggle}>Do Something</Button>{' '}
+            <Button color="primary" onClick={onModalToggle}>Do Something</Button>
+            {' '}
             <Button color="secondary" onClick={onModalToggle}>Cancel</Button>
           </ModalFooter>
         </Modal>

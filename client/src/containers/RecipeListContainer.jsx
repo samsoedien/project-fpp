@@ -10,20 +10,19 @@ class RecipeListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filterText: ''
+      filterText: '',
     };
     this.filterListUpdate = this.filterListUpdate.bind(this);
   }
 
   componentDidMount() {
     this.props.getRecipes();
-    console.log(this.props.recipes);
   }
 
   filterListUpdate(value) {
     console.log(value);
     this.setState({
-      filterText: value
+      filterText: value,
     });
   }
 
@@ -46,14 +45,11 @@ class RecipeListContainer extends Component {
 
 RecipeListContainer.propTypes = {
   getRecipes: PropTypes.func.isRequired,
-  recipe: PropTypes.object.isRequired
+  recipe: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  recipe: state.recipe
+  recipe: state.recipe,
 });
 
-export default connect(
-  mapStateToProps,
-  { getRecipes }
-)(RecipeListContainer);
+export default connect(mapStateToProps, { getRecipes })(RecipeListContainer);

@@ -5,7 +5,7 @@ import {
   getPosts,
   deletePost,
   addLike,
-  removeLike
+  removeLike,
 } from '../actions/postActions';
 
 import PostFormContainer from './PostFormContainer';
@@ -68,7 +68,7 @@ PostListContainer.propTypes = {
   getPosts: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
-  removeLike: PropTypes.func.isRequired
+  removeLike: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

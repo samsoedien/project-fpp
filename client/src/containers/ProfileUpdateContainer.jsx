@@ -68,7 +68,7 @@ class ProfileUpdateContainer extends Component {
         skills: skillsCSV,
         twitter: profile.twitter,
         facebook: profile.facebook,
-        instagram: profile.instagram
+        instagram: profile.instagram,
       });
     }
   }
@@ -78,22 +78,22 @@ class ProfileUpdateContainer extends Component {
   }
 
   onSubmitCallback() {
+    const { handle, profession, location, bio, skills, twitter, facebook, instagram } = this.state;
     const profileData = {
-      handle: this.state.handle,
-      profession: this.state.profession,
-      location: this.state.location,
-      bio: this.state.bio,
-      skills: this.state.skills,
-      twitter: this.state.twitter,
-      facebook: this.state.facebook,
-      instagram: this.state.instagram
+      handle,
+      profession,
+      location,
+      bio,
+      skills,
+      twitter,
+      facebook,
+      instagram,
     };
-
     this.props.createProfile(profileData, this.props.history);
   }
 
   render() {
-    const { errors, displaySocialInputs, updateProfile } = this.state;
+    const { handle, profession, location, bio, skills, twitter, facebook, instagram, errors, displaySocialInputs, updateProfile } = this.state;
     return (
       <div className="profile-update-container">
         <ProfileForm
@@ -102,14 +102,14 @@ class ProfileUpdateContainer extends Component {
           displaySocialInputs={displaySocialInputs}
           onChangeCallback={this.onChangeCallback}
           onSubmitCallback={this.onSubmitCallback}
-          handle={this.state.handle}
-          profession={this.state.profession}
-          location={this.state.location}
-          bio={this.state.bio}
-          skills={this.state.skills}
-          twitter={this.state.twitter}
-          facebook={this.state.facebook}
-          instagram={this.state.instagram}
+          handle={handle}
+          profession={profession}
+          location={location}
+          bio={bio}
+          skills={skills}
+          twitter={twitter}
+          facebook={facebook}
+          instagram={instagram}
         />
       </div>
     );
@@ -120,15 +120,12 @@ ProfileUpdateContainer.propTypes = {
   createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.errors
+  errors: state.errors,
 });
 
-export default connect(
-  mapStateToProps,
-  { createProfile, getCurrentProfile }
-)(withRouter(ProfileUpdateContainer));
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(withRouter(ProfileUpdateContainer));
