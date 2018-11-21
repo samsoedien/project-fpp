@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRouteWrapper from './wrappers/PrivateRouteWrapper';
 
-import Home from './components/layout/Home';
+import Homepage from './containers/HomepageContainer';
 import AuthContainer from './containers/AuthContainer';
 import DashboardContainer from './containers/DashboardContainer';
 
@@ -32,7 +32,7 @@ import TestComponent from './components/temp/TestComponent';
 
 const Routes = () => (
   <React.Fragment>
-    <Route exact path="/" component={Home} />
+    <Route exact path="/" component={Homepage} />
     <Route
       exact
       path="/register"

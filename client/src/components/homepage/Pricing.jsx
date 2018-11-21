@@ -1,6 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  CardDeck,
+  Card,
+  CardHeader,
+  CardFooter,
+  CardBody,
+  CardTitle,
+  CardText,
+  Button
+} from 'reactstrap';
 
-export default () => {
+const Pricing = () => {
   return (
     <div className="pricing">
       <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
@@ -12,12 +31,12 @@ export default () => {
         </p>
       </div>
 
-      <div className="container">
-        <div className="card-deck mb-3 text-center">
-          <div className="card mb-4 shadow-sm">
-            <div className="card-header">
+      <Container>
+        <CardDeck className="mb-3 text-center">
+          <Card className="mb-4 shadow-sm">
+            <CardHeader>
               <h4 className="my-0 font-weight-normal">Free</h4>
-            </div>
+            </CardHeader>
             <div className="card-body">
               <h2 className="card-title pricing-card-title">
                 €0 <small className="text-muted">/ mo</small>
@@ -28,19 +47,18 @@ export default () => {
                 <li>Email support</li>
                 <li>Help center access</li>
               </ul>
-              <button
-                type="button"
+              <Button
                 className="btn btn-lg btn-block btn-outline-primary"
               >
                 Sign up for free
-              </button>
+              </Button>
             </div>
-          </div>
-          <div className="card mb-4 shadow-sm">
-            <div className="card-header">
+          </Card>
+          <Card className="mb-4 shadow-sm">
+            <CardHeader>
               <h4 className="my-0 font-weight-normal">Pro</h4>
-            </div>
-            <div className="card-body">
+            </CardHeader>
+            <CardBody>
               <h2 className="card-title pricing-card-title">
                 €9.99 <small className="text-muted">/ mo</small>
               </h2>
@@ -50,19 +68,18 @@ export default () => {
                 <li>Priority email support</li>
                 <li>Help center access</li>
               </ul>
-              <button
-                type="button"
+              <Button
                 className="btn btn-lg btn-block btn-primary"
               >
                 Get started
-              </button>
-            </div>
-          </div>
-          <div className="card mb-4 shadow-sm">
-            <div className="card-header">
+              </Button>
+            </CardBody>
+          </Card>
+          <Card className="mb-4 shadow-sm">
+            <CardHeader>
               <h4 className="my-0 font-weight-normal">Enterprise</h4>
-            </div>
-            <div className="card-body">
+            </CardHeader>
+            <CardBody>
               <h2 className="card-title pricing-card-title">
                 €19.99 <small className="text-muted">/ mo</small>
               </h2>
@@ -72,16 +89,21 @@ export default () => {
                 <li>Phone and email support</li>
                 <li>Help center access</li>
               </ul>
-              <button
-                type="button"
+              <Button
                 className="btn btn-lg btn-block btn-primary"
               >
                 Contact us
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+              </Button>
+            </CardBody>
+          </Card>
+        </CardDeck>
+      </Container>
     </div>
   );
 };
+
+Pricing.PropTypes = {
+
+}
+
+export default Pricing;
