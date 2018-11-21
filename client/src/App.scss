@@ -19,6 +19,20 @@
   src: url("./assets/fonts/RequiemFine-HTF-Roman.otf");
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.header--main {
+  position: static;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 200;
+}
 
 .app {
   margin: 0;
@@ -27,10 +41,7 @@
   box-sizing: border-box;
   font-family: 'open sans', sans-serif;
   font-weight: 300;
-}
-
-.app-main {
-  margin-top: 100px;
+  margin-bottom: 1000px; //temp margin
 }
 
 .paragraph-font {

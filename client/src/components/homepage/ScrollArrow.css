@@ -1,0 +1,58 @@
+.scroll-arrow {
+position: absolute;
+top: 80%; 
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+/* .svg-canvas {
+
+}
+
+.svg-arrow {
+
+} */
+
+.svg-arrow--lines {  
+  fill: none;
+  stroke: #fff;
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.svg-arrow--text {
+  fill: #fff;
+  text-anchor: middle;
+  font-family: 'lato', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  word-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.svg-arrow--animated {
+  -webkit-animation: scroll-arrow 3s ease infinite;
+  -moz-animation: scroll-arrow 3s ease infinite;
+  -ms-animation: scroll-arrow 3s ease infinite;
+  -o-animation: scroll-arrow 3s ease infinite;
+  animation: scroll-arrow 3s ease infinite;
+}
+
+@-webkit-keyframes scroll-arrow {
+  0% 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}
+@keyframes scroll-arrow {
+  0% 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}

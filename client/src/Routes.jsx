@@ -2,37 +2,33 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRouteWrapper from './wrappers/PrivateRouteWrapper';
 
-import Homepage from './containers/HomepageContainer';
+import LandingContainer from './containers/LandingContainer';
+import HomepageContainer from './containers/HomepageContainer';
 import AuthContainer from './containers/AuthContainer';
 import DashboardContainer from './containers/DashboardContainer';
-
 import ProfileFormContainer from './containers/ProfileFormContainer';
 import ProfileUpdateContainer from './containers/ProfileUpdateContainer';
 import ExperienceFormContainer from './containers/ExperienceFormContainer';
 import ProfileListContainer from './containers/ProfileListContainer';
 import ProfileContainer from './containers/ProfileContainer';
-
 import PostListContainer from './containers/PostListContainer';
 import PostContainer from './containers/PostContainer';
-
 import RecipeListContainer from './containers/RecipeListContainer';
 import RecipeContainer from './containers/RecipeContainer';
 import RecipeFormContainer from './containers/RecipeFormContainer';
-
 import IngredientListContainer from './containers/IngredientListContainer';
 import IngredientContainer from './containers/IngredientContainer';
 import IngredientFormContainer from './containers/IngredientFormContainer';
-
 import NutritionContainer from './containers/NutritionContainer';
 import RestaurantListContainer from './containers/RestaurantListContainer';
 import ThreeEditorContainer from './containers/ThreeEditorContainer';
-
 import NotFound from './components/not-found/NotFound';
 import TestComponent from './components/temp/TestComponent';
 
 const Routes = () => (
   <React.Fragment>
-    <Route exact path="/" component={Homepage} />
+    <Route exact path="/" component={LandingContainer} />
+    <Route exact path="/home" component={HomepageContainer} />
     <Route
       exact
       path="/register"

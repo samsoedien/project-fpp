@@ -12,7 +12,7 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
 } from 'reactstrap';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
@@ -37,27 +37,27 @@ const NavbarComponent = ({
   const handleScroll = scrollDistance => {
     const navElement = document.getElementById('myNav');
     if (scrollDistance > 50) {
-      navElement.classList.add('navbar--shrink');
+      navElement.classList.add('nav--shrink');
     } else {
-      navElement.classList.remove('navbar--shrink');
+      navElement.classList.remove('nav--shrink');
     }
   };
 
   const guestLinks = (
     <Nav navbar>
-      <NavItem>
-        <NavLink tag={Link} to="/register">Signup</NavLink>
+      <NavItem className="nav__item">
+        <NavLink tag={Link} to="/register" className="nav__item__link">Signup</NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink tag={Link} to="/login">Login</NavLink>
+      <NavItem className="nav__item">
+        <NavLink tag={Link} to="/login" className="nav__item__link">Login</NavLink>
       </NavItem>
-    </Nav>
+    </Nav >
   );
 
   const authLinks = (
     <Nav navbar>
-      <NavItem>
-        <NavLink tag={Link} to="/dashboard">Messages</NavLink>
+      <NavItem className="nav__item">
+        <NavLink tag={Link} to="/dashboard" className="nav__item__link">Messages</NavLink>
       </NavItem>
       <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav caret>
@@ -67,22 +67,22 @@ const NavbarComponent = ({
             alt={user.name}
             style={{ width: '25px', marginRight: '5px' }}
             title="You must have a Gravatar connected to your email to display an image"
-          />{' '}
+          />
+          {' '}
           {user.name}
         </DropdownToggle>
         <DropdownMenu right>
           <DropdownItem>
-            <NavLink tag={Link} to="/dashboard">Dashboard</NavLink>
+            <NavLink tag={Link} to="/dashboard" className="nav__item__link">Dashboard</NavLink>
           </DropdownItem>
           <DropdownItem>
-            <NavLink tag={Link} to="/profiles">Chefs</NavLink>
+            <NavLink tag={Link} to="/profiles" className="nav__item__link">Chefs</NavLink>
           </DropdownItem>
           <DropdownItem>
-            <NavLink tag={Link} to="/ingredients">Ingredients
-            </NavLink>
+            <NavLink tag={Link} to="/ingredients" className="nav__item__link">Ingredients</NavLink>
           </DropdownItem>
           <DropdownItem>
-            <NavLink tag={Link} to="/editor">Editor</NavLink>
+            <NavLink tag={Link} to="/editor" className="nav__item__link">Editor</NavLink>
           </DropdownItem>
           <DropdownItem divider />
           <DropdownItem onClick={onLogout}>Logout</DropdownItem>
@@ -93,19 +93,19 @@ const NavbarComponent = ({
 
   return (
     <ScrollWrapper onWindowScroll={handleScroll}>
-      <Navbar fixed="top" color="light" light expand="sm" id="myNav">
-        <NavbarBrand href="/">Project FPP</NavbarBrand>
+      <Navbar fixed="top" expand="sm" className="nav" id="myNav">
+        <NavbarBrand href="/home" className="nav__brand">Project FPP</NavbarBrand>
         <NavbarToggler onClick={onNavbarToggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto pr-4" navbar>
-            <NavItem>
-              <NavLink tag={Link} to="/recipes">Recipes</NavLink>
+            <NavItem className="nav__item">
+              <NavLink tag={Link} to="/recipes" className="nav__item__link">Recipes</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to="/restaurants">Restaurants</NavLink>
+            <NavItem className="nav__item">
+              <NavLink tag={Link} to="/restaurants" className="nav__item__link">Restaurants</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to="/feed">Community</NavLink>
+            <NavItem className="nav__item">
+              <NavLink tag={Link} to="/feed" className="nav__item__link">Community</NavLink>
             </NavItem>
           </Nav>
           {isAuthenticated ? authLinks : guestLinks}
@@ -116,7 +116,10 @@ const NavbarComponent = ({
 };
 
 NavbarComponent.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.shape({
+    avatar: PropTypes.string,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   onNavbarToggleCallback: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,

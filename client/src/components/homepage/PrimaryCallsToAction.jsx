@@ -1,21 +1,32 @@
-import React from 'react'
-import { Jumbotron, Button } from 'reactstrap';
+import React from 'react';
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardTitle,
+  CardText,
+  Button,
+} from 'reactstrap';
+
+import ScrollWrapper from '../../wrappers/ScrollWrapper';
+import './PrimaryCallToAction.css';
 
 const PrimaryCallsToAction = () => {
+  const handleScroll = (scrollDistance) => {
+    const parallaxItem = document.getElementById('myPrimaryCTA');
+    parallaxItem.style.transform = `translate(0px, ${-scrollDistance / 4}px)`;
+  };
+
   return (
     <div className="primary-calls-to-action">
-      <Jumbotron>
-        <h1 className="display-3 font">Dish Creation Marketplaces</h1>
-        <p className="lead">
-          Create personalised culinary experiences
-        </p>
-        <hr className="my-2" />
-        <p>Enrich the pattisery work space.</p>
-        <p className="lead">
-          <Button color="primary">Get Started</Button>
-          <Button>Browse Recipes</Button>
-        </p>
-      </Jumbotron>
+      <ScrollWrapper onWindowScroll={handleScroll}>
+        <Card body className="text-center primary-cta__card" id="myPrimaryCTA">
+          <CardTitle>Culinary dishes</CardTitle>
+          <CardText>Enrich the culinary experience</CardText>
+          <Button>Get Started</Button>
+        </Card>
+      </ScrollWrapper>
     </div>
   );
 };

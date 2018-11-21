@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Button } from 'reactstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Button
+} from 'reactstrap';
 
 const PostItem = ({
   post,
@@ -10,11 +15,12 @@ const PostItem = ({
   showActions,
   onDeleteCallback,
   onLikeCallback,
-  onUnlikeCallback
+  onUnlikeCallback,
 }) => {
   const onDeleteClick = id => {
     onDeleteCallback(id);
   };
+
 
   const onLikeClick = id => {
     onLikeCallback(id);
@@ -93,11 +99,14 @@ PostItem.defaultProps = {
 };
 
 PostItem.propTypes = {
+  onDeleteCallback: PropTypes.func.isRequired,
+  onLikeCallback: PropTypes.func.isRequired,
+  onUnlikeCallback: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
 export default PostItem;

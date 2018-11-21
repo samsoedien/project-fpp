@@ -10,9 +10,7 @@ import store from './store/store';
 import Routes from './Routes';
 import NavbarContainer from './containers/NavbarContainer';
 import FooterContainer from './containers/FooterContainer';
-// import Landing from './components/layout/Landing';
 import './App.scss';
-import './other/animations.css';
 
 // Check for token
 if (localStorage.jwtToken) {

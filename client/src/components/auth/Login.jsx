@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Row,
@@ -62,6 +63,7 @@ const Login = ({
               </FormGroup>
               <Input type="submit" className="btn btn-info btn-block mt-4" />
             </Form>
+            <small>No account yet? <Link to="/register">Signup here.</Link></small>
           </Col>
         </Row>
       </Container>
