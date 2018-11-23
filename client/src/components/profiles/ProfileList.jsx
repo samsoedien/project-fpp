@@ -8,15 +8,14 @@ const ProfileList = ({ profiles, loading }) => {
 
   if (profiles === null || loading) {
     profileItems = <Spinner />;
+  } else if (profiles.length > 0) {
+    profileItems = profiles.map(profile => (
+      <ProfileItem key={profile._id} profile={profile} />
+    ));
   } else {
-    if (profiles.length > 0) {
-      profileItems = profiles.map(profile => (
-        <ProfileItem key={profile._id} profile={profile} />
-      ));
-    } else {
-      profileItems = <h4>No profiles found...</h4>;
-    }
+    profileItems = <h4>No profiles found...</h4>;
   }
+
   return (
     <div className="profiles">
       <div className="container">

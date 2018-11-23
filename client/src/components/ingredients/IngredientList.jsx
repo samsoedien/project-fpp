@@ -14,18 +14,17 @@ const IngredientList = ({ ingredients, filterText, filterUpdate, loading }) => {
   let ingredientItems;
   if (ingredients === null || loading) {
     ingredientItems = <Spinner />;
+  } else if (ingredients.length > 0) {
+    ingredientItems = ingredients
+      .filter(ingredient => {
+        // remove names that do not match current filter text
+        return ingredient.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0;
+      })
+      .map(ingredient => <IngredientItem key={ingredient._id} ingredient={ingredient} />);
   } else {
-    if (ingredients.length > 0) {
-      ingredientItems = ingredients
-        .filter(ingredient => {
-          // remove names that do not match current filter text
-          return ingredient.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0;
-        })
-        .map(ingredient => <IngredientItem key={ingredient._id} ingredient={ingredient} />);
-    } else {
-      ingredientItems = <h4>No Ingredients found...</h4>;
-    }
+    ingredientItems = <h4>No Ingredients found...</h4>;
   }
+
   return (
     <div className="ingredient-list">
       <div className="container">

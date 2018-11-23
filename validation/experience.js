@@ -22,6 +22,6 @@ module.exports = function validateExperienceInput(data) {
 
   return {
     errors,
-    isValid: isEmpty(errors)
+    isValid: isEmpty(errors),
   };
 };

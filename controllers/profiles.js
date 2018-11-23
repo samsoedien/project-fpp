@@ -132,7 +132,7 @@ exports.postExperience = (req, res, next) => {
       description: req.body.description
     };
     profile.experience.unshift(newExp);
-    profile.save().then(profile => res.json(profile));
+    profile.save().then(result => res.json(result));
   });
 };
 

@@ -5,7 +5,6 @@ import {
   Container,
   Row,
   Col,
-  Button,
 } from 'reactstrap';
 
 import Spinner from '../common/Spinner';
@@ -13,41 +12,48 @@ import ProfileActions from './ProfileActions';
 import Experience from './Experience';
 import ConfirmDeleteWrapper from '../../wrappers/ConfirmDeleteWrapper';
 
-const Dashboard = ({ user, profile, loading, onDeleteCallback }) => {
+const Dashboard = ({
+  user,
+  profile,
+  loading,
+  onDeleteCallback,
+  onDeleteExperienceCallback,
+}) => {
   const onDeleteClick = () => {
     onDeleteCallback();
+  };
+
+  const onDeleteExperience = id => {
+    onDeleteExperienceCallback(id);
   };
 
   let dashboardContent;
   if (profile === null || loading) {
     dashboardContent = <Spinner />;
+  } else if (Object.keys(profile).length > 0) { // Check if logged in user has profile data
+    dashboardContent = (
+      <div>
+        <p className="lead text-muted">
+          {'Welcome '}
+          <Link to={`/profiles/${profile.handle}`}>{user.name}</Link>
+        </p>
+        <ProfileActions />
+        <Experience experience={profile.experience} onDeleteExperience={onDeleteExperience} />
+        <div style={{ marginBottom: '60px' }} />
+        <ConfirmDeleteWrapper onDeleteClick={onDeleteClick} buttonLabel="Delete my account">Are you sure you want to delete your account? This action can not be undone</ConfirmDeleteWrapper>
+      </div>
+    );
   } else {
-    // Check if logged in user has profile data
-    if (Object.keys(profile).length > 0) {
-      dashboardContent = (
-        <div>
-          <p className="lead text-muted">
-            Welcome <Link to={`/profiles/${profile.handle}`}>{user.name}</Link>
-          </p>
-          <ProfileActions />
-          <Experience experience={profile.experience} />
-
-          <div style={{ marginBottom: '60px' }} />
-          <ConfirmDeleteWrapper onDeleteClick={onDeleteClick} buttonLabel="Delete my account" >Are you sure you want to delete your account? This action can not be undone</ConfirmDeleteWrapper>
-        </div>
-      );
-    } else {
-      // User is logged in but has no profile
-      dashboardContent = (
-        <div>
-          <p className="lead text-muted">Welcome {user.name}</p>
-          <p>You have not yet setup a profile, add some info</p>
-          <Link to="/create-profile" className="btn btn-lg btn-info">
-            Create Profile
-          </Link>
-        </div>
-      );
-    }
+    dashboardContent = (
+      <div>
+        <p className="lead text-muted">
+          {'Welcome '}
+          {user.name}
+        </p>
+        <p>You have not yet setup a profile, add some info</p>
+        <Link to="/create-profile" className="btn btn-lg btn-info">Create Profile</Link>
+      </div>
+    );
   }
 
   return (
@@ -65,8 +71,13 @@ const Dashboard = ({ user, profile, loading, onDeleteCallback }) => {
 };
 
 Dashboard.propTypes = {
-  user: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  profile: PropTypes.shape({
+    handle: PropTypes.string.isRequired,
+    experience: PropTypes.string.isRequired,
+  }).isRequired,
   loading: PropTypes.bool.isRequired,
   onDeleteCallback: PropTypes.func.isRequired,
 };

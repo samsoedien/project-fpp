@@ -30,13 +30,10 @@ const PostItem = ({
     onUnlikeCallback(id);
   };
 
-  const findUserLike = (likes) => {
-    if (likes.filter(like => like.user === auth.user.id).length > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  const findUserLike = likes => {
+    if (likes.filter(like => like.user === auth.user.id).length > 0) return true;
+    return false;
+  };
 
   return (
     <div className="card card-body mb-3">
@@ -70,7 +67,7 @@ const PostItem = ({
                 <span className="badge badge-light">{post.likes.length}</span>
               </Button>
               <Button
-                onClick={onUnlikeClick.bind(this, post._id)}
+                onClick={onUnlikeClick.bind(post._id)}
                 type="button"
                 className="btn btn-light mr-1"
               >
@@ -79,7 +76,7 @@ const PostItem = ({
               <Link to={`/post/${post._id}`} className="btn btn-info mr-1">Comments</Link>
               {post.user === auth.user.id ? (
                 <Button
-                  onClick={onDeleteClick.bind(this, post._id)}
+                  onClick={onDeleteClick.bind(post._id)}
                   type="button"
                   className="btn btn-danger mr-1"
                 >

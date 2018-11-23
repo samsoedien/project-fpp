@@ -47,11 +47,7 @@ const Pricing = () => {
                 <li>Email support</li>
                 <li>Help center access</li>
               </ul>
-              <Button
-                className="btn btn-lg btn-block btn-outline-primary"
-              >
-                Sign up for free
-              </Button>
+              <Button className="btn btn-lg btn-block btn-outline-primary">Sign up for free</Button>
             </div>
           </Card>
           <Card className="mb-4 shadow-sm">
@@ -68,11 +64,7 @@ const Pricing = () => {
                 <li>Priority email support</li>
                 <li>Help center access</li>
               </ul>
-              <Button
-                className="btn btn-lg btn-block btn-primary"
-              >
-                Get started
-              </Button>
+              <Button className="btn btn-lg btn-block btn-primary">Get started</Button>
             </CardBody>
           </Card>
           <Card className="mb-4 shadow-sm">
@@ -89,11 +81,7 @@ const Pricing = () => {
                 <li>Phone and email support</li>
                 <li>Help center access</li>
               </ul>
-              <Button
-                className="btn btn-lg btn-block btn-primary"
-              >
-                Contact us
-              </Button>
+              <Button className="btn btn-lg btn-block btn-primary">Coming Soon</Button>
             </CardBody>
           </Card>
         </CardDeck>

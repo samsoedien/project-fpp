@@ -32,9 +32,9 @@ const Recipe = ({ recipe, isFavourited, loading }) => {
 };
 
 Recipe.propTypes = {
-  recipe: PropTypes.object.isRequired,
+  recipe: PropTypes.shape({}).isRequired,
   isFavourited: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
 };
 
 export default Recipe;

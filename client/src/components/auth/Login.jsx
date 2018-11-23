@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
 import {
   Container,
   Row,
@@ -9,7 +10,7 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText
+  FormText,
 } from 'reactstrap';
 
 const Login = ({
@@ -35,7 +36,13 @@ const Login = ({
           <Col md="8" className="m-auto">
             <h1 className="display-4 text-center">Login</h1>
             <p className="lead text-center">Sign in to your account</p>
-            <Form onSubmit={onSubmit} noValidate>
+            <Form onSubmit={onSubmit} noValidate autoComplete="off">
+              <TextField
+                id="standard-dense"
+                label="Dense"
+                className={classNames(classes.textField, classes.dense)}
+                margin="dense"
+              />
               <FormGroup>
                 <Label for="">Email</Label>
                 <Input

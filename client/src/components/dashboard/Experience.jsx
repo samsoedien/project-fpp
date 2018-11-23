@@ -1,66 +1,61 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-import { deleteExperience } from '../../actions/profileActions';
 
 import ConfirmDeleteWrapper from '../../wrappers/ConfirmDeleteWrapper';
 
-class Experience extends Component {
-  onDeleteClick(id) {
-    const { deleteExperience } = this.props;
-    deleteExperience(id);
-  }
+const Experience = ({
+  experience,
+  onDeleteExperience
+}) => {
+  const onDelete = id => {
+    onDeleteExperience(id);
+  };
 
-  render() {
-    const experience = this.props.experience.map(exp => (
-      <tr key={exp._id}>
-        <td>{exp.company}</td>
-        <td>{exp.title}</td>
-        <td>
-          <Moment format="YYYY/MM/DD">{exp.from}</Moment> -
+  const experienceContent = experience.map(exp => (
+    <tr key={exp._id}>
+      <td>{exp.company}</td>
+      <td>{exp.title}</td>
+      <td>
+        <Moment format="YYYY/MM/DD">{exp.from}</Moment> -
           {exp.to === null ? (
-            ' Now'
-          ) : (
-              <Moment format="YYYY/MM/DD">{exp.to}</Moment>
-            )}
-        </td>
-        <td>
-          <button
-            onClick={this.onDeleteClick.bind(this, exp._id)}
-            className="btn btn-danger"
-          >
-            Delete
+          ' Now'
+        ) : (
+            <Moment format="YYYY/MM/DD">{exp.to}</Moment>
+          )}
+      </td>
+      <td>
+        <button
+          onClick={onDelete.bind(exp._id)}
+          className="btn btn-danger"
+        >
+          Delete
           </button>
-          <ConfirmDeleteWrapper />
-        </td>
-      </tr>
-    ));
-    return (
-      <div>
-        <h4 className="mb-4">Experience Credentials</h4>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Company</th>
-              <th>Title</th>
-              <th>Years</th>
-              <th />
-            </tr>
-            {experience}
-          </thead>
-        </table>
-      </div>
-    );
-  }
-}
-
-Experience.propTypes = {
-  deleteExperience: PropTypes.func.isRequired,
+        <ConfirmDeleteWrapper />
+      </td>
+    </tr>
+  ));
+  return (
+    <div>
+      <h4 className="mb-4">Experience Credentials</h4>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Title</th>
+            <th>Years</th>
+            <th />
+          </tr>
+          {experienceContent}
+        </thead>
+      </table>
+    </div>
+  );
 };
 
-export default connect(null, { deleteExperience })(Experience);
+Experience.propTypes = {
+  experience: PropTypes.shape({}).isRequired,
+  onDeleteCallback: PropTypes.func.isRequired,
+};
 
-//TODO: Implement Modal Confirmation to delete experience item
-
-//TODO: No mapstatetoprops here??
+export default Experience;

@@ -31,29 +31,27 @@ const Nutrition = ({
   let nutritionItems;
   if (nutritions === null) {
     nutritionItems = <Spinner />;
-  } else {
-    if (nutritions.length > 0) {
-      nutritionItems = nutritions.map(nutrition => (
-        <tr>
-          <th scope="row" className="text-left pl-5">
-            Calories
+  } else if (nutritions.length > 0) {
+    nutritionItems = nutritions.map(nutrition => (
+      <tr>
+        <th scope="row" className="text-left pl-5">
+          Calories
           </th>
-          <td className="text-right pr-5">
-            {isEditable ? (
-              <NutritionCellData
-                value={nutrition.kcal}
-                isEditable={isEditable}
-                onChange={onChange}
-              />
-            ) : (
-                <span>{isEmpty(nutrition.kcal) ? null : nutrition.kcal} </span>
-              )}
-          </td>
-        </tr>
-      ));
-    } else {
-      nutritionItems = <h4>No Nutritions found...</h4>;
-    }
+        <td className="text-right pr-5">
+          {isEditable ? (
+            <NutritionCellData
+              value={nutrition.kcal}
+              isEditable={isEditable}
+              onChange={onChange}
+            />
+          ) : (
+              <span>{isEmpty(nutrition.kcal) ? null : nutrition.kcal} </span>
+            )}
+        </td>
+      </tr>
+    ));
+  } else {
+    nutritionItems = <h4>No Nutritions found...</h4>;
   }
 
   return (

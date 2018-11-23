@@ -29,8 +29,8 @@ const RecipeComments = ({ posts, loading }) => {
 };
 
 RecipeComments.propTypes = {
-  posts: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired
+  posts: PropTypes.shape({}).isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default RecipeComments;

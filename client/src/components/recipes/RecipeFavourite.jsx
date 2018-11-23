@@ -1,7 +1,7 @@
 import React from 'react';
 import './RecipeFavourite.css';
 
-const RecipeFavourite = (props) => {
+const RecipeFavourite = props => {
   const onClickHandler = () => {
     if (!this.state.isFavourited) {
       this.setState({
