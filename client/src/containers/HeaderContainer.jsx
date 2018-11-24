@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../actions/authActions';
 import { clearCurrentProfile } from '../actions/profileActions';
 
-// import Navbar from '../components/layout/Navbar';
-import NavbarComponent from '../components/layout/Navbar';
+import Header from '../components/layout/Header';
 
-class NavbarContainer extends Component {
+class HeaderContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
     this.onLogoutCallback = this.onLogoutCallback.bind(this);
     this.onNavbarToggleCallback = this.onNavbarToggleCallback.bind(this);
@@ -30,30 +29,30 @@ class NavbarContainer extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { onHomepage } = this.props;
+    const { isOpen } = this.state;
     return (
       <div className="navbar-container">
-        <NavbarComponent
+        <Header
           user={user}
           isAuthenticated={isAuthenticated}
-          isOpen={this.state.isOpen}
+          isOpen={isOpen}
           onNavbarToggleCallback={this.onNavbarToggleCallback}
           onLogoutCallback={this.onLogoutCallback}
+          onHomepage={onHomepage}
         />
       </div>
     );
   }
 }
 
-NavbarContainer.propTypes = {
+HeaderContainer.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
 });
 
-export default connect(
-  mapStateToProps,
-  { logoutUser, clearCurrentProfile }
-)(NavbarContainer);
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(HeaderContainer);

@@ -24,6 +24,7 @@ const NavbarComponent = ({
   isOpen,
   onNavbarToggleCallback,
   onLogoutCallback,
+  onHomepage,
 }) => {
   const onNavbarToggle = () => {
     onNavbarToggleCallback();
@@ -51,7 +52,7 @@ const NavbarComponent = ({
       <NavItem className="nav__item">
         <NavLink tag={Link} to="/login" className="nav__item__link">Login</NavLink>
       </NavItem>
-    </Nav >
+    </Nav>
   );
 
   const authLinks = (
@@ -59,41 +60,43 @@ const NavbarComponent = ({
       <NavItem className="nav__item">
         <NavLink tag={Link} to="/dashboard" className="nav__item__link">Messages</NavLink>
       </NavItem>
-      <UncontrolledDropdown nav inNavbar>
-        <DropdownToggle nav caret>
-          <img
-            className="rounded-circle"
-            src={user.avatar}
-            alt={user.name}
-            style={{ width: '25px', marginRight: '5px' }}
-            title="You must have a Gravatar connected to your email to display an image"
-          />
-          {' '}
-          {user.name}
-        </DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>
-            <NavLink tag={Link} to="/dashboard" className="nav__item__link">Dashboard</NavLink>
-          </DropdownItem>
-          <DropdownItem>
-            <NavLink tag={Link} to="/profiles" className="nav__item__link">Chefs</NavLink>
-          </DropdownItem>
-          <DropdownItem>
-            <NavLink tag={Link} to="/ingredients" className="nav__item__link">Ingredients</NavLink>
-          </DropdownItem>
-          <DropdownItem>
-            <NavLink tag={Link} to="/editor" className="nav__item__link">Editor</NavLink>
-          </DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem onClick={onLogout}>Logout</DropdownItem>
-        </DropdownMenu>
-      </UncontrolledDropdown>
+      <NavItem className="nav__item">
+        <UncontrolledDropdown nav inNavbar>
+          <DropdownToggle nav caret>
+            <img
+              className="rounded-circle"
+              src={user.avatar}
+              alt={user.name}
+              style={{ width: '20px', marginRight: '5px' }}
+              title="You must have a Gravatar connected to your email to display an image"
+            />
+            {' '}
+            {user.name}
+          </DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>
+              <NavLink tag={Link} to="/dashboard" className="nav__item__link--dropdown">Dashboard</NavLink>
+            </DropdownItem>
+            <DropdownItem>
+              <NavLink tag={Link} to="/profiles" className="nav__item__link--dropdown">Chefs</NavLink>
+            </DropdownItem>
+            <DropdownItem>
+              <NavLink tag={Link} to="/ingredients" className="nav__item__link--dropdown">Ingredients</NavLink>
+            </DropdownItem>
+            <DropdownItem>
+              <NavLink tag={Link} to="/editor" className="nav__item__link--dropdown">Editor</NavLink>
+            </DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem onClick={onLogout}><NavLink tag={Link} to="/home" className="nav__item__link--dropdown">Logout</NavLink></DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+      </NavItem>
     </Nav>
   );
 
   return (
     <ScrollWrapper onWindowScroll={handleScroll}>
-      <Navbar fixed="top" expand="sm" className="nav" id="myNav">
+      <Navbar fixed="top" expand="sm" className={(onHomepage) ? 'nav nav--homepage' : 'nav nav--not-homepage'} id="myNav">
         <NavbarBrand href="/home" className="nav__brand">Project FPP</NavbarBrand>
         <NavbarToggler onClick={onNavbarToggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -124,6 +127,7 @@ NavbarComponent.propTypes = {
   onNavbarToggleCallback: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onLogoutCallback: PropTypes.func.isRequired,
+  onHomepage: PropTypes.bool.isRequired,
 };
 
 export default NavbarComponent;

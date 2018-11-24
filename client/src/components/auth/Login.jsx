@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import TextField from '@material-ui/core/TextField';
+
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { TextField } from '@material-ui/core';
 import {
   Container,
   Row,
@@ -18,7 +21,7 @@ const Login = ({
   password,
   onChangeCallback,
   onSubmitLoginCallback,
-  errors
+  errors,
 }) => {
   const onChange = e => {
     onChangeCallback(e);
@@ -37,12 +40,6 @@ const Login = ({
             <h1 className="display-4 text-center">Login</h1>
             <p className="lead text-center">Sign in to your account</p>
             <Form onSubmit={onSubmit} noValidate autoComplete="off">
-              <TextField
-                id="standard-dense"
-                label="Dense"
-                className={classNames(classes.textField, classes.dense)}
-                margin="dense"
-              />
               <FormGroup>
                 <Label for="">Email</Label>
                 <Input
@@ -70,7 +67,10 @@ const Login = ({
               </FormGroup>
               <Input type="submit" className="btn btn-info btn-block mt-4" />
             </Form>
-            <small>No account yet? <Link to="/register">Signup here.</Link></small>
+            <small>
+              {'No account yet? '}
+              <Link to="/register">Signup here.</Link>
+            </small>
           </Col>
         </Row>
       </Container>
@@ -82,8 +82,8 @@ Login.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
-  onSubmitCallback: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
+  onSubmitLoginCallback: PropTypes.func.isRequired,
+  errors: PropTypes.shape({}).isRequired,
 };
 
 export default Login;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
@@ -8,7 +8,7 @@ import { clearCurrentProfile } from './actions/profileActions';
 import store from './store/store';
 
 import Routes from './Routes';
-import NavbarContainer from './containers/NavbarContainer';
+import HeaderContainer from './containers/HeaderContainer';
 import FooterContainer from './containers/FooterContainer';
 import './App.scss';
 
@@ -37,7 +37,10 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <div className="app">
-        <NavbarContainer />
+        <Switch>
+          <Route exact path="/home" component={HeaderContainer} />
+          <Route path="/" render={() => <HeaderContainer onHomepage={false} />} />
+        </Switch>
         <main className="app-main">
           <Routes />
         </main>

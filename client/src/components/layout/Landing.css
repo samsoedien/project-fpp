@@ -15,3 +15,8 @@
   margin: 0 auto;
   z-index: 10000;
 }
+
+.landing__label {
+  position: relative;
+  z-index: 10000;
+}

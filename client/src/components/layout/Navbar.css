@@ -20,6 +20,10 @@
   color: white;
 }
 
+.nav__item__link--dropdown {
+  color: grey;
+}
+
 .nav__item__link:hover, .nav__item__link:active {
   color: brown;
   transition: .2s
@@ -37,4 +41,8 @@
 
 .nav--shrink > .nav__item__link {
   color: blue;
+}
+
+.nav--not-homepage {
+  background-color: lightgrey;
 }
