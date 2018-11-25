@@ -30,7 +30,9 @@ class ProfileContainer extends Component {
 
 ProfileContainer.propTypes = {
   getProfileByHandle: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+  profile: PropTypes.shape({
+    user: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({

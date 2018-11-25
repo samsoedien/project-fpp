@@ -90,7 +90,7 @@ const Pricing = () => {
   );
 };
 
-Pricing.PropTypes = {
+Pricing.propTypes = {
 
 }
 

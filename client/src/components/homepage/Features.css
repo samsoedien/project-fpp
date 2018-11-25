@@ -1,5 +1,5 @@
 
-.img-section-header {
+.features__background-banner {
   position: relative;
   height: 360px;
   background-image: url('../../assets/img/foodprinted_sidedish.jpg');
@@ -9,12 +9,12 @@
   background-attachment: fixed;
 }
 
-.overlay {
+.features__overlay {
   height: inherit;
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.white-text {
+.heading {
   color: white;
   text-align: center;
   padding: 60px 120px;

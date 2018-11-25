@@ -10,7 +10,7 @@ import {
   CardText,
   CardBody,
   CardTitle,
-  CardSubtitle
+  CardSubtitle,
 } from 'reactstrap';
 
 import img from '../../assets/img/foodprinted_sidedish.jpg';
@@ -32,8 +32,8 @@ const RecipeItem = ({ recipe }) => (
   </Col>
 );
 
-RecipeItem.PropTypes = {
-  recipe: PropTypes.object.isRequired
+RecipeItem.propTypes = {
+  recipe: PropTypes.shape().isRequired,
 };
 
 export default RecipeItem;

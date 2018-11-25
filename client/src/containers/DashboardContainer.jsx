@@ -13,15 +13,18 @@ class DashboardContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getCurrentProfile();
+    const { getCurrentProfile } = this.props;
+    getCurrentProfile();
   }
 
   onDeleteCallback() {
-    this.props.deleteAccount();
+    const { deleteAccount } = this.props;
+    deleteAccount();
   }
 
   onDeleteExperienceCallback(id) {
-    this.props.deleteExperience(id);
+    const { deleteExperience } = this.props;
+    deleteExperience(id);
   }
 
   render() {
@@ -42,11 +45,17 @@ class DashboardContainer extends Component {
   }
 }
 
-Dashboard.propTypes = {
+DashboardContainer.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
-  auth: PropTypes.shape({}).isRequired,
-  profile: PropTypes.shape({}).isRequired,
+  deleteExperience: PropTypes.func.isRequired,
+  auth: PropTypes.shape({
+    user: PropTypes.string.isRequired,
+  }).isRequired,
+  profile: PropTypes.shape({
+    profile: PropTypes.object.isRequired,
+    loading: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -54,4 +63,8 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount, deleteExperience })(DashboardContainer);
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  deleteAccount,
+  deleteExperience,
+})(DashboardContainer);
