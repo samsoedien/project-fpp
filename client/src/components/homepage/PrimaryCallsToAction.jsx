@@ -13,7 +13,7 @@ import ScrollWrapper from '../../wrappers/ScrollWrapper';
 import './PrimaryCallToAction.css';
 
 const PrimaryCallsToAction = () => {
-  const handleScroll = (scrollDistance) => {
+  const handleScroll = scrollDistance => {
     const parallaxItem = document.getElementById('myPrimaryCTA');
     parallaxItem.style.transform = `translate(0px, ${-scrollDistance / 4}px)`;
   };

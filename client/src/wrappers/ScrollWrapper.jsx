@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 export default class ScrollWrapper extends Component {
   constructor(props) {
     super(props);
-    this.handleScroll = this.handleScroll.bind(this)
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
   }
 
-  conponentDidUnmount() {
+  componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import PrimaryCallsToAction from './PrimaryCallsToAction';
 import Features from './Features';
 import './Homepage.css';
