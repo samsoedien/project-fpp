@@ -29,3 +29,7 @@ export const GET_THREE_SCENE = 'GET_THREE_SCENE';
 export const RESTAURANT_LOADING = 'RESTAURANT_LOADING';
 export const GET_RESTAURANTS = 'GET_RESTAURANTS';
 export const GET_RESTAURANT = 'GET_RESTAURANT';
+
+export const BLOG_LOADING = 'BLOG_LOADING';
+export const GET_BLOGS = 'GET_BLOGS';
+export const GET_BLOG = 'GET_BLOG';

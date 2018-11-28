@@ -1,13 +1,14 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-
-//import './Footer.css';
+import './Footer.css';
 
 const Footer = () => (
   <div className="footer">
     <footer className="bg-dark text-white mt-5 p-4 text-center">
-      Copyright &copy; {new Date().getFullYear()} Samsoedien
+      Copyright &copy;
+      {' ' + new Date().getFullYear()}
+      {' Samsoedien'}
       <ul className="list-unstyled">
         <li>Footer Link</li>
       </ul>
@@ -25,8 +26,8 @@ const Footer = () => (
   </div>
 );
 
-// Footer.propTypes = {
+Footer.propTypes = {
 
-// };
+};
 
 export default Footer;

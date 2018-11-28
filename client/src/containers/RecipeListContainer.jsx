@@ -16,7 +16,8 @@ class RecipeListContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getRecipes();
+    const { getRecipes } = this.props;
+    getRecipes();
   }
 
   filterListUpdate(value) {
@@ -45,11 +46,11 @@ class RecipeListContainer extends Component {
 
 RecipeListContainer.propTypes = {
   getRecipes: PropTypes.func.isRequired,
-  recipe: PropTypes.object.isRequired,
+  recipe: PropTypes.shape().isRequired,
 };
 
 const mapStateToProps = state => ({
-  recipe: state.recipe,
+  recipes: state.recipes,
 });
 
 export default connect(mapStateToProps, { getRecipes })(RecipeListContainer);

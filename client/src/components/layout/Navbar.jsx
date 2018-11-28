@@ -37,7 +37,7 @@ const NavbarComponent = ({
 
   const handleScroll = scrollDistance => {
     const navElement = document.getElementById('myNav');
-    if (scrollDistance > 50) {
+    if (scrollDistance > 80) {
       navElement.classList.add('navbar--shrink');
     } else {
       navElement.classList.remove('navbar--shrink');

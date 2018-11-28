@@ -1,6 +1,12 @@
 import React from 'react';
-import Spinner from '../common/Spinner';
+import PropTypes from 'prop-types';
+import {
+  Container,
+  Row,
+  Col,
+} from 'reactstrap';
 
+import Spinner from '../common/Spinner';
 import ProfileItem from './ProfileItem';
 
 const ProfileList = ({ profiles, loading }) => {
@@ -17,20 +23,27 @@ const ProfileList = ({ profiles, loading }) => {
   }
 
   return (
-    <div className="profiles">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
+    <div className="profiles-list">
+      <Container>
+        <Row>
+          <Col md="12">
             <h1 className="display-4 text-center">Chef Profiles</h1>
             <p className="lead text-center">
               Browse and connect with chefs
-              </p>
+            </p>
             {profileItems}
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
+};
+
+ProfileList.propTypes = {
+  profiles: PropTypes.shape({
+    profile: PropTypes.object.isRequired,
+  }).isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default ProfileList;

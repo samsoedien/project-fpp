@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  Container,
+  CardDeck,
+} from 'reactstrap';
 
 import PrimaryCallsToAction from './PrimaryCallsToAction';
 import Pricing from './Pricing';
 import Features from './Features';
+import BlogList from '../blogs/BlogList';
 import './Homepage.css';
 
 const Homepage = ({ isLoggedin }) => {
@@ -15,6 +20,7 @@ const Homepage = ({ isLoggedin }) => {
             <Pricing />
             <PrimaryCallsToAction />
             <Features />
+            <BlogList />
           </React.Fragment>
         ) : (
             <h1>Hi There</h1>

@@ -13,6 +13,7 @@ const recipesRoutes = require('./routes/recipes');
 const ingredientsRoutes = require('./routes/ingredients');
 const threeRoutes = require('./routes/three');
 const restaurantsRoutes = require('./routes/restaurants');
+const blogsRoutes = require('./routes/blogs');
 
 const app = express();
 
@@ -76,6 +77,7 @@ app.use('/api/recipes', recipesRoutes);
 app.use('/api/ingredients', ingredientsRoutes);
 app.use('/api/three', threeRoutes);
 app.use('/api/restaurants', restaurantsRoutes);
+app.use('/api/blogs', blogsRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
