@@ -8,11 +8,7 @@ import {
 } from '../constants/types';
 
 // Set loading state
-export const setRestaurantLoading = () => {
-  return {
-    type: RESTAURANT_LOADING,
-  };
-};
+export const setRestaurantLoading = () => ({ type: RESTAURANT_LOADING });
 
 // Get All Restaurants
 export const getRestaurants = () => dispatch => {

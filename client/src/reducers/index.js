@@ -6,6 +6,7 @@ import postReducer from './postReducer';
 import recipeReducer from './recipeReducer';
 import ingredientReducer from './ingredientReducer';
 import restaurantReducer from './restaurantReducer';
+import blogReducer from './blogReducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -15,4 +16,5 @@ export default combineReducers({
   recipe: recipeReducer,
   ingredient: ingredientReducer,
   restaurant: restaurantReducer,
+  blog: blogReducer,
 });

@@ -11,11 +11,7 @@ import {
 } from '../constants/types';
 
 // Set loading state
-export const setPostLoading = () => {
-  return {
-    type: POST_LOADING,
-  };
-};
+export const setPostLoading = () => ({ type: POST_LOADING });
 
 // Clear errors
 export const clearErrors = () => {

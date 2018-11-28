@@ -1,32 +1,32 @@
 import {
-  GET_RECIPES,
-  GET_RECIPE,
-  RECIPE_LOADING,
+  GET_BLOGS,
+  GET_BLOG,
+  BLOG_LOADING,
 } from '../constants/types';
 
 const initialState = {
-  recipes: null,
-  recipe: null,
+  blogs: null,
+  blog: null,
   loading: false,
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case RECIPE_LOADING:
+    case BLOG_LOADING:
       return {
         ...state,
         loading: true,
       };
-    case GET_RECIPES:
+    case GET_BLOGS:
       return {
         ...state,
-        recipes: action.payload,
+        blogs: action.payload,
         loading: false,
       };
-    case GET_RECIPE:
+    case GET_BLOG:
       return {
         ...state,
-        recipe: action.payload,
+        blog: action.payload,
         loading: false,
       };
     default:

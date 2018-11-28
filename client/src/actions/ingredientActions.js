@@ -8,11 +8,7 @@ import {
 } from '../constants/types';
 
 // Set loading state
-export const setIngredientLoading = () => {
-  return {
-    type: INGREDIENT_LOADING,
-  };
-};
+export const setIngredientLoading = () => ({ type: INGREDIENT_LOADING });
 
 // Get All Ingredients
 export const getIngredients = () => dispatch => {

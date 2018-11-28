@@ -10,11 +10,7 @@ import {
 } from '../constants/types';
 
 // Profile Loading
-export const setProfileLoading = () => {
-  return {
-    type: PROFILE_LOADING,
-  };
-};
+export const setProfileLoading = () => ({ type: PROFILE_LOADING });
 
 // Get Current Profile
 export const getCurrentProfile = () => dispatch => {

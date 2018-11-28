@@ -13,6 +13,7 @@ class BlogListContainer extends Component {
 
   render() {
     const { blogs, loading } = this.props.blog;
+    console.log(blogs);
     return (
       <div className="blogs-list-container">
         <BlogList
@@ -27,13 +28,13 @@ class BlogListContainer extends Component {
 BlogListContainer.propTypes = {
   getBlogs: PropTypes.func.isRequired,
   blog: PropTypes.shape({
-    blogs: PropTypes.object.isRequired,
+    blogs: PropTypes.object,
+    loading: PropTypes.bool.isRequired,
   }).isRequired,
-  loading: PropTypes.bool.isRequired,
-}
+};
 
 const mapStateToProps = state => ({
-  blogs: state.blogs,
+  blog: state.blog,
 });
 
 export default connect(mapStateToProps, { getBlogs })(BlogListContainer);

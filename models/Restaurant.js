@@ -6,15 +6,15 @@ const RestaurantSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   }
 });
 

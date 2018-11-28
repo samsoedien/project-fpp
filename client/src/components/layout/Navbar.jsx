@@ -58,7 +58,7 @@ const NavbarComponent = ({
   const authLinks = (
     <Nav navbar>
       <NavItem className="navbar__item">
-        <NavLink tag={Link} to="/dashboard" className="navbar__item__link">Messages</NavLink>
+        <NavLink tag={Link} to="/feed" className="navbar__item__link">Messages</NavLink>
       </NavItem>
       <NavItem className="navbar__item">
         <UncontrolledDropdown nav inNavbar>
@@ -107,7 +107,7 @@ const NavbarComponent = ({
               <NavLink tag={Link} to="/restaurants" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Restaurants</NavLink>
             </NavItem>
             <NavItem className="navbar__item">
-              <NavLink tag={Link} to="/feed" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Community</NavLink>
+              <NavLink tag={Link} to="/community" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Community</NavLink>
             </NavItem>
           </Nav>
           {isAuthenticated ? authLinks : guestLinks}

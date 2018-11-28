@@ -15,22 +15,20 @@ const RestaurantList = ({ restaurants, filterText, filterUpdate, loading }) => {
   let restaurantItems;
   if (restaurants === null || loading) {
     restaurantItems = <Spinner />;
+  } else if (restaurants.length > 0) {
+    restaurantItems = restaurants
+      .filter(restaurant => {
+        return (
+          restaurant.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
+        );
+      })
+      .map(restaurant => (
+        <RestaurantItem key={restaurant._id} restaurant={restaurant} />
+      ));
   } else {
-    if (restaurants.length > 0) {
-      restaurantItems = restaurants
-        .filter(restaurant => {
-          // remove names that do not match current filter text
-          return (
-            restaurant.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
-          );
-        })
-        .map(restaurant => (
-          <RestaurantItem key={restaurant._id} restaurant={restaurant} />
-        ));
-    } else {
-      restaurantItems = <h4>No Restaurants found...</h4>;
-    }
+    restaurantItems = <h4>No Restaurants found...</h4>;
   }
+
   return (
     <div className="restaurant-list">
       <Container>
@@ -50,10 +48,12 @@ const RestaurantList = ({ restaurants, filterText, filterUpdate, loading }) => {
 };
 
 RestaurantList.propTypes = {
-  restaurants: PropTypes.object,
+  restaurants: PropTypes.shape({
+    restaurant: PropTypes.object.isRequired,
+  }).isRequired,
   loading: PropTypes.bool.isRequired,
   filterText: PropTypes.string.isRequired,
-  filterUpdate: PropTypes.func.isRequired
+  filterUpdate: PropTypes.func.isRequired,
 };
 
 export default RestaurantList;

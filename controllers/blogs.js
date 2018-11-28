@@ -9,25 +9,9 @@ exports.testBlogs = (req, res, next) => res.json({ message: 'Blogs Works' });
 exports.getBlogs = (req, res, next) => {
   Blog.find()
     .select('-__v')
-    .populate('user', ['name', 'avatar'])
     .sort({ date: -1 })
     .exec()
-    .then(result => {
-      const response = {
-        count: result.length,
-        blogs: result.map(doc => {
-          return {
-            _id: doc._id,
-            title: doc.title,
-            request: {
-              type: 'GET',
-              url: `http://localhost:4000/api/blogs/${doc._id}`,
-            },
-          };
-        }),
-      };
-      res.status(200).json(response);
-    })
+    .then(blogs => res.status(200).json(blogs))
     .catch(err => res.status(404).json({ status: 'error', message: 'No blogs found' }));
 };
 
@@ -36,13 +20,8 @@ exports.getBlogById = (req, res, next) => {
     .select('-__v')
     .populate('user', ['name', 'avatar'])
     .exec()
-    .then(result => {
-      const response = {
-        blog: result,
-      };
-      res.status(200).json(response);
-    })
-    .catch(err => res.status(404).json({ status: 'error', message: 'No recipe found with that ID' }));
+    .then(blogs => res.status(200).json(blogs))
+    .catch(err => res.status(404).json({ status: 'error', message: 'No blogs found with that ID' }));
 };
 
 exports.postBlog = (req, res, next) => {
@@ -54,6 +33,7 @@ exports.postBlog = (req, res, next) => {
   const newBlog = new Blog({
     _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
+    user: req.user.id,
   });
   newBlog
     .save()

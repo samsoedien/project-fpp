@@ -7,11 +7,7 @@ import {
   GET_ERRORS,
 } from '../constants/types';
 
-export const setBlogLoading = () => {
-  return {
-    type: BLOG_LOADING,
-  }
-}
+export const setBlogLoading = () => ({ type: BLOG_LOADING });
 
 export const getBlogs = () => dispatch => {
   dispatch(setBlogLoading());
@@ -19,7 +15,7 @@ export const getBlogs = () => dispatch => {
     .get('/api/blogs')
     .then(res => dispatch({
       type: GET_BLOGS,
-      payload: res.data.blogs,
+      payload: res.data,
     }))
     .catch(err => dispatch({
       type: GET_BLOGS,
@@ -33,7 +29,7 @@ export const getBlog = id => dispatch => {
     .get(`/api/blogs/${id}`)
     .then(res => dispatch({
       type: GET_BLOG,
-      payload: res.data.blog,
+      payload: res.data,
     }))
     .catch(err => dispatch({
       type: GET_BLOG,

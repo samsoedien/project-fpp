@@ -29,7 +29,9 @@ exports.postRestaurant = (req, res, next) => {
     return res.status(422).json(errors);
   }
   const newRestaurant = new Restaurant({
-    name: req.body.name
+    _id: new mongoose.Types.ObjectId(),
+    name: req.body.name,
+    user: req.user.id,
   });
   newRestaurant.save().then(restaurant => res.status(201).json(restaurant));
 };

@@ -106,15 +106,12 @@ class RecipeFormContainer extends Component {
 
 RecipeFormContainer.propTypes = {
   recipe: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   recipe: state.recipe,
-  errors: state.errors
+  errors: state.errors,
 });
 
-export default connect(
-  mapStateToProps,
-  { createRecipe }
-)(withRouter(RecipeFormContainer));
+export default connect(mapStateToProps, { createRecipe })(withRouter(RecipeFormContainer));

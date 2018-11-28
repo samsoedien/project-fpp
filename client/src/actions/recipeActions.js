@@ -7,18 +7,8 @@ import {
   GET_ERRORS,
 } from '../constants/types';
 
-const config = {
-  headers: {
-    'content-type': 'multipart/form-data'
-  }
-};
-
 // Set loading state
-export const setRecipeLoading = () => {
-  return {
-    type: RECIPE_LOADING,
-  };
-};
+export const setRecipeLoading = () => ({ type: RECIPE_LOADING });
 
 // Get All Recipes
 export const getRecipes = () => dispatch => {

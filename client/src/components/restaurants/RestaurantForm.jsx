@@ -8,7 +8,7 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText
+  FormText,
 } from 'reactstrap';
 
 const RestaurantForm = ({
@@ -53,6 +53,7 @@ const RestaurantForm = ({
                 />
                 <FormText color="danger">{errors ? errors.name : ''}</FormText>
               </FormGroup>
+              <Input type="submit" value="Submit" />
             </Form>
           </Col>
         </Row>
@@ -62,13 +63,14 @@ const RestaurantForm = ({
 };
 
 RestaurantForm.propTypes = {
+  name: PropTypes.string.isRequired,
   displaySocialInputs: PropTypes.bool.isRequired,
   twitter: PropTypes.string.isRequired,
   facebook: PropTypes.string.isRequired,
   instagram: PropTypes.string.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.shape().isRequired,
   onChangeCallback: PropTypes.func.isRequired,
-  onSubmitCallback: PropTypes.func.isRequired
+  onSubmitCallback: PropTypes.func.isRequired,
 };
 
 export default RestaurantForm;

@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "An online platform for creating, sharing and modifying digital CAD files for 3D food printing.",
   "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/samsoedien/project-fpp.git"
+  },
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "set PORT=4000 && node server.js",

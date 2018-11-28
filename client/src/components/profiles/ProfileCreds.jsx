@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import Moment from 'react-moment';
 
 const ProfileCreds = ({ experience }) => {
@@ -12,8 +12,8 @@ const ProfileCreds = ({ experience }) => {
         {exp.to === null ? (
           ' Now'
         ) : (
-          <Moment format="YYYY/MM/DD">{exp.to}</Moment>
-        )}
+            <Moment format="YYYY/MM/DD">{exp.to}</Moment>
+          )}
       </p>
       <p>
         <strong>Position:</strong> {exp.title}
@@ -42,13 +42,15 @@ const ProfileCreds = ({ experience }) => {
         {expItems.length > 0 ? (
           <ul className="list-group">{expItems}</ul>
         ) : (
-          <p className="text-center">No Experience Listed</p>
-        )}
+            <p className="text-center">No Experience Listed</p>
+          )}
       </Col>
     </Row>
   );
 };
 
-ProfileCreds.propTypes = {};
+ProfileCreds.propTypes = {
+  experience: PropTypes.object.isRequired,
+};
 
 export default ProfileCreds;

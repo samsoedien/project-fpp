@@ -45,7 +45,10 @@ class RestaurantListContainer extends Component {
 
 RestaurantListContainer.propTypes = {
   getRestaurants: PropTypes.func.isRequired,
-  restaurant: PropTypes.object.isRequired,
+  restaurant: PropTypes.shape({
+    restaurants: PropTypes.object,
+    loading: PropTypes.bool.isRequired,
+  }).isRequired,
 }
 
 const mapStateToProps = state => ({

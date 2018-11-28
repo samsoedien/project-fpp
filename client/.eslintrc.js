@@ -25,7 +25,7 @@ module.exports = {
     ],
     "linebreak-style": 0,
     "arrow-parens": [2, "as-needed"],
-    "no-underscore-dangle": "warn",
+    "no-underscore-dangle": "off",
     "no-shadow": "off",
   }
 };

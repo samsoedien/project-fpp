@@ -22,6 +22,7 @@ import IngredientFormContainer from './containers/IngredientFormContainer';
 import NutritionContainer from './containers/NutritionContainer';
 import RestaurantListContainer from './containers/RestaurantListContainer';
 import ThreeEditorContainer from './containers/ThreeEditorContainer';
+import BlogListContainer from './containers/BlogListContainer';
 import NotFound from './components/not-found/NotFound';
 import TestComponent from './components/temp/TestComponent';
 
@@ -46,6 +47,7 @@ const Routes = () => (
     <Route exact path="/restaurants" component={RestaurantListContainer} />
     <Route exact path="/ingredients/:id" component={IngredientContainer} />
     <Route exact path="/ingredients" component={IngredientListContainer} />
+    <Route exact path="/community" component={BlogListContainer} />
 
     <Switch>
       <PrivateRouteWrapper exact path="/dashboard" component={DashboardContainer} />

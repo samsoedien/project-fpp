@@ -3,11 +3,7 @@ import axios from 'axios';
 import { THREE_LOADING, GET_THREE_SCENE, GET_ERRORS } from '../constants/types';
 
 // Set loading state
-export const setThreeLoading = () => {
-  return {
-    type: THREE_LOADING,
-  };
-};
+export const setThreeLoading = () => ({ type: THREE_LOADING });
 
 // Get Three Scene
 export const getThreeScene = id => dispatch => {
