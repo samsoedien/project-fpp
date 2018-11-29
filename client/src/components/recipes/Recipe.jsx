@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spinner from '../common/Spinner';
+import Loader from '../common/Loader';
 
 import ThreeContainer from '../../containers/ThreeContainer';
 
@@ -16,7 +16,7 @@ import ThreeNutritions from '../three/ThreeNutritions';
 const Recipe = ({ recipe, isFavourited, loading }) => {
   let recipeContent;
   if (recipe === null || loading) {
-    recipeContent = <Spinner />;
+    recipeContent = <Loader />;
   } else {
     recipeContent = (
       <div>

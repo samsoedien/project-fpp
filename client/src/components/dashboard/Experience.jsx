@@ -6,7 +6,7 @@ import ConfirmDeleteWrapper from '../../wrappers/ConfirmDeleteWrapper';
 
 const Experience = ({
   experience,
-  onDeleteExperience
+  onDeleteExperience,
 }) => {
   const onDelete = id => {
     onDeleteExperience(id);
@@ -55,7 +55,7 @@ const Experience = ({
 
 Experience.propTypes = {
   experience: PropTypes.shape({}).isRequired,
-  onDeleteCallback: PropTypes.func.isRequired,
+  onDeleteExperience: PropTypes.func.isRequired,
 };
 
 export default Experience;

@@ -42,6 +42,6 @@ export default class SearchBar extends Component {
 
 SearchBar.propTypes = {
   filterCallback: PropTypes.func.isRequired,
-}
+};
 
 // FIXME: refs do not work with reactstrap Input component. regular input is used with form-control className.

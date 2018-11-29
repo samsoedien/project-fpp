@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Container,
@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 
 import isEmpty from '../../utils/is-empty';
-import Spinner from '../common/Spinner';
+import Loader from '../common/Loader';
 
 import NutritionCellData from './NutritionCellData';
 
@@ -30,7 +30,7 @@ const Nutrition = ({
 
   let nutritionItems;
   if (nutritions === null) {
-    nutritionItems = <Spinner />;
+    nutritionItems = <Loader />;
   } else if (nutritions.length > 0) {
     nutritionItems = nutritions.map(nutrition => (
       <tr>

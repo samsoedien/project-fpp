@@ -14,7 +14,13 @@ const BlogItem = ({ blog }) => {
         <CardText>This is text about the blog...</CardText>
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default BlogItem; 
+BlogItem.propTypes = {
+  blog: PropTypes.shape().isRequired,
+};
+
+export default BlogItem;
+
+// TODO: Design blogs.

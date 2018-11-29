@@ -5,13 +5,13 @@ import {
   CardDeck,
 } from 'reactstrap';
 
-import Spinner from '../common/Spinner';
+import Loader from '../common/Loader';
 import BlogItem from './BlogItem';
 
 const BlogList = ({ blogs, loading }) => {
   let blogItems;
   if (blogs === null || loading) {
-    blogItems = <Spinner />;
+    blogItems = <Loader />;
   } else if (blogs.length > 0) {
     blogItems = blogs.map(blog => (
       <BlogItem key={blog._id} blog={blog} />

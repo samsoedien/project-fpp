@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRouteWrapper from './wrappers/PrivateRouteWrapper';
 
@@ -27,7 +27,7 @@ import NotFound from './components/not-found/NotFound';
 import TestComponent from './components/temp/TestComponent';
 
 const Routes = () => (
-  <React.Fragment>
+  <Fragment>
     <Route exact path="/" component={LandingContainer} />
     <Route exact path="/home" component={HomepageContainer} />
     <Route
@@ -105,7 +105,7 @@ const Routes = () => (
     </Switch>
     <Route exact path="/test" component={TestComponent} />
     <Route exact path="/not-found" component={NotFound} />
-  </React.Fragment>
+  </Fragment>
 );
 
 export default Routes;

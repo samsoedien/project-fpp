@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
-import Spinner from '../common/Spinner';
+import Loader from '../common/Loader';
 
 import RestaurantItem from './RestaurantItem';
 import SearchBar from '../common/SearchBar';
@@ -14,7 +14,7 @@ const RestaurantList = ({ restaurants, filterText, filterUpdate, loading }) => {
 
   let restaurantItems;
   if (restaurants === null || loading) {
-    restaurantItems = <Spinner />;
+    restaurantItems = <Loader />;
   } else if (restaurants.length > 0) {
     restaurantItems = restaurants
       .filter(restaurant => {

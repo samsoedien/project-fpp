@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 
-import Spinner from '../common/Spinner';
+import Loader from '../common/Loader';
 import ProfileHeader from './ProfileHeader';
 import ProfileAbout from './ProfileAbout';
 import ProfileCreds from './ProfileCreds';
@@ -10,7 +10,7 @@ import ProfileCreds from './ProfileCreds';
 const Profile = ({ profile, loading }) => {
   let profileContent;
   if (profile === null || loading) {
-    profileContent = <Spinner />;
+    profileContent = <Loader />;
   } else {
     profileContent = (
       <div>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { Container, Row } from 'reactstrap';
-import Spinner from '../common/Spinner';
+import Loader from '../common/Loader';
 
 import RecipeItem from './RecipeItem';
 import SearchBar from '../common/SearchBar';
@@ -20,7 +20,7 @@ const RecipeList = ({
 
   let recipeItems;
   if (recipes === null || loading) {
-    recipeItems = <Spinner />;
+    recipeItems = <Loader />;
   } else if (recipes.length > 0) {
     recipeItems = recipes
       .filter(recipe => {

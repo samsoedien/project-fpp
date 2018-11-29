@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spinner from '../common/Spinner';
+import Loader from '../common/Loader';
 import SearchBar from '../common/SearchBar';
 
 import IngredientItem from './IngredientItem';
@@ -13,7 +13,7 @@ const IngredientList = ({ ingredients, filterText, filterUpdate, loading }) => {
   console.log(ingredients);
   let ingredientItems;
   if (ingredients === null || loading) {
-    ingredientItems = <Spinner />;
+    ingredientItems = <Loader />;
   } else if (ingredients.length > 0) {
     ingredientItems = ingredients
       .filter(ingredient => {
@@ -35,7 +35,7 @@ const IngredientList = ({ ingredients, filterText, filterUpdate, loading }) => {
             filterCallback={filterCallback}
           />
         </div>
-        <ul className="bg-light">{ingredientItems}</ul>
+        <ul>{ingredientItems}</ul>
       </div>
     </div>
   );

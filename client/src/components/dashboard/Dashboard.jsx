@@ -7,7 +7,7 @@ import {
   Col,
 } from 'reactstrap';
 
-import Spinner from '../common/Spinner';
+import Loader from '../common/Loader';
 import ProfileActions from './ProfileActions';
 import Experience from './Experience';
 import ConfirmDeleteWrapper from '../../wrappers/ConfirmDeleteWrapper';
@@ -29,7 +29,7 @@ const Dashboard = ({
 
   let dashboardContent;
   if (profile === null || loading) {
-    dashboardContent = <Spinner />;
+    dashboardContent = <Loader />;
   } else if (Object.keys(profile).length > 0) { // Check if logged in user has profile data
     dashboardContent = (
       <div>
@@ -80,6 +80,7 @@ Dashboard.propTypes = {
   }).isRequired,
   loading: PropTypes.bool.isRequired,
   onDeleteCallback: PropTypes.func.isRequired,
+  onDeleteExperienceCallback: PropTypes.func.isRequired,
 };
 
 export default Dashboard;

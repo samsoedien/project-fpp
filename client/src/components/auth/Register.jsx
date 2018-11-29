@@ -8,7 +8,7 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText
+  FormText,
 } from 'reactstrap';
 
 const Register = ({
@@ -18,7 +18,7 @@ const Register = ({
   passwordConfirm,
   onChangeCallback,
   onSubmitRegisterCallback,
-  errors
+  errors,
 }) => {
   const onChange = e => {
     onChangeCallback(e);
@@ -103,8 +103,13 @@ Register.propTypes = {
   password: PropTypes.string.isRequired,
   passwordConfirm: PropTypes.string.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
-  onSubmitCallback: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
+  onSubmitRegisterCallback: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    passwordConfirm: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Register;

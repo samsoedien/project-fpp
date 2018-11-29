@@ -7,12 +7,12 @@ import {
   Col
 } from 'reactstrap';
 
-import Spinner from '../common/Spinner';
+import Loader from '../common/Loader';
 
 const Ingredient = ({ ingredient, loading }) => {
   let ingredientContent;
   if (ingredient === null || loading) {
-    ingredientContent = <Spinner />;
+    ingredientContent = <Loader />;
   } else {
     ingredientContent = (
       <div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
   Container,
@@ -15,11 +15,11 @@ const Homepage = ({ isLoggedin }) => {
     <div className="homepage">
       <div className="homepage__content">
         {(isLoggedin) ? (
-          <React.Fragment>
+          <Fragment>
             <Pricing />
             <PrimaryCallsToAction />
             <Features />
-          </React.Fragment>
+          </Fragment>
         ) : (
             <h1>Hi There</h1>
           )}

@@ -15,25 +15,25 @@ class AuthContainer extends Component {
       email: '',
       password: '',
       passwordConfirm: '',
-      errors: {}
+      showPassword: false,
+      errors: {},
     };
     this.onChangeCallback = this.onChangeCallback.bind(this);
     this.onSubmitRegisterCallback = this.onSubmitRegisterCallback.bind(this);
     this.onSubmitLoginCallback = this.onSubmitLoginCallback.bind(this);
+    this.handleShowPasswordCallback = this.handleShowPasswordCallback.bind(this);
   }
 
   componentDidMount() {
-    const { history } = this.props;
     const { isAuthenticated } = this.props.auth;
     if (isAuthenticated) {
-      history.push('/dashboard');
+      this.props.history.push('/dashboard');
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { history } = this.props;
     if (nextProps.auth.isAuthenticated) {
-      history.push('/dashboard');
+      this.props.history.push('/dashboard');
     }
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -66,17 +66,25 @@ class AuthContainer extends Component {
     this.props.loginUser(userData);
   }
 
+  handleShowPasswordCallback() {
+    this.setState(prevState => ({
+      showPassword: !prevState.showPassword,
+    }));
+  }
+
   render() {
-    const { name, email, password, passwordConfirm, errors } = this.state;
+    const { name, email, password, passwordConfirm, showPassword, errors } = this.state;
     return (
       <div className="auth-container">
         {this.props.hasAccount ? (
           <Login
             email={email}
             password={password}
-            errors={errors}
+            showPassword={showPassword}
             onChangeCallback={this.onChangeCallback}
             onSubmitLoginCallback={this.onSubmitLoginCallback}
+            handleShowPasswordCallback={this.handleShowPasswordCallback}
+            errors={errors}
           />
         ) : (
             <Register
@@ -84,9 +92,11 @@ class AuthContainer extends Component {
               email={email}
               password={password}
               passwordConfirm={passwordConfirm}
-              errors={errors}
+              showPassword={showPassword}
               onChangeCallback={this.onChangeCallback}
               onSubmitRegisterCallback={this.onSubmitRegisterCallback}
+              handleShowPasswordCallback={this.handleShowPasswordCallback}
+              errors={errors}
             />
           )}
       </div>

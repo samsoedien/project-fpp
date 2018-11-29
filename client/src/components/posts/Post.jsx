@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 
-import Spinner from '../common/Spinner';
+import Loader from '../common/Loader';
 import PostItem from './PostItem';
 import CommentFormContainer from '../../containers/CommentFormContainer';
 import CommentFeed from './CommentFeed';
@@ -11,7 +11,7 @@ import CommentFeed from './CommentFeed';
 const Post = ({ post, loading }) => {
   let postContent;
   if (post === null || loading || Object.keys(post).length === 0) {
-    postContent = <Spinner />;
+    postContent = <Loader />;
   } else {
     postContent = (
       <div>

@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'reactstrap';
 
-import Spinner from '../common/Spinner';
+import Loader from '../common/Loader';
 import PostFeed from './PostFeed';
 
 const PostList = ({ posts, loading }) => {
   let postContent;
   if (posts === null || loading) {
-    postContent = <Spinner />;
+    postContent = <Loader />;
   } else {
     postContent = <PostFeed posts={posts} />;
   }

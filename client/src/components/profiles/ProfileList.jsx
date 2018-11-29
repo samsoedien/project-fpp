@@ -6,14 +6,14 @@ import {
   Col,
 } from 'reactstrap';
 
-import Spinner from '../common/Spinner';
+import Loader from '../common/Loader';
 import ProfileItem from './ProfileItem';
 
 const ProfileList = ({ profiles, loading }) => {
   let profileItems;
 
   if (profiles === null || loading) {
-    profileItems = <Spinner />;
+    profileItems = <Loader />;
   } else if (profiles.length > 0) {
     profileItems = profiles.map(profile => (
       <ProfileItem key={profile._id} profile={profile} />
