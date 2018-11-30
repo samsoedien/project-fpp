@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
   Typography,
+  Paper,
   Dialog,
   Button,
   FormHelperText,
@@ -22,20 +23,14 @@ import {
 import { Visibility, VisibilityOff } from '@material-ui/icons/';
 
 const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+  root: {
+    flexGrow: 1,
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
-  },
-  dense: {
-    marginTop: 19,
-  },
-  menu: {
-    width: 200,
+  paper: {
+    margin: '0 auto',
+    height: '400px',
+    width: '640px',
+    textAlign: 'center',
   },
 });
 
@@ -46,8 +41,8 @@ const Login = ({
   onChangeCallback,
   onSubmitLoginCallback,
   handleShowPasswordCallback,
-  errors,
   classes,
+  errors,
 }) => {
   const onChange = e => {
     onChangeCallback(e);
@@ -60,61 +55,66 @@ const Login = ({
 
   const handleShowPassword = () => {
     handleShowPasswordCallback();
-  }
+  };
 
   return (
     <div className="login">
-      <Grid container>
-        <Typography variant="headline" color="primary">Login</Typography>
-        <Typography variant="body">Sign in to your account</Typography>
-        <Grid item>
-          <form onSubmit={onSubmit} className={classes.container} noValidate autoComplete="off">
-            <FormControl>
-              <TextField
-                id="mui-theme-provider-outlined-input"
-                variant="outlined"
-                type="email"
-                label="Email Address"
-                name="email"
-                value={email}
-                onChange={onChange}
-                error={errors.email}
-              />
-              <FormHelperText error>{errors ? errors.email : ''}</FormHelperText>
-            </FormControl>
-            <FormControl className={classNames(classes.margin, classes.textField)}>
-              <TextField
-                id="mui-theme-provider-outlined-input"
-                variant="outlined"
-                type={showPassword ? 'text' : 'password'}
-                label="Password"
-                name="password"
-                value={password}
-                onChange={onChange}
-                error={errors.password}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="Toggle password visibility"
-                        onClick={handleShowPassword}
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <FormHelperText error>{errors ? errors.password : ''}</FormHelperText>
-            </FormControl>
-            <Button type="submit" value="Submit">Login</Button>
-          </form>
+      <Paper className={classes.paper} elevation={1}>
+        <Grid container spacing={16}>
+          <Grid item direction="column">
+            hi
+          </Grid>
+          <Grid item xs={12} sm direction="column" container>
+            <Typography variant="headline" color="primary">Login</Typography>
+            <Typography variant="body">Sign in to your account</Typography>
+            <form onSubmit={onSubmit} className={classes.container} noValidate autoComplete="off">
+              <FormControl>
+                <TextField
+                  id="mui-theme-provider-outlined-input"
+                  variant="outlined"
+                  type="email"
+                  label="Email Address"
+                  name="email"
+                  value={email}
+                  onChange={onChange}
+                  error={errors.email}
+                />
+                <FormHelperText error>{errors ? errors.email : ''}</FormHelperText>
+              </FormControl>
+              <FormControl className={classNames(classes.margin, classes.textField)}>
+                <TextField
+                  id="mui-theme-provider-outlined-input"
+                  variant="outlined"
+                  type={showPassword ? 'text' : 'password'}
+                  label="Password"
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  error={errors.password}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="Toggle password visibility"
+                          onClick={handleShowPassword}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <FormHelperText error>{errors ? errors.password : ''}</FormHelperText>
+              </FormControl>
+              <Button type="submit" value="Submit">Login</Button>
+            </form>
+            <small>
+              {'No account yet? '}
+              <Link to="/register">Signup here.</Link>
+            </small>
+          </Grid>
         </Grid>
-        <small>
-          {'No account yet? '}
-          <Link to="/register">Signup here.</Link>
-        </small>
-      </Grid>
+      </Paper>
     </div>
   );
 };
@@ -126,11 +126,11 @@ Login.propTypes = {
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitLoginCallback: PropTypes.func.isRequired,
   handleShowPasswordCallback: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
   errors: PropTypes.shape({
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
   }).isRequired,
-  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Login);

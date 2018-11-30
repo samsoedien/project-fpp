@@ -6,6 +6,8 @@ import {
   Col,
 } from 'reactstrap';
 
+import Grid from './Grid';
+
 export default class TestComponent extends Component {
   render() {
     return (
@@ -17,6 +19,7 @@ export default class TestComponent extends Component {
             </Col>
           </Row>
         </Container>
+        <Grid />
       </div>
     );
   }
