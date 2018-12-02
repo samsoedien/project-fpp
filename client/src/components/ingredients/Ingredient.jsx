@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
-  Container,
-  Row,
-  Col
-} from 'reactstrap';
+  Grid,
+  Typography,
+} from '@material-ui/core';
 
 import Loader from '../common/Loader';
 
@@ -16,17 +15,17 @@ const Ingredient = ({ ingredient, loading }) => {
   } else {
     ingredientContent = (
       <div>
-        <p className="lead">
+        <Typography variant="paragraph">
           Please specify the nutrition values of the ingredient per 100 grams
-        </p>
-        <span>{ingredient.name}</span>
+        </Typography>
+        <Typography>{ingredient.name}</Typography>
       </div>
     );
   }
 
   return (
     <div className="ingredient">
-      <Container>{ingredientContent}</Container>
+      <Grid container>{ingredientContent}</Grid>
     </div>
   );
 };

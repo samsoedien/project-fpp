@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { Grid, CircularProgress } from '@material-ui/core';
 
 const styles = theme => ({
-  progress: {
-    display: 'block',
-    margin: '0 auto',
+  loaderProgress: {
+    margin: '24px 0',
   },
+
 });
 
 const Loader = ({ classes }) => (
-  <div className="loader m-auto p-3">
-    <CircularProgress className={classes.progress} color="primary" />
+  <div className="loader">
+    <Grid container justify="center">
+      <Grid item>
+        <CircularProgress className={classes.loaderProgress} color="primary" />
+      </Grid>
+    </Grid>
   </div>
 );
 

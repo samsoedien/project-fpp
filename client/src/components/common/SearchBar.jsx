@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Container,
   InputGroup,
   InputGroupAddon,
   Input,
   Button,
 } from 'reactstrap';
+import { Grid, InputBase } from '@material-ui/core';
+import { Search as SearchIcon } from '@material-ui/icons';
 
 export default class SearchBar extends Component {
   filterUpdate() {
@@ -19,22 +20,28 @@ export default class SearchBar extends Component {
   render() {
     return (
       <div className="search-bar">
-        <Container>
-          <InputGroup size="lg" className="shadow-sm mb-4">
-            <InputGroupAddon addonType="prepend">Recipes</InputGroupAddon>
-            <input
-              placeholder="Filter Recipes"
-              ref={value => {
-                this.myValue = value;
-              }}
-              onChange={this.filterUpdate.bind(this)}
-              className="form-control"
-            />
-            <InputGroupAddon addonType="append">
-              <Button color="primary">Search</Button>
-            </InputGroupAddon>
-          </InputGroup>
-        </Container>
+        <div className="">
+          <div className="">
+            <SearchIcon />
+          </div>
+          <InputBase
+            placeholder="Search…"
+          />
+        </div>
+        {/* <InputGroup size="lg" className="shadow-sm mb-4">
+          <InputGroupAddon addonType="prepend">Recipes</InputGroupAddon>
+          <input
+            placeholder="Filter Recipes"
+            ref={value => {
+              this.myValue = value;
+            }}
+            onChange={this.filterUpdate.bind(this)}
+            className="form-control"
+          />
+          <InputGroupAddon addonType="append">
+            <Button color="primary">Search</Button>
+          </InputGroupAddon>
+        </InputGroup> */}
       </div>
     );
   }

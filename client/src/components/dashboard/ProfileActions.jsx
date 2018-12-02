@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import {
+  Button
+} from '@material-ui/core';
+
 const ProfileActions = () => (
   <div className="btn-group mb-4" role="group">
     <Link to="/edit-profile" className="btn btn-light">

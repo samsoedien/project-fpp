@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Card,
-  CardTitle,
-  CardText,
-} from 'reactstrap';
+  Grid,
+  Paper,
+} from '@material-ui/core';
 
 const BlogItem = ({ blog }) => {
   return (
     <div className="blog-item">
-      <Card>
-        <CardTitle>This is a blog post</CardTitle>
-        <CardText>This is text about the blog...</CardText>
-      </Card>
+      <Paper>
+        hi
+      </Paper>
     </div>
   );
 };

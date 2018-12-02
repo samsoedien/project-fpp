@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
-  Container,
-  Row,
-  Col,
-} from 'reactstrap';
+  Grid,
+  Typography,
+  Button,
+} from '@material-ui/core';
 
-import Loader from '../common/Loader';
 import ProfileActions from './ProfileActions';
 import Experience from './Experience';
+import Loader from '../common/Loader';
 import ConfirmDeleteWrapper from '../../wrappers/ConfirmDeleteWrapper';
 
 const Dashboard = ({
@@ -32,7 +32,7 @@ const Dashboard = ({
     dashboardContent = <Loader />;
   } else if (Object.keys(profile).length > 0) { // Check if logged in user has profile data
     dashboardContent = (
-      <div>
+      <Grid item xs>
         <p className="lead text-muted">
           {'Welcome '}
           <Link to={`/profiles/${profile.handle}`}>{user.name}</Link>
@@ -41,31 +41,29 @@ const Dashboard = ({
         <Experience experience={profile.experience} onDeleteExperience={onDeleteExperience} />
         <div style={{ marginBottom: '60px' }} />
         <ConfirmDeleteWrapper onDeleteClick={onDeleteClick} buttonLabel="Delete my account">Are you sure you want to delete your account? This action can not be undone</ConfirmDeleteWrapper>
-      </div>
+      </Grid>
     );
   } else {
     dashboardContent = (
-      <div>
-        <p className="lead text-muted">
+      <Grid item xs>
+        <Typography variant="body">
           {'Welcome '}
           {user.name}
-        </p>
-        <p>You have not yet setup a profile, add some info</p>
-        <Link to="/create-profile" className="btn btn-lg btn-info">Create Profile</Link>
-      </div>
+        </Typography>
+        <Typography variant="body">You have not yet setup a profile, add some info</Typography>
+        <Button component={Link} to="/create-profile">Create Profile</Button>
+      </Grid>
     );
   }
 
   return (
     <div className="dashboard">
-      <Container>
-        <Row>
-          <Col md="12">
-            <h1>Dashboard</h1>
-            {dashboardContent}
-          </Col>
-        </Row>
-      </Container>
+      <Grid container justify="center">
+        <Grid item md={12}>
+          <Typography variant="h2">Dashboard</Typography>
+          {dashboardContent}
+        </Grid>
+      </Grid>
     </div>
   );
 };

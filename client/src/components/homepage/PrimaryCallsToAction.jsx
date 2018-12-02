@@ -8,9 +8,10 @@ import {
   CardText,
   Button,
 } from 'reactstrap';
+import { Grid, Paper } from '@material-ui/core';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
-import './PrimaryCallToAction.css';
+// import './PrimaryCallToAction.css';
 
 const PrimaryCallsToAction = () => {
   const handleScroll = scrollDistance => {

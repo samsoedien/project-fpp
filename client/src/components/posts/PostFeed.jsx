@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PostItem from './PostItemtemp';
+import PostItem from './PostItem';
 
 const PostFeed = ({ posts }, props) => posts.map(post => <PostItem key={post._id} post={post} {...props} />);
 

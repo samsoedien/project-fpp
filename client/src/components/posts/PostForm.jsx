@@ -1,24 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
+  Grid,
+  Typography,
   Card,
   CardHeader,
-  CardFooter,
-  CardBody,
-  CardTitle,
-  CardText,
-  Button
-} from 'reactstrap';
+  CardContent,
+  TextField,
+  Button,
+} from '@material-ui/core';
 
-const PostForm = ({ text, errors, onChangeCallback, onSubmitCallback }) => {
+const styles = theme => ({
+  postFormCard: {
+    margin: '24px 0',
+  },
+  postFormInput: {
+    padding: '0 12px',
+  },
+  postFormButton: {
+    float: 'right',
+  },
+});
+
+const PostForm = ({ text, errors, onChangeCallback, onSubmitCallback, classes }) => {
   const onChange = e => {
     onChangeCallback(e);
   };
@@ -28,48 +33,47 @@ const PostForm = ({ text, errors, onChangeCallback, onSubmitCallback }) => {
     onSubmitCallback();
   };
   return (
-    <div className="post-form mb-3">
-      <Container>
-        <Card>
-          <CardHeader className="bg-info text-white">
-            Ask a Question...
-          </CardHeader>
-          <Row>
-            <Col md="10" className="m-auto">
-              <CardBody>
-                <Form onSubmit={onSubmit} noValidate>
-                  <FormGroup>
-                    <Label for="">Create Post</Label>
-                    <FormText color="muted">Type a comment.</FormText>
-                    <Input
-                      name="text"
-                      placeholder="Write a Post"
-                      value={text}
-                      onChange={onChange}
-                    />
-                    <FormText color="danger">
-                      {errors ? errors.text : ''}
-                    </FormText>
-                  </FormGroup>
-                  <Input
-                    type="submit"
-                    value="Submit"
-                    className="btn btn-dark"
+    <div className="post-form">
+      <Grid container justify="center">
+        <Grid item sm={8}>
+          <Card className={classes.postFormCard}>
+            <CardHeader className={classes.postFormCardheader} color="primary" title="Comment" />
+            <Grid item container direction="column" spacing={24} alignItems="center">
+              <CardContent>
+                <form onSubmit={onSubmit} noValidate>
+                  <TextField
+                    id="outlined-multiline-static"
+                    className={classes.postFormInput}
+                    label="Create a Post"
+                    multiline
+                    rows="4"
+                    fullWidth
+                    defaultValue="Comment"
+                    margin="normal"
+                    variant="outlined"
+                    name="text"
+                    value={text}
+                    onChange={onChange}
+                    error={errors.text}
+                    helperText={errors ? errors.text : ''}
                   />
-                </Form>
-              </CardBody>
-            </Col>
-          </Row>
-        </Card>
-      </Container>
-    </div>
+                  <Button type="submit" value="Submit" className={classes.postFormButton}>Comment</Button>
+                </form>
+              </CardContent>
+            </Grid>
+          </Card>
+        </Grid>
+      </Grid>
+    </div >
   );
 };
 
 PostForm.propTypes = {
+  text: PropTypes.string.isRequired,
   errors: PropTypes.object.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
-  onSubmitCallback: PropTypes.func.isRequired
+  onSubmitCallback: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
-export default PostForm;
+export default withStyles(styles)(PostForm);

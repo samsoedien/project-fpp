@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Container,
-  CardDeck,
-} from 'reactstrap';
+import { Grid, Card } from '@material-ui/core';
 
 import Loader from '../common/Loader';
 import BlogItem from './BlogItem';
@@ -22,11 +19,13 @@ const BlogList = ({ blogs, loading }) => {
 
   return (
     <div className="blog-list">
-      <Container>
-        <CardDeck>
-          {blogItems}
-        </CardDeck>
-      </Container>
+      <Grid container justify="center">
+        <Grid item>
+          <Card>
+            {blogItems}
+          </Card>
+        </Grid>
+      </Grid>
     </div>
   );
 };

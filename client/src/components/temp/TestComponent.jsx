@@ -5,21 +5,20 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-
-import Grid from './Grid';
+import { Grid } from '@material-ui/core';
 
 export default class TestComponent extends Component {
   render() {
     return (
       <div>
-        <Container>
-          <Row>
-            <Col md="12">
-              <Table />
-            </Col>
-          </Row>
-        </Container>
-        <Grid />
+        <Grid spacing={16} container justify="center">
+          <Grid item xs={8}>
+            <Table />
+          </Grid>
+          <Grid item xs={4}>
+            hi
+          </Grid>
+        </Grid>
       </div>
     );
   }

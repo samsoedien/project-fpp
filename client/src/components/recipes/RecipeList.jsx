@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
-import { Container, Row } from 'reactstrap';
-import Loader from '../common/Loader';
+import { Grid } from '@material-ui/core';
 
 import RecipeItem from './RecipeItem';
+import Loader from '../common/Loader';
 import SearchBar from '../common/SearchBar';
 
 const RecipeList = ({
@@ -30,33 +29,34 @@ const RecipeList = ({
         );
       })
       .map(recipe => (
-        <CSSTransition key={recipe._id} timeout={500} classNames="move">
-          <RecipeItem key={recipe._id} recipe={recipe} />
-        </CSSTransition>
+        <RecipeItem key={recipe._id} recipe={recipe} />
       ));
   } else {
     recipeItems = <h4>No Recipes found...</h4>;
   }
   return (
     <div className="recipe-list">
-      <Container>
-        <h4 className="text-center text-uppercase">Search Recipes</h4>
-        <SearchBar
-          filterText={filterText}
-          filterUpdate={filterUpdate}
-          filterCallback={filterCallback}
-        />
-      </Container>
+      <Grid container justify="center">
+        <Grid item>
+          <h4 className="text-center text-uppercase">Search Recipes</h4>
+          <SearchBar
+            filterText={filterText}
+            filterUpdate={filterUpdate}
+            filterCallback={filterCallback}
+          />
+        </Grid>
 
-      <Container>
-        <Row>{recipeItems}</Row>
-      </Container>
+      </Grid>
 
-      <Container>
-        <Link to="/create-recipe" className="btn btn-lg btn-info">
-          Create Recipe
-        </Link>
-      </Container>
+      <Grid container justify="center" spacing={24}>
+        <Grid item>
+          {recipeItems}
+        </Grid>
+      </Grid>
+
+      {/* <Link to="/create-recipe" className="btn btn-lg btn-info">
+        Create Recipe
+      </Link> */}
     </div>
   );
 };

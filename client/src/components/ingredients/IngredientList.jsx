@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Loader from '../common/Loader';
-import SearchBar from '../common/SearchBar';
+import { Grid } from '@material-ui/core';
 
 import IngredientItem from './IngredientItem';
+import Loader from '../common/Loader';
+import SearchBar from '../common/SearchBar';
 
 const IngredientList = ({ ingredients, filterText, filterUpdate, loading }) => {
   const filterCallback = val => {
@@ -27,7 +28,7 @@ const IngredientList = ({ ingredients, filterText, filterUpdate, loading }) => {
 
   return (
     <div className="ingredient-list">
-      <div className="container">
+      <Grid container justify="center">
         <div className="input-group input-group-lg">
           <SearchBar
             filterText={filterText}
@@ -36,7 +37,7 @@ const IngredientList = ({ ingredients, filterText, filterUpdate, loading }) => {
           />
         </div>
         <ul>{ingredientItems}</ul>
-      </div>
+      </Grid>
     </div>
   );
 };

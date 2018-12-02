@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
-import Loader from '../common/Loader';
+import { Grid } from '@material-ui/core';
 
 import RestaurantItem from './RestaurantItem';
 import SearchBar from '../common/SearchBar';
+import Loader from '../common/Loader';
 
 const RestaurantList = ({ restaurants, filterText, filterUpdate, loading }) => {
   const filterCallback = val => {
@@ -31,18 +31,20 @@ const RestaurantList = ({ restaurants, filterText, filterUpdate, loading }) => {
 
   return (
     <div className="restaurant-list">
-      <Container>
+      <Grid container>
         <h4 className="text-center text-uppercase">Search Restaurants</h4>
         <SearchBar
           filterText={filterText}
           filterUpdate={filterUpdate}
           filterCallback={filterCallback}
         />
-      </Container>
+      </Grid>
 
-      <Container>
-        <Row>{restaurantItems}</Row>
-      </Container>
+      <Grid container justify="center">
+        <Grid item>
+          {restaurantItems}
+        </Grid>
+      </Grid>
     </div>
   );
 };
