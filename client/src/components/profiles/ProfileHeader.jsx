@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Card, CardBody } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
+import { withStyles } from '@material-ui/core/styles';
+import { Card, CardBody } from 'reactstrap';
 import isEmpty from '../../utils/is-empty';
 
 const ProfileHeader = ({ profile }) => {

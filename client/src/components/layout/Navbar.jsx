@@ -1,7 +1,8 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import PropTypes from 'prop-types';
 import { NavLink as Link } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
+import { withStyles } from '@material-ui/core/styles';
 import {
   Collapse,
   Navbar,

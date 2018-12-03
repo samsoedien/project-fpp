@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
-import Loader from '../common/Loader';
+import { withStyles } from '@material-ui/core/styles';
 
 import PostForm from '../posts/PostForm';
 import PostFeed from '../posts/PostFeed';
+import Loader from '../common/Loader';
 
 const RecipeComments = ({ posts, loading }) => {
   let postContent;

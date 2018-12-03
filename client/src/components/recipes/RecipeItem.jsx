@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
+import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -51,7 +52,7 @@ class RecipeItem extends Component {
     const { expanded, isFavorited } = this.state;
 
     return (
-      <Grid item md={4} sm={6}>
+      <Col md="4" sm="6">
         <div className="recipe-item">
 
           <Card className={classes.card}>
@@ -140,8 +141,7 @@ class RecipeItem extends Component {
         </Card>
       </Link> */}
         </div>
-      </Grid >
-
+      </Col>
     );
   }
 }

@@ -1,5 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
+import { withStyles } from '@material-ui/core/styles';
+
 import isEmpty from '../../utils/is-empty';
 
 import RecipeBadges from './RecipeBadges';
@@ -20,8 +24,8 @@ export default props => {
               {isEmpty(props.recipe.description) ? (
                 <span>No description written yet</span>
               ) : (
-                props.recipe.description
-              )}
+                  props.recipe.description
+                )}
             </p>
           </Col>
         </Row>

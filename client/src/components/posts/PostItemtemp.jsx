@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
+import { withStyles } from '@material-ui/core/styles';
+import classnames from 'classnames';
 import {
-  Container,
-  Row,
-  Col,
   Button
 } from 'reactstrap';
 

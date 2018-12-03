@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
+import { withStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 
 import RecipeItem from './RecipeItem';
@@ -36,23 +38,24 @@ const RecipeList = ({
   }
   return (
     <div className="recipe-list">
-      <Grid container justify="center">
-        <Grid item>
-          <h4 className="text-center text-uppercase">Search Recipes</h4>
-          <SearchBar
+      <Container>
+        <Row>
+          <Col>
+          < h4 className="text-center text-uppercase">Search Recipes</h4>
+            <SearchBar
             filterText={filterText}
             filterUpdate={filterUpdate}
             filterCallback={filterCallback}
-          />
-        </Grid>
+            />
+          </Col>
+        </Row>
+      </Container>
 
-      </Grid>
-
-      <Grid container justify="center" spacing={24}>
-        <Grid item>
+      <Container>
+        <Row>
           {recipeItems}
-        </Grid>
-      </Grid>
+        </Row>
+      </Container>
 
       {/* <Link to="/create-recipe" className="btn btn-lg btn-info">
         Create Recipe

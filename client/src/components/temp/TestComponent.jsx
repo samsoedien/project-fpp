@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Table from './Table';
-import {
-  Container,
-  Row,
-  Col,
-} from 'reactstrap';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
+import { withStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
+
+import Table from './Table';
 
 export default class TestComponent extends Component {
   render() {

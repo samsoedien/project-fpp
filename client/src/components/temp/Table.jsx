@@ -1,7 +1,9 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -19,6 +21,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import Button from '@material-ui/core/Button';
+import classNames from 'classnames';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {

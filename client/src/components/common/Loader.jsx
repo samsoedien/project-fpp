@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, CircularProgress } from '@material-ui/core';
 
@@ -12,11 +14,13 @@ const styles = theme => ({
 
 const Loader = ({ classes }) => (
   <div className="loader">
-    <Grid container justify="center">
-      <Grid item>
-        <CircularProgress className={classes.loaderProgress} color="primary" />
-      </Grid>
-    </Grid>
+    <Container>
+      <Row>
+        <Col>
+         <CircularProgress className={classes.loaderProgress} color="primary" />
+        </Col>
+      </Row>
+    </Container>
   </div>
 );
 
