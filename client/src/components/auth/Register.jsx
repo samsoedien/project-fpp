@@ -4,23 +4,15 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Grid,
   Typography,
-  Paper,
-  Dialog,
   Button,
-  FormHelperText,
   TextField,
-  Select,
-  FormControl,
-  OutlinedInput,
-  Input,
-  InputLabel,
   InputAdornment,
-  MenuItem,
   IconButton,
 } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons/';
+
+import Pricing from '../homepage/Pricing';
 
 const styles = theme => ({
   registerForm: {
@@ -152,6 +144,7 @@ const Register = ({
           </Col>
         </Row>
       </Container>
+      <Pricing />
     </div>
   );
 };

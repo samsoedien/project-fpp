@@ -58,7 +58,6 @@ class AuthContainer extends Component {
 
   onSubmitLoginCallback() {
     const { email, password } = this.state;
-
     const userData = {
       email,
       password,

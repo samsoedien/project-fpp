@@ -4,17 +4,15 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Button,
+  Typography,
   Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from 'reactstrap';
+  TextField,
+  Button,
+} from '@material-ui/core';
+
+const styles = theme => ({
+  recipeformModalButton: { margin: '0 auto' },
+});
 
 const RecipeForm = ({
   title,
@@ -24,11 +22,12 @@ const RecipeForm = ({
   recipeImage,
   printSettings,
   ingredient,
-  errors,
   modal,
   onModalToggleCallback,
   onChangeCallback,
   onSubmitCallback,
+  errors,
+  classes,
 }) => {
   const onModalToggle = () => {
     onModalToggleCallback();
@@ -46,64 +45,64 @@ const RecipeForm = ({
 
   return (
     <div className="recipe-form">
-      <div className="modal-component">
-        <Button color="danger" onClick={onModalToggle}>Create a Recipe</Button>
-        <Modal isOpen={modal} toggle={onModalToggle}>
-          <ModalHeader toggle={onModalToggle}>Modal Title</ModalHeader>
-          <ModalBody>
-            <Form onSubmit={onSubmit} noValidate>
-              <FormGroup>
-                <Label for="" />
-                <Input
-                  name="title"
-                  placeholder="Title"
-                  value={title}
-                  onChange={onChange}
-                />
-                <FormText color="danger">{errors ? errors.title : ''}</FormText>
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="" />
-                <Input
-                  name="culinary"
-                  placeholder="Culinary"
-                  value={culinary}
-                  onChange={onChange}
-                />
-                <FormText color="danger">{errors ? errors.culinary : ''}</FormText>
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="" />
-                <Input
-                  name="description"
-                  placeholder="Description"
-                  value={description}
-                  onChange={onChange}
-                />
-                <FormText color="danger">{errors ? errors.description : ''}</FormText>
-              </FormGroup>
-
-              <Input
-                type="file"
-                name="recipeImage"
+      <Container>
+        <Button variant="contained" color="primary" onClick={onModalToggle} className={classes.recipeformModalButton}>Create a Recipe</Button>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={modal}
+          onClose={onModalToggle}
+        >
+          <div className={classes.paper}>
+            <Typography variant="h6" id="modal-title">
+              Text in a modal
+            </Typography>
+            <Typography variant="subtitle1" id="simple-modal-description">
+              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            </Typography>
+            <form onSubmit={onSubmit} className={classes.registerForm} noValidate autoComplete="off">
+              <TextField
+                id="mui-theme-provider-outlined-input"
+                className={classes.registerFormInput}
+                variant="outlined"
+                label="Title"
+                type="text"
+                name="title"
+                value={title}
                 onChange={onChange}
+              // error={errors.title}
+              // helperText={errors ? errors.title : ''}
               />
-              <Input
-                type="submit"
-                value="Submit"
-                className="btn btn-info btn-block mt-4"
+              <TextField
+                id="mui-theme-provider-outlined-input"
+                className={classes.registerFormInput}
+                variant="outlined"
+                label="Culinary"
+                type="text"
+                name="culinary"
+                value={culinary}
+                onChange={onChange}
+                error={errors.culinary}
+                helperText={errors ? errors.culinary : ''}
               />
-            </Form>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={onModalToggle}>Do Something</Button>
-            {' '}
-            <Button color="secondary" onClick={onModalToggle}>Cancel</Button>
-          </ModalFooter>
+              <TextField
+                id="mui-theme-provider-outlined-input"
+                className={classes.registerFormInput}
+                variant="outlined"
+                label="Description"
+                type="text"
+                name="description"
+                value={description}
+                onChange={onChange}
+                error={errors.description}
+                helperText={errors ? errors.description : ''}
+              />
+              <Button type="submit" value="Submit" className={classes.recipeFormButton}>Submit</Button>
+            </form>
+            <ModalWrapped />
+          </div>
         </Modal>
-      </div>
+      </Container>
     </div>
   );
 };
@@ -116,13 +115,20 @@ RecipeForm.propTypes = {
   recipeImage: PropTypes.object.isRequired,
   printSettings: PropTypes.string.isRequired,
   ingredient: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
   modal: PropTypes.bool.isRequired,
   onModalToggleCallback: PropTypes.func.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    culinary: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
-export default RecipeForm;
+const ModalWrapped = withStyles(styles)(RecipeForm)
 
-    //TODO: Form over entire modal? Submit hander on save button. Need to search for examples
+export default ModalWrapped;
+
+// FIXME: modal doesnt work yet 

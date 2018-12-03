@@ -25,7 +25,7 @@ const Header = ({
         onLogoutCallback={onLogoutCallback}
         onHomepage={onHomepage}
       />
-      <HeroBanner onHomepage={onHomepage} />
+      {onHomepage ? <HeroBanner /> : null}
     </div>
   );
 };

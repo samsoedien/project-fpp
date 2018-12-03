@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
-import {
-  CardDeck,
-} from 'reactstrap';
 
 import PrimaryCallsToAction from './PrimaryCallsToAction';
 import Pricing from './Pricing';
 import Features from './Features';
-import './Homepage.css';
 
 const Homepage = ({ isLoggedin }) => {
   return (

@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Card,
-  CardTitle,
-  CardText,
+  Typography,
+  Paper,
   Button,
-} from 'reactstrap';
-import { Grid, Paper } from '@material-ui/core';
+} from '@material-ui/core';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
-// import './PrimaryCallToAction.css';
 
-const PrimaryCallsToAction = () => {
+const styles = theme => ({
+  primaryctaCard: {},
+});
+
+const PrimaryCallsToAction = ({ classes }) => {
   const handleScroll = scrollDistance => {
     const parallaxItem = document.getElementById('myPrimaryCTA');
     parallaxItem.style.transform = `translate(0px, ${-scrollDistance / 4}px)`;
@@ -23,14 +24,22 @@ const PrimaryCallsToAction = () => {
   return (
     <div className="primary-calls-to-action">
       <ScrollWrapper onWindowScroll={handleScroll}>
-        <Card body className="text-center primary-cta__card" id="myPrimaryCTA">
-          <CardTitle>Culinary dishes</CardTitle>
-          <CardText>Enrich the culinary experience</CardText>
-          <Button>Get Started</Button>
-        </Card>
+        <Container>
+          <Paper className={classes.primaryctaPaper} id="myPrimaryCTA">
+            <Typography variant="headline">Hi there</Typography>
+            <Typography variant="paragraph">paragraph text</Typography>
+            <Button component={Link} to="/register">Get Started</Button>
+          </Paper>
+        </Container>
       </ScrollWrapper>
     </div>
   );
 };
 
-export default PrimaryCallsToAction;
+PrimaryCallsToAction.propTypes = {
+  classes: PropTypes.object.isRequired,
+}
+
+export default withStyles(styles)(PrimaryCallsToAction);
+
+// TODO: build/style cta and position over herobanner
