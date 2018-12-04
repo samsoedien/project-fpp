@@ -28,11 +28,19 @@ const RecipeSchema = new Schema({
   printSetting: {
     type: String,
   },
+  favorites: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    },
+  ],
   ingredients: [
     {
       ingredient: {
         type: Schema.Types.ObjectId,
-        ref: 'Ingredient'
+        ref: 'Ingredient',
       }
     }
   ],

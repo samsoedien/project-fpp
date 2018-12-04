@@ -51,5 +51,12 @@ export const createRecipe = (recipeData, history) => dispatch => {
     }));
 };
 
-// FIXME: fix helper function
-// TODO: Look into async await dispatch
+export const favoriteRecipe = id => dispatch => {
+  axios
+    .post(`/api/recipes/favorite/${id}`)
+    .then(res => dispatch(getRecipes()))
+    .catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    }));
+};

@@ -19,10 +19,11 @@ import RecipeFormContainer from './containers/RecipeFormContainer';
 import IngredientListContainer from './containers/IngredientListContainer';
 import IngredientContainer from './containers/IngredientContainer';
 import IngredientFormContainer from './containers/IngredientFormContainer';
+import BlogListContainer from './containers/BlogListContainer';
+import BlogContainer from './containers/BlogContainer';
 import NutritionContainer from './containers/NutritionContainer';
 import RestaurantListContainer from './containers/RestaurantListContainer';
 import ThreeEditorContainer from './containers/ThreeEditorContainer';
-import BlogListContainer from './containers/BlogListContainer';
 import NotFound from './components/not-found/NotFound';
 import TestComponent from './components/temp/TestComponent';
 
@@ -47,6 +48,7 @@ const Routes = () => (
     <Route exact path="/restaurants" component={RestaurantListContainer} />
     <Route exact path="/ingredients/:id" component={IngredientContainer} />
     <Route exact path="/ingredients" component={IngredientListContainer} />
+    <Route exact path="/blogs/:id" component={BlogContainer} />
     <Route exact path="/community" component={BlogListContainer} />
 
     <Switch>

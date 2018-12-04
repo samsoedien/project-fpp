@@ -9,7 +9,6 @@ import Loader from '../common/Loader';
 import ThreeContainer from '../../containers/ThreeContainer';
 
 import RecipeHeader from './RecipeHeader';
-import RecipeFavourite from './RecipeFavourite';
 import RecipeInfo from './RecipeInfo';
 import RecipeProfileCard from './RecipeProfileCard';
 import RecipeComments from './RecipeComments';
@@ -17,14 +16,23 @@ import RecipeComments from './RecipeComments';
 import IngredientListContainer from '../../containers/IngredientListContainer';
 import ThreeNutritions from '../three/ThreeNutritions';
 
-const Recipe = ({ recipe, isFavourited, loading }) => {
+const Recipe = ({
+  recipe,
+  isFavorited,
+  onFavoriteHandleCallback,
+  loading
+}) => {
+  const onFavoriteClick = () => {
+    onFavoriteHandleCallback();
+  }
+
   let recipeContent;
   if (recipe === null || loading) {
     recipeContent = <Loader />;
   } else {
     recipeContent = (
       <div>
-        <RecipeHeader recipeImage={recipe.image} />
+        <RecipeHeader recipeImage={recipe.image} isFavorited={isFavorited} onFavoriteClick={onFavoriteClick} />
         <RecipeInfo recipe={recipe} />
         <RecipeProfileCard recipe={recipe} />
         <ThreeContainer recipe={recipe} width="600px" height="400px" />

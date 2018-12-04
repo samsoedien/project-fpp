@@ -75,12 +75,14 @@ class RecipeItem extends Component {
               image={IMG}
               title="Paella dish"
             />
+            <Link to={`/recipes/${recipe._id}`}>        
             <CardContent>
               <Typography component="p">
                 This impressive paella is a perfect party dish and a fun meal to cook together with your
                 guests. Add 1 cup of frozen peas along with the mussels, if you like.
-          </Typography>
+              </Typography>
             </CardContent>
+            </Link>
             <CardActions className={classes.actions} disableActionSpacing>
               <IconButton aria-label="Add to favorites">
                 <FavoriteIcon color={isFavorited ? 'action' : ''} />

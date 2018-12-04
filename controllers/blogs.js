@@ -32,9 +32,16 @@ exports.postBlog = (req, res, next) => {
   }
   const newBlog = new Blog({
     _id: new mongoose.Types.ObjectId(),
-    title: req.body.title,
     user: req.user.id,
+    heading: req.body.heading,
+    article: req.body.article,
+    // image: req.body.image,
+    // article: {
+    //   subHeading: req.body.subHeading,
+    //   content: req.body.content,
+    // }
   });
+  console.log(newBlog);
   newBlog
     .save()
     .then(blog => res.status(201).json(blog))

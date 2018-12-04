@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid, Card } from '@material-ui/core';
+import { Card } from '@material-ui/core';
 
 import Loader from '../common/Loader';
 import BlogItem from './BlogItem';
@@ -22,13 +22,15 @@ const BlogList = ({ blogs, loading }) => {
 
   return (
     <div className="blog-list">
-      <Grid container justify="center">
-        <Grid item>
-          <Card>
-            {blogItems}
-          </Card>
-        </Grid>
-      </Grid>
+      <Container>
+        <Row>
+          <Col md="8">
+            <Card>
+              {blogItems}
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

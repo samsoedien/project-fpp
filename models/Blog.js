@@ -5,7 +5,19 @@ const Schema = mongoose.Schema;
 // Create Schema
 const BlogSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  title: {
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  heading: {
+    type: String,
+    required: true,
+  },
+  article: {
+    type: String,
+    required: true,
+  },
+  image: {
     type: String,
   },
   date: {

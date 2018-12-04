@@ -51,12 +51,18 @@ class RecipeFormContainer extends Component {
     //   //name: user.name,
     //   //avatar: user.avatar,
     // };
+    const { title, culinary, description } = this.state;
+    const recipeData = {
+      title,
+      culinary,
+      description,
+    };
 
-    const recipeData = new FormData();
-    recipeData.append('title', this.state.title);
-    recipeData.append('culinary', this.state.culinary);
-    recipeData.append('description', this.state.description);
-    recipeData.append('image', this.state.recipeImage);
+    // const recipeData = new FormData();
+    // recipeData.append('title', this.state.title);
+    // recipeData.append('culinary', this.state.culinary);
+    // recipeData.append('description', this.state.description);
+    // recipeData.append('image', this.state.recipeImage);
 
     this.props.createRecipe(recipeData, this.props.history);
   }
@@ -73,7 +79,7 @@ class RecipeFormContainer extends Component {
       errors,
     } = this.state;
     return (
-      <div className="create-recipe-container">
+      <div className="recipe-form-container">
         <RecipeForm
           title={title}
           culinary={culinary}

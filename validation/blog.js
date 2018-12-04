@@ -4,14 +4,14 @@ const isEmpty = require('./is-empty');
 module.exports = function validateBlogInput(data) {
   let errors = {};
 
-  data.title = !isEmpty(data.title) ? data.title : '';
+  data.heading = !isEmpty(data.heading) ? data.heading : '';
 
-  if (!Validator.isLength(data.title, { min: 3, max: 20 })) {
-    errors.title = 'Blog title must be between 3 and 20 characters';
+  if (!Validator.isLength(data.heading, { min: 3, max: 32 })) {
+    errors.heading = 'Heading must be between 3 and 32 characters';
   }
 
-  if (Validator.isEmpty(data.title)) {
-    errors.title = 'Title field is required';
+  if (Validator.isEmpty(data.heading)) {
+    errors.heading = 'Title Field is required';
   }
 
   return {
