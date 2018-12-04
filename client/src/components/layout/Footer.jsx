@@ -23,17 +23,40 @@ const styles = theme => ({
     width: '100%',
     zIndex: '-1',
     backgroundColor: '#264348',
-    color: 'white',
+    color: theme.palette.common.white,
     padding: '40px 0',
   },
   footerList: {
-    color: 'white',
+    zIndex: '100',
   },
-  footerFormInput: {},
+  footerListItem: {
+    color: theme.palette.common.white,
+  },
+  footerForm: {
+  },
+  footerFormInput: {
+  },
+  footerFormInputLabel: {
+  },
   footerFormButton: {},
   footerCopyright: {
     textAlign: 'center',
     padding: '24px 0',
+  },
+
+  cssLabel: {
+    color: theme.palette.common.white,
+  },
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: `${theme.palette.common.white} !important`,
+    }
+  },
+  cssFocused: {
+  },
+  notchedOutline: {
+    borderWidth: '1px',
+    borderColor: `${theme.palette.common.white} !important`,
   },
 });
 
@@ -60,35 +83,50 @@ const Footer = ({
           <Row>
             <Col xs="4" md="2">
               <List dense component="nav" className={classes.footerList}>
-                <ListItem button>
-                  <ListItemText primary="About us" />
+                <ListItem component={Link} to="/about-us" button>
+                  <ListItemText
+                    // disableTypography
+                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>About us</Typography>}
+                  />
                 </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Press" />
+                <ListItem component={Link} to="/press" button>
+                  <ListItemText
+                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Press</Typography>}
+                  />
                 </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Follow us" />
+                <ListItem component={Link} to="/follow-us" button>
+                  <ListItemText
+                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Follow us</Typography>}
+                  />
                 </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Contact" />
+                <ListItem component={Link} to="/contact" button>
+                  <ListItemText
+                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Contact</Typography>}
+                  />
                 </ListItem>
               </List>
             </Col>
             <Col xs="4" md="2">
               <List dense component="nav">
-                <ListItem button>
-                  <ListItemText primary="Terms" />
+                <ListItem component={Link} to="/terms-of-service" button>
+                  <ListItemText
+                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Terms</Typography>}
+                  />
                 </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Privacy" />
+                <ListItem component={Link} to="/privacy-policy" button>
+                  <ListItemText
+                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Privacy</Typography>}
+                  />
                 </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Cookies" />
+                <ListItem component={Link} to="/cookies" button>
+                  <ListItemText
+                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Cookies</Typography>}
+                  />
                 </ListItem>
               </List>
             </Col>
             <Col xs="4" md="8">
-              <form onSubmit={onSubmit} className={classes.loginForm} noValidate autoComplete="off">
+              <form onSubmit={onSubmit} className={classes.footerForm} noValidate autoComplete="off">
                 <Typography>Sign up for the newsletter</Typography>
                 <TextField
                   id="mui-theme-provider-outlined-input"
@@ -101,6 +139,19 @@ const Footer = ({
                   onChange={onChange}
                   error={errors.email}
                   helperText={errors ? errors.email : ''}
+                  InputLabelProps={{
+                    classes: {
+                      root: classes.cssLabel,
+                      focused: classes.cssFocused,
+                    },
+                  }}
+                  InputProps={{
+                    classes: {
+                      root: classes.cssOutlinedInput,
+                      focused: classes.cssFocused,
+                      notchedOutline: classes.notchedOutline,
+                    },
+                  }}
                 />
                 <Button type="submit" value="Submit" className={classes.footerFormButton}>Submit</Button>
               </form>

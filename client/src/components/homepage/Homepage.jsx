@@ -17,9 +17,10 @@ const Homepage = ({ isLoggedin }) => {
             <Pricing />
             <PrimaryCallsToAction />
             <Features />
+            <div style={{ height: '200px' }}/>
           </Fragment>
         ) : (
-            <h1>Hi There</h1>
+            <h1>Hi</h1>
           )}
       </div>
     </div>

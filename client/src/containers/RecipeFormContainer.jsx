@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { createRecipe } from '../actions/recipeActions';
 
-// import axios from 'axios';
-
 import RecipeForm from '../components/recipes/RecipeForm';
 
 class RecipeFormContainer extends Component {
@@ -20,9 +18,7 @@ class RecipeFormContainer extends Component {
       printSettings: '',
       ingredient: '',
       errors: {},
-      modal: false,
     };
-    this.onModalToggleCallback = this.onModalToggleCallback.bind(this);
     this.onChangeCallback = this.onChangeCallback.bind(this);
     this.onSubmitCallback = this.onSubmitCallback.bind(this);
   }
@@ -31,12 +27,6 @@ class RecipeFormContainer extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-  }
-
-  onModalToggleCallback() {
-    this.setState(prevState => ({
-      modal: !prevState.modal,
-    }));
   }
 
   onChangeCallback(e) {
@@ -81,7 +71,6 @@ class RecipeFormContainer extends Component {
       printSettings,
       ingredient,
       errors,
-      modal,
     } = this.state;
     return (
       <div className="create-recipe-container">
@@ -94,8 +83,6 @@ class RecipeFormContainer extends Component {
           printSettings={printSettings}
           ingredient={ingredient}
           errors={errors}
-          modal={modal}
-          onModalToggleCallback={this.onModalToggleCallback}
           onChangeCallback={this.onChangeCallback}
           onSubmitCallback={this.onSubmitCallback}
         />

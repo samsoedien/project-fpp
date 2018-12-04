@@ -1,12 +1,43 @@
 import { createMuiTheme } from '@material-ui/core';
-import { red, teal } from '@material-ui/core/colors';
+import { green, red, teal } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
+    type: 'light',
     primary: {
-      main: teal.A400,
+      light: teal[300],
+      main: teal[500],
+      dark: teal[700],
     },
-    secondary: red,
+    secondary: {
+      light: green.A200,
+      main: green.A400,
+      dark: green.A700,
+    },
+    error: {
+      light: red[300],
+      main: red[500],
+      dark: red[700],
+    },
+    common: {
+    },
+  },
+
+  typography: {
+    fontFamily: [
+      'Roboto',
+    ].join(','),
+    fontSize: {},
+    headline: {},
+    title: {},
+    subheading: {},
+    body1: {},
+    body2: {
+      fontSize: 14,
+    },
+    caption: {},
+    button: {},
+    h1: {},
   },
 });
 

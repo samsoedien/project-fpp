@@ -26,7 +26,7 @@ const PrimaryCallsToAction = ({ classes }) => {
       <ScrollWrapper onWindowScroll={handleScroll}>
         <Container>
           <Paper className={classes.primaryctaPaper} id="myPrimaryCTA">
-            <Typography variant="headline">Hi there</Typography>
+            <Typography variant="h3">Enrich your workspace now</Typography>
             <Typography variant="paragraph">paragraph text</Typography>
             <Button component={Link} to="/register">Get Started</Button>
           </Paper>

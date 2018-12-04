@@ -32,11 +32,13 @@ html, body {
   box-sizing: border-box;
   font-family: 'open sans', sans-serif;
   font-weight: 300;
+  z-index: 100;
 }
 
 .app-main {
   position: relative;
-  margin-bottom: 320px;
+  min-height: 100%;
+  margin-bottom: 320px; /* need to be equal to footer height */ /* not sure if negative */
   background-color: #FAFAFA;
   padding-top: 100px;
 }

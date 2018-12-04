@@ -5,13 +5,17 @@ import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Typography,
-  Modal,
   TextField,
   Button,
 } from '@material-ui/core';
 
+import ModalComponent from '../common/ModalComponent';
+
 const styles = theme => ({
-  recipeformModalButton: { margin: '0 auto' },
+  recipeFormModal: {},
+  recipeFormInput: {
+    margin: '12px 0',
+  },
 });
 
 const RecipeForm = ({
@@ -22,17 +26,11 @@ const RecipeForm = ({
   recipeImage,
   printSettings,
   ingredient,
-  modal,
-  onModalToggleCallback,
   onChangeCallback,
   onSubmitCallback,
   errors,
   classes,
 }) => {
-  const onModalToggle = () => {
-    onModalToggleCallback();
-  };
-
   const onChange = e => {
     onChangeCallback(e);
   };
@@ -46,62 +44,58 @@ const RecipeForm = ({
   return (
     <div className="recipe-form">
       <Container>
-        <Button variant="contained" color="primary" onClick={onModalToggle} className={classes.recipeformModalButton}>Create a Recipe</Button>
-        <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={modal}
-          onClose={onModalToggle}
-        >
-          <div className={classes.paper}>
-            <Typography variant="h6" id="modal-title">
-              Text in a modal
-            </Typography>
-            <Typography variant="subtitle1" id="simple-modal-description">
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-            <form onSubmit={onSubmit} className={classes.registerForm} noValidate autoComplete="off">
-              <TextField
-                id="mui-theme-provider-outlined-input"
-                className={classes.registerFormInput}
-                variant="outlined"
-                label="Title"
-                type="text"
-                name="title"
-                value={title}
-                onChange={onChange}
-              // error={errors.title}
-              // helperText={errors ? errors.title : ''}
-              />
-              <TextField
-                id="mui-theme-provider-outlined-input"
-                className={classes.registerFormInput}
-                variant="outlined"
-                label="Culinary"
-                type="text"
-                name="culinary"
-                value={culinary}
-                onChange={onChange}
-                error={errors.culinary}
-                helperText={errors ? errors.culinary : ''}
-              />
-              <TextField
-                id="mui-theme-provider-outlined-input"
-                className={classes.registerFormInput}
-                variant="outlined"
-                label="Description"
-                type="text"
-                name="description"
-                value={description}
-                onChange={onChange}
-                error={errors.description}
-                helperText={errors ? errors.description : ''}
-              />
-              <Button type="submit" value="Submit" className={classes.recipeFormButton}>Submit</Button>
-            </form>
-            <ModalWrapped />
-          </div>
-        </Modal>
+        <ModalComponent buttonLabel="Create a Recipe" className={classes.recipeFormModal}>
+          <Typography variant="h6" id="modal-title">
+            Create a Recipe
+          </Typography>
+          <Typography variant="subtitle1" id="simple-modal-description">
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+          <form onSubmit={onSubmit} className={classes.registerForm} noValidate autoComplete="off">
+            <TextField
+              id="mui-theme-provider-outlined-input"
+              className={classes.recipeFormInput}
+              variant="outlined"
+              fullWidth
+              label="Title"
+              type="text"
+              name="title"
+              value={title}
+              onChange={onChange}
+              error={errors.title}
+              helperText={errors ? errors.title : ''}
+            />
+            <TextField
+              id="mui-theme-provider-outlined-input"
+              className={classes.recipeFormInput}
+              variant="outlined"
+              fullWidth
+              label="Culinary"
+              type="text"
+              name="culinary"
+              value={culinary}
+              onChange={onChange}
+              error={errors.culinary}
+              helperText={errors ? errors.culinary : ''}
+            />
+            <TextField
+              id="mui-theme-provider-outlined-input"
+              className={classes.recipeFormInput}
+              variant="outlined"
+              multiline
+              rows="4"
+              fullWidth
+              label="Description"
+              type="text"
+              name="description"
+              value={description}
+              onChange={onChange}
+              error={errors.description}
+              helperText={errors ? errors.description : ''}
+            />
+            <Button type="submit" value="Submit" className={classes.recipeFormButton}>Submit</Button>
+          </form>
+        </ModalComponent>
       </Container>
     </div>
   );
@@ -130,5 +124,3 @@ RecipeForm.propTypes = {
 const ModalWrapped = withStyles(styles)(RecipeForm)
 
 export default ModalWrapped;
-
-// FIXME: modal doesnt work yet 

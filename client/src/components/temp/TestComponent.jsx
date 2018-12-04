@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 
 import Table from './Table';
+import Modal from '../common/ModalComponent';
 
 export default class TestComponent extends Component {
   render() {
@@ -19,6 +20,7 @@ export default class TestComponent extends Component {
             hi
           </Grid>
         </Grid>
+        <Modal />
       </div>
     );
   }
