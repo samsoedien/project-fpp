@@ -17,6 +17,7 @@ export const DELETE_POST = 'DELETE_POST';
 export const RECIPE_LOADING = 'RECIPE_LOADING';
 export const GET_RECIPES = 'GET_RECIPES';
 export const GET_RECIPE = 'GET_RECIPE';
+export const ADD_RECIPE_COMMENT = 'ADD_RECIPE_COMMENT';
 export const DELETE_RECIPE = 'DELETE_RECIPE'; // Unused
 
 export const INGREDIENT_LOADING = 'INGREDIENT_LOADING';
@@ -33,3 +34,4 @@ export const GET_RESTAURANT = 'GET_RESTAURANT';
 export const BLOG_LOADING = 'BLOG_LOADING';
 export const GET_BLOGS = 'GET_BLOGS';
 export const GET_BLOG = 'GET_BLOG';
+export const ADD_BLOG_COMMENT = 'ADD_BLOG_COMMENT';

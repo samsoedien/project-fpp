@@ -5,7 +5,6 @@ import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Typography,
-  Paper,
   Avatar,
 } from '@material-ui/core';
 
@@ -14,7 +13,12 @@ import Loader from '../common/Loader';
 const styles = theme => ({
 });
 
-const Blog = ({ blog, isFavourited, loading, classes }) => {
+const Blog = ({
+  blog,
+  loading,
+  isFavourited,
+  classes,
+}) => {
   let blogContent;
   if (blog === null || loading) {
     blogContent = <Loader />;
@@ -23,7 +27,7 @@ const Blog = ({ blog, isFavourited, loading, classes }) => {
       <div>
         <Container>
           <article>
-            <Typography variant="headline">{blog.heading}</Typography>
+            <Typography variant="h1">{blog.heading}</Typography>
             <Avatar src={blog.user.avatar} />
             <Typography>{blog.user.name}</Typography>
             <section className={classes.blogSection}>
@@ -47,6 +51,7 @@ Blog.propTypes = {
   blog: PropTypes.shape({}).isRequired,
   isFavourited: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(Blog);

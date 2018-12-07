@@ -25,26 +25,26 @@ const styles = theme => ({
   },
 });
 
-const PostForm = ({
+const RecipeCommentForm = ({
   text,
-  onChangeCallback,
-  onSubmitCallback,
-  onCancelCallback,
+  onChangeClick,
+  onSubmitClick,
+  onCancelClick,
   errors,
   classes,
 }) => {
 
   const onChange = e => {
-    onChangeCallback(e);
+    onChangeClick(e);
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    onSubmitCallback();
+    onSubmitClick();
   };
 
   const onCancel = () => {
-    onCancelCallback();
+    onCancelClick();
   }
 
   return (
@@ -93,7 +93,7 @@ const PostForm = ({
   );
 };
 
-PostForm.propTypes = {
+RecipeCommentForm.propTypes = {
   text: PropTypes.string.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,
@@ -104,4 +104,4 @@ PostForm.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default withStyles(styles)(PostForm);
+export default withStyles(styles)(RecipeCommentForm);

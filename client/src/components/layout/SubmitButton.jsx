@@ -89,7 +89,7 @@ class CircularIntegration extends Component {
 }
 
 CircularIntegration.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(CircularIntegration);

@@ -26,14 +26,16 @@ const Post = ({ post, loading }) => {
 
   return (
     <div className="post">
-      <Grid container>
-        <Grid item sm={8}>
-          <Link to="/feed" className="btn btn-light mb-3">
-            Back To Feed
+      <Container>
+        <Row>
+          <Col sm="8">
+            <Link to="/feed" className="btn btn-light mb-3">
+              Back To Feed
             </Link>
-          {postContent}
-        </Grid>
-      </Grid>
+            {postContent}
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

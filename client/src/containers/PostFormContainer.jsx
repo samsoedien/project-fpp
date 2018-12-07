@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addPost } from '../actions/postActions';
+import { addRecipeComment } from '../actions/recipeActions';
 
 import PostForm from '../components/posts/PostForm';
 
@@ -15,6 +16,7 @@ class PostFormContainer extends Component {
 
     this.onChangeCallback = this.onChangeCallback.bind(this);
     this.onSubmitCallback = this.onSubmitCallback.bind(this);
+    this.onCancelCallback = this.onCancelCallback.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -29,13 +31,33 @@ class PostFormContainer extends Component {
 
   onSubmitCallback(e) {
     const { user } = this.props.auth;
-    const newPost = {
-      text: this.state.text,
+    const { text } = this.state;
+    const postData = {
+      text,
       name: user.name,
-      avatar: user.avatar
+      avatar: user.avatar,
     };
-    this.props.addPost(newPost);
+    switch (this.props.context) {
+      case ('posts'):
+        this.props.addPost(postData);
+        break;
+      case ('recipe'):
+        this.props.addRecipeComment(this.props.content._id, postData, this.props.history);
+        console.log('worksss')
+        break;
+      case ('blog'):
+        this.props.addRecipeComment(this.props.id, postData);
+        break;
+      default:
+        return;
+    }
     this.setState({ text: '' });
+  }
+
+  onCancelCallback() {
+    this.setState({
+      text: '',
+    });
   }
 
   render() {
@@ -47,24 +69,23 @@ class PostFormContainer extends Component {
           errors={errors}
           onChangeCallback={this.onChangeCallback}
           onSubmitCallback={this.onSubmitCallback}
+          onCancelCallback={this.onCancelCallback}
         />
       </div>
     );
   }
 }
 
-PostForm.propTypes = {
+PostFormContainer.propTypes = {
+  context: PropTypes.string.isRequired,
   addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
 });
 
-export default connect(
-  mapStateToProps,
-  { addPost }
-)(PostFormContainer);
+export default connect(mapStateToProps, { addPost, addRecipeComment })(PostFormContainer);

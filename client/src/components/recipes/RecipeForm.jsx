@@ -105,7 +105,7 @@ RecipeForm.propTypes = {
   title: PropTypes.string.isRequired,
   culinary: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  directions: PropTypes.array.isRequired,
+  directions: PropTypes.object.isRequired,
   recipeImage: PropTypes.object.isRequired,
   printSettings: PropTypes.string.isRequired,
   ingredient: PropTypes.object.isRequired,
@@ -114,11 +114,11 @@ RecipeForm.propTypes = {
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,
   errors: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    culinary: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    culinary: PropTypes.string,
+    description: PropTypes.string,
   }).isRequired,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const ModalWrapped = withStyles(styles)(RecipeForm)

@@ -67,8 +67,8 @@ const Register = ({
       <Container>
         <Row>
           <Col xs="8" md="6" lg="4">
-            <Typography className={classes.registerFormTitle} variant="headline">Signup</Typography>
-            <Typography className={classes.registerFormText} variant="body">Create your FPP account</Typography>
+            <Typography className={classes.registerFormTitle} variant="h3">Signup</Typography>
+            <Typography className={classes.registerFormText} variant="body1">Create your FPP account</Typography>
             <form onSubmit={onSubmit} className={classes.registerForm} noValidate autoComplete="off">
               <TextField
                 id="mui-theme-provider-outlined-input"
@@ -164,7 +164,7 @@ Register.propTypes = {
     password: PropTypes.string.isRequired,
     passwordConfirm: PropTypes.string.isRequired,
   }).isRequired,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(Register);

@@ -48,11 +48,11 @@ const Dashboard = ({
   } else {
     dashboardContent = (
       <Grid item xs>
-        <Typography variant="body">
+        <Typography variant="body1">
           {'Welcome '}
           {user.name}
         </Typography>
-        <Typography variant="body">You have not yet setup a profile, add some info</Typography>
+        <Typography variant="body1">You have not yet setup a profile, add some info</Typography>
         <Button component={Link} to="/create-profile">Create Profile</Button>
       </Grid>
     );

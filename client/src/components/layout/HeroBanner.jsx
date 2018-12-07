@@ -51,7 +51,7 @@ HeroBanner.defaultProps = {
 
 HeroBanner.propTypes = {
   onHomepage: PropTypes.bool,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(HeroBanner);

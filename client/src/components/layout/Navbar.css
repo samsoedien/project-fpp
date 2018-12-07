@@ -1,6 +1,7 @@
 .navbar {
   height: 88px;
-  background-color: rgba(255, 255, 255, 0);
+  /* background-color: rgba(255, 255, 255, 0); */
+  background-color: grey;
   transition: .5s;
 }
 
@@ -50,5 +51,5 @@
 }
 
 .navbar--not-homepage {
-  background-color: #607D8B;
+  background-color: #607D8B !important;
 }

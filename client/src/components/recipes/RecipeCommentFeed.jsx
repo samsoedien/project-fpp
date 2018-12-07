@@ -7,34 +7,34 @@ import {
   Paper,
 } from '@material-ui/core';
 
-import PostItem from './PostItem';
+import RecipeComment from './RecipeComment';
 import Loader from '../common/Loader';
 
 const styles = theme => ({
 
 });
 
-const PostList = ({
+const RecipeCommentFeed = ({
   posts,
   auth,
   loading,
   isLiked,
-  onLikeCallback,
-  onDeleteCallback,
+  onLikeClick,
+  onDeleteClick,
 }) => {
   const onLikeHandleCallback = id => {
-    onLikeCallback(id);
+    onLikeClick(id);
   };
 
   const onDeleteHandleCallback = id => {
-    onDeleteCallback(id);
+    onDeleteClick(id);
   }
 
   let postContent;
   if (posts === null || loading) {
     postContent = <Loader />;
   } else {
-    postContent = posts.map(post => <PostItem key={post._id} post={post} auth={auth} isLiked={isLiked} onLikeHandleCallback={onLikeHandleCallback} onDeleteHandleCallback={onDeleteHandleCallback} />);
+    postContent = posts.map(post => <RecipeComment key={post._id} post={post} auth={auth} isLiked={isLiked} onLikeHandleClick={onLikeHandleCallback} onDeleteHandleClick={onDeleteHandleCallback} />);
   }
 
   return (
@@ -52,7 +52,7 @@ const PostList = ({
   );
 };
 
-PostList.propTypes = {
+RecipeCommentFeed.propTypes = {
   posts: PropTypes.object.isRequired,
   auth: PropTypes.object,
   loading: PropTypes.bool.isRequired,
@@ -61,4 +61,4 @@ PostList.propTypes = {
   onDeleteCallback: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(PostList);
+export default withStyles(styles)(RecipeCommentFeed);

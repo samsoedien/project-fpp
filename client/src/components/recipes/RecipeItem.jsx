@@ -153,7 +153,7 @@ RecipeItem.propTypes = {
     title: PropTypes.string.isRequired,
     ingredient: PropTypes.object.isRequired,
   }).isRequired,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(RecipeItem);

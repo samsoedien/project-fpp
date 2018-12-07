@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import {
   getPosts,
   deletePost,
-  addLike,
-  removeLike,
+  likePost,
 } from '../actions/postActions';
+import {
+  getRecipeComments
+} from '../actions/recipeActions';
 
 import PostFormContainer from './PostFormContainer';
 import PostList from '../components/posts/PostList';
@@ -14,13 +16,15 @@ import PostList from '../components/posts/PostList';
 class PostListContainer extends Component {
   constructor(props) {
     super(props);
-    this.onDeleteCallback = this.onDeleteCallback.bind(this);
+    this.state = {
+      isLiked: false,
+    };
     this.onLikeCallback = this.onLikeCallback.bind(this);
-    this.onUnlikeCallback = this.onUnlikeCallback.bind(this);
+    this.onDeleteCallback = this.onDeleteCallback.bind(this);
   }
 
   componentDidMount() {
-    this.props.getPosts();
+    if (this.props.context === 'posts') this.props.getPosts();
   }
 
   onDeleteCallback(id) {
@@ -28,57 +32,65 @@ class PostListContainer extends Component {
   }
 
   onLikeCallback(id) {
-    this.props.addLike(id);
-  }
-
-  onUnlikeCallback(id) {
-    this.props.removeLike(id);
+    this.setState(prevState => ({
+      isLiked: !prevState.isLiked,
+    }));
+    const { isLiked } = this.state;
+    const likeData = {
+      isLiked,
+    };
+    this.props.likePost(id, likeData, this.props.history);
+    console.log(isLiked);
   }
 
   findUserLike(likes) {
     const { auth } = this.props;
     if (likes.filter(like => like.user === auth.user.id).length > 0) {
-      return true;
-    } else {
-      return false;
+      return this.setState({
+        isLiked: true,
+      });
     }
+    return false;
   }
 
   render() {
-    const { posts, loading, auth } = this.props.post;
+    const { posts, loading } = this.props.post;
+    const { auth, context, content, id } = this.props;
+    const { isLiked } = this.state;
+    console.log(this.props.recipe);
     return (
       <div className="post-list-container">
-        <PostFormContainer />
-        <PostList
-          posts={posts}
+        {/* <PostList
+          posts={(context === 'posts') ? posts : content}
           auth={auth}
           loading={loading}
+          isLiked={isLiked}
+          onLikeCallback={this.onLikeCallback}
           onDeleteCallback={this.onDeleteCallback}
-          onLikeCallback={this.onlikeCallback}
-          onUnlikeCallback={this.onUnlikeCallback}
-        />
+        /> */}
+        {auth.isAuthenticated ? <PostFormContainer context={context} id={id} /> : null}
       </div>
     );
   }
 }
+
+PostListContainer.defaultProps = {
+  context: 'posts',
+};
 
 PostListContainer.propTypes = {
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   getPosts: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
-  addLike: PropTypes.func.isRequired,
-  removeLike: PropTypes.func.isRequired,
+  likePost: PropTypes.func.isRequired,
+  context: PropTypes.string,
+  content: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
   post: state.post,
-  auth: state.auth
+  auth: state.auth,
 });
 
-export default connect(
-  mapStateToProps,
-  { getPosts, deletePost, addLike, removeLike }
-)(PostListContainer);
-
-//TODO:  deletePost, addLike, removeLike are not working in this file yet. Callbacks need to called in postlist => postfeed => postitem
+export default connect(mapStateToProps, { getPosts, deletePost, likePost })(PostListContainer);

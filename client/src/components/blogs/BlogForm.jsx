@@ -48,6 +48,7 @@ const BlogForm = ({
             <Card className={classes.blogFormCard}>
               <CardHeader className={classes.blogFormCardheader} color="primary" title="Comment" />
               <CardContent>
+                <Typography>write a blog</Typography>
                 <form onSubmit={onSubmit} noValidate>
                   <TextField
                     id="mui-theme-provider-outlined-input"
@@ -77,7 +78,7 @@ const BlogForm = ({
                     error={errors.article}
                     helperText={errors ? errors.article : ''}
                   />
-                  <Button type="submit" value="Submit" className={classes.blogFormButton}>Comment</Button>
+                  <Button type="submit" value="Submit" className={classes.blogFormButton}>Post Blog</Button>
                 </form>
               </CardContent>
             </Card>
@@ -97,7 +98,8 @@ BlogForm.propTypes = {
     heading: PropTypes.string.isRequired,
     article: PropTypes.string.isRequired,
   }).isRequired,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
+
 };
 
 export default withStyles(styles)(BlogForm);

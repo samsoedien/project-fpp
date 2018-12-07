@@ -4,13 +4,17 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Button
+  Typography,
+  TextField,
+  Button,
+} from '@material-ui/core';
+import {
+  Input, Label, Form, FormText, FormGroup,
 } from 'reactstrap';
+
+const styles = theme => ({
+
+})
 
 const ProfileForm = ({
   updateProfile,
@@ -25,7 +29,8 @@ const ProfileForm = ({
   instagram,
   errors,
   onChangeCallback,
-  onSubmitCallback
+  onSubmitCallback,
+  classes,
 }) => {
   const onChange = e => {
     onChangeCallback(e);
@@ -105,14 +110,38 @@ const ProfileForm = ({
       <Container>
         <Row>
           <Col md="8" className="m-auto">
-            {!updateProfile ? (
-              <h2 className="display-4 text-center">Create Your Profile</h2>
-            ) : (
-                <h2 className="display-4 text-center">Edit Your Profile</h2>
-              )}
-            <p className="lead text-center">
-              Let's get some information to make your profile stand out
-            </p>
+            <form onSubmit={onSubmit} className={classes.profileForm} noValidate autoComplete="off">
+              {!updateProfile ? (
+                <Typography variant="h3" className={classes.profileFormTitle}>Create Your Profile</Typography>
+              ) : (
+                  <Typography variant="h3" className={classes.profileFormTitle}>Edit Your Profile</Typography>
+                )}
+              <Typography className={classes.profileFormText} variant="body1">Fill in the form</Typography>
+
+              {/* <TextField
+                className={classes.profileFormInput}
+                variant="outlined"
+                label="Location"
+                type="text"
+                name="location"
+                value={location}
+                onChange={onChange}
+                error={errors.location}
+                helperText={errors ? errors.location : ''}
+              />
+              
+              <TextField
+                className={classes.profileFormInput}
+                variant="outlined"
+                label="Location"
+                type="text"
+                name="location"
+                value={location}
+                onChange={onChange}
+                error={errors.location}
+                helperText={errors ? errors.location : ''}
+              /> */}
+            </form>
 
             <Form onSubmit={onSubmit} noValidate>
               <FormGroup>
@@ -215,9 +244,14 @@ ProfileForm.propTypes = {
   twitter: PropTypes.string.isRequired,
   facebook: PropTypes.string.isRequired,
   instagram: PropTypes.string.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.shape({
+    profession: PropTypes.string,
+  }).isRequired,
   onChangeCallback: PropTypes.func.isRequired,
-  onSubmitCallback: PropTypes.func.isRequired
+  onSubmitCallback: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default ProfileForm;
+export default withStyles(styles)(ProfileForm);
+
+// TODO: change to material ui

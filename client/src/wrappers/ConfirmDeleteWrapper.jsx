@@ -1,19 +1,37 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
+import { withStyles } from '@material-ui/core/styles';
 import {
-  Button,
+  Typography,
+  Paper,
   Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from 'reactstrap';
+  Button,
+} from '@material-ui/core';
 
+const styles = theme => ({
+  modalButton: {
+    background: theme.palette.error.main,
+    color: theme.palette.common.white,
+  },
+  modalPaper: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+  },
+});
 
-export default class ConfirmDeleteWrapper extends Component {
+class ConfirmDeleteWrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false,
+      isOpen: false,
     };
     this.onModalToggle = this.onModalToggle.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
@@ -21,7 +39,7 @@ export default class ConfirmDeleteWrapper extends Component {
 
   onModalToggle() {
     this.setState(prevState => ({
-      modal: !prevState.modal,
+      isOpen: !prevState.isOpen,
     }));
   }
 
@@ -31,20 +49,16 @@ export default class ConfirmDeleteWrapper extends Component {
   }
 
   render() {
-    const { modal } = this.state;
-    const { children, buttonLabel } = this.props;
+    const { isOpen } = this.state;
+    const { buttonLabel, classes } = this.props;
     return (
       <div className="modal-component">
-        <Button color="danger" onClick={this.onModalToggle}>{buttonLabel}</Button>
-        <Modal isOpen={modal} toggle={this.onModalToggle}>
-          <ModalHeader toggle={this.onModalToggle}>Confirm Delete</ModalHeader>
-          <ModalBody>
-            {children}
-          </ModalBody>
-          <ModalFooter>
-            <Button color="danger" onClick={() => { this.onModalToggle(); this.onDeleteClick(); }}>Delete</Button>{' '}
-            <Button color="secondary" onClick={this.onModalToggle}>Cancel</Button>
-          </ModalFooter>
+        <Button variant="contained" onClick={this.onModalToggle} className={classes.modalButton}>{buttonLabel}</Button>
+        <Modal open={isOpen} onClose={this.onModalToggle}>
+          <Paper className={classes.modalPaper}>
+            {this.props.children}
+            <Button color="primary" onClick={() => { this.onModalToggle(); this.onDeleteClick(); }}>Delete</Button>
+          </Paper>
         </Modal>
       </div>
     );
@@ -56,7 +70,10 @@ ConfirmDeleteWrapper.defaultProps = {
 };
 
 ConfirmDeleteWrapper.propTypes = {
-  children: PropTypes.object.isRequried,
+  children: PropTypes.object.isRequired, // eslint-disable-line
   buttonLabel: PropTypes.string,
   onDeleteClick: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
+
+export default withStyles(styles)(ConfirmDeleteWrapper);

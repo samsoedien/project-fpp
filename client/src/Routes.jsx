@@ -89,9 +89,10 @@ const Routes = () => (
         component={NutritionContainer}
       />
     </Switch>
-    <Switch>
-      <PrivateRouteWrapper exact path="/feed" component={PostListContainer} />
+    {/* <Switch>
+      <PrivateRouteWrapper exact path="/feed-private" component={PostListContainer} />
     </Switch>
+    <Route exact path="/feed" component={PostListContainer} /> */}
     <Switch>
       <PrivateRouteWrapper exact path="/post/:id" component={PostContainer} />
     </Switch>

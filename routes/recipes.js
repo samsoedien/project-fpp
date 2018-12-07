@@ -31,6 +31,10 @@ router.patch('/:id', passport.authenticate('jwt', { session: false }), recipesCo
 
 router.delete('/:id', passport.authenticate('jwt', { session: false }), recipesController.deleteRecipe);
 
-router.post('/favorite/:id', passport.authenticate('jwt', { session: false }), recipesController.favoriteRecipe);
+router.post('/:id/favorites', passport.authenticate('jwt', { session: false }), recipesController.postFavoriteRecipe);
+
+router.post('/:id/comments', passport.authenticate('jwt', { session: false }), recipesController.postCommentRecipe)
+
+router.post('/:recipeId/comments/:commentId/likes', passport.authenticate('jwt', { session: false }), recipesController.postLikeCommentRecipe)
 
 module.exports = router;

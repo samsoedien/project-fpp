@@ -8,6 +8,7 @@ const theme = createMuiTheme({
       light: teal[300],
       main: teal[500],
       dark: teal[700],
+      red: red[800],
     },
     secondary: {
       light: green.A200,
@@ -22,8 +23,8 @@ const theme = createMuiTheme({
     common: {
     },
   },
-
   typography: {
+    useNextVariants: true,
     fontFamily: [
       'Roboto',
     ].join(','),

@@ -5,6 +5,8 @@ import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   IconButton,
+  Tooltip,
+  Zoom,
 } from '@material-ui/core';
 import { Favorite as FavoriteIcon, Share as ShareIcon } from '@material-ui/icons';
 
@@ -28,7 +30,7 @@ const styles = theme => ({
     left: '0',
     width: '100%',
     height: '100%',
-    backgroundImage: 'linear-gradient(rgba(0, 0, 0, .15), rgba(0, 0, 0, 0))',
+    backgroundImage: 'linear-gradient(rgba(0, 0, 0, .35), rgba(0, 0, 0, 0), rgba(0, 0, 0, .35))',
   },
   recipeHeaderFavoriteButton: {
     position: 'absolute',
@@ -39,17 +41,26 @@ const styles = theme => ({
     position: 'absolute',
     right: '96px',
     bottom: '24px',
-  }
+  },
+  recipeHeaderIcon: {
+    color: theme.palette.common.white,
+  },
+  recipeHeaderIconFavorited: {
+    color: theme.palette.primary.main,
+  },
 });
 
 const RecipeHeader = ({
+  recipeFavorites,
   isFavorited,
   onFavoriteClick,
   classes,
 }) => {
+
+  console.log(isFavorited);
   const onFavoriteHandle = () => {
     onFavoriteClick();
-  }
+  };
 
   const handleScroll = (scrollDistance) => {
     const parallaxItem = document.getElementById('myHeader');
@@ -61,11 +72,13 @@ const RecipeHeader = ({
       <ScrollWrapper onWindowScroll={handleScroll}>
         <header className={classes.recipeHeaderParallax} id="myHeader">
           <div className={classes.recipeHeaderOverlay} />
-          <IconButton onClick={onFavoriteHandle} className={classes.recipeHeaderFavoriteButton}>
-            <FavoriteIcon color={isFavorited ? 'action' : ''} />
-          </IconButton>
+          <Tooltip title={`${recipeFavorites.length} chef(s) loved this recipe`} placement="top" TransitionComponent={Zoom}>
+            <IconButton onClick={onFavoriteHandle} className={classes.recipeHeaderFavoriteButton}>
+              <FavoriteIcon className={isFavorited ? classes.recipeHeaderIconFavorited : classes.recipeHeaderIcon} />
+            </IconButton>
+          </Tooltip>
           <IconButton onClick={onFavoriteHandle} className={classes.recipeHeaderShareButton}>
-            <ShareIcon/>
+            <ShareIcon className={classes.recipeHeaderIcon} />
           </IconButton>
         </header>
       </ScrollWrapper>
@@ -74,9 +87,10 @@ const RecipeHeader = ({
 };
 
 RecipeHeader.propTypes = {
+  recipeFavorites: PropTypes.array.isRequired,
   isFavorited: PropTypes.bool.isRequired,
-  onFavoriteClick: PropTypes.func.isRequires,
-  classes: PropTypes.object.isRequired,
+  onFavoriteClick: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 }
 
 export default withStyles(styles)(RecipeHeader);

@@ -17,7 +17,7 @@ const Loader = ({ classes }) => (
     <Container>
       <Row>
         <Col>
-         <CircularProgress className={classes.loaderProgress} color="primary" />
+          <CircularProgress className={classes.loaderProgress} color="primary" />
         </Col>
       </Row>
     </Container>
@@ -25,9 +25,7 @@ const Loader = ({ classes }) => (
 );
 
 Loader.propTypes = {
-  classes: PropTypes.shape({
-    progress: PropTypes.object.isRequired,
-  }).isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(Loader);

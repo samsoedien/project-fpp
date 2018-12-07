@@ -5,8 +5,8 @@ import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Typography,
-  Modal,
   Paper,
+  Modal,
   Button,
 } from '@material-ui/core';
 
@@ -59,7 +59,7 @@ ModalComponent.defaultProps = {
 
 ModalComponent.propTypes = {
   buttonLabel: PropTypes.string,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(ModalComponent);

@@ -8,12 +8,8 @@ const middleware = [thunk];
 
 const enhancers = [];
 const isDevelopment = process.env.NODE_ENV === 'development';
-if (
-  isDevelopment &&
-  typeof window !== 'undefined' &&
-  window.devToolsExtension
-) {
-  enhancers.push(window.devToolsExtension());
+if (isDevelopment && typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__) {
+  enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__());
 }
 
 const store = createStore(
@@ -22,7 +18,7 @@ const store = createStore(
   compose(
     applyMiddleware(...middleware),
     ...enhancers,
-  )
+  ),
 );
 
 export default store;

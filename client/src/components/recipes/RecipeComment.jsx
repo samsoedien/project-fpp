@@ -8,8 +8,10 @@ import {
   Button,
   Avatar,
   IconButton,
+  Tooltip,
+  Zoom,
 } from '@material-ui/core';
-import { ThumbUp as ThumbUpIcon } from '@material-ui/icons';
+import { ThumbUp as ThumbUpIcon, Flag as FlagIcon } from '@material-ui/icons';
 
 const styles = theme => ({
   postAvatar: {
@@ -20,22 +22,22 @@ const styles = theme => ({
   postThumbIconUnliked: { color: 'grey' },
 });
 
-const PostItem = ({
+const RecipeComment = ({
   post,
   auth,
   isLiked,
   showActions,
-  onLikeHandleCallback,
-  onDeleteHandleCallback,
+  onLikeHandleClick,
+  onDeleteHandleClick,
   classes,
 }) => {
 
   const onLikeClick = id => {
-    onLikeHandleCallback(id);
+    onLikeHandleClick(id);
   };
 
   const onDeleteClick = id => {
-    onDeleteHandleCallback(id);
+    onDeleteHandleClick(id);
   };
 
   return (
@@ -54,6 +56,11 @@ const PostItem = ({
                   <ThumbUpIcon className={isLiked ? classes.postThumbIconLiked : classes.postThumbIconUnliked} />
                   <span>{post.likes.length}</span>
                 </IconButton>
+                <Tooltip title="flag comment as inappropriate" placement="top" TransitionComponent={Zoom}>
+                  <IconButton>
+                    <FlagIcon />
+                  </IconButton>
+                </Tooltip>
                 <Button component={Link} to={`/post/${post._id}`}>Comments</Button>
                 {post.user === auth.user.id ? (
                   <Button onClick={onDeleteClick.bind(this, post._id)}>
@@ -66,16 +73,16 @@ const PostItem = ({
         </Row>
       </Container>
 
-    </div>
+    </div >
   );
 };
 
-PostItem.defaultProps = {
+RecipeComment.defaultProps = {
   showActions: true,
   isLiked: false,
 };
 
-PostItem.propTypes = {
+RecipeComment.propTypes = {
   post: PropTypes.object.isRequired,
   auth: PropTypes.object,
   isLiked: PropTypes.bool,
@@ -85,4 +92,4 @@ PostItem.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default withStyles(styles)(PostItem);
+export default withStyles(styles)(RecipeComment);

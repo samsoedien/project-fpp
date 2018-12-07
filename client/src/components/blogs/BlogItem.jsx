@@ -9,18 +9,16 @@ import {
   Button,
 } from '@material-ui/core';
 
-const BlogItem = ({ blog }) => {
-  return (
-    <div className="blog-item">
-      <Card>
-        {blog.user.name}
-        <Typography variant="headline">{blog.heading}</Typography>
-        <Typography variant="paragraph">{blog.article}</Typography>
-        <Button component={Link} to={`/blogs/${blog._id}`}>Read Blog</Button>
-      </Card>
-    </div>
-  );
-};
+const BlogItem = ({ blog }) => (
+  <div className="blog-item">
+    <Card>
+      {blog.user.name}
+      <Typography variant="h2">{blog.heading}</Typography>
+      <Typography variant="paragraph">{blog.article}</Typography>
+      <Button component={Link} to={`/blogs/${blog._id}`}>Read Blog</Button>
+    </Card>
+  </div>
+);
 
 BlogItem.propTypes = {
   blog: PropTypes.shape({

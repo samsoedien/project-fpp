@@ -4,20 +4,11 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Grid,
   Typography,
   Paper,
-  Dialog,
   Button,
-  FormHelperText,
   TextField,
-  Select,
-  FormControl,
-  OutlinedInput,
-  Input,
-  InputLabel,
   InputAdornment,
-  MenuItem,
   IconButton,
 } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons/';
@@ -77,64 +68,62 @@ const Login = ({
 
   return (
     <div className="login">
-      <Grid container justify="center">
+      <Container>
         <Paper className="paper-panel" elevation={3}>
-          <Grid container spacing={24}>
-            <Grid item xs={12} sm={6} justify="center" alignItems="center">
-              <div className={classes.panelBackground} />
-            </Grid>
-            <Grid item xs={12} sm={6} container direction="column" spacing={24} alignItems="center">
-              <form onSubmit={onSubmit} className={classes.loginForm} noValidate autoComplete="off">
-                <Typography className={classes.loginFormTitle} variant="headline" color="primary">Login</Typography>
-                <Typography className={classes.formText} variant="body">Sign in to your account</Typography>
-                <small className={classes.loginFormSmall}>
-                  {'No account yet? '}
-                  <Link to="/register">Signup here.</Link>
-                </small>
-                <TextField
-                  id="mui-theme-provider-outlined-input"
-                  // className="form__input"
-                  className={classes.loginFormInput}
-                  variant="outlined"
-                  label="Email Address"
-                  type="email"
-                  name="email"
-                  value={email}
-                  onChange={onChange}
-                  error={errors.email}
-                  helperText={errors ? errors.email : ''}
-                />
-                <TextField
-                  id="mui-theme-provider-outlined-input"
-                  // className="form__input"
-                  className={classes.loginFormInput}
-                  variant="outlined"
-                  label="Password"
-                  type={showPassword ? 'text' : 'password'}
-                  name="password"
-                  value={password}
-                  onChange={onChange}
-                  error={errors.password}
-                  helperText={errors ? errors.password : ''}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="Toggle password visibility"
-                          onClick={handleShowPassword}
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <Button type="submit" value="Submit" className={classes.loginFormButton}>Login</Button>
-              </form>
-            </Grid>
-          </Grid>
+          <Container>
+            <Row>
+              <Col xs="12" sm="6">
+                <div className={classes.panelBackground} />
+              </Col>
+              <Col xs="12" sm="6">
+                <form onSubmit={onSubmit} className={classes.loginForm} noValidate autoComplete="off">
+                  <Typography className={classes.loginFormTitle} variant="h3" color="primary">Login</Typography>
+                  <Typography className={classes.formText} variant="body1">Sign in to your account</Typography>
+                  <small className={classes.loginFormSmall}>
+                    {'No account yet? '}
+                    <Link to="/register">Signup here.</Link>
+                  </small>
+                  <TextField
+                    className={classes.loginFormInput}
+                    variant="outlined"
+                    label="Email Address"
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={onChange}
+                    error={errors.email}
+                    helperText={errors ? errors.email : ''}
+                  />
+                  <TextField
+                    className={classes.loginFormInput}
+                    variant="outlined"
+                    label="Password"
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    value={password}
+                    onChange={onChange}
+                    error={errors.password}
+                    helperText={errors ? errors.password : ''}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="Toggle password visibility"
+                            onClick={handleShowPassword}
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <Button type="submit" value="Submit" className={classes.loginFormButton}>Login</Button>
+                </form>
+              </Col>
+            </Row>
+          </Container>
         </Paper>
-      </Grid>
+      </Container>
     </div>
   );
 };
@@ -142,15 +131,15 @@ const Login = ({
 Login.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
-  showPassword: PropTypes.string.isRequired,
+  showPassword: PropTypes.bool.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitLoginCallback: PropTypes.func.isRequired,
   handleShowPasswordCallback: PropTypes.func.isRequired,
   errors: PropTypes.shape({
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
+    email: PropTypes.string,
+    password: PropTypes.string,
   }).isRequired,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(Login);

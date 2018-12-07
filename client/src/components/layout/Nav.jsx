@@ -88,7 +88,7 @@ const NavbarComponent = ({
     <ScrollWrapper onWindowScroll={handleScroll}>
       <AppBar position="fixed" color="inherit">
         <Toolbar>
-          <Typography variant="headline">
+          <Typography variant="h3">
             Project FPP
           </Typography>
         </Toolbar>

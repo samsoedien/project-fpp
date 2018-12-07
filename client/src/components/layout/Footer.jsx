@@ -178,9 +178,9 @@ Footer.propTypes = {
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,
   errors: PropTypes.shape({
-    email: PropTypes.string.isRequired,
+    email: PropTypes.string,
   }).isRequired,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(Footer);

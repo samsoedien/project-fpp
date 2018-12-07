@@ -6,6 +6,7 @@ const Recipe = require('../models/Recipe');
 const Profile = require('../models/Profile');
 
 const validateRecipeInput = require('../validation/recipe');
+const validatePostInput = require('../validation/post');
 
 exports.getRecipes = (req, res, next) => {
   Recipe.find()
@@ -91,21 +92,59 @@ exports.deleteRecipe = (req, res, next) => {
 
 };
 
-exports.favoriteRecipe = (req, res, next) => {
+exports.postFavoriteRecipe = (req, res, next) => {
   Profile.findOne({ user: req.user.id }).then(profile => {
     Recipe.findById(req.params.id)
       .then(recipe => {
-        if (recipe.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
-          return res.status(400).json({ alreadyliked: 'User already favorited this recipe' });
+        if (recipe.favorites.filter(favorite => favorite.user.toString() === req.user.id).length > 0) {
+          // return res.status(400).json({ alreadyfavorited: 'User already favorited this recipe' });
+          const removeIndex = recipe.favorites.map(item => item.user.toString()).indexOf(req.user.id);
+          recipe.favorites.splice(removeIndex, 1);
+          recipe.save().then(recipe => res.json(recipe));
+        } else {
+          // Add user id to likes array
+          recipe.favorites.unshift({ user: req.user.id });
+          recipe.save().then(recipe => res.json(recipe));
         }
-        // Add user id to likes array
-        recipe.favorites.unshift({ user: req.user.id });
-
-        recipe.save().then(recipe => res.json(recipe));
       })
       .catch(err => res.status(404).json({ recipenotfound: 'No recipe found' }));
   });
 };
+
+exports.postCommentRecipe = (req, res, next) => {
+  const { errors, isValid } = validatePostInput(req.body);
+  if (!isValid) {
+    return res.status(422).json(errors);
+  }
+
+  Recipe.findById(req.params.id).then(recipe => {
+    const newPost = {
+      text: req.body.text,
+      name: req.body.name,
+      avatar: req.body.avatar,
+      user: req.user.id,
+    };
+    recipe.comments.unshift(newPost);
+    recipe.save().then(result => res.json(result));
+  });
+
+}
+
+exports.postLikeCommentRecipe = (req, res, next) => {
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    Recipe.findById(req.params.id)
+      .then(post => {
+        if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+          return res.status(400).json({ alreadyliked: 'User already liked this post' });
+        }
+        // Add user id to likes array
+        post.likes.unshift({ user: req.user.id });
+
+        post.save().then(post => res.json(post));
+      })
+      .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+  });
+}
 
 // exports.postIngredient = (req, res, next) => {
 //   Recipe.findOne({ user: req.user.id }).then(recipe => {
@@ -268,3 +307,4 @@ exports.favoriteRecipe = (req, res, next) => {
 
 
 // FIXME: fix file uploads 
+// FIXME: comment likes (has two id's see routes)

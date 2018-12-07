@@ -44,10 +44,7 @@ class FooterContainer extends Component {
 }
 
 FooterContainer.propTypes = {
-  email: PropTypes.string.isRequired,
-  onChangeCallback: PropTypes.func.isRequired,
-  onSubmitCallback: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.object,
 };
 
 export default connect(null)(FooterContainer);

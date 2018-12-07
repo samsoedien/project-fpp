@@ -122,7 +122,7 @@ const NavbarComponent = ({
 NavbarComponent.propTypes = {
   user: PropTypes.shape({
     avatar: PropTypes.string,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
   }).isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   onNavbarToggleCallback: PropTypes.func.isRequired,
