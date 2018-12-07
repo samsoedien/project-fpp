@@ -46,3 +46,34 @@ export const createBlog = (blogData, history) => dispatch => {
       payload: err.response.data,
     }));
 };
+
+
+export const favoriteBlog = (id, favoriteData) => dispatch => {
+  axios
+    .post(`/api/blogs/${id}/favorites`, favoriteData)
+    .then(res => dispatch(getBlog()))
+    .catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    }));
+};
+
+export const addBlogComment = (id, postData, history) => dispatch => {
+  axios
+    .post(`/api/blogs/${id}/comments`, postData)
+    .then(res => dispatch(getBlog()))
+    .catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    }));
+};
+
+export const likeBlogComment = (blogId, commentId, likeData) => dispatch => {
+  axios
+    .post(`/api/blogs/${blogId}/comments/${commentId}/likes`, likeData)
+    .then(res => dispatch(getBlog()))
+    .catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    }));
+};

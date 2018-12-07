@@ -10,7 +10,7 @@ class BlogFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      heading: '',
+      headline: '',
       article: '',
       errors: {},
     };
@@ -29,9 +29,9 @@ class BlogFormContainer extends Component {
   }
 
   onSubmitCallback() {
-    const { heading, article } = this.state;
+    const { headline, article } = this.state;
     const blogData = {
-      heading,
+      headline,
       article,
     };
     this.props.createBlog(blogData, this.props.history);
@@ -39,14 +39,14 @@ class BlogFormContainer extends Component {
 
   render() {
     const {
-      heading,
+      headline,
       article,
       errors,
     } = this.state;
     return (
       <div className="blog-form-container">
         <BlogForm
-          heading={heading}
+          headline={headline}
           article={article}
           errors={errors}
           onChangeCallback={this.onChangeCallback}

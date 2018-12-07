@@ -22,7 +22,7 @@ const styles = theme => ({
   postThumbIconUnliked: { color: 'grey' },
 });
 
-const RecipeComment = ({
+const PostComment = ({
   post,
   auth,
   isLiked,
@@ -41,7 +41,7 @@ const RecipeComment = ({
   };
 
   return (
-    <div className="post-item">
+    <div className="post-comment">
       <Container>
         <Row>
           <Col md="2">
@@ -77,12 +77,12 @@ const RecipeComment = ({
   );
 };
 
-RecipeComment.defaultProps = {
+PostComment.defaultProps = {
   showActions: true,
   isLiked: false,
 };
 
-RecipeComment.propTypes = {
+PostComment.propTypes = {
   post: PropTypes.object.isRequired,
   auth: PropTypes.object,
   isLiked: PropTypes.bool,
@@ -92,4 +92,4 @@ RecipeComment.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default withStyles(styles)(RecipeComment);
+export default withStyles(styles)(PostComment);

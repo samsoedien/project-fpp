@@ -121,6 +121,4 @@ RecipeForm.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-const ModalWrapped = withStyles(styles)(RecipeForm)
-
-export default ModalWrapped;
+export default withStyles(styles)(RecipeForm);

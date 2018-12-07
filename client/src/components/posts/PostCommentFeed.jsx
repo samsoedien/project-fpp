@@ -7,14 +7,14 @@ import {
   Paper,
 } from '@material-ui/core';
 
-import RecipeComment from './RecipeComment';
+import PostComment from './PostComment';
 import Loader from '../common/Loader';
 
 const styles = theme => ({
 
 });
 
-const RecipeCommentFeed = ({
+const PostCommentFeed = ({
   posts,
   auth,
   loading,
@@ -34,11 +34,11 @@ const RecipeCommentFeed = ({
   if (posts === null || loading) {
     postContent = <Loader />;
   } else {
-    postContent = posts.map(post => <RecipeComment key={post._id} post={post} auth={auth} isLiked={isLiked} onLikeHandleClick={onLikeHandleCallback} onDeleteHandleClick={onDeleteHandleCallback} />);
+    postContent = posts.map(post => <PostComment key={post._id} post={post} auth={auth} isLiked={isLiked} onLikeHandleClick={onLikeHandleCallback} onDeleteHandleClick={onDeleteHandleCallback} />);
   }
 
   return (
-    <div className="post-list-feed">
+    <div className="post-comment-feed">
       <Container>
         <Row>
           <Col md="12">
@@ -52,7 +52,7 @@ const RecipeCommentFeed = ({
   );
 };
 
-RecipeCommentFeed.propTypes = {
+PostCommentFeed.propTypes = {
   posts: PropTypes.object.isRequired,
   auth: PropTypes.object,
   loading: PropTypes.bool.isRequired,
@@ -61,4 +61,4 @@ RecipeCommentFeed.propTypes = {
   onDeleteCallback: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(RecipeCommentFeed);
+export default withStyles(styles)(PostCommentFeed);

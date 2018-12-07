@@ -27,24 +27,24 @@ const styles = theme => ({
 
 const PostForm = ({
   text,
-  onChangeCallback,
-  onSubmitCallback,
-  onCancelCallback,
+  onChangeClick,
+  onSubmitClick,
+  onCancelClick,
   errors,
   classes,
 }) => {
 
   const onChange = e => {
-    onChangeCallback(e);
+    onChangeClick(e);
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    onSubmitCallback();
+    onSubmitClick();
   };
 
   const onCancel = () => {
-    onCancelCallback();
+    onCancelClick();
   }
 
   return (

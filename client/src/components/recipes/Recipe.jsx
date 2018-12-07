@@ -12,8 +12,8 @@ import RecipeHeader from './RecipeHeader';
 import RecipeInfo from './RecipeInfo';
 import RecipeProfileCard from './RecipeProfileCard';
 import ThreeNutritions from '../three/ThreeNutritions';
-import RecipeCommentFeed from './RecipeCommentFeed';
-import RecipeCommentForm from './RecipeCommentForm';
+import PostCommentFeed from '../posts/PostCommentFeed';
+import PostForm from '../posts/PostForm';
 
 const Recipe = ({
   recipe,
@@ -65,12 +65,13 @@ const Recipe = ({
           recipeImage={recipe.image}
           recipeFavorites={recipe.favorites}
           isFavorited={isFavorited}
-          onFavoriteClick={onFavoriteClick.bind(this, recipe._id)} />
+          onFavoriteClick={onFavoriteClick.bind(this, recipe._id)} 
+        />
         <RecipeInfo recipe={recipe} />
         <RecipeProfileCard recipe={recipe} />
         <ThreeContainer recipe={recipe} width="600px" height="400px" />
         {auth.isAuthenticated ? (
-          <RecipeCommentForm
+          <PostForm
             text={text}
             errors={errors}
             onChangeClick={onChangeClick}
@@ -78,7 +79,7 @@ const Recipe = ({
             onSubmitClick={onSubmitClick}
           />
         ) : null}
-        <RecipeCommentFeed
+        <PostCommentFeed
           posts={recipe.comments}
           loading={loading}
           auth={auth}

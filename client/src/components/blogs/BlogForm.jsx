@@ -25,7 +25,7 @@ const styles = theme => ({
 });
 
 const BlogForm = ({
-  heading,
+  headline,
   article,
   onChangeCallback,
   onSubmitCallback,
@@ -55,13 +55,13 @@ const BlogForm = ({
                     className={classes.blogFormInput}
                     variant="outlined"
                     fullWidth
-                    label="Heading"
+                    label="Headline"
                     type="text"
-                    name="heading"
-                    value={heading}
+                    name="headline"
+                    value={headline}
                     onChange={onChange}
-                    error={errors.heading}
-                    helperText={errors ? errors.heading : ''}
+                    error={errors.headline}
+                    helperText={errors ? errors.headline : ''}
                   />
                   <TextField
                     id="mui-theme-provider-outlined-input"
@@ -90,7 +90,7 @@ const BlogForm = ({
 };
 
 BlogForm.propTypes = {
-  heading: PropTypes.string.isRequired,
+  headline: PropTypes.string.isRequired,
   article: PropTypes.string.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getRecipe, favoriteRecipe, addRecipeComment, likeRecipeComment } from '../actions/recipeActions';
+import { getRecipe, addRecipeComment, likeRecipeComment, favoriteRecipe } from '../actions/recipeActions';
 
 import Recipe from '../components/recipes/Recipe';
-import RecipeCommentForm from '../components/recipes/RecipeCommentForm';
 
 class RecipeContainer extends Component {
   constructor(props) {

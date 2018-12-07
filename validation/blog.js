@@ -4,14 +4,14 @@ const isEmpty = require('./is-empty');
 module.exports = function validateBlogInput(data) {
   let errors = {};
 
-  data.heading = !isEmpty(data.heading) ? data.heading : '';
+  data.headline = !isEmpty(data.headline) ? data.headline : '';
 
-  if (!Validator.isLength(data.heading, { min: 3, max: 32 })) {
-    errors.heading = 'Heading must be between 3 and 32 characters';
+  if (!Validator.isLength(data.headline, { min: 3, max: 32 })) {
+    errors.headline = 'Headline must be between 3 and 32 characters';
   }
 
-  if (Validator.isEmpty(data.heading)) {
-    errors.heading = 'Title Field is required';
+  if (Validator.isEmpty(data.headline)) {
+    errors.headline = 'Title Field is required';
   }
 
   return {
