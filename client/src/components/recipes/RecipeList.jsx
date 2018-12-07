@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 import RecipeItem from './RecipeItem';
+import RecipeFeatured from './RecipeFeatured';
 import Loader from '../common/Loader';
 import SearchBar from '../common/SearchBar';
 
@@ -38,14 +39,15 @@ const RecipeList = ({
   }
   return (
     <div className="recipe-list">
+      <RecipeFeatured recipes={recipes} loading={loading} />
       <Container>
         <Row>
           <Col>
-          < h4 className="text-center text-uppercase">Search Recipes</h4>
+            <Typography variant="h4">Search Recipes</Typography>
             <SearchBar
-            filterText={filterText}
-            filterUpdate={filterUpdate}
-            filterCallback={filterCallback}
+              filterText={filterText}
+              filterUpdate={filterUpdate}
+              filterCallback={filterCallback}
             />
           </Col>
         </Row>
@@ -56,10 +58,6 @@ const RecipeList = ({
           {recipeItems}
         </Row>
       </Container>
-
-      {/* <Link to="/create-recipe" className="btn btn-lg btn-info">
-        Create Recipe
-      </Link> */}
     </div>
   );
 };
@@ -72,5 +70,3 @@ RecipeList.propTypes = {
 };
 
 export default RecipeList;
-
-// FIXME: implement CSS transition

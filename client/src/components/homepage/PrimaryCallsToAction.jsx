@@ -27,7 +27,7 @@ const PrimaryCallsToAction = ({ classes }) => {
         <Container>
           <Paper className={classes.primaryctaPaper} id="myPrimaryCTA">
             <Typography variant="h3">Enrich your workspace now</Typography>
-            <Typography variant="paragraph">paragraph text</Typography>
+            <Typography variant="paragraph">Discover (brandname) by creating astounding dishes for you customers. We as food lovers understand in wanting to deliver the best experiences to your customers, building personal relations and improve your business.</Typography>
             <Button component={Link} to="/register">Get Started</Button>
           </Paper>
         </Container>

@@ -5,7 +5,6 @@ import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 
 import PrimaryCallsToAction from './PrimaryCallsToAction';
-import Pricing from './Pricing';
 import Features from './Features';
 
 const Homepage = ({ isLoggedin }) => {
@@ -14,10 +13,9 @@ const Homepage = ({ isLoggedin }) => {
       <div className="homepage__content">
         {(isLoggedin) ? (
           <Fragment>
-            <Pricing />
             <PrimaryCallsToAction />
             <Features />
-            <div style={{ height: '200px' }}/>
+            <div style={{ height: '200px' }} />
           </Fragment>
         ) : (
             <h1>Hi</h1>

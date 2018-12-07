@@ -53,8 +53,8 @@ const PostComment = ({
             {showActions ? (
               <Fragment>
                 <IconButton onClick={onLikeClick.bind(this, post._id)}>
+                  <Typography>{post.likes.length}</Typography>
                   <ThumbUpIcon className={isLiked ? classes.postThumbIconLiked : classes.postThumbIconUnliked} />
-                  <span>{post.likes.length}</span>
                 </IconButton>
                 <Tooltip title="flag comment as inappropriate" placement="top" TransitionComponent={Zoom}>
                   <IconButton>

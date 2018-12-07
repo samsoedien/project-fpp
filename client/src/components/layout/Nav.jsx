@@ -1,21 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink as Link } from 'react-router-dom';
+import { Link as NavLink } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
+import { withStyles } from '@material-ui/core/styles';
 import {
+  Typography,
   AppBar,
   Toolbar,
-  Typography,
+  Tab,
 } from '@material-ui/core';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
 
-const NavbarComponent = ({
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -18,
+    marginRight: 10,
+  },
+});
+
+
+const Navbar = ({
   user,
   isAuthenticated,
   isOpen,
   onNavbarToggleCallback,
   onLogoutCallback,
   onHomepage,
+  classes,
 }) => {
   const onNavbarToggle = () => {
     onNavbarToggleCallback();
@@ -86,13 +101,27 @@ const NavbarComponent = ({
 
   return (
     <ScrollWrapper onWindowScroll={handleScroll}>
-      <AppBar position="fixed" color="inherit">
-        <Toolbar>
-          <Typography variant="h3">
-            Project FPP
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar variant="dense">
+            <Typography variant="h3">
+              Project FPP
+            </Typography>
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" color="inherit">
+              <Tab tag={NavLink} to="/recipes" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Recipes</Tab>
+            </Typography>
+            <Typography variant="h6" color="inherit">
+              <Tab tag={NavLink} to="/restaurants" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Restaurants</Tab>
+            </Typography>
+            <Typography variant="h6" color="inherit">
+              <Tab tag={NavLink} to="/community" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Community</Tab>
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </div>
 
       <Navbar fixed="top" expand="sm" className={'navbar' + (onHomepage) ? 'navbar--homepage' : 'navbar--not-homepage'} id="myNav">
         <NavbarBrand tag={Link} to="/home" className="navbar__brand">Project FPP</NavbarBrand>
@@ -128,4 +157,4 @@ NavbarComponent.propTypes = {
   onHomepage: PropTypes.bool.isRequired,
 };
 
-export default NavbarComponent;
+export default withStyles(Navbar);

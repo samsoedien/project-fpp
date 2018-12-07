@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Typography,
+  Paper,
   Button,
   TextField,
   InputAdornment,
@@ -12,9 +13,13 @@ import {
 } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons/';
 
-import Pricing from '../homepage/Pricing';
+import Stepper from '../layout/Stepper';
+import Pricing from '../layout/Pricing';
 
 const styles = theme => ({
+  registerPaper: {
+    margin: '0 auto',
+  },
   registerForm: {
     padding: '36px 16px',
     margin: '0 auto',
@@ -65,6 +70,14 @@ const Register = ({
   return (
     <div className="register">
       <Container>
+        <Row>
+          <Col md="10">
+            <Paper className={classes.registerPaper}>
+              <Stepper />
+            </Paper>
+          </Col>
+        </Row>
+
         <Row>
           <Col xs="8" md="6" lg="4">
             <Typography className={classes.registerFormTitle} variant="h3">Signup</Typography>

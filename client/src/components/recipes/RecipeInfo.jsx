@@ -3,33 +3,32 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 
 import isEmpty from '../../utils/is-empty';
 
-import RecipeBadges from './RecipeBadges';
+import RecipeChips from './RecipeChips';
 
-export default props => {
+export default ({ recipe }) => {
   return (
     <div className="recipe-info">
-      <Container className="p-3">
+      <Container>
         <Row>
           <Col md="8" style={{ minHeight: '360px' }}>
             <small className="text-muted text-left text-uppercase">
-              Culinary: {props.recipe.culinary}
+              Culinary: {recipe.culinary}
             </small>
-            <h1 className="page-header text-left text-capitalize mb-2 fancy-font">
-              {props.recipe.title}
-            </h1>
-            <p className="lead text-left paragraph-font">
-              {isEmpty(props.recipe.description) ? (
+            <Typography variant="h2">{recipe.title}</Typography>
+            <RecipeChips recipe={recipe} />
+            <Typography variant="paragraph">
+              {isEmpty(recipe.description) ? (
                 <span>No description written yet</span>
               ) : (
-                  props.recipe.description
+                  recipe.description
                 )}
-            </p>
+            </Typography>
           </Col>
         </Row>
-        <RecipeBadges recipe={props.recipe} />
       </Container>
     </div>
   );

@@ -28,17 +28,15 @@ const theme = createMuiTheme({
     fontFamily: [
       'Roboto',
     ].join(','),
-    fontSize: {},
-    headline: {},
-    title: {},
-    subheading: {},
-    body1: {},
-    body2: {
-      fontSize: 14,
-    },
-    caption: {},
-    button: {},
-    h1: {},
+    // fontSize: {},
+    // headline: {},
+    // title: {},
+    // subheading: {},
+    // body1: {},
+    // body2: {},
+    // caption: {},
+    // button: {},
+    // h1: {},
   },
 });
 

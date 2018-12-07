@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink as Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
+import {
+  IconButton,
+  Badge,
+} from '@material-ui/core';
+import { Mail as MailIcon } from '@material-ui/icons';
 import {
   Collapse,
   Navbar,
@@ -60,7 +65,11 @@ const NavbarComponent = ({
   const authLinks = (
     <Nav navbar>
       <NavItem className="navbar__item">
-        <NavLink tag={Link} to="/feed" className="navbar__item__link">Messages</NavLink>
+        <IconButton component={Link} to="/feed" className="classes.margin">
+          <Badge badgeContent={4} color="primary">
+            <MailIcon />
+          </Badge>
+        </IconButton>
       </NavItem>
       <NavItem className="navbar__item">
         <UncontrolledDropdown nav inNavbar>
