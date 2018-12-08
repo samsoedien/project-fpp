@@ -15,7 +15,7 @@ class RecipeFormContainer extends Component {
       description: '',
       directions: '',
       recipeImage: '',
-      printSettings: '',
+      settings: '',
       ingredient: '',
       errors: {},
     };
@@ -74,7 +74,7 @@ class RecipeFormContainer extends Component {
       description,
       directions,
       recipeImage,
-      printSettings,
+      settings,
       ingredient,
       errors,
     } = this.state;
@@ -86,7 +86,7 @@ class RecipeFormContainer extends Component {
           description={description}
           directions={directions}
           recipeImage={recipeImage}
-          printSettings={printSettings}
+          settings={settings}
           ingredient={ingredient}
           errors={errors}
           onChangeCallback={this.onChangeCallback}

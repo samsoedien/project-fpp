@@ -9,7 +9,7 @@ import isEmpty from '../../utils/is-empty';
 
 import RecipeChips from './RecipeChips';
 
-export default ({ recipe }) => {
+const RecipeInfo = ({ recipe }) => {
   return (
     <div className="recipe-info">
       <Container>
@@ -19,7 +19,7 @@ export default ({ recipe }) => {
               Culinary: {recipe.culinary}
             </small>
             <Typography variant="h2">{recipe.title}</Typography>
-            <RecipeChips recipe={recipe} />
+            <RecipeChips recipe={recipe.settings} />
             <Typography variant="paragraph">
               {isEmpty(recipe.description) ? (
                 <span>No description written yet</span>
@@ -33,3 +33,14 @@ export default ({ recipe }) => {
     </div>
   );
 };
+
+RecipeInfo.propTypes = {
+  recipe: PropTypes.shape({
+    title: PropTypes.string,
+    culinary: PropTypes.string,
+    description: PropTypes.string,
+    settings: PropTypes.array,
+  }).isRequired,
+};
+
+export default RecipeInfo;

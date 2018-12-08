@@ -7,8 +7,6 @@ import {
   Chip,
 } from '@material-ui/core';
 
-import isEmpty from '../../utils/is-empty';
-
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -37,6 +35,7 @@ const RecipeChips = ({ recipe, classes }) => {
 
 RecipeChips.propTypes = {
   recipe: PropTypes.object,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(RecipeChips);
