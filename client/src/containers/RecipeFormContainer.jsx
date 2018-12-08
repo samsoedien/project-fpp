@@ -46,7 +46,7 @@ class RecipeFormContainer extends Component {
     //   description: this.state.description,
     //   //directions: this.state.directions,
     //   recipeImage: this.state.recipeImage
-    //   //printSettings: this.state.printSettings,
+    //   //settings: this.state.settings,
     //   //ingredient: this.state.ingredient,
     //   //name: user.name,
     //   //avatar: user.avatar,

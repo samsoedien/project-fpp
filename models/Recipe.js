@@ -25,8 +25,8 @@ const RecipeSchema = new Schema({
   imageUrl: {
     type: String,
   },
-  printSetting: {
-    type: String,
+  settings: {
+    type: [String],
   },
   favorites: [
     {

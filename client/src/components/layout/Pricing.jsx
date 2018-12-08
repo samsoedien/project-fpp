@@ -24,7 +24,10 @@ const styles = theme => ({
   },
   pricingRed: {
     color: 'red',
-  }
+  },
+  pricingButton: {
+    margin: '0 auto',
+  },
 });
 
 const Pricing = ({ classes }) => {
@@ -50,7 +53,7 @@ const Pricing = ({ classes }) => {
                 </List>
               </CardContent>
               <CardActions>
-                <Button component={Link} to="/register" variant="outlined" color="primary">Signup for Free</Button>
+                <Button component={Link} to="/register" variant="outlined" color="primary" className={classes.pricingButton}>Signup for Free</Button>
               </CardActions>
             </Card>
           </Col>
@@ -63,13 +66,14 @@ const Pricing = ({ classes }) => {
                 <Typography variant="h3"> <span className={classes.pricingDiscount}>€49.99</span> €34.99 <small>/ mo</small></Typography>
                 <List>
                   <ListItem>Basic Features</ListItem>
+                  <ListItem>No Advertisments</ListItem>
                   <ListItem>Can create up to 5 recipes weekly</ListItem>
                   <ListItem>Email Support</ListItem>
                   <ListItem>Community Acces</ListItem>
                 </List>
               </CardContent>
               <CardActions>
-                <Button component={Link} to="/register" variant="contained" color="primary">Get Started</Button>
+                <Button component={Link} to="/register" variant="contained" color="primary" className={classes.pricingButton}>Get Started</Button>
               </CardActions>
             </Card>
           </Col>
@@ -78,9 +82,10 @@ const Pricing = ({ classes }) => {
               <CardHeader title="Enterprise"
                 subheader="Subscription + Food Printer Lease Plan" />
               <CardContent>
-                <Typography variant="h3">€79.99 <small>/ mo</small></Typography>
+                <Typography variant="h3">€99.99 <small>/ mo</small></Typography>
                 <List>
                   <ListItem>Complete Features</ListItem>
+                  <ListItem>No Advertisements</ListItem>
                   <ListItem>3DFP Printer</ListItem>
                   <ListItem>Unlimited Storage</ListItem>
                   <ListItem>Email Support</ListItem>
@@ -88,7 +93,7 @@ const Pricing = ({ classes }) => {
                 </List>
               </CardContent>
               <CardActions>
-                <Button disabled component={Link} to="/register" variant="contained" color="primary">Coming Soon</Button>
+                <Button disabled component={Link} to="/register" variant="contained" color="primary" className={classes.pricingButton}>Coming Soon</Button>
               </CardActions>
             </Card>
           </Col>

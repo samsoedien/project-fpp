@@ -28,7 +28,7 @@ const IngredientSchema = new Schema({
       }
     }
   ],
-  printSettings: {
+  settings: {
     type: String,
   },
   allergies: {
