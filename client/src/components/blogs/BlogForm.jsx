@@ -21,6 +21,7 @@ const styles = theme => ({
   },
   blogFormButton: {
     float: 'right',
+    marginBottom: '12px',
   },
 });
 
@@ -78,7 +79,7 @@ const BlogForm = ({
                     error={errors.article}
                     helperText={errors ? errors.article : ''}
                   />
-                  <Button type="submit" value="Submit" className={classes.blogFormButton}>Post Blog</Button>
+                  <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.blogFormButton}>Post Blog</Button>
                 </form>
               </CardContent>
             </Card>

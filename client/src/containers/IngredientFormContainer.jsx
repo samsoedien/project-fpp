@@ -28,8 +28,9 @@ class IngredientFormContainer extends Component {
   }
 
   onSubmitCallback(e) {
+    const { name } = this.state;
     const ingredientData = {
-      name: this.state.name,
+      name,
     };
     this.props.createIngredient(ingredientData, this.props.history);
   }

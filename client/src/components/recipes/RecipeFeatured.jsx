@@ -9,9 +9,16 @@ import Carousel from '../common/Carousel';
 // import GridList from '../common/GridList';
 import Loader from '../common/Loader';
 
+const styles = theme => ({
+  root: {
+    paddingTop: '120px',
+  },
+});
+
 const RecipeFeatured = ({
   recipes,
   loading,
+  classes,
 }) => {
   let recipeFeatured;
   if (recipes === null || loading) {
@@ -22,7 +29,7 @@ const RecipeFeatured = ({
     recipeFeatured = <h4>No Featured Recipes found...</h4>;
   }
   return (
-    <div className="recipe-list">
+    <div className={classes.root}>
       <Container>
         {/* <GridList /> */}
         {recipeFeatured}
@@ -36,5 +43,5 @@ RecipeFeatured.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
-export default RecipeFeatured;
+export default withStyles(styles)(RecipeFeatured);
 

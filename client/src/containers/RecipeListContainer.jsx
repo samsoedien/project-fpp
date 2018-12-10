@@ -27,7 +27,7 @@ class RecipeListContainer extends Component {
   }
 
   render() {
-    const { recipes, loading } = this.props.recipe;
+    const { recipe: { recipes, loading } } = this.props;
     const { filterText } = this.state;
     return (
       <div className="recipe-list-container">

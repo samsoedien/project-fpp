@@ -98,11 +98,8 @@ class RecipeContainer extends Component {
     return false;
   }
 
-
-
   render() {
-    const { recipe, loading } = this.props.recipe;
-    const { auth } = this.props;
+    const { recipe: { recipe, loading }, auth } = this.props;
     const { isFavorited, text, errors } = this.state;
     return (
       <div className="recipe-container">

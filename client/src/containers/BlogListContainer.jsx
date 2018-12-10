@@ -13,8 +13,7 @@ class BlogListContainer extends Component {
   }
 
   render() {
-    const { blogs, loading } = this.props.blog;
-    console.log(blogs);
+    const { blog: { blogs, loading } } = this.props;
     return (
       <div className="blogs-list-container">
         <BlogFormContainer />

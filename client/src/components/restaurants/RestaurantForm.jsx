@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-} from 'reactstrap';
+  Typography,
+  TextField,
+  Button,
+} from '@material-ui/core';
+
+const styles = theme => ({
+
+});
 
 const RestaurantForm = ({
   displaySocialInputs,
@@ -20,7 +22,8 @@ const RestaurantForm = ({
   errors,
   onChangeCallback,
   onSubmitCallback,
-  onSocialInputsToggleCallback
+  onSocialInputsToggleCallback,
+  classes,
 }) => {
   const onChange = e => {
     onChangeCallback(e);
@@ -36,25 +39,23 @@ const RestaurantForm = ({
       <Container>
         <Row>
           <Col md="8" className="m-auto">
-            <h2>Add A Restaurant Profile</h2>
-            <p className="lead text-center">
-              Create a Restaurant Page to Promote your business.
-            </p>
-            <small className="d-block pb-3">* = required fields</small>
-
-            <Form onSubmit={onSubmit} noValidate>
-              <FormGroup>
-                <Label for="">Restaurant Name</Label>
-                <Input
-                  name="name"
-                  placeholder="Restaurant Name"
-                  value={name}
-                  onChange={onChange}
-                />
-                <FormText color="danger">{errors ? errors.name : ''}</FormText>
-              </FormGroup>
-              <Input type="submit" value="Submit" />
-            </Form>
+            <form onSubmit={onSubmit} className={classes.loginForm} noValidate autoComplete="off">
+              <Typography variant="h3">Add A Restaurant Profile</Typography>
+              <Typography variant="paragraph">Create a Restaurant Page to Promote your business.</Typography>
+              <small className="d-block pb-3">* = required fields</small>
+              <TextField
+                className={classes.restaurantFormInput}
+                variant="outlined"
+                label="Restaurant Name"
+                type="text"
+                name="name"
+                value={name}
+                onChange={onChange}
+                error={errors.name}
+                helperText={errors ? errors.name : ''}
+              />
+              <Button type="submit" value="Submit" className={classes.restaurantFormButton}>Submit</Button>
+            </form>
           </Col>
         </Row>
       </Container>
@@ -73,4 +74,4 @@ RestaurantForm.propTypes = {
   onSubmitCallback: PropTypes.func.isRequired,
 };
 
-export default RestaurantForm;
+export default withStyles(styles)(RestaurantForm);

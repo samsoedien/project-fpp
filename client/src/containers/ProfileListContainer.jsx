@@ -25,7 +25,7 @@ class ProfileListContainer extends Component {
   };
 
   render() {
-    const { profiles, loading } = this.props.profile;
+    const { profile: { profiles, loading } } = this.props;
     const { filterText } = this.state;
     return (
       <div className="profile-list-container">

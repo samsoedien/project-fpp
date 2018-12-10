@@ -16,7 +16,7 @@ class NutritionContainer extends Component {
         value: 200
       },
       errors: {},
-      isEditable: true
+      isEditable: true,
     };
 
     this.onChangeCallback = this.onChangeCallback.bind(this);

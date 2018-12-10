@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400');
 
 @font-face {
   font-family: Timberline;
@@ -32,6 +33,7 @@ html, body {
   box-sizing: border-box;
   font-family: 'open sans', sans-serif;
   z-index: 100;
+  padding-top: 120px;
 }
 
 .app-main {
@@ -39,13 +41,20 @@ html, body {
   min-height: 100%;
   margin-bottom: 320px; /* need to be equal to footer height */ /* not sure if negative */
   background-color: #FAFAFA;
-  padding-top: 200px;
 }
 
 h1 {
   text-align: center;
   font-size: 8rem;
   font-family: 'Timberline';
+}
+
+a {
+  text-decoration: none;
+  &:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+    color: none;
+  }
 }
 
 /* Rules from MERN Stack Tutorial */

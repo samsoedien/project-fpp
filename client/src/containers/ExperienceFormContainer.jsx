@@ -33,7 +33,15 @@ class ExperienceFormContainer extends Component {
   }
 
   onSubmitCallback(e) {
-    const { company, title, location, from, to, current, description } = this.state;
+    const {
+      company,
+      title,
+      location,
+      from,
+      to,
+      current,
+      description,
+    } = this.state;
     const expData = {
       company,
       title,
@@ -58,8 +66,17 @@ class ExperienceFormContainer extends Component {
   }
 
   render() {
-    const { company, title, location, from, to, current, description, errors, disabled } = this.state;
-
+    const {
+      company,
+      title,
+      location,
+      from,
+      to,
+      current,
+      description,
+      errors,
+      disabled,
+    } = this.state;
     return (
       <div className="experience-form-container">
         <ExperienceForm

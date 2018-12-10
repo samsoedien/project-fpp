@@ -101,8 +101,7 @@ class BlogContainer extends Component {
 
 
   render() {
-    const { blog, loading } = this.props.blog;
-    const { auth } = this.props;
+    const { blog: { blog, loading }, auth } = this.props;
     const { isFavorited, text, errors } = this.state;
     return (
       <div className="blog-container">

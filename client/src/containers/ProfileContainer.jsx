@@ -19,7 +19,7 @@ class ProfileContainer extends Component {
   }
 
   render() {
-    const { profile, loading } = this.props.profile;
+    const { profile: { profile, loading } } = this.props;
     return (
       <div className="profile-container">
         <Profile profile={profile} loading={loading} />

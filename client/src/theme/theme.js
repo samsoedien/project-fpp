@@ -27,6 +27,7 @@ const theme = createMuiTheme({
     useNextVariants: true,
     fontFamily: [
       'Roboto',
+      'Montserrat',
     ].join(','),
     // fontSize: {},
     // headline: {},

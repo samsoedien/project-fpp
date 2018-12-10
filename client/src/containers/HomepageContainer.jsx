@@ -14,9 +14,8 @@ class HomepageContainer extends Component {
   }
 
   componentDidMount() {
-    const { getCurrentProfile } = this.props;
+    const { auth: { user }, getCurrentProfile } = this.props;
     getCurrentProfile();
-    const { user } = this.props.auth;
     if (user !== undefined) {
       this.setState({
         isLoggedin: true,

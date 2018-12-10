@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
-import { Card } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 
 import Loader from '../common/Loader';
 import BlogItem from './BlogItem';
 
-const BlogList = ({ blogs, loading }) => {
+const styles = theme => ({
+});
+
+const BlogList = ({ blogs, loading, classes }) => {
   let blogItems;
   if (blogs === null || loading) {
     blogItems = <Loader />;
@@ -23,13 +26,11 @@ const BlogList = ({ blogs, loading }) => {
   return (
     <div className="blog-list">
       <Container>
-        <Row>
-          <Col md="8">
-            <Card>
-              {blogItems}
-            </Card>
-          </Col>
-        </Row>
+        <Paper className={classes.blogListPaper}>
+          <Row>
+            {blogItems}
+          </Row>
+        </Paper>
       </Container>
     </div>
   );
@@ -40,6 +41,7 @@ BlogList.propTypes = {
     blog: PropTypes.object.isRequired,
   }).isRequired,
   loading: PropTypes.bool.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default BlogList;
+export default withStyles(styles)(BlogList);

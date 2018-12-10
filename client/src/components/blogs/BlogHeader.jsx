@@ -62,7 +62,7 @@ const BlogHeader = ({
     onFavoriteClick();
   };
 
-  const handleScroll = (scrollDistance) => {
+  const handleScroll = scrollDistance => {
     const parallaxItem = document.getElementById('myHeader');
     parallaxItem.style.transform = `translate(0px, ${-scrollDistance / 2}px)`;
   };

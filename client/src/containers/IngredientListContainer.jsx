@@ -27,7 +27,7 @@ class IngredientListContainer extends Component {
   }
 
   render() {
-    const { ingredients, loading } = this.props.ingredient;
+    const { ingredient: { ingredients, loading } } = this.props;
     const { filterText } = this.state;
     return (
       <div className="ingredient-list-container">

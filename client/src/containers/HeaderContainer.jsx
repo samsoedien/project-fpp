@@ -17,9 +17,9 @@ class HeaderContainer extends Component {
   }
 
   onNavbarToggleCallback() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
   }
 
   onLogoutCallback() {
@@ -28,8 +28,7 @@ class HeaderContainer extends Component {
   }
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
-    const { onHomepage } = this.props;
+    const { auth: { isAuthenticated, user }, onHomepage } = this.props;
     const { isOpen } = this.state;
     return (
       <div className="navbar-container">
@@ -48,7 +47,12 @@ class HeaderContainer extends Component {
 
 HeaderContainer.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.shape({}).isRequired,
+  clearCurrentProfile: PropTypes.func.isRequired,
+  auth: PropTypes.shape({
+    isAuthenticated: PropTypes.bool,
+    user: PropTypes.object,
+  }).isRequired,
+  onHomepage: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({

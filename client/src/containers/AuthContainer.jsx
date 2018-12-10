@@ -72,10 +72,18 @@ class AuthContainer extends Component {
   }
 
   render() {
-    const { name, email, password, passwordConfirm, showPassword, errors } = this.state;
+    const { hasAccount } = this.props;
+    const {
+      name,
+      email,
+      password,
+      passwordConfirm,
+      showPassword,
+      errors,
+    } = this.state;
     return (
       <div className="auth-container">
-        {this.props.hasAccount ? (
+        {hasAccount ? (
           <Login
             email={email}
             password={password}
@@ -111,6 +119,7 @@ AuthContainer.propTypes = {
   registerUser: PropTypes.func.isRequired,
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  hasAccount: PropTypes.bool,
   errors: PropTypes.object.isRequired,
 };
 
