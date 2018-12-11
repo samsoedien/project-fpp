@@ -50,7 +50,7 @@ const styles = theme => ({
   cssOutlinedInput: {
     '&$cssFocused $notchedOutline': {
       borderColor: `${theme.palette.common.white} !important`,
-    }
+    },
   },
   cssFocused: {
   },
@@ -163,7 +163,8 @@ const Footer = ({
             </div>
             <Typography className={classes.footerCopyright}>
               Copyright &copy;
-            {' ' + new Date().getFullYear()}
+              {' '}
+              {new Date().getFullYear()}
               {' Samsoedien'}
             </Typography>
           </Row>
@@ -171,7 +172,7 @@ const Footer = ({
       </footer>
     </div>
   );
-}
+};
 
 Footer.propTypes = {
   email: PropTypes.string.isRequired,

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Link } from 'react-router-dom';
+// import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Typography,
   Paper,
   Modal,
   Button,
@@ -50,13 +49,13 @@ class ConfirmDeleteWrapper extends Component {
 
   render() {
     const { isOpen } = this.state;
-    const { buttonLabel, classes } = this.props;
+    const { buttonLabel, children, classes } = this.props;
     return (
       <div className="modal-component">
         <Button variant="contained" onClick={this.onModalToggle} className={classes.modalButton}>{buttonLabel}</Button>
         <Modal open={isOpen} onClose={this.onModalToggle}>
           <Paper className={classes.modalPaper}>
-            {this.props.children}
+            {children}
             <Button color="primary" onClick={() => { this.onModalToggle(); this.onDeleteClick(); }}>Delete</Button>
           </Paper>
         </Modal>

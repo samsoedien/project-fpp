@@ -38,7 +38,7 @@ const PrimaryCallsToAction = ({ classes }) => {
 
 PrimaryCallsToAction.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line
-}
+};
 
 export default withStyles(styles)(PrimaryCallsToAction);
 

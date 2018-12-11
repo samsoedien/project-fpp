@@ -37,11 +37,11 @@ class HorizontalNonLinearStepper extends React.Component {
     const { } = this.props;
     switch (step) {
       case 0:
-        return 'hi'
+        return 'hi';
       case 1:
         return 'Step 2: What is an ad group anyways?';
       case 2:
-        return 'hi'
+        return 'hi';
       default:
         return 'Unknown step';
     }

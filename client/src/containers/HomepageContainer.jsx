@@ -6,30 +6,16 @@ import { getCurrentProfile } from '../actions/profileActions';
 import Homepage from '../components/homepage/Homepage';
 
 class HomepageContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoggedin: false,
-    };
-  }
-
   componentDidMount() {
-    const { auth: { user }, getCurrentProfile } = this.props;
+    const { getCurrentProfile } = this.props;
     getCurrentProfile();
-    if (user !== undefined) {
-      this.setState({
-        isLoggedin: true,
-      });
-    }
   }
 
   render() {
-    const { isLoggedin } = this.state;
-    console.log(isLoggedin);
-
+    const { auth } = this.props;
     return (
       <div className="homepage-container">
-        <Homepage isLoggedin={isLoggedin} />
+        <Homepage auth={auth} />
       </div>
     );
   }
@@ -39,6 +25,7 @@ HomepageContainer.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.shape({
     user: PropTypes.string.isRequired,
+    isAuthenticated: PropTypes.bool,
   }).isRequired,
 };
 

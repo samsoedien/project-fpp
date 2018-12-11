@@ -46,6 +46,10 @@ class HeaderContainer extends Component {
   }
 }
 
+HeaderContainer.defaultProps = {
+  onHomepage: true,
+};
+
 HeaderContainer.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   clearCurrentProfile: PropTypes.func.isRequired,
@@ -53,7 +57,7 @@ HeaderContainer.propTypes = {
     isAuthenticated: PropTypes.bool,
     user: PropTypes.object,
   }).isRequired,
-  onHomepage: PropTypes.bool.isRequired,
+  onHomepage: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({

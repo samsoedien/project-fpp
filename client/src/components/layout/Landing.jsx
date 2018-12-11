@@ -4,34 +4,35 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Label,
-  Input,
+  Typography,
   Button,
-} from 'reactstrap';
+} from '@material-ui/core';
 
-import './Landing.css';
+const styles = theme => ({
 
-export default class Landing extends Component {
+});
+
+class Landing extends Component {
   componentDidMount() {
     window.location.href = '/home';
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div className="landing">
         <div className="landing__overlay" />
-        <p className="paragraph--disclaimer">This application is made for demonstration purposes. Personal data might be collected.</p>
-        <Label check>
-          <Input type="checkbox" />
-          {'I Accept'}
-        </Label>
-        <Link to="/edit-profile" className="btn btn-light landing__button">Enter Site</Link>
+        <Typography className="paragraph--disclaimer">This application is made for demonstration purposes. Personal data might be collected.</Typography>
+        <Button component={Link} to="/home">Enter Site / I Accept</Button>
       </div>
-    )
+    );
   }
 }
 
 Landing.propTypes = {
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
+
+export default withStyles(styles)(Landing);
 
 // TODO: Design compelling landing page

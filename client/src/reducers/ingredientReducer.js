@@ -1,33 +1,33 @@
 import {
   GET_INGREDIENTS,
   GET_INGREDIENT,
-  INGREDIENT_LOADING
+  INGREDIENT_LOADING,
 } from '../constants/types';
 
 const initialState = {
   ingredients: null,
   ingredient: null,
-  loading: false
+  loading: false,
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case INGREDIENT_LOADING:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case GET_INGREDIENTS:
       return {
         ...state,
         ingredients: action.payload,
-        loading: false
+        loading: false,
       };
     case GET_INGREDIENT:
       return {
         ...state,
         ingredient: action.payload,
-        loading: false
+        loading: false,
       };
     default:
       return state;

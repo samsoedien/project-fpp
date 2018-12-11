@@ -33,7 +33,9 @@ const Ingredient = ({ ingredient, loading }) => {
 };
 
 Ingredient.propTypes = {
-  ingredient: PropTypes.object.isRequired,
+  ingredient: PropTypes.shape({
+    name: PropTypes.string,
+  }).isRequired,
   loading: PropTypes.bool.isRequired,
 };
 

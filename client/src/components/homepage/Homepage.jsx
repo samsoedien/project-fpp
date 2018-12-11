@@ -1,38 +1,31 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
-import { withStyles } from '@material-ui/core/styles';
+// import { Link } from 'react-router-dom';
+// import { Container, Row, Col } from 'reactstrap';
+// import { withStyles } from '@material-ui/core/styles';
 
 import PrimaryCallsToAction from './PrimaryCallsToAction';
 import Features from './Features';
 
-const Homepage = ({ isLoggedin }) => {
-  return (
-    <div className="homepage">
-      <div className="homepage__content">
-        {(isLoggedin) ? (
+const Homepage = ({ auth }) => (
+  <div className="homepage">
+    <div className="homepage__content">
+      {(auth.isAuthenticated)
+        ? (
           <Fragment>
             <PrimaryCallsToAction />
             <Features />
             <div style={{ height: '200px' }} />
           </Fragment>
-        ) : (
-            <h1>Hi</h1>
-          )}
-      </div>
+        ) : (<h1>Hi</h1>)}
     </div>
-  );
-};
-
-Homepage.defaultProps = {
-  isLoggedin: false,
-}
+  </div>
+);
 
 Homepage.propTypes = {
-  isLoggedin: PropTypes.string,
+  auth: PropTypes.shape({
+    isAuthenticated: PropTypes.bool,
+  }).isRequired,
 };
 
 export default Homepage;
-
-// FIXME: isLoggedin bool never return false

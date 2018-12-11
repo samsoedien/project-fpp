@@ -6,18 +6,17 @@ import PropTypes from 'prop-types';
 const PrivateRouteWrapper = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
-      auth.isAuthenticated === true ? (
-        <Component {...props} />
-      ) : (
-          <Redirect to="/login" />
-        )
+    render={props => auth.isAuthenticated === true
+      ? (<Component {...props} />)
+      : (<Redirect to="/login" />)
     }
   />
 );
 
 PrivateRouteWrapper.propTypes = {
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.shape({
+    isAuthenticated: PropTypes.bool,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({

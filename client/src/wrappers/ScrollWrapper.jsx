@@ -23,10 +23,12 @@ export default class ScrollWrapper extends Component {
   }
 
   render() {
-    return this.props.children;
+    const { children } = this.props;
+    return children;
   }
 }
 
 ScrollWrapper.propTypes = {
   onWindowScroll: PropTypes.func.isRequired,
+  children: PropTypes.object.isRequired, // eslint-disable-line
 };
