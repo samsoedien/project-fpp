@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Typography,
@@ -21,7 +21,7 @@ class Landing extends Component {
     const { classes } = this.props;
     return (
       <div className="landing">
-        <div className="landing__overlay" />
+        <div className={classes.landingOverlay} />
         <Typography className="paragraph--disclaimer">This application is made for demonstration purposes. Personal data might be collected.</Typography>
         <Button component={Link} to="/home">Enter Site / I Accept</Button>
       </div>
@@ -34,5 +34,3 @@ Landing.propTypes = {
 };
 
 export default withStyles(styles)(Landing);
-
-// TODO: Design compelling landing page

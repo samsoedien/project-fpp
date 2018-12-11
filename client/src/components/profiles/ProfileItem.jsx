@@ -3,17 +3,22 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
+import {
+  Typography,
+  Card,
+} from '@material-ui/core';
+
 import isEmpty from '../../utils/is-empty';
 
 const ProfileItem = ({ profile }) => {
   return (
     <div className="profile-item">
-      <div className="card card-body bg-light mb-3">
-        <div className="row">
-          <div className="col-2">
+      <Card>
+        <Row>
+          <Col md="2">
             <img src={profile.user.avatar} alt="" className="rounded-circle" />
-          </div>
-          <div className="col-lg-6 col-md-4 col-8">
+          </Col>
+          <Col md="4" lg="6">
             <h3>{profile.user.name}</h3>
             <p>
               {profile.status}{' '}
@@ -29,8 +34,8 @@ const ProfileItem = ({ profile }) => {
             <Link to={`/profiles/${profile.handle}`} className="btn btn-info">
               View Profile
             </Link>
-          </div>
-          <div className="col-md-4 d-none d-md-block">
+          </Col>
+          <Col md="4">
             <h4>Skill Set</h4>
             <ul className="list-group">
               {profile.skills.slice(0, 4).map((skill, index) => (
@@ -40,9 +45,9 @@ const ProfileItem = ({ profile }) => {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Card>
     </div>
   );
 };

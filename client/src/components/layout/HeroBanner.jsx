@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Link } from 'react-router-dom';
+// import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 
 import ScrollArrow from './ScrollArrow';
@@ -47,7 +47,7 @@ const HeroBanner = ({ onHomepage, classes }) => (
 
 HeroBanner.defaultProps = {
   onHomepage: true,
-}
+};
 
 HeroBanner.propTypes = {
   onHomepage: PropTypes.bool,

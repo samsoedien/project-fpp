@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid, CircularProgress } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 
 const styles = theme => ({
   loaderProgress: {

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
 // Create Schema
@@ -12,6 +11,7 @@ const BlogSchema = new Schema({
   headline: {
     type: String,
     required: true,
+    unique: true,
   },
   article: {
     type: String,
@@ -19,6 +19,7 @@ const BlogSchema = new Schema({
   },
   image: {
     type: String,
+    default: '/../database/uploads/images/pastry.jpg',
   },
   favorites: [
     {

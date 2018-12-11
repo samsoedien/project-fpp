@@ -54,7 +54,7 @@ exports.postRecipe = (req, res, next) => {
   const newRecipe = new Recipe({
     _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
-    culinary: req.body.culinary,
+    cuisine: req.body.cuisine,
     description: req.body.description,
     imageUrl: req.file.path,
     user: req.user.id,
@@ -113,13 +113,13 @@ exports.deleteRecipe = (req, res, next) => {
 // @route   POST api/recipes/:id
 // @desc    Upload an image
 // @access  Public
-// router.post('/image', upload.single('recipeImage'), (req, res, next) => {
+// router.post('/image', upload.single('image'), (req, res, next) => {
 //   const newRecipe = new Recipe({
 //     _id: new mongoose.Types.ObjectId(),
 //     title: req.body.title,
 //     description: req.body.description,
 //     ingredient: req.body.ingredient,
-//     recipeImage: req.file.path
+//     image: req.file.path
 //   });
 //   newRecipe
 //     .save()

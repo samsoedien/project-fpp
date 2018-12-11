@@ -3,15 +3,33 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
-import { Card, CardBody } from 'reactstrap';
-import isEmpty from '../../utils/is-empty';
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardMedia,
+} from '@material-ui/core';
 
-const ProfileHeader = ({ profile }) => {
+import isEmpty from '../../utils/is-empty';
+import IMG from '../../assets/img/prawn11.jpg';
+
+const styles = theme => ({
+  cover: {
+    width: 151,
+  },
+});
+
+const ProfileHeader = ({ profile, classes }) => {
   return (
     <Row>
       <Col md="12">
-        <Card className="bg-info text-white mb-3">
-          <CardBody>
+        <Card>
+          <CardMedia
+            image={profile.user.avatar}
+            title="Live from space album cover"
+            className={classes.cover}
+          />
+          <CardContent>
             <Row>
               <Col md="3" className="col-4 m-auto">
                 <img
@@ -72,11 +90,21 @@ const ProfileHeader = ({ profile }) => {
                 )}
               </p>
             </div>
-          </CardBody>
+          </CardContent>
         </Card>
       </Col>
     </Row>
   );
 };
 
-export default ProfileHeader;
+ProfileHeader.propTypes = {
+  profile: PropTypes.shape({
+    user: PropTypes.object,
+    company: PropTypes.string,
+    website: PropTypes.string,
+    social: PropTypes.object,
+  }).isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
+};
+
+export default withStyles(styles)(ProfileHeader);

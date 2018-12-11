@@ -23,7 +23,7 @@ router.get('/:id', recipesController.getRecipeById);
 // @route   POST api/recipes
 // @desc    Create a recipe
 // @access  Private
-// router.post('/', passport.authenticate('jwt', { session: false }), upload.single('recipeImage'), recipesController.postRecipe);
+// router.post('/', passport.authenticate('jwt', { session: false }), upload.single('image'), recipesController.postRecipe);
 
 router.post('/', passport.authenticate('jwt', { session: false }), recipesController.postRecipe);
 

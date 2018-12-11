@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link as NavLink } from 'react-router-dom';
+import { NavLink as Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -17,8 +17,24 @@ import { Menu as MenuIcon } from '@material-ui/icons';
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
 
 const styles = theme => ({
-  root: {
-    // flexGrow: 1,
+  nav: {
+    height: '88px',
+    background: 'transparent',
+    boxShadow: 'none',
+    transition: '.5s',
+  },
+  navShrink: {
+    height: '60px',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    boxShadow: '0px 16px 32px - 10px rgba(0, 0, 0, 0.2)',
+    transition: '.5s',
+  },
+  navMenuList: {},
+  navMenuItem: {
+    fontFamily: 'lato',
+    fontWeight: '500',
+    fontSize: '0.8rem',
+    textTransform: 'uppercase',
   },
   menuButton: {
     marginLeft: -18,
@@ -30,31 +46,32 @@ const styles = theme => ({
   },
 });
 
-
-const Navbar = ({
-  user,
-  isAuthenticated,
-  isOpen,
-  onNavbarToggleCallback,
-  onLogoutCallback,
-  onHomepage,
-  classes,
-}) => {
-  const onNavbarToggle = () => {
-    onNavbarToggleCallback();
+class Navbar extends Component {
+  state = {
+    isOpen: false,
+    navShrink: false,
   };
 
-  const onLogout = e => {
+  // onNavbarToggle = () => {
+
+  //   onNavbarToggleCallback();
+  // };
+
+  onLogout = e => {
     e.preventDefault();
+    const { onLogoutCallback } = this.props;
     onLogoutCallback();
   };
 
-  const handleScroll = scrollDistance => {
-    const navElement = document.getElementById('myNav');
+  handleScroll = scrollDistance => {
     if (scrollDistance > 80) {
-      navElement.classList.add('navbar--shrink');
+      this.setState({
+        navShrink: true,
+      });
     } else {
-      navElement.classList.remove('navbar--shrink');
+      this.setState({
+        navShrink: false,
+      });
     }
   };
 
@@ -106,37 +123,37 @@ const Navbar = ({
   //     </NavItem>
   //   </Nav>
   // );
-
-  return (
-    <ScrollWrapper onWindowScroll={handleScroll}>
-      <div className={classes.root}>
-        <AppBar position="fixed" id="myNav" color="primary">
-          <Toolbar variant="dense">
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton>
-            <Typography component={NavLink} to="/home" variant="h6" color="inherit">Project FPP</Typography>
-            <Typography variant="h6" color="inherit">
-              <Tab tag={NavLink} to="/recipes" className="navbar__item__link">Recipes</Tab>
-            </Typography>
-            <Typography variant="h6" color="inherit">
-              <Tab tag={NavLink} to="/restaurants" className="navbar__item__link">Restaurants</Tab>
-            </Typography>
-            <Typography variant="h6" color="inherit">
-              <Tab tag={NavLink} to="/community" className="navbar__item__link">Community</Tab>
-            </Typography>
-            <MenuList>
-              <MenuItem component={NavLink} to="/recipes" className={classes.navMenuItem}>Recipes</MenuItem>
-              <MenuItem component={NavLink} to="/restaurants" className={classes.navMenuItem}>Restaurants</MenuItem>
-              <MenuItem component={NavLink} to="/community" className={classes.navMenuItem}>Community</MenuItem>
-            </MenuList>
-            {/* {isAuthenticated ? authLinks : guestLinks} */}
-          </Toolbar>
-        </AppBar>
-      </div>
-    </ScrollWrapper>
-  );
-};
+  render() {
+    const {
+      user,
+      isAuthenticated,
+      isOpen,
+      onHomepage,
+      classes,
+    } = this.props;
+    const { navShrink } = this.state;
+    return (
+      <ScrollWrapper onWindowScroll={this.handleScroll}>
+        <div className={classes.root}>
+          <AppBar position="fixed" id="myNav" color="primary" className={(!navShrink) ? classes.nav : classes.navShrink}>
+            <Toolbar>
+              <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                <MenuIcon />
+              </IconButton>
+              <Typography component={Link} to="/home" variant="h6" color="inherit">Project FPP</Typography>
+              <MenuList className={classes.navMenuList}>
+                <MenuItem component={Link} to="/recipes" className={classes.navMenuItem}>Recipes</MenuItem>
+                <MenuItem component={Link} to="/restaurants" className={classes.navMenuItem}>Restaurants</MenuItem>
+                <MenuItem component={Link} to="/community" className={classes.navMenuItem}>Community</MenuItem>
+              </MenuList>
+              {/* {isAuthenticated ? authLinks : guestLinks} */}
+            </Toolbar>
+          </AppBar>
+        </div>
+      </ScrollWrapper>
+    );
+  }
+}
 
 Navbar.propTypes = {
   user: PropTypes.shape({

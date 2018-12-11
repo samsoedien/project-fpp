@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Link } from 'react-router-dom';
+// import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Typography,
   Paper,
   Modal,
   Button,
@@ -36,15 +35,15 @@ class ModalComponent extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { buttonLabel, children, classes } = this.props;
     const { isOpen } = this.state;
 
     return (
       <div>
-        <Button variant="contained" color="primary" onClick={this.onModalToggle} className={classes.recipeformModalButton}>{this.props.buttonLabel}</Button>
+        <Button variant="contained" color="primary" onClick={this.onModalToggle} className={classes.recipeformModalButton}>{buttonLabel}</Button>
         <Modal open={isOpen} onClose={this.onModalToggle}>
           <Paper className={classes.modalPaper}>
-            {this.props.children}
+            {children}
           </Paper>
         </Modal>
       </div>
@@ -54,12 +53,13 @@ class ModalComponent extends React.Component {
 
 
 ModalComponent.defaultProps = {
-  buttonLabel: 'Open Modal'
+  buttonLabel: 'Open Modal',
 };
 
 ModalComponent.propTypes = {
   buttonLabel: PropTypes.string,
   classes: PropTypes.object.isRequired, // eslint-disable-line
+  children: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(ModalComponent);

@@ -1,7 +1,6 @@
 .navbar {
   height: 88px;
-  /* background-color: rgba(255, 255, 255, 0); */
-  background-color: grey;
+  background-color: transparent;
   transition: .5s;
 }
 

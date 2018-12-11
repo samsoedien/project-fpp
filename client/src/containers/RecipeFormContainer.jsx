@@ -11,10 +11,10 @@ class RecipeFormContainer extends Component {
     super(props);
     this.state = {
       title: '',
-      culinary: '',
+      cuisine: '',
       description: '',
       directions: '',
-      recipeImage: '',
+      image: '',
       settings: '',
       ingredient: '',
       errors: {},
@@ -31,8 +31,8 @@ class RecipeFormContainer extends Component {
 
   onChangeCallback(e) {
     switch (e.target.name) {
-      case 'recipeImage':
-        this.setState({ recipeImage: e.target.files[0] });
+      case 'image':
+        this.setState({ image: e.target.files[0] });
         break;
       default:
         this.setState({ [e.target.name]: e.target.value });
@@ -42,27 +42,27 @@ class RecipeFormContainer extends Component {
   onSubmitCallback() {
     // const recipeData = {
     //   title: this.state.title,
-    //   culinary: this.state.culinary,
+    //   cuisine: this.state.cuisine,
     //   description: this.state.description,
     //   //directions: this.state.directions,
-    //   recipeImage: this.state.recipeImage
+    //   image: this.state.image
     //   //settings: this.state.settings,
     //   //ingredient: this.state.ingredient,
     //   //name: user.name,
     //   //avatar: user.avatar,
     // };
-    const { title, culinary, description } = this.state;
+    const { title, cuisine, description } = this.state;
     const recipeData = {
       title,
-      culinary,
+      cuisine,
       description,
     };
 
     // const recipeData = new FormData();
     // recipeData.append('title', this.state.title);
-    // recipeData.append('culinary', this.state.culinary);
+    // recipeData.append('cuisine', this.state.cuisine);
     // recipeData.append('description', this.state.description);
-    // recipeData.append('image', this.state.recipeImage);
+    // recipeData.append('image', this.state.image);
     const { createRecipe, history } = this.props;
     createRecipe(recipeData, history);
   }
@@ -70,10 +70,10 @@ class RecipeFormContainer extends Component {
   render() {
     const {
       title,
-      culinary,
+      cuisine,
       description,
       directions,
-      recipeImage,
+      image,
       settings,
       ingredient,
       errors,
@@ -82,10 +82,10 @@ class RecipeFormContainer extends Component {
       <div className="recipe-form-container">
         <RecipeForm
           title={title}
-          culinary={culinary}
+          cuisine={cuisine}
           description={description}
           directions={directions}
-          recipeImage={recipeImage}
+          image={image}
           settings={settings}
           ingredient={ingredient}
           errors={errors}

@@ -20,10 +20,10 @@ const styles = theme => ({
 
 const RecipeForm = ({
   title,
-  culinary,
+  cuisine,
   description,
   directions,
-  recipeImage,
+  image,
   settings,
   ingredient,
   onChangeCallback,
@@ -70,13 +70,13 @@ const RecipeForm = ({
               className={classes.recipeFormInput}
               variant="outlined"
               fullWidth
-              label="Culinary"
+              label="Cuisine"
               type="text"
-              name="culinary"
-              value={culinary}
+              name="cuisine"
+              value={cuisine}
               onChange={onChange}
-              error={errors.culinary}
-              helperText={errors ? errors.culinary : ''}
+              error={errors.cuisine}
+              helperText={errors ? errors.cuisine : ''}
             />
             <TextField
               id="mui-theme-provider-outlined-input"
@@ -103,19 +103,17 @@ const RecipeForm = ({
 
 RecipeForm.propTypes = {
   title: PropTypes.string.isRequired,
-  culinary: PropTypes.string.isRequired,
+  cuisine: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   directions: PropTypes.object.isRequired,
-  recipeImage: PropTypes.object.isRequired,
+  image: PropTypes.object.isRequired,
   settings: PropTypes.array.isRequired,
   ingredient: PropTypes.object.isRequired,
-  modal: PropTypes.bool.isRequired,
-  onModalToggleCallback: PropTypes.func.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,
   errors: PropTypes.shape({
     title: PropTypes.string,
-    culinary: PropTypes.string,
+    cuisine: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,
   classes: PropTypes.object.isRequired, // eslint-disable-line

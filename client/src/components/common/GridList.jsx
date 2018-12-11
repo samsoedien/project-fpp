@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import tileData from './tileData';
+import {
+  GridList,
+  GridListTile,
+} from '@material-ui/core/GridList';
 
 const styles = theme => ({
   root: {
@@ -19,33 +20,13 @@ const styles = theme => ({
   },
 });
 
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *     cols: 2,
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
-function ImageGridList(props) {
-  const { classes } = props;
-
+const ImageGridList = ({ recipes, classes }) => {
   return (
     <div className={classes.root}>
       <GridList cellHeight={160} className={classes.gridList} cols={3}>
-        {tileData.map(tile => (
-          <GridListTile key={tile.img} cols={tile.cols || 1}>
-            <img src={tile.img} alt={tile.title} />
+        {recipes.map(recipe => (
+          <GridListTile recipe key={recipe._id} cols={1}>
+            <img src={recipe.image} alt={recipe.title} />
           </GridListTile>
         ))}
       </GridList>
@@ -54,7 +35,12 @@ function ImageGridList(props) {
 }
 
 ImageGridList.propTypes = {
-  classes: PropTypes.object.isRequired,
+  recipes: PropTypes.shape({
+    _id: PropTypes.string, 
+    title: PropTypes.string,
+    image: PropTypes.string,
+  }).isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(ImageGridList);

@@ -14,6 +14,13 @@ import PostForm from '../posts/PostForm';
 import Loader from '../common/Loader';
 
 const styles = theme => ({
+  blogArticle: {},
+  blogHeadline: {
+    textTransform: 'capitalize',
+  },
+  blogSection: {
+    textAlign: 'center',
+  }
 });
 
 const Blog = ({
@@ -69,8 +76,8 @@ const Blog = ({
           onFavoriteClick={onFavoriteClick.bind(this, blog._id)}
         />
         <Container>
-          <article>
-            <Typography variant="h1">{blog.headline}</Typography>
+          <article className={classes.blogArticle}>
+            <Typography variant="h2" className={classes.blogHeadline}>{blog.headline}</Typography>
             <Avatar src={blog.user.avatar} />
             <Typography>{blog.user.name}</Typography>
             <section className={classes.blogSection}>

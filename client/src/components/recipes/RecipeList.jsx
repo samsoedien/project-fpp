@@ -34,7 +34,6 @@ const RecipeList = ({
   } else if (recipes.length > 0) {
     recipeItems = recipes
       .filter(recipe => {
-        // remove names that do not match current filter text
         return (
           recipe.title.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
         );

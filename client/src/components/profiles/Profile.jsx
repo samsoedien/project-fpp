@@ -30,7 +30,6 @@ const Profile = ({ profile, loading }) => {
       </div>
     );
   }
-
   return (
     <div className="profile">
       <Container>
@@ -40,6 +39,13 @@ const Profile = ({ profile, loading }) => {
       </Container>
     </div>
   );
+};
+
+Profile.propTypes = {
+  profile: PropTypes.shape({
+    experience: PropTypes.object,
+  }).isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default Profile;

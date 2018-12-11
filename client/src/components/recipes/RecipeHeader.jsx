@@ -11,14 +11,12 @@ import {
 import { Favorite as FavoriteIcon, Share as ShareIcon } from '@material-ui/icons';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
-import BG_IMG_URL from '../../assets/img/foodprinted_sidedish.jpg';
 
 const styles = theme => ({
   recipeHeaderParallax: {
     position: 'relative',
     minHeight: '560px',
     width: '100%',
-    backgroundImage: `url(${BG_IMG_URL})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
@@ -51,6 +49,7 @@ const styles = theme => ({
 });
 
 const RecipeHeader = ({
+  recipeImage,
   recipeFavorites,
   isFavorited,
   onFavoriteClick,
@@ -70,7 +69,7 @@ const RecipeHeader = ({
   return (
     <div className="recipe-header">
       <ScrollWrapper onWindowScroll={handleScroll}>
-        <header className={classes.recipeHeaderParallax} id="myHeader">
+        <header className={classes.recipeHeaderParallax} id="myHeader" style={{ backgroundImage: `url(${recipeImage})` }}>
           <div className={classes.recipeHeaderOverlay} />
           <Tooltip title={`${recipeFavorites.length} chef(s) loved this recipe`} placement="top" TransitionComponent={Zoom}>
             <IconButton onClick={onFavoriteHandle} className={classes.recipeHeaderFavoriteButton}>

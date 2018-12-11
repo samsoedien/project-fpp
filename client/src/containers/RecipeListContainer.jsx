@@ -28,17 +28,17 @@ class RecipeListContainer extends Component {
   }
 
   render() {
-    const { recipe: { recipes, loading } } = this.props;
+    const { recipe: { recipes, loading }, auth } = this.props;
     const { filterText } = this.state;
     return (
       <div className="recipe-list-container">
-        <RecipeFormContainer />
         <RecipeList
           recipes={recipes}
           loading={loading}
           filterText={filterText}
           filterUpdate={this.filterListUpdate}
         />
+        {(auth.isAuthenticated) ? <RecipeFormContainer /> : null}
       </div>
     );
   }
@@ -50,10 +50,14 @@ RecipeListContainer.propTypes = {
     recipes: PropTypes.object,
     loading: PropTypes.bool.isRequired,
   }).isRequired,
+  auth: PropTypes.shape({
+    isAuthenticated: PropTypes.bool,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({
   recipe: state.recipe,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getRecipes })(RecipeListContainer);

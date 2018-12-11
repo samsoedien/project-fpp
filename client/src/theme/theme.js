@@ -38,6 +38,10 @@ const theme = createMuiTheme({
     // caption: {},
     // button: {},
     // h1: {},
+    h2: { 
+      fontFamily: '"Great Vibes", cursive',
+      fontSize: '6rem',
+    }
   },
 });
 

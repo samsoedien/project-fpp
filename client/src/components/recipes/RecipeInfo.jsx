@@ -6,19 +6,29 @@ import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
 import isEmpty from '../../utils/is-empty';
-
 import RecipeChips from './RecipeChips';
 
-const RecipeInfo = ({ recipe }) => {
+const styles = theme => ({
+  recipeTitle: {
+    textAlign: 'center',
+    textTransform: 'capitalize',
+  },
+  center: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+});
+
+const RecipeInfo = ({ recipe, classes }) => {
   return (
     <div className="recipe-info">
       <Container>
-        <Row>
+        <Row className={classes.center}>
           <Col md="8" style={{ minHeight: '360px' }}>
             <small className="text-muted text-left text-uppercase">
-              Culinary: {recipe.culinary}
+              Cuisine: {recipe.cuisine}
             </small>
-            <Typography variant="h2">{recipe.title}</Typography>
+            <Typography variant="h2" className={classes.recipeTitle}>{recipe.title}</Typography>
             <RecipeChips recipe={recipe.settings} />
             <Typography variant="paragraph">
               {isEmpty(recipe.description) ? (
@@ -37,10 +47,11 @@ const RecipeInfo = ({ recipe }) => {
 RecipeInfo.propTypes = {
   recipe: PropTypes.shape({
     title: PropTypes.string,
-    culinary: PropTypes.string,
+    cuisine: PropTypes.string,
     description: PropTypes.string,
     settings: PropTypes.array,
   }).isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default RecipeInfo;
+export default withStyles(styles)(RecipeInfo);

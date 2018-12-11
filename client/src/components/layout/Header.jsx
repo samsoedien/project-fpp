@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 // import { withStyles } from '@material-ui/core/styles';
 
 import Navbar from './Navbar';
-import Nav from './Nav';
 import HeroBanner from './HeroBanner';
 
 const Header = ({

@@ -25,6 +25,10 @@ import {
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
 import './Navbar.css';
 
+const styles = theme => ({
+
+});
+
 const NavbarComponent = ({
   user,
   isAuthenticated,
@@ -64,13 +68,13 @@ const NavbarComponent = ({
 
   const authLinks = (
     <Nav navbar>
-      <NavItem className="navbar__item">
+      {/* <NavItem className="navbar__item">
         <IconButton component={Link} to="/feed" className="classes.margin">
           <Badge badgeContent={4} color="primary">
             <MailIcon />
           </Badge>
         </IconButton>
-      </NavItem>
+      </NavItem> */}
       <NavItem className="navbar__item">
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle className="navbar__item__link" nav caret>
@@ -103,10 +107,9 @@ const NavbarComponent = ({
       </NavItem>
     </Nav>
   );
-
   return (
     <ScrollWrapper onWindowScroll={handleScroll}>
-      <Navbar fixed="top" expand="sm" className={'navbar' + (onHomepage) ? 'navbar--homepage' : 'navbar--not-homepage'} id="myNav">
+      <Navbar fixed="top" expand="sm" className={(onHomepage) ? 'navbar' : 'navbar--not-homepage'} id="myNav">
         <NavbarBrand tag={Link} to="/home" className="navbar__brand">Project FPP</NavbarBrand>
         <NavbarToggler onClick={onNavbarToggle} className="navbar__toggler" />
         <Collapse isOpen={isOpen} navbar>
@@ -140,4 +143,4 @@ NavbarComponent.propTypes = {
   onHomepage: PropTypes.bool.isRequired,
 };
 
-export default NavbarComponent;
+export default withStyles(styles)(NavbarComponent);

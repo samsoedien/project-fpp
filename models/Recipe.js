@@ -12,9 +12,10 @@ const RecipeSchema = new Schema({
   title: {
     type: String,
     required: true,
+    unique: true,
   },
-  culinary: {
-    type: String
+  cuisine: {
+    type: String,
   },
   description: {
     type: String,
@@ -22,8 +23,9 @@ const RecipeSchema = new Schema({
   directions: {
     type: [String],
   },
-  imageUrl: {
+  image: {
     type: String,
+    default: '/../database/uploads/images/pastry.jpg',
   },
   settings: {
     type: [String],

@@ -13,14 +13,14 @@ class BlogListContainer extends Component {
   }
 
   render() {
-    const { blog: { blogs, loading } } = this.props;
+    const { blog: { blogs, loading }, auth } = this.props;
     return (
       <div className="blogs-list-container">
-        <BlogFormContainer />
         <BlogList
           blogs={blogs}
           loading={loading}
         />
+        {(auth.isAuthenticated) ? <BlogFormContainer /> : null}
       </div>
     );
   }
@@ -32,10 +32,14 @@ BlogListContainer.propTypes = {
     blogs: PropTypes.object,
     loading: PropTypes.bool.isRequired,
   }).isRequired,
+  auth: PropTypes.shape({
+    isAuthenticated: PropTypes.bool,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({
   blog: state.blog,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getBlogs })(BlogListContainer);

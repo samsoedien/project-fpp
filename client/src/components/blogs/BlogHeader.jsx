@@ -11,14 +11,12 @@ import {
 import { Favorite as FavoriteIcon, Share as ShareIcon } from '@material-ui/icons';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
-import BG_IMG_URL from '../../assets/img/foodprinted_sidedish.jpg';
 
 const styles = theme => ({
   blogHeaderParallax: {
     position: 'relative',
     minHeight: '560px',
     width: '100%',
-    backgroundImage: `url(${BG_IMG_URL})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
@@ -51,6 +49,7 @@ const styles = theme => ({
 });
 
 const BlogHeader = ({
+  blogImage,
   blogFavorites,
   isFavorited,
   onFavoriteClick,
@@ -70,7 +69,7 @@ const BlogHeader = ({
   return (
     <div className="blog-header">
       <ScrollWrapper onWindowScroll={handleScroll}>
-        <header className={classes.blogHeaderParallax} id="myHeader">
+        <header className={classes.blogHeaderParallax} id="myHeader" style={{ backgroundImage: `url(${blogImage})` }}>
           <div className={classes.blogHeaderOverlay} />
           <Tooltip title={`${blogFavorites.length} chef(s) loved this blog`} placement="top" TransitionComponent={Zoom}>
             <IconButton onClick={onFavoriteHandle} className={classes.blogHeaderFavoriteButton}>

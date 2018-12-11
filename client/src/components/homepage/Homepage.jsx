@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import PrimaryCallsToAction from './PrimaryCallsToAction';
 import Features from './Features';
+import Headline from './Headline';
 
 const Homepage = ({ auth }) => (
   <div className="homepage">
@@ -17,7 +18,11 @@ const Homepage = ({ auth }) => (
             <Features />
             <div style={{ height: '200px' }} />
           </Fragment>
-        ) : (<h1>Hi</h1>)}
+        ) : (
+          <Fragment>
+            <Headline />
+          </Fragment>
+        )}
     </div>
   </div>
 );
