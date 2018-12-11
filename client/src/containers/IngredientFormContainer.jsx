@@ -32,7 +32,8 @@ class IngredientFormContainer extends Component {
     const ingredientData = {
       name,
     };
-    this.props.createIngredient(ingredientData, this.props.history);
+    const { createIngredient, history } = this.props;
+    createIngredient(ingredientData, history);
   }
 
   render() {
@@ -51,9 +52,13 @@ class IngredientFormContainer extends Component {
 }
 
 IngredientFormContainer.propTypes = {
-  ingredient: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  createIngredient: PropTypes.func.isRequired,
+  ingredient: PropTypes.shape({}).isRequired,
+  auth: PropTypes.shape({
+    user: PropTypes.object,
+  }).isRequired,
+  errors: PropTypes.shape({}).isRequired,
+  history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

@@ -14,11 +14,9 @@ import {
 export const setPostLoading = () => ({ type: POST_LOADING });
 
 // Clear errors
-export const clearErrors = () => {
-  return {
-    type: CLEAR_ERRORS,
-  };
-};
+export const clearErrors = () => ({
+  type: CLEAR_ERRORS,
+});
 
 // Add Post
 export const addPost = postData => dispatch => {

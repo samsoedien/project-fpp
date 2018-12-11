@@ -11,8 +11,8 @@ import ProfileUpdateContainer from './containers/ProfileUpdateContainer';
 import ExperienceFormContainer from './containers/ExperienceFormContainer';
 import ProfileListContainer from './containers/ProfileListContainer';
 import ProfileContainer from './containers/ProfileContainer';
-import PostListContainer from './containers/PostListContainer';
-import PostContainer from './containers/PostContainer';
+// import PostListContainer from './containers/PostListContainer';
+// import PostContainer from './containers/PostContainer';
 import RecipeListContainer from './containers/RecipeListContainer';
 import RecipeContainer from './containers/RecipeContainer';
 import RecipeFormContainer from './containers/RecipeFormContainer';
@@ -21,7 +21,6 @@ import IngredientContainer from './containers/IngredientContainer';
 import IngredientFormContainer from './containers/IngredientFormContainer';
 import BlogListContainer from './containers/BlogListContainer';
 import BlogContainer from './containers/BlogContainer';
-import NutritionContainer from './containers/NutritionContainer';
 import RestaurantListContainer from './containers/RestaurantListContainer';
 import ThreeEditorContainer from './containers/ThreeEditorContainer';
 import NotFound from './components/not-found/NotFound';
@@ -82,20 +81,13 @@ const Routes = () => (
         component={ExperienceFormContainer}
       />
     </Switch>
-    <Switch>
-      <PrivateRouteWrapper
-        exact
-        path="/add-nutritions"
-        component={NutritionContainer}
-      />
-    </Switch>
     {/* <Switch>
       <PrivateRouteWrapper exact path="/feed-private" component={PostListContainer} />
     </Switch>
     <Route exact path="/feed" component={PostListContainer} /> */}
-    <Switch>
+    {/* <Switch>
       <PrivateRouteWrapper exact path="/post/:id" component={PostContainer} />
-    </Switch>
+    </Switch> */}
     <Switch>
       <PrivateRouteWrapper
         exact

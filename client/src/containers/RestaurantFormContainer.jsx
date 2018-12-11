@@ -33,12 +33,12 @@ class RestaurantFormContainer extends Component {
   }
 
   onSubmitCallback(e) {
-    const { createRestaurant } = this.props;
     const { name } = this.state;
     const restaurantData = {
       name,
     };
-    createRestaurant(restaurantData, this.props.history);
+    const { createRestaurant, history } = this.props;
+    createRestaurant(restaurantData, history);
   }
 
   onSocialInputsToggleCallback() {
@@ -48,7 +48,14 @@ class RestaurantFormContainer extends Component {
   }
 
   render() {
-    const { name, errors, twitter, facebook, instagram, displaySocialInputs } = this.state;
+    const {
+      name,
+      errors,
+      twitter,
+      facebook,
+      instagram,
+      displaySocialInputs,
+    } = this.state;
     return (
       <div className="ingredient-form-container">
         <RestaurantForm
@@ -69,12 +76,11 @@ class RestaurantFormContainer extends Component {
 
 RestaurantFormContainer.propTypes = {
   createRestaurant: PropTypes.func.isRequired,
-  restaurant: PropTypes.shape().isRequired,
   errors: PropTypes.shape().isRequired,
+  history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
-  restaurant: state.ingredient,
   errors: state.errors,
 });
 

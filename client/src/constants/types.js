@@ -35,3 +35,4 @@ export const BLOG_LOADING = 'BLOG_LOADING';
 export const GET_BLOGS = 'GET_BLOGS';
 export const GET_BLOG = 'GET_BLOG';
 export const ADD_BLOG_COMMENT = 'ADD_BLOG_COMMENT';
+export const DELETE_BLOG = 'DELETE_BLOG';

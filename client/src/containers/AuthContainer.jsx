@@ -25,15 +25,16 @@ class AuthContainer extends Component {
   }
 
   componentDidMount() {
-    const { isAuthenticated } = this.props.auth;
+    const { auth: { isAuthenticated }, history } = this.props;
     if (isAuthenticated) {
-      this.props.history.push('/dashboard');
+      history.push('/dashboard');
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      const { history } = this.props;
+      history.push('/dashboard');
     }
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -45,15 +46,20 @@ class AuthContainer extends Component {
   }
 
   onSubmitRegisterCallback() {
-    const { name, email, password, passwordConfirm } = this.state;
-
+    const {
+      name,
+      email,
+      password,
+      passwordConfirm,
+    } = this.state;
     const newUser = {
       name,
       email,
       password,
       passwordConfirm,
     };
-    this.props.registerUser(newUser, this.props.history);
+    const { registerUser, history } = this.props;
+    registerUser(newUser, history);
   }
 
   onSubmitLoginCallback() {
@@ -62,7 +68,8 @@ class AuthContainer extends Component {
       email,
       password,
     };
-    this.props.loginUser(userData);
+    const { loginUser } = this.props;
+    loginUser(userData);
   }
 
   handleShowPasswordCallback() {
@@ -94,18 +101,18 @@ class AuthContainer extends Component {
             errors={errors}
           />
         ) : (
-            <Register
-              name={name}
-              email={email}
-              password={password}
-              passwordConfirm={passwordConfirm}
-              showPassword={showPassword}
-              onChangeCallback={this.onChangeCallback}
-              onSubmitRegisterCallback={this.onSubmitRegisterCallback}
-              handleShowPasswordCallback={this.handleShowPasswordCallback}
-              errors={errors}
-            />
-          )}
+          <Register
+            name={name}
+            email={email}
+            password={password}
+            passwordConfirm={passwordConfirm}
+            showPassword={showPassword}
+            onChangeCallback={this.onChangeCallback}
+            onSubmitRegisterCallback={this.onSubmitRegisterCallback}
+            handleShowPasswordCallback={this.handleShowPasswordCallback}
+            errors={errors}
+          />
+        )}
       </div>
     );
   }
@@ -118,9 +125,17 @@ AuthContainer.defaultProps = {
 AuthContainer.propTypes = {
   registerUser: PropTypes.func.isRequired,
   loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.shape({
+    isAuthenticated: PropTypes.bool.isRequired,
+  }).isRequired,
   hasAccount: PropTypes.bool,
-  errors: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired, // eslint-disable-line
+  errors: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    password: PropTypes.string,
+    passwordConfirm: PropTypes.string,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({

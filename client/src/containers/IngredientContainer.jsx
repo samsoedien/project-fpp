@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 
 import { getIngredient } from '../actions/ingredientActions';
 
-import NutritionContainer from './NutritionContainer';
 import Ingredient from '../components/ingredients/Ingredient';
 
 class IngredientContainer extends Component {
   componentDidMount() {
-    this.props.getIngredient(this.props.match.params.id);
+    const { getIngredient, match } = this.props;
+    getIngredient(match.params.id);
   }
 
   render() {
@@ -17,7 +17,6 @@ class IngredientContainer extends Component {
     return (
       <div className="ingredient-container">
         <Ingredient ingredient={ingredient} loading={loading} />
-        {/* <NutritionContainer nutritions={ingredient.nutritions} /> */}
       </div>
     );
   }
@@ -25,8 +24,9 @@ class IngredientContainer extends Component {
 
 IngredientContainer.propTypes = {
   getIngredient: PropTypes.func.isRequired,
-  ingredient: PropTypes.object.isRequired,
+  ingredient: PropTypes.shape({}).isRequired,
   loading: PropTypes.bool.isRequired,
+  match: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

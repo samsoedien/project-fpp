@@ -110,8 +110,6 @@ export const deleteAccount = () => dispatch => {
 };
 
 // Clear profile
-export const clearCurrentProfile = () => {
-  return {
-    type: CLEAR_CURRENT_PROFILE,
-  };
-};
+export const clearCurrentProfile = () => ({
+  type: CLEAR_CURRENT_PROFILE,
+});

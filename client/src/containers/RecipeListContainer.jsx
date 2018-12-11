@@ -16,7 +16,8 @@ class RecipeListContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getRecipes();
+    const { getRecipes } = this.props;
+    getRecipes();
   }
 
   filterListUpdate(value) {

@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getRecipe, addRecipeComment, likeRecipeComment, favoriteRecipe } from '../actions/recipeActions';
+import {
+  getRecipe,
+  addRecipeComment,
+  likeRecipeComment,
+  favoriteRecipe,
+} from '../actions/recipeActions';
 
 import Recipe from '../components/recipes/Recipe';
 
@@ -23,7 +28,8 @@ class RecipeContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getRecipe(this.props.match.params.id);
+    const { getRecipe, match } = this.props;
+    getRecipe(match.params.id);
   }
 
   componentWillReceiveProps(newProps) {
@@ -40,12 +46,14 @@ class RecipeContainer extends Component {
     const likeData = {
       isLiked,
     };
-    this.props.likePost(id, likeData, this.props.history); // need third parameter of recipeid
+    const { likeRecipeComment, history } = this.props;
+    likeRecipeComment(id, likeData, history); // need third parameter of recipeid
     console.log(isLiked);
   }
 
   onDeleteCallback(id) {
-    this.props.deletePost(id);
+    const { deletePost } = this.props;
+    deletePost(id);
   }
 
   onFavoriteHandleCallback(id) {
@@ -56,7 +64,8 @@ class RecipeContainer extends Component {
     const favoriteData = {
       isFavorited,
     };
-    this.props.favoriteRecipe(id, favoriteData, this.props.history);
+    const { favoriteRecipe, history } = this.props;
+    favoriteRecipe(id, favoriteData, history);
   }
 
   onChangeCallback(e) {
@@ -70,21 +79,25 @@ class RecipeContainer extends Component {
   }
 
   onSubmitCallback(e) {
-    const { user } = this.props.auth;
-    const { recipe } = this.props.recipe;
+    const {
+      auth: { user },
+      recipe: { recipe },
+      addRecipeComment,
+      history,
+    } = this.props;
     const { text } = this.state;
     const postData = {
       text,
       name: user.name,
       avatar: user.avatar,
     };
-    this.props.addRecipeComment(recipe._id, postData, this.props.history);
+    addRecipeComment(recipe._id, postData, history);
 
     this.setState({ text: '' });
   }
 
   getDerivedStateFromProps() {
-    const { recipe } = this.props.recipe;
+    const { recipe: { recipe } } = this.props;
     this.findUserFavorites(recipe.favorites);
   }
 
@@ -126,7 +139,16 @@ RecipeContainer.propTypes = {
   getRecipe: PropTypes.func.isRequired,
   favoriteRecipe: PropTypes.func.isRequired,
   addRecipeComment: PropTypes.func.isRequired,
-  recipe: PropTypes.object.isRequired,
+  likeRecipeComment: PropTypes.func.isRequired,
+  recipe: PropTypes.shape({
+    recipe: PropTypes.object,
+    loading: PropTypes.bool,
+  }).isRequired,
+  auth: PropTypes.shape({
+    user: PropTypes.object,
+  }).isRequired,
+  history: PropTypes.object.isRequired, // eslint-disable-line
+  match: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
@@ -134,6 +156,12 @@ const mapStateToProps = state => ({
   favorites: state.favorites,
   auth: state.auth,
   errors: state.errors,
+
 });
 
-export default connect(mapStateToProps, { getRecipe, favoriteRecipe, addRecipeComment, likeRecipeComment })(RecipeContainer);
+export default connect(mapStateToProps, {
+  getRecipe,
+  favoriteRecipe,
+  addRecipeComment,
+  likeRecipeComment,
+})(RecipeContainer);

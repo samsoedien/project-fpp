@@ -4,6 +4,7 @@ import {
   GET_BLOGS,
   GET_BLOG,
   BLOG_LOADING,
+  DELETE_BLOG,
   GET_ERRORS,
 } from '../constants/types';
 
@@ -72,6 +73,19 @@ export const likeBlogComment = (blogId, commentId, likeData) => dispatch => {
   axios
     .post(`/api/blogs/${blogId}/comments/${commentId}/likes`, likeData)
     .then(res => dispatch(getBlog()))
+    .catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    }));
+};
+
+export const deleteBlog = id => dispatch => {
+  axios
+    .delete(`/api/blogs/${id}`)
+    .then(res => dispatch({
+      type: DELETE_BLOG,
+      payload: id,
+    }))
     .catch(err => dispatch({
       type: GET_ERRORS,
       payload: err.response.data,

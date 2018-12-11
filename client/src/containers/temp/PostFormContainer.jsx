@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addPost } from '../actions/postActions';
-import { addRecipeComment } from '../actions/recipeActions';
+import { addPost } from '../../actions/postActions';
+import { addRecipeComment } from '../../actions/recipeActions';
 
-import PostForm from '../components/posts/PostForm';
+import PostForm from '../../components/posts/PostForm';
 
 class PostFormContainer extends Component {
   constructor(props) {

@@ -1,6 +1,7 @@
 import {
   GET_BLOGS,
   GET_BLOG,
+  DELETE_BLOG,
   BLOG_LOADING,
 } from '../constants/types';
 
@@ -28,6 +29,11 @@ export default function (state = initialState, action) {
         ...state,
         blog: action.payload,
         loading: false,
+      };
+    case DELETE_BLOG:
+      return {
+        ...state,
+        blogs: state.blogs.filter(blog => blog._id !== action.payload),
       };
     default:
       return state;

@@ -4,7 +4,6 @@ import {
   GET_RECIPES,
   GET_RECIPE,
   RECIPE_LOADING,
-  ADD_RECIPE_COMMENT,
   GET_ERRORS,
 } from '../constants/types';
 
@@ -81,5 +80,3 @@ export const likeRecipeComment = (recipeId, commentId, likeData) => dispatch => 
       payload: err.response.data,
     }));
 };
-
-// FIXME: dispatch(getRecipe() or dispatch(getRecipes()??

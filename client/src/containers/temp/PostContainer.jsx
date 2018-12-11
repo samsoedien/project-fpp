@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getPost } from '../actions/postActions';
+import { getPost } from '../../actions/postActions';
 
-import Post from '../components/posts/Post';
+import Post from '../../components/posts/Post';
 
 class PostContainer extends Component {
   componentDidMount() {

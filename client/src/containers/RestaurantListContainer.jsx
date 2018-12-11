@@ -16,7 +16,8 @@ class RestaurantListContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getRestaurants();
+    const { getRestaurants } = this.props;
+    getRestaurants();
   }
 
   filterListUpdate(value) {
@@ -49,7 +50,7 @@ RestaurantListContainer.propTypes = {
     restaurants: PropTypes.object,
     loading: PropTypes.bool.isRequired,
   }).isRequired,
-}
+};
 
 const mapStateToProps = state => ({
   restaurant: state.restaurant,

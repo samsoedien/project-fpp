@@ -5,13 +5,13 @@ import {
   getPosts,
   deletePost,
   likePost,
-} from '../actions/postActions';
+} from '../../actions/postActions';
 import {
   getRecipeComments
-} from '../actions/recipeActions';
+} from '../../actions/recipeActions';
 
 import PostFormContainer from './PostFormContainer';
-import PostList from '../components/posts/PostList';
+import PostList from '../../components/posts/PostList';
 
 class PostListContainer extends Component {
   constructor(props) {

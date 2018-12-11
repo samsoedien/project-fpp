@@ -15,14 +15,15 @@ class ProfileListContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getProfiles();
+    const { getProfiles } = this.props;
+    getProfiles();
   }
 
   filterUpdate(value) {
     this.setState({
       filterText: value,
     });
-  };
+  }
 
   render() {
     const { profile: { profiles, loading } } = this.props;
@@ -42,7 +43,7 @@ class ProfileListContainer extends Component {
 
 ProfileListContainer.propTypes = {
   getProfiles: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+  profile: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({

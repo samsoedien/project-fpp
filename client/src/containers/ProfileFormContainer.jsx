@@ -20,7 +20,7 @@ class ProfileFormContainer extends Component {
       twitter: '',
       facebook: '',
       instagram: '',
-      errors: {}
+      errors: {},
     };
 
     this.onChangeCallback = this.onChangeCallback.bind(this);
@@ -38,7 +38,16 @@ class ProfileFormContainer extends Component {
   }
 
   onSubmitCallback() {
-    const { handle, profession, location, bio, skills, twitter, facebook, instagram } = this.state;
+    const {
+      handle,
+      profession,
+      location,
+      bio,
+      skills,
+      twitter,
+      facebook,
+      instagram,
+    } = this.state;
     const profileData = {
       handle,
       profession,
@@ -49,7 +58,8 @@ class ProfileFormContainer extends Component {
       facebook,
       instagram,
     };
-    this.props.createProfile(profileData, this.props.history);
+    const { createProfile, history } = this.props;
+    createProfile(profileData, history);
   }
 
   render() {
@@ -69,8 +79,13 @@ class ProfileFormContainer extends Component {
   }
 }
 ProfileFormContainer.propTypes = {
-  profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired,
+  profile: PropTypes.shape({
+    profile: PropTypes.object,
+    loading: PropTypes.bool,
+  }).isRequired,
+  errors: PropTypes.shape({}).isRequired,
+  history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

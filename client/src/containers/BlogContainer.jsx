@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getBlog, addBlogComment, likeBlogComment, favoriteBlog } from '../actions/blogActions';
+import {
+  getBlog,
+  addBlogComment,
+  likeBlogComment,
+  favoriteBlog,
+  deleteBlog,
+} from '../actions/blogActions';
 
 import Blog from '../components/blogs/Blog';
 
@@ -23,7 +29,8 @@ class BlogContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getBlog(this.props.match.params.id);
+    const { getBlog, match } = this.props;
+    getBlog(match.params.id);
   }
 
   componentWillReceiveProps(newProps) {
@@ -40,12 +47,14 @@ class BlogContainer extends Component {
     const likeData = {
       isLiked,
     };
-    this.props.likePost(id, likeData, this.props.history); // need third parameter of recipeid
+    const { likeBlogComment, history } = this.props;
+    likeBlogComment(id, likeData, history); // need third parameter of recipeid
     console.log(isLiked);
   }
 
   onDeleteCallback(id) {
-    this.props.deletePost(id);
+    const { deleteBlog } = this.props;
+    deleteBlog(id);
   }
 
   onFavoriteHandleCallback(id) {
@@ -56,7 +65,8 @@ class BlogContainer extends Component {
     const favoriteData = {
       isFavorited,
     };
-    this.props.favoriteBlog(id, favoriteData, this.props.history);
+    const { favoriteBlog, history } = this.props;
+    favoriteBlog(id, favoriteData, history);
   }
 
 
@@ -71,21 +81,24 @@ class BlogContainer extends Component {
   }
 
   onSubmitCallback(e) {
-    const { user } = this.props.auth;
-    const { blog } = this.props.blog;
+    const {
+      blog: { blog },
+      auth: { user },
+      addBlogComment,
+      history,
+    } = this.props;
     const { text } = this.state;
     const postData = {
       text,
       name: user.name,
       avatar: user.avatar,
     };
-    this.props.addBlogComment(blog._id, postData, this.props.history);
-
+    addBlogComment(blog._id, postData, history);
     this.setState({ text: '' });
   }
 
   getDerivedStateFromProps() {
-    const { blog } = this.props.blog;
+    const { blog: { blog } } = this.props;
     this.findUserFavorites(blog.favorites);
   }
 
@@ -120,15 +133,24 @@ class BlogContainer extends Component {
           onFavoriteHandleCallback={this.onFavoriteHandleCallback}
         />
       </div>
-    )
+    );
   }
 }
 
 BlogContainer.propTypes = {
   getBlog: PropTypes.func.isRequired,
-  favoriteBlog: PropTypes.func.isRequired,
   addBlogComment: PropTypes.func.isRequired,
-  blog: PropTypes.object.isRequired,
+  likeBlogComment: PropTypes.func.isRequired,
+  favoriteBlog: PropTypes.func.isRequired,
+  deleteBlog: PropTypes.func.isRequired,
+  blog: PropTypes.shape({
+    blog: PropTypes.object,
+  }).isRequired,
+  auth: PropTypes.shape({
+    user: PropTypes.object,
+  }).isRequired,
+  history: PropTypes.object.isRequired, // eslint-disable-line
+  match: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
@@ -138,4 +160,10 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { getBlog, addBlogComment, likeBlogComment, favoriteBlog })(BlogContainer);
+export default connect(mapStateToProps, {
+  getBlog,
+  addBlogComment,
+  likeBlogComment,
+  favoriteBlog,
+  deleteBlog,
+})(BlogContainer);

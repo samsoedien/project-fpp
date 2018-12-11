@@ -51,7 +51,8 @@ class ExperienceFormContainer extends Component {
       current,
       description,
     };
-    this.props.addExperience(expData, this.props.history);
+    const { addExperience, history } = this.props;
+    addExperience(expData, history);
   }
 
   onChangeCallback(e) {
@@ -102,6 +103,7 @@ ExperienceFormContainer.propTypes = {
   addExperience: PropTypes.func.isRequired,
   profile: PropTypes.shape({}).isRequired,
   errors: PropTypes.shape({}).isRequired,
+  history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
@@ -110,5 +112,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { addExperience })(withRouter(ExperienceFormContainer));
-
-// FIXME: returns validation 422 status

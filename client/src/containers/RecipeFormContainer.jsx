@@ -63,8 +63,8 @@ class RecipeFormContainer extends Component {
     // recipeData.append('culinary', this.state.culinary);
     // recipeData.append('description', this.state.description);
     // recipeData.append('image', this.state.recipeImage);
-
-    this.props.createRecipe(recipeData, this.props.history);
+    const { createRecipe, history } = this.props;
+    createRecipe(recipeData, history);
   }
 
   render() {
@@ -98,8 +98,10 @@ class RecipeFormContainer extends Component {
 }
 
 RecipeFormContainer.propTypes = {
-  recipe: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  createRecipe: PropTypes.func.isRequired,
+  recipe: PropTypes.shape({}).isRequired,
+  errors: PropTypes.shape({}).isRequired,
+  history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

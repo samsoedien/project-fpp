@@ -16,7 +16,8 @@ class IngredientListContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getIngredients();
+    const { getIngredients } = this.props;
+    getIngredients();
   }
 
   filterListUpdate(value) {
@@ -45,7 +46,7 @@ class IngredientListContainer extends Component {
 
 IngredientListContainer.propTypes = {
   getIngredients: PropTypes.func.isRequired,
-  ingredient: PropTypes.object.isRequired,
+  ingredient: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({

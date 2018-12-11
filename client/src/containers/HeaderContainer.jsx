@@ -23,8 +23,9 @@ class HeaderContainer extends Component {
   }
 
   onLogoutCallback() {
-    this.props.clearCurrentProfile();
-    this.props.logoutUser();
+    const { clearCurrentProfile, logoutUser } = this.props;
+    clearCurrentProfile();
+    logoutUser();
   }
 
   render() {

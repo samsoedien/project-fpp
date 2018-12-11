@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addNutrition } from '../actions/ingredientActions';
-import isEmpty from '../utils/is-empty';
+import { addNutrition } from '../../actions/ingredientActions';
+import isEmpty from '../../utils/is-empty';
 
-import Nutrition from '../components/ingredients/Nutrition';
+import Nutrition from '../../components/ingredients/Nutrition';
 
 class NutritionContainer extends Component {
   constructor(props) {

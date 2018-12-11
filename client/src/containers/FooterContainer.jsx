@@ -10,7 +10,7 @@ class FooterContainer extends Component {
     this.state = {
       email: '',
       errors: {},
-    }
+    };
     this.onChangeCallback = this.onChangeCallback.bind(this);
     this.onSubmitCallback = this.onSubmitCallback.bind(this);
   }
@@ -44,7 +44,7 @@ class FooterContainer extends Component {
 }
 
 FooterContainer.propTypes = {
-  errors: PropTypes.object,
+  errors: PropTypes.shape({}).isRequired,
 };
 
 export default connect(null)(FooterContainer);

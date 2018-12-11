@@ -16,12 +16,11 @@ export const registerUser = (userData, history) => dispatch => {
 };
 
 // Set logged in user
-export const setCurrentUser = decoded => {
-  return {
-    type: SET_CURRENT_USER,
-    payload: decoded,
-  };
-};
+export const setCurrentUser = decoded => ({
+  type: SET_CURRENT_USER,
+  payload: decoded,
+});
+
 
 // Login - Get User Token
 export const loginUser = userData => dispatch => {

@@ -7,14 +7,16 @@ import Profile from '../components/profiles/Profile';
 
 class ProfileContainer extends Component {
   componentDidMount() {
-    if (this.props.match.params.handle) {
-      this.props.getProfileByHandle(this.props.match.params.handle);
+    const { getProfileByHandle, match } = this.props;
+    if (match.params.handle) {
+      getProfileByHandle(match.params.handle);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.profile.profile === null && this.props.profile.loading) {
-      this.props.history.push('/not-found');
+    const { profile, history } = this.props;
+    if (nextProps.profile.profile === null && profile.loading) {
+      history.push('/not-found');
     }
   }
 
@@ -31,8 +33,10 @@ class ProfileContainer extends Component {
 ProfileContainer.propTypes = {
   getProfileByHandle: PropTypes.func.isRequired,
   profile: PropTypes.shape({
-    user: PropTypes.string.isRequired,
+    profile: PropTypes.object.isRequired,
   }).isRequired,
+  match: PropTypes.object.isRequired, // eslint-disable-line
+  history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({

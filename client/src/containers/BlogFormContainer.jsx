@@ -34,7 +34,8 @@ class BlogFormContainer extends Component {
       headline,
       article,
     };
-    this.props.createBlog(blogData, this.props.history);
+    const { createBlog, history } = this.props;
+    createBlog(blogData, history);
   }
 
   render() {
@@ -58,12 +59,15 @@ class BlogFormContainer extends Component {
 }
 
 BlogFormContainer.propTypes = {
-  blog: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  createBlog: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    headline: PropTypes.string,
+    article: PropTypes.string,
+  }).isRequired,
+  history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
-  blog: state.blog,
   errors: state.errors,
 });
 

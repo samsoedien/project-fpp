@@ -18,11 +18,10 @@ class ProfileUpdateContainer extends Component {
       location: '',
       bio: '',
       skills: '',
-
       twitter: '',
       facebook: '',
       instagram: '',
-      errors: {}
+      errors: {},
     };
 
     this.onChangeCallback = this.onChangeCallback.bind(this);
@@ -30,17 +29,16 @@ class ProfileUpdateContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getCurrentProfile();
+    const { getCurrentProfile } = this.props;
+    getCurrentProfile();
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-
-    if (nextProps.profile.profile) {
-      const profile = nextProps.profile.profile;
-
+    const { profile } = nextProps.profile;
+    if (profile) {
       // Bring skills array back to CSV
       const skillsCSV = profile.skills.join(',');
 
@@ -49,15 +47,9 @@ class ProfileUpdateContainer extends Component {
       profile.location = !isEmpty(profile.location) ? profile.location : '';
       profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
       profile.social = !isEmpty(profile.social) ? profile.social : {};
-      profile.twitter = !isEmpty(profile.social.twitter)
-        ? profile.social.twitter
-        : '';
-      profile.facebook = !isEmpty(profile.social.facebook)
-        ? profile.social.facebook
-        : '';
-      profile.instagram = !isEmpty(profile.social.instagram)
-        ? profile.social.instagram
-        : '';
+      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : '';
+      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : '';
+      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : '';
 
       // Set component fields state
       this.setState({
@@ -78,7 +70,16 @@ class ProfileUpdateContainer extends Component {
   }
 
   onSubmitCallback() {
-    const { handle, profession, location, bio, skills, twitter, facebook, instagram } = this.state;
+    const {
+      handle,
+      profession,
+      location,
+      bio,
+      skills,
+      twitter,
+      facebook,
+      instagram,
+    } = this.state;
     const profileData = {
       handle,
       profession,
@@ -89,11 +90,24 @@ class ProfileUpdateContainer extends Component {
       facebook,
       instagram,
     };
-    this.props.createProfile(profileData, this.props.history);
+    const { createProfile, history } = this.props;
+    createProfile(profileData, history);
   }
 
   render() {
-    const { handle, profession, location, bio, skills, twitter, facebook, instagram, errors, displaySocialInputs, updateProfile } = this.state;
+    const {
+      handle,
+      profession,
+      location,
+      bio,
+      skills,
+      twitter,
+      facebook,
+      instagram,
+      errors,
+      displaySocialInputs,
+      updateProfile,
+    } = this.state;
     return (
       <div className="profile-update-container">
         <ProfileForm
@@ -119,8 +133,9 @@ class ProfileUpdateContainer extends Component {
 ProfileUpdateContainer.propTypes = {
   createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  profile: PropTypes.shape({}).isRequired,
+  errors: PropTypes.shape({}).isRequired,
+  history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
@@ -128,4 +143,7 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(withRouter(ProfileUpdateContainer));
+export default connect(mapStateToProps, {
+  createProfile,
+  getCurrentProfile,
+})(withRouter(ProfileUpdateContainer));
