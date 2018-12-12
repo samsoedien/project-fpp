@@ -11,8 +11,6 @@ import {
 
 const styles = theme => ({
   modalButton: {
-    background: theme.palette.error.main,
-    color: theme.palette.common.white,
   },
   modalPaper: {
     position: 'absolute',
@@ -52,11 +50,11 @@ class ConfirmDeleteWrapper extends Component {
     const { buttonLabel, children, classes } = this.props;
     return (
       <div className="modal-component">
-        <Button variant="contained" onClick={this.onModalToggle} className={classes.modalButton}>{buttonLabel}</Button>
+        <Button variant="contained" color="secondary" onClick={this.onModalToggle} className={classes.modalButton}>{buttonLabel}</Button>
         <Modal open={isOpen} onClose={this.onModalToggle}>
           <Paper className={classes.modalPaper}>
             {children}
-            <Button color="primary" onClick={() => { this.onModalToggle(); this.onDeleteClick(); }}>Delete</Button>
+            <Button color="secondary" onClick={() => { this.onModalToggle(); this.onDeleteClick(); }}>Delete</Button>
           </Paper>
         </Modal>
       </div>
