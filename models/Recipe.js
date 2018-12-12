@@ -25,7 +25,7 @@ const RecipeSchema = new Schema({
   },
   image: {
     type: String,
-    default: '/../database/uploads/images/pastry.jpg',
+    default: 'database/images/pastry.jpg',
   },
   settings: {
     type: [String],
@@ -43,8 +43,8 @@ const RecipeSchema = new Schema({
       ingredient: {
         type: Schema.Types.ObjectId,
         ref: 'Ingredient',
-      }
-    }
+      },
+    },
   ],
   cadData: {
     type: Object,
@@ -52,13 +52,13 @@ const RecipeSchema = new Schema({
   seasonal: {
     type: String,
   },
-  comments: [
+  posts: [
     {
       user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
       },
-      text: {
+      comment: {
         type: String,
         required: true,
       },
@@ -73,19 +73,27 @@ const RecipeSchema = new Schema({
           user: {
             type: Schema.Types.ObjectId,
             ref: 'User',
-          }
-        }
+          },
+        },
+      ],
+      flags: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+          },
+        },
       ],
       date: {
         type: Date,
         default: Date.now,
-      }
-    }
+      },
+    },
   ],
   date: {
     type: Date,
     default: Date.now,
-  }
+  },
 });
 
 module.exports = Recipe = mongoose.model('Recipe', RecipeSchema);

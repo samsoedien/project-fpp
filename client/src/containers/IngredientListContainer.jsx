@@ -28,17 +28,17 @@ class IngredientListContainer extends Component {
   }
 
   render() {
-    const { ingredient: { ingredients, loading } } = this.props;
+    const { ingredient: { ingredients, loading }, auth } = this.props;
     const { filterText } = this.state;
     return (
       <div className="ingredient-list-container">
-        <IngredientFormContainer />
         <IngredientList
           ingredients={ingredients}
           loading={loading}
           filterText={filterText}
           filterUpdate={this.filterListUpdate}
         />
+        {(auth.isAuthenticated) ? <IngredientFormContainer /> : null}
       </div>
     );
   }
@@ -51,6 +51,7 @@ IngredientListContainer.propTypes = {
 
 const mapStateToProps = state => ({
   ingredient: state.ingredient,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getIngredients })(IngredientListContainer);

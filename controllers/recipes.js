@@ -53,18 +53,32 @@ exports.postRecipe = (req, res, next) => {
   if (!isValid) {
     return res.status(422).json(errors);
   }
-  const newRecipe = new Recipe({
-    _id: new mongoose.Types.ObjectId(),
-    user: req.user.id,
-    title: req.body.title,
-    cuisine: req.body.cuisine,
-    description: req.body.description,
-    // imageUrl: req.file.path,
-  });
-  newRecipe
-    .save()
-    .then(recipe => res.status(201).json(recipe))
-    .catch(err => console.log(err));
+  if (req.file) {
+    const newRecipe = new Recipe({
+      _id: new mongoose.Types.ObjectId(),
+      user: req.user.id,
+      title: req.body.title,
+      cuisine: req.body.cuisine,
+      description: req.body.description,
+      image: req.file.path,
+    });
+    newRecipe
+      .save()
+      .then(recipe => res.status(201).json(recipe))
+      .catch(err => console.log(err));
+  } else {
+    const newRecipe = new Recipe({
+      _id: new mongoose.Types.ObjectId(),
+      user: req.user.id,
+      title: req.body.title,
+      cuisine: req.body.cuisine,
+      description: req.body.description,
+    });
+    newRecipe
+      .save()
+      .then(recipe => res.status(201).json(recipe))
+      .catch(err => console.log(err));
+  }
 };
 
 exports.updateRecipe = (req, res, next) => {
@@ -111,7 +125,7 @@ exports.postFavoriteRecipe = (req, res, next) => {
   });
 };
 
-exports.postCommentRecipe = (req, res, next) => {
+exports.postRecipePost = (req, res, next) => {
   const { errors, isValid } = validatePostInput(req.body);
   if (!isValid) {
     return res.status(422).json(errors);
@@ -119,32 +133,98 @@ exports.postCommentRecipe = (req, res, next) => {
 
   Recipe.findById(req.params.id).then(recipe => {
     const newPost = {
-      text: req.body.text,
+      comment: req.body.comment,
       name: req.body.name,
       avatar: req.body.avatar,
       user: req.user.id,
     };
-    recipe.comments.unshift(newPost);
+    recipe.posts.unshift(newPost);
     recipe.save().then(result => res.json(result));
   });
+};
 
-}
+exports.deleteRecipePost = (req, res, next) => {
+  Recipe.findById(req.params.id)
+    .then(recipe => {
+      // Check to see if comment exists
+      if (
+        recipe.posts.filter(post => post._id.toString() === req.params.recipe_id)
+          .length === 0
+      ) {
+        return res.status(404).json({ commentnotexists: 'Comment does not exist' });
+      }
+      // Get remove index
+      const removeIndex = recipe.post
+        .map(item => item._id.toString())
+        .indexOf(req.params.post_id);
 
-exports.postLikeCommentRecipe = (req, res, next) => {
+      // Splice comment out of array
+      recipe.posts.splice(removeIndex, 1);
+
+      recipe.save().then(post => res.json(recipe));
+    })
+    .catch(err => res.status(404).json({ recipenotfound: 'No recipe found' }));
+};
+
+exports.postLikeRecipePost = (req, res, next) => {
+  console.log(req.params.recipeId);
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    Recipe.findById(req.params.recipeId)
+      .then(recipe => {
+        if (recipe.posts.filter(post === req.params.postId).likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+          const removeIndex = recipe.posts.likes.map(item => item.user.toString()).indexOf(req.user.id);
+          recipe.posts.filter(post === req.params.postId).likes.splice(removeIndex, 1);
+          recipe.save().then(recipe => res.json(recipe));
+        } else {
+          // Add user id to likes array
+          recipe.posts.likes.unshift({ user: req.user.id });
+          recipe.save().then(recipe => res.json(recipe));
+        }
+      })
+      .catch(err => res.status(404).json({ recipenotfound: 'No recipe found' }));
+  });
+};
+
+
+// Profile.findOne({ user: req.user.id }).then(profile => {
+//   Recipe.findById(req.params.id)
+//     .then(recipe => {
+//       if (recipe.posts.likes.filter(favorite => favorite.user.toString() === req.user.id).length > 0) {
+//         const removeIndex = recipe.posts.likes.map(item => item.user.toString()).indexOf(req.user.id);
+//         recipe.posts.likes.splice(removeIndex, 1);
+//         recipe.save().then(recipe => res.json(recipe));
+//       } else {
+//         recipe.posts.likes.unshift({ user: req.user.id });
+//         recipe.save().then(recipe => res.json(recipe));
+//       }
+//     })
+//     .catch(err => res.status(404).json({ recipenotfound: 'No recipe found' }));
+// });
+
+exports.postFlagRecipePost = (req, res, next) => {
   Profile.findOne({ user: req.user.id }).then(profile => {
     Recipe.findById(req.params.id)
-      .then(post => {
-        if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
-          return res.status(400).json({ alreadyliked: 'User already liked this post' });
+      .then(recipe => {
+        if (recipe.posts.flags.filter(favorite => favorite.user.toString() === req.user.id).length > 0) {
+          const removeIndex = recipe.posts.flags.map(item => item.user.toString()).indexOf(req.user.id);
+          recipe.posts.flags.splice(removeIndex, 1);
+          recipe.save().then(recipe => res.json(recipe));
+        } else {
+          recipe.posts.flags.unshift({ user: req.user.id });
+          recipe.save().then(recipe => res.json(recipe));
         }
-        // Add user id to likes array
-        post.likes.unshift({ user: req.user.id });
-
-        post.save().then(post => res.json(post));
       })
-      .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+      .catch(err => res.status(404).json({ recipenotfound: 'No recipe found' }));
   });
-}
+};
+
+
+
+
+
+
+
+
 
 // exports.postIngredient = (req, res, next) => {
 //   Recipe.findOne({ user: req.user.id }).then(recipe => {

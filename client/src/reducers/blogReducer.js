@@ -2,6 +2,7 @@ import {
   GET_BLOGS,
   GET_BLOG,
   DELETE_BLOG,
+  ADD_BLOG_COMMENT,
   BLOG_LOADING,
 } from '../constants/types';
 
@@ -35,6 +36,11 @@ export default function (state = initialState, action) {
         ...state,
         blogs: state.blogs.filter(blog => blog._id !== action.payload),
       };
+      case ADD_BLOG_COMMENT:
+      return {
+        ...state,
+        blog: [action.payload, ...state.blog],
+      };  
     default:
       return state;
   }

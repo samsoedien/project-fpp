@@ -1,38 +1,85 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import {
+  Typography,
+  Button,
+  Avatar,
+  IconButton,
+  Tooltip,
+  Zoom,
+} from '@material-ui/core';
+import { ThumbUp as ThumbUpIcon, Flag as FlagIcon } from '@material-ui/icons';
 
-import CommentFormContainer from '../../containers/CommentFormContainer';
-import PostItem from './PostItem';
-import CommentFeed from './CommentFeed';
-import Loader from '../common/Loader';
+const styles = theme => ({
+  postAvatar: {
+    width: '80px',
+    height: '80px',
+  },
+  postThumbIconLiked: { color: theme.palette.primary.main },
+  postThumbIconUnliked: { color: 'grey' },
+  flagIconFlagged: { color: theme.palette.secondary.main },
+  flagIconUnFlagged: { color: 'grey' },
+});
 
-const Post = ({ post, loading }) => {
-  let postContent;
-  if (post === null || loading || Object.keys(post).length === 0) {
-    postContent = <Loader />;
-  } else {
-    postContent = (
-      <div>
-        <PostItem post={post} showActions={false} />
-        <CommentFormContainer postId={post._id} />
-        <CommentFeed postId={post._id} comments={post.comments} />
-      </div>
-    );
-  }
+const Post = ({
+  post,
+  auth,
+  isLiked,
+  isFlagged,
+  showActions,
+  onLikeHandleClick,
+  onFlagHandleClick,
+  onReplyHandleClick,
+  onDeleteHandleClick,
+  classes,
+}) => {
+
+  const onLike = id => {
+    onLikeHandleClick(post._id);
+  };
+
+  const onFlag = () => {
+    onFlagHandleClick(post._id);
+  };
+
+  const onReply = () => {
+    onReplyHandleClick(post.name);
+  };
+
+  const onDelete = id => {
+    onDeleteHandleClick(post._id);
+  };
 
   return (
-    <div className="post">
+    <div className="post-comment">
       <Container>
         <Row>
-          <Col sm="8">
-            <Link to="/feed" className="btn btn-light mb-3">
-              Back To Feed
-            </Link>
-            {postContent}
+          <Col md="2">
+            <Avatar src={post.avatar} className={classes.postAvatar} component={Link} to="/" />
+            <Typography>{post.name}</Typography>
+          </Col>
+          <Col md="10">
+            {(isFlagged) ? <Typography variant="caption">This comment has been flagged by a user</Typography> : <Typography variant="paragraph">{post.comment}</Typography>}
+            {showActions ? (
+              <Fragment>
+                <IconButton onClick={onLike}>
+                  <Typography>{post.likes.length}</Typography>
+                  <ThumbUpIcon className={isLiked ? classes.postThumbIconLiked : classes.postThumbIconUnliked} />
+                </IconButton>
+                <Tooltip title="flag comment as inappropriate" placement="top" TransitionComponent={Zoom}>
+                  <IconButton onClick={onFlag}>
+                    <FlagIcon className={isFlagged ? classes.flagIconFlagged : classes.flagIconUnflagged} />
+                  </IconButton>
+                </Tooltip>
+                {auth.isAuthenticated ? <Button variant="outline" color="primary" onClick={onReply}>Reply</Button> : null}
+                {post.user === auth.user.id
+                  ? (<Button variant="contained" color="secondary" onClick={onDelete}>Delete Comment</Button>)
+                  : null}
+              </Fragment>
+            ) : null}
           </Col>
         </Row>
       </Container>
@@ -40,9 +87,29 @@ const Post = ({ post, loading }) => {
   );
 };
 
-Post.propTypes = {
-  post: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired,
+Post.defaultProps = {
+  showActions: true,
+  isLiked: false,
+  isFlagged: false,
 };
 
-export default Post;
+Post.propTypes = {
+  post: PropTypes.shape({
+    user: PropTypes.object,
+    comment: PropTypes.string,
+    likes: PropTypes.array,
+  }).isRequired,
+  auth: PropTypes.shape({
+    user: PropTypes.object,
+  }).isRequired,
+  isLiked: PropTypes.bool,
+  isFlagged: PropTypes.bool,
+  showActions: PropTypes.bool,
+  onLikeHandleClick: PropTypes.func.isRequired,
+  onFlagHandleClick: PropTypes.func.isRequired,
+  onReplyHandleClick: PropTypes.func.isRequired,
+  onDeleteHandleClick: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
+};
+
+export default withStyles(styles)(Post);

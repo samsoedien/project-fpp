@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core';
-import { green, red, teal } from '@material-ui/core/colors';
+import { grey, red, teal } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
@@ -10,17 +10,13 @@ const theme = createMuiTheme({
       dark: teal[700],
       red: red[800],
     },
-    secondary: {
-      light: green.A200,
-      main: green.A400,
-      dark: green.A700,
-    },
     error: {
       light: red[300],
       main: red[500],
       dark: red[700],
     },
-    common: {
+    custom: {
+      light: grey[100],
     },
   },
   typography: {
@@ -38,7 +34,7 @@ const theme = createMuiTheme({
     // caption: {},
     // button: {},
     // h1: {},
-    h2: { 
+    h2: {
       fontFamily: '"Great Vibes", cursive',
       fontSize: '6rem',
     }

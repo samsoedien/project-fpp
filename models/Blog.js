@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 // Create Schema
@@ -29,13 +30,13 @@ const BlogSchema = new Schema({
       },
     },
   ],
-  comments: [
+  posts: [
     {
       user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
       },
-      text: {
+      comment: {
         type: String,
         required: true,
       },
@@ -50,14 +51,17 @@ const BlogSchema = new Schema({
           user: {
             type: Schema.Types.ObjectId,
             ref: 'User',
-          }
-        }
+          },
+        },
       ],
+      flagged: {
+        default: false,
+      },
       date: {
         type: Date,
         default: Date.now,
-      }
-    }
+      },
+    },
   ],
   date: {
     type: Date,

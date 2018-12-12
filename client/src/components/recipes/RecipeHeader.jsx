@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Button,
   IconButton,
   Tooltip,
   Zoom,
 } from '@material-ui/core';
-import { Favorite as FavoriteIcon, Share as ShareIcon } from '@material-ui/icons';
+import {
+  Favorite as FavoriteIcon,
+  Share as ShareIcon,
+  Delete as DeleteIcon,
+} from '@material-ui/icons';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
 
@@ -46,22 +51,46 @@ const styles = theme => ({
   recipeHeaderIconFavorited: {
     color: theme.palette.primary.main,
   },
+  recipeDeleteButton: {
+    position: 'absolute',
+    right: '20px',
+    top: '100px',
+  },
+  recipeEditButton: {
+    position: 'absolute',
+    right: '196px',
+    top: '100px',
+    color: theme.palette.common.white,
+    borderColor: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: '#FAFAFA',
+      color: '#9E9E9E',
+    },
+  },
 });
 
 const RecipeHeader = ({
-  recipeImage,
-  recipeFavorites,
+  recipe,
+  auth,
   isFavorited,
-  onFavoriteClick,
+  onEditHandle,
+  onDeleteHandle,
+  onFavoriteHandle,
   classes,
 }) => {
-
-  console.log(isFavorited);
-  const onFavoriteHandle = () => {
-    onFavoriteClick();
+  const onEdit = () => {
+    onEditHandle();
   };
 
-  const handleScroll = (scrollDistance) => {
+  const onDelete = () => {
+    onDeleteHandle();
+  };
+
+  const onFavorite = () => {
+    onFavoriteHandle();
+  };
+
+  const handleScroll = scrollDistance => {
     const parallaxItem = document.getElementById('myHeader');
     parallaxItem.style.transform = `translate(0px, ${-scrollDistance / 2}px)`;
   };
@@ -69,14 +98,21 @@ const RecipeHeader = ({
   return (
     <div className="recipe-header">
       <ScrollWrapper onWindowScroll={handleScroll}>
-        <header className={classes.recipeHeaderParallax} id="myHeader" style={{ backgroundImage: `url(${recipeImage})` }}>
+        <header className={classes.recipeHeaderParallax} id="myHeader" style={{ backgroundImage: `url(/${recipe.image})` }}>
           <div className={classes.recipeHeaderOverlay} />
-          <Tooltip title={`${recipeFavorites.length} chef(s) loved this recipe`} placement="top" TransitionComponent={Zoom}>
-            <IconButton onClick={onFavoriteHandle} className={classes.recipeHeaderFavoriteButton}>
+          {recipe.user._id === auth.user.id ? (
+            <Fragment>
+              <Button variant="contained" color="secondary" className={classes.recipeDeleteButton} onClick={onDelete}>Delete Recipe<DeleteIcon /></Button>
+              <Button variant="outlined" className={classes.recipeEditButton} onClick={onEdit}>Edit Recipe</Button>
+            </Fragment>
+          ) : null}
+
+          <Tooltip title={`${recipe.favorites.length} chef(s) loved this recipe`} placement="top" TransitionComponent={Zoom}>
+            <IconButton onClick={onFavorite} className={classes.recipeHeaderFavoriteButton}>
               <FavoriteIcon className={isFavorited ? classes.recipeHeaderIconFavorited : classes.recipeHeaderIcon} />
             </IconButton>
           </Tooltip>
-          <IconButton onClick={onFavoriteHandle} className={classes.recipeHeaderShareButton}>
+          <IconButton onClick={onFavorite} className={classes.recipeHeaderShareButton}>
             <ShareIcon className={classes.recipeHeaderIcon} />
           </IconButton>
         </header>
@@ -86,10 +122,18 @@ const RecipeHeader = ({
 };
 
 RecipeHeader.propTypes = {
-  recipeFavorites: PropTypes.array.isRequired,
+  recipe: PropTypes.shape({
+    image: PropTypes.string,
+    favorited: PropTypes.array,
+  }).isRequired,
+  auth: PropTypes.shape({
+    user: PropTypes.object,
+  }).isRequired,
   isFavorited: PropTypes.bool.isRequired,
-  onFavoriteClick: PropTypes.func.isRequired,
+  onEditHandle: PropTypes.func.isRequired,
+  onDeleteHandle: PropTypes.func.isRequired,
+  onFavoriteHandle: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired, // eslint-disable-line
-}
+};
 
 export default withStyles(styles)(RecipeHeader);

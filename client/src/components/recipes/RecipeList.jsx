@@ -46,7 +46,7 @@ const RecipeList = ({
   }
   return (
     <div className="recipe-list">
-      <RecipeFeatured recipes={recipes} loading={loading} />
+      {/* <RecipeFeatured recipes={recipes} loading={loading} /> */}
       <Container>
         <Paper elevation="4" className={classes.recipeSearch}>
           <SearchBar

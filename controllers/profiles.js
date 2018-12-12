@@ -13,6 +13,9 @@ exports.getProfiles = (req, res) => {
   const errors = {};
   Profile.find()
     .populate('user', ['name', 'avatar'])
+    .select('-__v')
+    .sort({ date: -1 })
+    .exec()
     .then(profiles => {
       if (!profiles) {
         errors.noprofile = 'There are no profiles';
@@ -28,6 +31,8 @@ exports.getCurrentProfile = (req, res, ) => {
   const errors = {};
   Profile.findOne({ user: req.user.id })
     .populate('user', ['name', 'avatar'])
+    .select('-__v')
+    .exec()
     .then(profile => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';

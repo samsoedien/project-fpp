@@ -17,7 +17,7 @@ const blogsRoutes = require('./routes/blogs');
 
 const app = express();
 
-const storage = multer.diskStorage({
+const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads');
   },
@@ -50,7 +50,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Multer Middleware
-app.use(multer({ storage, fileFilter }).single('image'));
+app.use(
+  multer({ storage: fileStorage, fileFilter }).single('image'),
+);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Passport middleware

@@ -36,7 +36,7 @@ exports.postPost = (req, res, next) => {
     return res.status(422).json(errors);
   }
   const newPost = new Post({
-    text: req.body.text,
+    comment: req.body.comment,
     name: req.body.name,
     avatar: req.body.avatar,
     user: req.user.id,
@@ -64,7 +64,7 @@ exports.postPost = (req, res, next) => {
 exports.putPost = (req, res, next) => {
   const newPost = {
     postId: req.params.postId,
-    text: req.body.text,
+    comment: req.body.comment,
     name: req.body.name,
     avatar: req.body.avatar,
     user: req.user.id,
@@ -130,7 +130,7 @@ exports.postComment = (req, res, next) => {
   Post.findById(req.params.id)
     .then(post => {
       const newComment = {
-        text: req.body.text,
+        comment: req.body.comment,
         name: req.body.name,
         avatar: req.body.avatar,
         user: req.user.id,

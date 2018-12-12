@@ -2,9 +2,11 @@ const Validator = require('validator');
 const isEmpty = require('./is-empty');
 
 module.exports = function validateThreeInput(data) {
-  let errors = {};
+  const errors = {};
 
-  data.scene = !isEmpty(data.scene) ? data.scene : '';
+  data = {
+    scene: !isEmpty(data.scene) ? data.scene : '',
+  };
 
   if (Validator.isEmpty(data.scene)) {
     errors.scene = 'Scene is required';
@@ -12,6 +14,6 @@ module.exports = function validateThreeInput(data) {
 
   return {
     errors,
-    isValid: isEmpty(errors)
+    isValid: isEmpty(errors),
   };
 };

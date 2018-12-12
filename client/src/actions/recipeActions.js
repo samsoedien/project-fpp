@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   GET_RECIPES,
   GET_RECIPE,
+  DELETE_RECIPE,
   RECIPE_LOADING,
   GET_ERRORS,
 } from '../constants/types';
@@ -51,30 +52,78 @@ export const createRecipe = (recipeData, history) => dispatch => {
     }));
 };
 
+export const deleteRecipe = id => dispatch => {
+  axios
+    .delete(`/api/recipes/${id}`)
+    .then(res => dispatch({
+      type: DELETE_RECIPE,
+      payload: id,
+    }))
+    .catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    }));
+};
+
 export const favoriteRecipe = (id, favoriteData) => dispatch => {
   axios
     .post(`/api/recipes/${id}/favorites`, favoriteData)
-    .then(res => dispatch(getRecipe()))
+    .then(res => dispatch({
+      type: GET_RECIPE,
+      payload: res.data,
+    }))
     .catch(err => dispatch({
       type: GET_ERRORS,
       payload: err.response.data,
     }));
 };
 
-export const addRecipeComment = (id, postData, history) => dispatch => {
+export const addRecipeComment = (id, postData) => dispatch => {
   axios
-    .post(`/api/recipes/${id}/comments`, postData)
-    .then(res => dispatch(getRecipe()))
+    .post(`/api/recipes/${id}/posts`, postData)
+    .then(res => dispatch({
+      type: GET_RECIPE,
+      payload: res.data,
+    }))
     .catch(err => dispatch({
       type: GET_ERRORS,
       payload: err.response.data,
     }));
 };
 
-export const likeRecipeComment = (recipeId, commentId, likeData) => dispatch => {
+export const deleteRecipeComment = (recipeId, postId) => dispatch => {
   axios
-    .post(`/api/recipes/${recipeId}/comments/${commentId}/likes`, likeData)
-    .then(res => dispatch(getRecipe()))
+    .delete(`/api/recipes/${recipeId}/posts/${postId}`)
+    .then(res => dispatch({
+      type: GET_RECIPE,
+      payload: res.data,
+    }))
+    .catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    }));
+};
+
+export const likeRecipeComment = (recipeId, postId, likeData) => dispatch => {
+  axios
+    .post(`/api/recipes/${recipeId}/posts/${postId}/likes`, likeData)
+    .then(res => dispatch({
+      type: GET_RECIPE,
+      payload: res.data,
+    }))
+    .catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    }));
+};
+
+export const flagRecipeComment = (recipeId, postId, flagData) => dispatch => {
+  axios
+    .post(`/api/recipes/${recipeId}/posts/${postId}/flags`, flagData)
+    .then(res => dispatch({
+      type: GET_RECIPE,
+      payload: res.data,
+    }))
     .catch(err => dispatch({
       type: GET_ERRORS,
       payload: err.response.data,

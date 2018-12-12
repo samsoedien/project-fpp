@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 // Create Schema
@@ -11,7 +12,7 @@ const ThreeSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
 });
 
 module.exports = Three = mongoose.model('Three', ThreeSchema);

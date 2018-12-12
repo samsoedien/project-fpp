@@ -1,58 +1,80 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Link } from 'react-router-dom';
+// import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
-
-import Loader from '../common/Loader';
+import {
+  Typography,
+} from '@material-ui/core';
 
 import ThreeContainer from '../../containers/ThreeContainer';
-
+import Loader from '../common/Loader';
 import RecipeHeader from './RecipeHeader';
 import RecipeInfo from './RecipeInfo';
 import RecipeProfileCard from './RecipeProfileCard';
-import ThreeNutritions from '../three/ThreeNutritions';
-import PostCommentFeed from '../posts/PostCommentFeed';
+import PostFeed from '../posts/PostFeed';
 import PostForm from '../posts/PostForm';
+
+const styles = theme => ({
+  caption: {
+    textAlign: 'center',
+  },
+});
 
 const Recipe = ({
   recipe,
   loading,
   auth,
-  text,
+  comment,
   isFavorited,
+  isLiked,
+  isFlagged,
   onChangeCallback,
   onCancelCallback,
   onSubmitCallback,
   onLikeCallback,
+  onFlagCallback,
+  onReplyCallback,
+  onEditCallback,
   onDeleteCallback,
-  onFavoriteHandleCallback,
+  onFavoriteCallback,
   errors,
+  classes,
 }) => {
-
-
-  const onChangeClick = e => {
+  const onChangeHandle = e => {
     onChangeCallback(e);
   };
 
-  const onCancelClick = () => {
+  const onCancelHandle = () => {
     onCancelCallback();
   };
 
-  const onSubmitClick = () => {
+  const onSubmitHandle = () => {
     onSubmitCallback();
   };
 
-  const onFavoriteClick = id => {
-    onFavoriteHandleCallback(id);
+  const onEditHandle = () => {
+    onEditCallback();
   };
 
-  const onLikeClick = id => {
+  const onDeleteHandle = id => {
+    onDeleteCallback(id);
+  };
+
+  const onFavoriteHandle = () => {
+    onFavoriteCallback();
+  };
+
+  const onLikeHandle = id => {
     onLikeCallback(id);
   };
 
-  const onDeleteClick = id => {
-    onDeleteCallback(id);
+  const onReplyHandle = user => {
+    onReplyCallback(user);
+  };
+
+  const onFlagHandle = id => {
+    onFlagCallback(id);
   };
 
   let recipeContent;
@@ -62,29 +84,35 @@ const Recipe = ({
     recipeContent = (
       <div>
         <RecipeHeader
-          recipeImage={recipe.image}
-          recipeFavorites={recipe.favorites}
+          recipe={recipe}
+          auth={auth}
           isFavorited={isFavorited}
-          onFavoriteClick={onFavoriteClick.bind(this, recipe._id)} 
+          onEditHandle={onEditHandle}
+          onDeleteHandle={onDeleteHandle}
+          onFavoriteHandle={onFavoriteHandle}
         />
-        <RecipeInfo recipe={recipe} />
+        <RecipeInfo recipe={recipe} auth={auth} />
         <RecipeProfileCard recipe={recipe} />
         <ThreeContainer recipe={recipe} width="600px" height="400px" />
         {auth.isAuthenticated ? (
           <PostForm
-            text={text}
+            comment={comment}
             errors={errors}
-            onChangeClick={onChangeClick}
-            onCancelClick={onCancelClick}
-            onSubmitClick={onSubmitClick}
+            onChangeHandle={onChangeHandle}
+            onCancelHandle={onCancelHandle}
+            onSubmitHandle={onSubmitHandle}
           />
-        ) : null}
-        <PostCommentFeed
-          posts={recipe.comments}
+        ) : <Typography variant="caption" className={classes.caption}>Signin to place a comment</Typography>}
+        <PostFeed
+          posts={recipe.posts}
           loading={loading}
           auth={auth}
-          onLikeClick={onLikeClick}
-          onDeleteClick={onDeleteClick}
+          isLiked={isLiked}
+          isFlagged={isFlagged}
+          onLikeHandle={onLikeHandle}
+          onFlagHandle={onFlagHandle}
+          onReplyHandle={onReplyHandle}
+          onDeleteHandle={onDeleteHandle}
         />
       </div>
     );
@@ -97,14 +125,25 @@ Recipe.propTypes = {
     _id: PropTypes.string,
   }).isRequired,
   loading: PropTypes.bool.isRequired,
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.shape({
+    isAuthenticated: PropTypes.bool,
+  }).isRequired,
+  comment: PropTypes.string.isRequired,
   isFavorited: PropTypes.bool.isRequired,
+  isLiked: PropTypes.bool.isRequired,
+  isFlagged: PropTypes.bool.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onCancelCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,
   onLikeCallback: PropTypes.func.isRequired,
+  onFlagCallback: PropTypes.func.isRequired,
+  onReplyCallback: PropTypes.func.isRequired,
+  onEditCallback: PropTypes.func.isRequired,
   onDeleteCallback: PropTypes.func.isRequired,
-  onFavoriteHandleCallback: PropTypes.func.isRequired,
+  onFavoriteCallback: PropTypes.func.isRequired,
+  errors: PropTypes.shape({}).isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
+
 };
 
-export default Recipe;
+export default withStyles(styles)(Recipe);

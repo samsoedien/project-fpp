@@ -35,4 +35,8 @@ router.post('/:id/comments', passport.authenticate('jwt', { session: false }), b
 
 router.post('/:blogId/comments/:commentId/likes', passport.authenticate('jwt', { session: false }), blogsController.postLikeCommentBlog);
 
+router.post('/:blogId/comments/:commentId/flags', passport.authenticate('jwt', { session: false }), blogsController.postFlagCommentBlog);
+
+
+
 module.exports = router;

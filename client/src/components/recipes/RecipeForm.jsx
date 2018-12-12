@@ -7,7 +7,10 @@ import {
   Typography,
   TextField,
   Button,
+  Input,
 } from '@material-ui/core';
+import { CloudUpload as CloudUploadIcon } from '@material-ui/icons';
+
 
 import ModalComponent from '../common/ModalComponent';
 
@@ -15,6 +18,14 @@ const styles = theme => ({
   recipeFormModal: {},
   recipeFormInput: {
     margin: '12px 0',
+  },
+  recipeFormButton: {
+    float: 'right',
+    marginBottom: '12px',
+  },
+  recipeUploadButton: {
+    width: '100%',
+    marginBottom: '12px',
   },
 });
 
@@ -93,7 +104,18 @@ const RecipeForm = ({
               error={errors.description}
               helperText={errors ? errors.description : ''}
             />
-            <Button type="submit" value="Submit" className={classes.recipeFormButton}>Submit</Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              containerElement='label' // <-- Just add me!
+              label='My Label'
+              className={classes.recipeUploadButton}
+            >
+              <Input type="file" name="image" onChange={onChange} className={classes.recipeFileInput} />
+              Upload
+              <CloudUploadIcon className={classes.recipeFileButton} />
+            </Button>
+            <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.recipeFormButton}>Submit</Button>
           </form>
         </ModalComponent>
       </Container>

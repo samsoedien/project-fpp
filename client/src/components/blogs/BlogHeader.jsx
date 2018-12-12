@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Link } from 'react-router-dom';
+// import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Button,
   IconButton,
   Tooltip,
   Zoom,
@@ -46,19 +47,46 @@ const styles = theme => ({
   blogHeaderIconFavorited: {
     color: theme.palette.primary.main,
   },
+  blogDeleteButton: {
+    position: 'absolute',
+    right: '20px',
+    top: '100px',
+  },
+  blogEditButton: {
+    position: 'absolute',
+    right: '170px',
+    top: '100px',
+    color: theme.palette.common.white,
+    borderColor: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: '#FAFAFA',
+      color: '#9E9E9E',
+    },
+  },
 });
 
+
+
 const BlogHeader = ({
-  blogImage,
-  blogFavorites,
+  blog,
+  auth,
   isFavorited,
-  onFavoriteClick,
+  onEditHandle,
+  onDeleteHandle,
+  onFavoriteHandle,
   classes,
 }) => {
 
-  console.log(isFavorited);
-  const onFavoriteHandle = () => {
-    onFavoriteClick();
+  const onEdit = () => {
+    onEditHandle();
+  };
+
+  const onDelete = () => {
+    onDeleteHandle();
+  };
+
+  const onFavorite = () => {
+    onFavoriteHandle();
   };
 
   const handleScroll = scrollDistance => {
@@ -69,14 +97,21 @@ const BlogHeader = ({
   return (
     <div className="blog-header">
       <ScrollWrapper onWindowScroll={handleScroll}>
-        <header className={classes.blogHeaderParallax} id="myHeader" style={{ backgroundImage: `url(${blogImage})` }}>
+        <header className={classes.blogHeaderParallax} id="myHeader" style={{ backgroundImage: `url(${blog.image})` }}>
           <div className={classes.blogHeaderOverlay} />
-          <Tooltip title={`${blogFavorites.length} chef(s) loved this blog`} placement="top" TransitionComponent={Zoom}>
+          {blog.user._id === auth.user.id ? (
+            <Fragment>
+              <Button variant="contained" color="secondary" className={classes.blogDeleteButton} onClick={onDelete}>Delete Blog</Button>
+              <Button variant="outlined" className={classes.blogEditButton} onClick={onEdit}>Edit Blog</Button>
+            </Fragment>
+          ) : null}
+
+          <Tooltip title={`${blog.favorites.length} chef(s) loved this blog`} placement="top" TransitionComponent={Zoom}>
             <IconButton onClick={onFavoriteHandle} className={classes.blogHeaderFavoriteButton}>
               <FavoriteIcon className={isFavorited ? classes.blogHeaderIconFavorited : classes.blogHeaderIcon} />
             </IconButton>
           </Tooltip>
-          <IconButton onClick={onFavoriteHandle} className={classes.blogHeaderShareButton}>
+          <IconButton onClick={onFavorite} className={classes.blogHeaderShareButton}>
             <ShareIcon className={classes.blogHeaderIcon} />
           </IconButton>
         </header>
@@ -86,10 +121,18 @@ const BlogHeader = ({
 };
 
 BlogHeader.propTypes = {
-  blogFavorites: PropTypes.array.isRequired,
+  blog: PropTypes.shape({
+    image: PropTypes.string,
+    favorited: PropTypes.array,
+  }).isRequired,
+  auth: PropTypes.shape({
+    user: PropTypes.object,
+  }).isRequired,
   isFavorited: PropTypes.bool.isRequired,
-  onFavoriteClick: PropTypes.func.isRequired,
+  onEditHandle: PropTypes.func.isRequired,
+  onDeleteHandle: PropTypes.func.isRequired,
+  onFavoriteHandle: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired, // eslint-disable-line
-}
+};
 
 export default withStyles(styles)(BlogHeader);

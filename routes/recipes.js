@@ -20,11 +20,6 @@ router.get('/', recipesController.getRecipes);
 // @access  Public
 router.get('/:id', recipesController.getRecipeById);
 
-// @route   POST api/recipes
-// @desc    Create a recipe
-// @access  Private
-// router.post('/', passport.authenticate('jwt', { session: false }), upload.single('image'), recipesController.postRecipe);
-
 router.post('/', passport.authenticate('jwt', { session: false }), recipesController.postRecipe);
 
 router.patch('/:id', passport.authenticate('jwt', { session: false }), recipesController.updateRecipe);
@@ -33,8 +28,12 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), recipesC
 
 router.post('/:id/favorites', passport.authenticate('jwt', { session: false }), recipesController.postFavoriteRecipe);
 
-router.post('/:id/comments', passport.authenticate('jwt', { session: false }), recipesController.postCommentRecipe);
+router.post('/:id/posts', passport.authenticate('jwt', { session: false }), recipesController.postRecipePost);
 
-router.post('/:recipeId/comments/:commentId/likes', passport.authenticate('jwt', { session: false }), recipesController.postLikeCommentRecipe);
+router.delete('/:recipeId/posts/:postId', passport.authenticate('jwt', { session: false }), recipesController.deleteRecipePost);
+
+router.post('/:recipeId/posts/:postId/likes', passport.authenticate('jwt', { session: false }), recipesController.postLikeRecipePost);
+
+router.post('/:recipeId/posts/:postId/flags', passport.authenticate('jwt', { session: false }), recipesController.postFlagRecipePost);
 
 module.exports = router;

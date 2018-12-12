@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 
 import BlogHeader from './BlogHeader';
-import PostCommentFeed from '../posts/PostCommentFeed';
+import PostFeed from '../posts/PostFeed';
 import PostForm from '../posts/PostForm';
 import Loader from '../common/Loader';
 
@@ -27,40 +27,56 @@ const Blog = ({
   blog,
   loading,
   auth,
-  text,
+  comment,
   isFavorited,
+  isLiked,
+  isFlagged,
   onChangeCallback,
   onCancelCallback,
   onSubmitCallback,
   onLikeCallback,
+  onFlagCallback,
+  onReplyCallback,
+  onEditCallback,
   onDeleteCallback,
-  onFavoriteHandleCallback,
+  onFavoriteCallback,
   errors,
   classes,
 }) => {
-
-  const onChangeClick = e => {
+  const onChangeHandle = e => {
     onChangeCallback(e);
   };
 
-  const onCancelClick = () => {
+  const onCancelHandle = () => {
     onCancelCallback();
   };
 
-  const onSubmitClick = () => {
+  const onSubmitHandle = () => {
     onSubmitCallback();
   };
 
-  const onFavoriteClick = id => {
-    onFavoriteHandleCallback(id);
+  const onEditHandle = () => {
+    onEditCallback();
   };
 
-  const onLikeClick = id => {
+  const onDeleteHandle = id => {
+    onDeleteCallback(id);
+  };
+
+  const onFavoriteHandle = () => {
+    onFavoriteCallback();
+  };
+
+  const onLikeHandle = id => {
     onLikeCallback(id);
   };
 
-  const onDeleteClick = id => {
-    onDeleteCallback(id);
+  const onReplyHandle = user => {
+    onReplyCallback(user);
+  };
+
+  const onFlagHandle = id => {
+    onFlagCallback(id);
   };
 
   let blogContent;
@@ -70,10 +86,11 @@ const Blog = ({
     blogContent = (
       <div>
         <BlogHeader
-          blogImage={blog.image}
-          blogFavorites={blog.favorites}
+          blog={blog}
           isFavorited={isFavorited}
-          onFavoriteClick={onFavoriteClick.bind(this, blog._id)}
+          onEditHandle={onEditHandle}
+          onDeleteHandle={onDeleteHandle}
+          onFavoriteHandle={onFavoriteHandle}
         />
         <Container>
           <article className={classes.blogArticle}>
@@ -93,19 +110,23 @@ const Blog = ({
         </Container>
         {auth.isAuthenticated ? (
           <PostForm
-            text={text}
+            comment={comment}
             errors={errors}
-            onChangeClick={onChangeClick}
-            onCancelClick={onCancelClick}
-            onSubmitClick={onSubmitClick}
+            onChangeHandle={onChangeHandle}
+            onCancelHandle={onCancelHandle}
+            onSubmitHandle={onSubmitHandle}
           />
         ) : null}
-        <PostCommentFeed
-          posts={blog.comments}
+        <PostFeed
+          posts={blog.posts}
           loading={loading}
           auth={auth}
-          onLikeClick={onLikeClick}
-          onDeleteClick={onDeleteClick}
+          isLiked={isLiked}
+          isFlagged={isFlagged}
+          onLikeHandle={onLikeHandle}
+          onFlagHandle={onFlagHandle}
+          onReplyHandle={onReplyHandle}
+          onDeleteHandle={onDeleteHandle}
         />
       </div>
     );
@@ -116,16 +137,21 @@ const Blog = ({
 Blog.propTypes = {
   blog: PropTypes.shape({}).isRequired,
   loading: PropTypes.bool.isRequired,
-  auth: PropTypes.object.isRequired,
-  text: PropTypes.string.isRequired,
+  auth: PropTypes.shape({}).isRequired,
+  comment: PropTypes.string.isRequired,
   isFavorited: PropTypes.bool.isRequired,
+  isLiked: PropTypes.bool.isRequired,
+  isFlagged: PropTypes.bool.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onCancelCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,
   onLikeCallback: PropTypes.func.isRequired,
+  onFlagCallback: PropTypes.func.isRequired,
+  onReplyCallback: PropTypes.func.isRequired,
+  onEditCallback: PropTypes.func.isRequired,
   onDeleteCallback: PropTypes.func.isRequired,
-  onFavoriteHandleCallback: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
+  onFavoriteCallback: PropTypes.func.isRequired,
+  errors: PropTypes.shape({}).isRequired,
   classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 

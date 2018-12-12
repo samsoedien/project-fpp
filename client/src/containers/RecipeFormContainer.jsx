@@ -51,18 +51,19 @@ class RecipeFormContainer extends Component {
     //   //name: user.name,
     //   //avatar: user.avatar,
     // };
-    const { title, cuisine, description } = this.state;
-    const recipeData = {
+    const {
       title,
       cuisine,
       description,
-    };
+      image,
+    } = this.state;
 
-    // const recipeData = new FormData();
-    // recipeData.append('title', this.state.title);
-    // recipeData.append('cuisine', this.state.cuisine);
-    // recipeData.append('description', this.state.description);
-    // recipeData.append('image', this.state.image);
+    const recipeData = new FormData();
+    recipeData.append('title', title);
+    recipeData.append('cuisine', cuisine);
+    recipeData.append('description', description);
+    recipeData.append('image', image);
+
     const { createRecipe, history } = this.props;
     createRecipe(recipeData, history);
   }

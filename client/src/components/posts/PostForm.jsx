@@ -26,25 +26,25 @@ const styles = theme => ({
 });
 
 const PostForm = ({
-  text,
-  onChangeClick,
-  onSubmitClick,
-  onCancelClick,
+  comment,
+  onChangeHandle,
+  onSubmitHandle,
+  onCancelHandle,
   errors,
   classes,
 }) => {
 
   const onChange = e => {
-    onChangeClick(e);
+    onChangeHandle(e);
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    onSubmitClick();
+    onSubmitHandle();
   };
 
   const onCancel = () => {
-    onCancelClick();
+    onCancelHandle();
   }
 
   return (
@@ -66,18 +66,18 @@ const PostForm = ({
                     defaultValue="Comment"
                     margin="normal"
                     variant="outlined"
-                    name="text"
-                    value={text}
+                    name="comment"
+                    value={comment}
                     onChange={onChange}
-                    error={errors.text}
-                    helperText={errors ? errors.text : ''}
+                    error={errors.comment}
+                    helperText={errors ? errors.comment : ''}
                   />
                   <Button
                     type="submit"
                     value="Submit"
                     variant="contained"
                     color="primary"
-                    disabled={isEmpty(text) ? 'disabled' : null}
+                    disabled={isEmpty(comment) ? 'disabled' : null}
                     className={classes.postFormButton}
                   >
                     Post Comment
@@ -94,12 +94,12 @@ const PostForm = ({
 };
 
 PostForm.propTypes = {
-  text: PropTypes.string.isRequired,
-  onChangeCallback: PropTypes.func.isRequired,
-  onSubmitCallback: PropTypes.func.isRequired,
-  onCancelCallback: PropTypes.func.isRequired,
+  comment: PropTypes.string.isRequired,
+  onChangeHandle: PropTypes.func.isRequired,
+  onSubmitHandle: PropTypes.func.isRequired,
+  onCancelHandle: PropTypes.func.isRequired,
   errors: PropTypes.shape({
-    text: PropTypes.string,
+    comment: PropTypes.string,
   }).isRequired,
   classes: PropTypes.object.isRequired, // eslint-disable-line
 };

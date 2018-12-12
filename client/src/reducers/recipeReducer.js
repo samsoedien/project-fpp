@@ -1,6 +1,7 @@
 import {
   GET_RECIPES,
   GET_RECIPE,
+  DELETE_RECIPE,
   ADD_RECIPE_COMMENT,
   RECIPE_LOADING,
 } from '../constants/types';
@@ -29,6 +30,11 @@ export default function (state = initialState, action) {
         ...state,
         recipe: action.payload,
         loading: false,
+      };
+    case DELETE_RECIPE:
+      return {
+        ...state,
+        recipes: state.recipes.filter(recipe => recipe._id !== action.payload),
       };
     case ADD_RECIPE_COMMENT:
       return {

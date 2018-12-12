@@ -25,7 +25,13 @@ class BlogFormContainer extends Component {
   }
 
   onChangeCallback(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    switch (e.target.name) {
+      case 'image':
+        this.setState({ image: e.target.files[0] });
+        break;
+      default:
+        this.setState({ [e.target.name]: e.target.value });
+    }
   }
 
   onSubmitCallback() {

@@ -4,11 +4,6 @@ import { NavLink as Link } from 'react-router-dom';
 // import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  IconButton,
-  Badge,
-} from '@material-ui/core';
-import { Mail as MailIcon } from '@material-ui/icons';
-import {
   Collapse,
   Navbar,
   NavbarToggler,

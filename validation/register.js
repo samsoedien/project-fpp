@@ -2,12 +2,14 @@ const Validator = require('validator');
 const isEmpty = require('./is-empty');
 
 module.exports = function validateRegisterInput(data) {
-  let errors = {};
+  const errors = {};
 
-  data.name = !isEmpty(data.name) ? data.name : '';
-  data.email = !isEmpty(data.email) ? data.email : '';
-  data.password = !isEmpty(data.password) ? data.password : '';
-  data.passwordConfirm = !isEmpty(data.passwordConfirm) ? data.passwordConfirm : '';
+  data = {
+    name: !isEmpty(data.name) ? data.name : '',
+    email: !isEmpty(data.email) ? data.email : '',
+    password: !isEmpty(data.password) ? data.password : '',
+    passwordConfirm: !isEmpty(data.passwordConfirm) ? data.passwordConfirm : '',
+  };
 
   if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
     errors.name = 'Name must be between 2 and 30 characters';

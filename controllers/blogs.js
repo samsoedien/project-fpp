@@ -84,7 +84,7 @@ exports.postCommentBlog = (req, res, next) => {
   }
   Blog.findById(req.params.id).then(blog => {
     const newPost = {
-      text: req.body.text,
+      comment: req.body.text,
       name: req.body.name,
       avatar: req.body.avatar,
       user: req.user.id,
@@ -107,5 +107,17 @@ exports.postLikeCommentBlog = (req, res, next) => {
         post.save().then(post => res.json(post));
       })
       .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+  });
+};
+
+exports.postFlagCommentBlog = (req, res, next) => {
+  Blog.findById(req.params.blogId).then(blog => {
+    Blog.findById(req.params.commentId).then(comment => {
+      const newPost = {
+        flagged: req.body.flagged,
+      };
+      comment.flagged(newPost);
+    });
+    Blog.save().then(result => res.json(result));
   });
 };

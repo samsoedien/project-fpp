@@ -9,7 +9,11 @@ import ProfileHeader from './ProfileHeader';
 import ProfileAbout from './ProfileAbout';
 import ProfileCreds from './ProfileCreds';
 
-const Profile = ({ profile, loading }) => {
+const styles = theme => ({
+
+});
+
+const Profile = ({ profile, loading, classes }) => {
   let profileContent;
   if (profile === null || loading) {
     profileContent = <Loader />;
@@ -46,6 +50,7 @@ Profile.propTypes = {
     experience: PropTypes.object,
   }).isRequired,
   loading: PropTypes.bool.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default Profile;
+export default withStyles(styles)(Profile);

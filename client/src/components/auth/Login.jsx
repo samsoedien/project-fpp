@@ -117,7 +117,7 @@ const Login = ({
                       ),
                     }}
                   />
-                  <Button type="submit" value="Submit" className={classes.loginFormButton}>Login</Button>
+                  <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.loginFormButton}>Login</Button>
                 </form>
               </Col>
             </Row>

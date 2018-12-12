@@ -2,9 +2,14 @@ const Validator = require('validator');
 const isEmpty = require('./is-empty');
 
 module.exports = function validateRecipeInput(data) {
-  let errors = {};
+  const errors = {};
 
-  data.title = !isEmpty(data.title) ? data.title : '';
+  data = {
+    title: !isEmpty(data.title) ? data.title : '',
+    cuisine: !isEmpty(data.cuisine) ? data.cuisine : '',
+    description: !isEmpty(data.description) ? data.description : '',
+    directions: !isEmpty(data.directions) ? data.directions : '',
+  };
 
   if (!Validator.isLength(data.title, { min: 3, max: 20 })) {
     errors.title = 'Recipe title must be between 3 and 20 characters';
@@ -16,6 +21,6 @@ module.exports = function validateRecipeInput(data) {
 
   return {
     errors,
-    isValid: isEmpty(errors)
+    isValid: isEmpty(errors),
   };
 };

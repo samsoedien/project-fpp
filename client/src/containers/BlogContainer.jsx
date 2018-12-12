@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   getBlog,
-  addBlogComment,
-  likeBlogComment,
   favoriteBlog,
   deleteBlog,
+  addBlogComment,
+  likeBlogComment,
+  flagBlogComment,
+  deleteBlogComment,
 } from '../actions/blogActions';
 
 import Blog from '../components/blogs/Blog';
@@ -15,17 +17,23 @@ class BlogContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
-      isLiked: false,
+      editable: false,
       isFavorited: false,
+      isLiked: false,
+      isFlagged: false,
+      comment: '',
       errors: {},
     };
     this.onChangeCallback = this.onChangeCallback.bind(this);
     this.onSubmitCallback = this.onSubmitCallback.bind(this);
     this.onCancelCallback = this.onCancelCallback.bind(this);
     this.onLikeCallback = this.onLikeCallback.bind(this);
+    this.onFlagCallback = this.onFlagCallback.bind(this);
+    this.onReplyCallback = this.onReplyCallback.bind(this);
+    this.onEditCallback = this.onEditCallback.bind(this);
     this.onDeleteCallback = this.onDeleteCallback.bind(this);
-    this.onFavoriteHandleCallback = this.onFavoriteHandleCallback.bind(this);
+    this.onDeletePostCallback = this.onDeletePostCallback.bind(this);
+    this.onFavoriteCallback = this.onFavoriteCallback.bind(this);
   }
 
   componentDidMount() {
@@ -39,7 +47,7 @@ class BlogContainer extends Component {
     }
   }
 
-  onLikeCallback(id) {
+  onLikeCallback(postId) {
     this.setState(prevState => ({
       isLiked: !prevState.isLiked,
     }));
@@ -47,9 +55,37 @@ class BlogContainer extends Component {
     const likeData = {
       isLiked,
     };
-    const { likeBlogComment, history } = this.props;
-    likeBlogComment(id, likeData, history); // need third parameter of recipeid
-    console.log(isLiked);
+    const { likeBlogComment, blog: { blog } } = this.props;
+    likeBlogComment(blog._id, postId, likeData);
+  }
+
+  onFlagCallback(postId) {
+    this.setState(prevState => ({
+      isFlagged: !prevState.isFlagged,
+    }));
+    const { isFlagged } = this.state;
+    const flaggedData = {
+      isFlagged,
+    };
+    const { flagBlogComment, blog: { blog } } = this.props;
+    flagBlogComment(blog._id, postId, flaggedData);
+  }
+
+  onReplyCallback(user) {
+    this.setState({
+      comment: `@${user}`,
+    });
+  }
+
+  onEditCallback(id) {
+    this.setState({
+      editable: true,
+    });
+  }
+
+  onDeletePostCallback(id) {
+    const { deleteBlogComment } = this.props;
+    deleteBlogComment(id);
   }
 
   onDeleteCallback(id) {
@@ -57,7 +93,7 @@ class BlogContainer extends Component {
     deleteBlog(id);
   }
 
-  onFavoriteHandleCallback(id) {
+  onFavoriteCallback(id) {
     this.setState(prevState => ({
       isFavorited: !prevState.isFavorited,
     }));
@@ -65,8 +101,8 @@ class BlogContainer extends Component {
     const favoriteData = {
       isFavorited,
     };
-    const { favoriteBlog, history } = this.props;
-    favoriteBlog(id, favoriteData, history);
+    const { favoriteBlog, blog: { blog } } = this.props;
+    favoriteBlog(blog._id, favoriteData);
   }
 
 
@@ -76,25 +112,24 @@ class BlogContainer extends Component {
 
   onCancelCallback() {
     this.setState({
-      text: '',
+      comment: '',
     });
   }
 
-  onSubmitCallback(e) {
+  onSubmitCallback() {
     const {
       blog: { blog },
       auth: { user },
       addBlogComment,
-      history,
     } = this.props;
-    const { text } = this.state;
+    const { comment } = this.state;
     const postData = {
-      text,
+      comment,
       name: user.name,
       avatar: user.avatar,
     };
-    addBlogComment(blog._id, postData, history);
-    this.setState({ text: '' });
+    addBlogComment(blog._id, postData);
+    this.setState({ comment: '' });
   }
 
   getDerivedStateFromProps() {
@@ -112,25 +147,48 @@ class BlogContainer extends Component {
     return false;
   }
 
+  findUserLikes(likes) {
+    const { auth } = this.props;
+    if (likes.filter(likes => likes.user === auth.user.id).length > 0) {
+      return this.setState({
+        isLiked: true,
+      });
+    }
+    return false;
+  }
 
   render() {
     const { blog: { blog, loading }, auth } = this.props;
-    const { isFavorited, text, errors } = this.state;
+    const {
+      editable,
+      isFavorited,
+      isLiked,
+      isFlagged,
+      comment,
+      errors,
+    } = this.state;
     return (
       <div className="blog-container">
         <Blog
           blog={blog}
           loading={loading}
           auth={auth}
+          editable={editable}
           isFavorited={isFavorited}
-          text={text}
+          isLiked={isLiked}
+          isFlagged={isFlagged}
+          comment={comment}
           errors={errors}
           onChangeCallback={this.onChangeCallback}
           onCancelCallback={this.onCancelCallback}
           onSubmitCallback={this.onSubmitCallback}
           onLikeCallback={this.onLikeCallback}
+          onFlagCallback={this.onFlagCallback}
+          onReplyCallback={this.onReplyCallback}
+          onEditCallback={this.onEditCallback}
           onDeleteCallback={this.onDeleteCallback}
-          onFavoriteHandleCallback={this.onFavoriteHandleCallback}
+          onDeletePostCallback={this.onDeletePostCallback}
+          onFavoriteCallback={this.onFavoriteCallback}
         />
       </div>
     );
@@ -145,11 +203,11 @@ BlogContainer.propTypes = {
   deleteBlog: PropTypes.func.isRequired,
   blog: PropTypes.shape({
     blog: PropTypes.object,
+    loading: PropTypes.bool,
   }).isRequired,
   auth: PropTypes.shape({
     user: PropTypes.object,
   }).isRequired,
-  history: PropTypes.object.isRequired, // eslint-disable-line
   match: PropTypes.object.isRequired, // eslint-disable-line
 };
 
@@ -162,8 +220,10 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   getBlog,
-  addBlogComment,
-  likeBlogComment,
   favoriteBlog,
   deleteBlog,
+  addBlogComment,
+  likeBlogComment,
+  flagBlogComment,
+  deleteBlogComment,
 })(BlogContainer);

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
@@ -25,18 +25,15 @@ const RecipeInfo = ({ recipe, classes }) => {
       <Container>
         <Row className={classes.center}>
           <Col md="8" style={{ minHeight: '360px' }}>
-            <small className="text-muted text-left text-uppercase">
-              Cuisine: {recipe.cuisine}
-            </small>
+            <Typography variant="caption" className="text-muted text-left text-uppercase">
+              {'Cuisine: '}
+              {recipe.cuisine}
+            </Typography>
             <Typography variant="h2" className={classes.recipeTitle}>{recipe.title}</Typography>
             <RecipeChips recipe={recipe.settings} />
-            <Typography variant="paragraph">
-              {isEmpty(recipe.description) ? (
-                <span>No description written yet</span>
-              ) : (
-                  recipe.description
-                )}
-            </Typography>
+            {isEmpty(recipe.description)
+              ? (<Typography variant="caption">No description written yet</Typography>)
+              : (<Typography variant="paragraph">{recipe.description}</Typography>)}
           </Col>
         </Row>
       </Container>
