@@ -13,6 +13,7 @@ const styles = theme => ({
     width: '100%',
     height: '100vh',
     boxShadow: '0px 0px 42px 5px rgba(0, 0, 0, 0.8)',
+    marginTop: '-120px', // to take account for nav w/ herobanner
   },
   herobannerOverlay: {
     position: 'absolute',
@@ -33,7 +34,7 @@ const styles = theme => ({
 });
 
 const HeroBanner = ({ onHomepage, classes }) => (
-  <div className="hero-banner">
+  <div className={classes.root}>
     {(onHomepage) ? (
       <Fragment>
         <div className={classes.herobannerOverlay} />

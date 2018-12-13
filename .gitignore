@@ -64,3 +64,4 @@ typings/
 /node_modules
 package-lock.json
 /config/keys_dev.js
+/uploads

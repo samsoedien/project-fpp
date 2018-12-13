@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -57,17 +57,19 @@ const Equipment = ({
         <CardContent className={classes.equipmentCardContent}>
           <Typography variant="h6" className={classes.equipmentTitle}>{printer}</Typography>
           <Typography variant="caption">Material Chocolate</Typography>
-          <Row className={classes.rowContent}>
-            <Col xs="2">
-              <Typography variant="body2">{'Status: '}</Typography>
-            </Col>
-            <Col xs="4">
-              {equipmentStatus}
-            </Col>
-            <Col xs="2">
-              {((equipment !== 'idle')) ? <CircularProgress disableShrink color="primary" /> : null}
-            </Col>
-          </Row>
+          <Container>
+            <Row className={classes.rowContent}>
+              <Col xs="2">
+                <Typography variant="body2">Status: </Typography>
+              </Col>
+              <Col xs="4">
+                {equipmentStatus}
+              </Col>
+              <Col xs="2">
+                {((equipment !== 'idle')) ? <CircularProgress disableShrink color="primary" /> : null}
+              </Col>
+            </Row>
+          </Container>
         </CardContent>
         <CardActions>
           <IconButton>
@@ -81,7 +83,7 @@ const Equipment = ({
 
 Equipment.propTypes = {
   equipment: PropTypes.string.isRequired,
-  onDeleteEquipment: PropTypes.func.isRequired,
+  printer: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 

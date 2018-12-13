@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -33,7 +33,6 @@ const PostForm = ({
   errors,
   classes,
 }) => {
-
   const onChange = e => {
     onChangeHandle(e);
   };
@@ -45,7 +44,7 @@ const PostForm = ({
 
   const onCancel = () => {
     onCancelHandle();
-  }
+  };
 
   return (
     <div className="post-form">
@@ -80,7 +79,7 @@ const PostForm = ({
                     disabled={isEmpty(comment) ? 'disabled' : null}
                     className={classes.postFormButton}
                   >
-                    Post Comment
+                    {'Post Comment'}
                   </Button>
                   <Button onClick={onCancel} variant="outlined" className={classes.postFormButton}>Cancel</Button>
                 </form>

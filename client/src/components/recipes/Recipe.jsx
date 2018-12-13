@@ -1,23 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
-// import { Container, Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Typography,
 } from '@material-ui/core';
 
 import ThreeContainer from '../../containers/ThreeContainer';
-import Loader from '../common/Loader';
 import RecipeHeader from './RecipeHeader';
-import RecipeInfo from './RecipeInfo';
 import RecipeProfileCard from './RecipeProfileCard';
+import RecipeChips from './RecipeChips';
 import PostFeed from '../posts/PostFeed';
 import PostForm from '../posts/PostForm';
+import Loader from '../common/Loader';
+import isEmpty from '../../utils/is-empty';
 
 const styles = theme => ({
   caption: {
     textAlign: 'center',
+  },
+  recipeTitle: {
+    textAlign: 'center',
+    textTransform: 'capitalize',
+  },
+  center: {
+    display: 'flex',
+    justifyContent: 'center',
   },
 });
 
@@ -91,7 +100,22 @@ const Recipe = ({
           onDeleteHandle={onDeleteHandle}
           onFavoriteHandle={onFavoriteHandle}
         />
-        <RecipeInfo recipe={recipe} auth={auth} />
+        <Container>
+          <Row className={classes.center}>
+            <Col md="8" style={{ minHeight: '360px' }}>
+              <Typography variant="caption" className="text-muted text-left text-uppercase">
+                {'Cuisine: '}
+                {recipe.cuisine}
+              </Typography>
+              <Typography variant="h2" className={classes.recipeTitle}>{recipe.title}</Typography>
+              <RecipeChips recipe={recipe.settings} />
+              {isEmpty(recipe.description)
+                ? (<Typography variant="caption">No description written yet</Typography>)
+                : (<Typography variant="paragraph">{recipe.description}</Typography>)}
+            </Col>
+          </Row>
+        </Container>
+
         <RecipeProfileCard recipe={recipe} />
         <ThreeContainer recipe={recipe} width="600px" height="400px" />
         {auth.isAuthenticated ? (
@@ -123,6 +147,10 @@ const Recipe = ({
 Recipe.propTypes = {
   recipe: PropTypes.shape({
     _id: PropTypes.string,
+    title: PropTypes.string,
+    cuisine: PropTypes.string,
+    description: PropTypes.string,
+    settings: PropTypes.array,
   }).isRequired,
   loading: PropTypes.bool.isRequired,
   auth: PropTypes.shape({

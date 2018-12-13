@@ -36,7 +36,6 @@ const Post = ({
   onDeleteHandleClick,
   classes,
 }) => {
-
   const onLike = id => {
     onLikeHandleClick(post._id);
   };
@@ -67,11 +66,15 @@ const Post = ({
               <Fragment>
                 <IconButton onClick={onLike}>
                   <Typography>{post.likes.length}</Typography>
-                  <ThumbUpIcon className={isLiked ? classes.postThumbIconLiked : classes.postThumbIconUnliked} />
+                  <ThumbUpIcon
+                    className={isLiked ? classes.postThumbIconLiked : classes.postThumbIconUnliked}
+                  />
                 </IconButton>
                 <Tooltip title="flag comment as inappropriate" placement="top" TransitionComponent={Zoom}>
                   <IconButton onClick={onFlag}>
-                    <FlagIcon className={isFlagged ? classes.flagIconFlagged : classes.flagIconUnflagged} />
+                    <FlagIcon
+                      className={isFlagged ? classes.flagIconFlagged : classes.flagIconUnflagged}
+                    />
                   </IconButton>
                 </Tooltip>
                 {auth.isAuthenticated ? <Button variant="outline" color="primary" onClick={onReply}>Reply</Button> : null}

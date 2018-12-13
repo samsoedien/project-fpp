@@ -49,7 +49,7 @@ const Login = ({
   showPassword,
   onChangeCallback,
   onSubmitLoginCallback,
-  handleShowPasswordCallback,
+  onShowPasswordCallback,
   errors,
   classes,
 }) => {
@@ -62,8 +62,8 @@ const Login = ({
     onSubmitLoginCallback();
   };
 
-  const handleShowPassword = () => {
-    handleShowPasswordCallback();
+  const onShowPassword = () => {
+    onShowPasswordCallback();
   };
 
   return (
@@ -109,7 +109,7 @@ const Login = ({
                         <InputAdornment position="end">
                           <IconButton
                             aria-label="Toggle password visibility"
-                            onClick={handleShowPassword}
+                            onClick={onShowPassword}
                           >
                             {showPassword ? <VisibilityOff /> : <Visibility />}
                           </IconButton>
@@ -134,7 +134,7 @@ Login.propTypes = {
   showPassword: PropTypes.bool.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitLoginCallback: PropTypes.func.isRequired,
-  handleShowPasswordCallback: PropTypes.func.isRequired,
+  onShowPasswordCallback: PropTypes.func.isRequired,
   errors: PropTypes.shape({
     email: PropTypes.string,
     password: PropTypes.string,

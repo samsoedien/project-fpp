@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Typography,
+  Paper,
   Button,
 } from '@material-ui/core';
 
@@ -15,7 +16,16 @@ import Loader from '../common/Loader';
 import ConfirmDeleteWrapper from '../../wrappers/ConfirmDeleteWrapper';
 
 const styles = theme => ({
-
+  center: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  dashboardContent: {
+    textAlign: 'center',
+  },
+  dashboardButton: {
+    margin: '16px 0',
+  }
 });
 
 const Dashboard = ({
@@ -39,11 +49,11 @@ const Dashboard = ({
     dashboardContent = <Loader />;
   } else if (Object.keys(profile).length > 0) { // Check if logged in user has profile data
     dashboardContent = (
-      <Col xs="10">
-        <p className="lead text-muted">
+      <Fragment>
+        <Typography>
           {'Welcome '}
-          <Link to={`/profiles/${profile.handle}`}>{user.name}</Link>
-        </p>
+          <Button component={Link} to={`/profiles/${profile.handle}`}>{user.name}</Button>
+        </Typography>
         <ProfileActions />
         <Experience experience={profile.experience} onDeleteExperience={onDeleteExperience} />
         <Typography variant="h5">Equipment</Typography>
@@ -51,30 +61,34 @@ const Dashboard = ({
         <Equipment equipment="idle" printer="pastry printer" />
         <div style={{ marginBottom: '60px' }} />
         <ConfirmDeleteWrapper onDeleteClick={onDeleteClick} buttonLabel="Delete my account">Are you sure you want to delete your account? This action can not be undone</ConfirmDeleteWrapper>
-      </Col>
+      </Fragment>
     );
   } else {
     dashboardContent = (
-      <Col xs="10">
+      <Fragment>
         <Typography variant="body1">
           {'Welcome '}
           {user.name}
         </Typography>
-        <Typography variant="body1">You have not yet setup a profile, add some info</Typography>
-        <Button component={Link} to="/create-profile">Create Profile</Button>
-      </Col>
+        <Typography variant="body1" className="">You have not yet setup a profile, add some info</Typography>
+        <Button component={Link} to="/create-profile" variant="contained" color="primary" className={classes.dashboardButton}>Create Profile</Button>
+      </Fragment>
     );
   }
 
   return (
     <div className="dashboard">
-      <Container>
-        <Row>
-          <Typography variant="h2">Dashboard</Typography>
-          {dashboardContent}
+      <Container className={classes.dashboardContent}>
+        <Typography variant="h2">Dashboard</Typography>
+        <Row className={classes.center}>
+          <Col md="12">
+            <Paper elevation={4}>
+              {dashboardContent}
+            </Paper>
+          </Col>
         </Row>
       </Container>
-    </div>
+    </div >
   );
 };
 

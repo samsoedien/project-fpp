@@ -4,13 +4,10 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Button
-} from 'reactstrap';
+  Typography,
+  Button,
+  TextField,
+} from '@material-ui/core';
 
 const styles = theme => ({
 
@@ -28,11 +25,12 @@ const ExperienceForm = ({
   onChangeCallback,
   onSubmitCallback,
   disabled,
-  errors
+  errors,
+  classes,
 }) => {
-  const onCheck = () => {
-    onCheckCallback();
-  };
+  // const onCheck = () => {
+  //   onCheckCallback();
+  // };
 
   const onChange = e => {
     onChangeCallback(e);
@@ -48,54 +46,45 @@ const ExperienceForm = ({
       <Container>
         <Row>
           <Col md="8" className="m-auto">
-            <Link to="/dashboard" className="btn btn-light">
-              Go Back
-            </Link>
-            <h1 className="display-4 text-center">Add Experience</h1>
-            <p className="lead text-center">
-              Add any job or position that you have had in the past or current
-            </p>
-            <small className="d-block pb-3">* = required fields</small>
+            <Button component={Link} to="/dashboard">Go Back</Button>
+            <form onSubmit={onSubmit} className={classes.loginForm} noValidate autoComplete="off">
+              <Typography variant="h4">Add Experience</Typography>
+              <Typography variant="paragraph">Add any job or position that you have had in the past or current</Typography>
+              <TextField
+                className={classes.loginFormInput}
+                variant="outlined"
+                label="Business"
+                type="text"
+                name="company"
+                value={company}
+                onChange={onChange}
+                error={errors.company}
+                helperText={errors ? errors.company : ''}
+              />
+              <TextField
+                className={classes.loginFormInput}
+                variant="outlined"
+                label="Job Title"
+                type="text"
+                name="title"
+                value={title}
+                onChange={onChange}
+                error={errors.title}
+                helperText={errors ? errors.title : ''}
+              />
+              <TextField
+                className={classes.loginFormInput}
+                variant="outlined"
+                label="Location"
+                type="text"
+                name="location"
+                value={location}
+                onChange={onChange}
+                error={errors.location}
+                helperText={errors ? errors.location : ''}
+              />
 
-            <Form onSubmit={onSubmit} noValidate>
-              <FormGroup>
-                <Label for="">Company</Label>
-                <Input
-                  name="company"
-                  placeholder="* Company"
-                  value={company}
-                  onChange={onChange}
-                />
-                <FormText color="danger">
-                  {errors ? errors.company : ''}
-                </FormText>
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="">Job Title</Label>
-                <Input
-                  name="title"
-                  placeholder="* Job title"
-                  value={title}
-                  onChange={onChange}
-                />
-                <FormText color="danger">{errors ? errors.title : ''}</FormText>
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="">Location</Label>
-                <Input
-                  name="location"
-                  placeholder="Location"
-                  value={location}
-                  onChange={onChange}
-                />
-                <FormText color="danger">
-                  {errors ? errors.location : ''}
-                </FormText>
-              </FormGroup>
-
-              <FormGroup>
+              {/* <FormGroup>
                 <Label for="">From Date</Label>
                 <Input
                   type="date"
@@ -144,14 +133,9 @@ const ExperienceForm = ({
                 <FormText color="danger">
                   {errors ? errors.discription : ''}
                 </FormText>
-              </FormGroup>
-
-              <Input
-                type="submit"
-                value="Submit"
-                className="btn-info btn-block mt-4"
-              />
-            </Form>
+              </FormGroup> */}
+              <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.experienceFormButton}>Submit</Button>
+            </form>
           </Col>
         </Row>
       </Container>
@@ -172,6 +156,7 @@ ExperienceForm.propTypes = {
   onSubmitCallback: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   errors: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(ExperienceForm);

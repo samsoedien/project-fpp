@@ -1,79 +1,83 @@
 const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 // Create Schema
 const ProfileSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
   },
   handle: {
     type: String,
     required: true,
-    max: 40
+    max: 40,
+  },
+  avatar: {
+    type: String,
   },
   profession: {
     type: String,
-    required: true
+    required: true,
   },
   reputation: {
     type: String,
     default: 'Apprentice',
   },
   location: {
-    type: String
+    type: String,
   },
   skills: {
     type: [String],
-    required: true
+    required: true,
   },
   bio: {
-    type: String
+    type: String,
   },
   experience: [
     {
       title: {
         type: String,
-        required: true
+        required: true,
       },
       company: {
         type: String,
-        required: true
+        required: true,
       },
       location: {
-        type: String
+        type: String,
       },
       from: {
         type: Date,
-        required: true
+        required: true,
       },
       to: {
-        type: Date
+        type: Date,
       },
       current: {
         type: Boolean,
-        default: false
+        default: false,
       },
       description: {
-        type: String
-      }
-    }
+        type: String,
+      },
+    },
   ],
   social: {
     twitter: {
-      type: String
+      type: String,
     },
     facebook: {
-      type: String
+      type: String,
     },
     instagram: {
-      type: String
-    }
+      type: String,
+    },
   },
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = Profile = mongoose.model('Profile', ProfileSchema);

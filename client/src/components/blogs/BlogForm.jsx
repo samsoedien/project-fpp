@@ -9,8 +9,10 @@ import {
   CardHeader,
   CardContent,
   TextField,
+  Input,
   Button,
 } from '@material-ui/core';
+import { CloudUpload as CloudUploadIcon } from '@material-ui/icons';
 
 const styles = theme => ({
   blogFormCard: {
@@ -21,13 +23,14 @@ const styles = theme => ({
   },
   blogFormButton: {
     float: 'right',
-    marginBottom: '12px',
+    margin: '12px 0',
   },
 });
 
 const BlogForm = ({
   headline,
   article,
+  image,
   onChangeCallback,
   onSubmitCallback,
   errors,
@@ -49,10 +52,9 @@ const BlogForm = ({
             <Card className={classes.blogFormCard}>
               <CardHeader className={classes.blogFormCardheader} color="primary" title="Comment" />
               <CardContent>
-                <Typography>write a blog</Typography>
+                <Typography>Write a Blog</Typography>
                 <form onSubmit={onSubmit} noValidate>
                   <TextField
-                    id="mui-theme-provider-outlined-input"
                     className={classes.blogFormInput}
                     variant="outlined"
                     fullWidth
@@ -65,7 +67,6 @@ const BlogForm = ({
                     helperText={errors ? errors.headline : ''}
                   />
                   <TextField
-                    id="mui-theme-provider-outlined-input"
                     className={classes.blogFormInput}
                     variant="outlined"
                     multiline
@@ -79,6 +80,18 @@ const BlogForm = ({
                     error={errors.article}
                     helperText={errors ? errors.article : ''}
                   />
+
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    component="label"
+                    label="My Label"
+                    className={classes.blogUploadButton}
+                  >
+                    <Input type="file" name="image" onChange={onChange} className={classes.blogFileInput} />
+                    {'Upload'}
+                    <CloudUploadIcon className={classes.blogFileButton} />
+                  </Button>
                   <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.blogFormButton}>Post Blog</Button>
                 </form>
               </CardContent>

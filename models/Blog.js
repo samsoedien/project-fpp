@@ -8,6 +8,7 @@ const BlogSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+    required: true,
   },
   headline: {
     type: String,
@@ -20,7 +21,7 @@ const BlogSchema = new Schema({
   },
   image: {
     type: String,
-    default: '/../database/uploads/images/pastry.jpg',
+    default: 'database/images/pastry.jpg',
   },
   favorites: [
     {
@@ -54,9 +55,14 @@ const BlogSchema = new Schema({
           },
         },
       ],
-      flagged: {
-        default: false,
-      },
+      flags: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+          },
+        },
+      ],
       date: {
         type: Date,
         default: Date.now,

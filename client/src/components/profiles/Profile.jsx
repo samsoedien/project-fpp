@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 import Loader from '../common/Loader';
 import ProfileHeader from './ProfileHeader';
@@ -22,9 +23,7 @@ const Profile = ({ profile, loading, classes }) => {
       <div>
         <Row>
           <Col md="6">
-            <Link to="/profiles" className="btn btn-light mb-3 float-left">
-              Back To Profiles
-            </Link>
+            <Button component={Link} to="/profiles">Back to Profiles</Button>
           </Col>
           <Col md="6" />
         </Row>

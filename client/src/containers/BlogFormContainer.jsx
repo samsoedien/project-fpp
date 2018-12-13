@@ -48,6 +48,7 @@ class BlogFormContainer extends Component {
     const {
       headline,
       article,
+      image,
       errors,
     } = this.state;
     return (
@@ -55,6 +56,7 @@ class BlogFormContainer extends Component {
         <BlogForm
           headline={headline}
           article={article}
+          image={image}
           errors={errors}
           onChangeCallback={this.onChangeCallback}
           onSubmitCallback={this.onSubmitCallback}

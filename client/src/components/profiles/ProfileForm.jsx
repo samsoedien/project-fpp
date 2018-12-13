@@ -7,14 +7,24 @@ import {
   Typography,
   TextField,
   Button,
+  Input,
+  InputLabel,
+  Label,
+  FormControl,
+  FormText,
+  FormGroup,
+  OutlinedInput,
+  Select,
+  MenuItem,
 } from '@material-ui/core';
-import {
-  Input, Label, Form, FormText, FormGroup,
-} from 'reactstrap';
+import { CloudUpload as CloudUploadIcon } from '@material-ui/icons';
+
 
 const styles = theme => ({
-
-})
+  profileFormInput: {
+    margin: '12px 0',
+  },
+});
 
 const ProfileForm = ({
   updateProfile,
@@ -30,6 +40,8 @@ const ProfileForm = ({
   errors,
   onChangeCallback,
   onSubmitCallback,
+  onToggleDisplayInputs,
+  isOpen,
   classes,
 }) => {
   const onChange = e => {
@@ -41,48 +53,50 @@ const ProfileForm = ({
     onSubmitCallback();
   };
 
+  const onDisplayInputs = () => {
+    onToggleDisplayInputs();
+  };
+
   let socialInputs;
   if (displaySocialInputs) {
     socialInputs = (
       <div>
-        <FormGroup>
-          <Label for="">
-            <i className="fab fa-twitter" />
-          </Label>
-          <Input
-            name="twitter"
-            placeholder="Twitter Profile URL"
-            value={twitter}
-            onChange={onChange}
-          />
-          <FormText color="danger">{errors ? errors.twitter : ''}</FormText>
-        </FormGroup>
-
-        <FormGroup>
-          <Label for="">
-            <i className="fab fa-facebook" />
-          </Label>
-          <Input
-            name="facebook"
-            placeholder="Facebook Profile URL"
-            value={facebook}
-            onChange={onChange}
-          />
-          <FormText color="danger">{errors ? errors.facebook : ''}</FormText>
-        </FormGroup>
-
-        <FormGroup>
-          <Label for="">
-            <i className="fab fa-instagram" />
-          </Label>
-          <Input
-            name="instagram"
-            placeholder="Instagram Profile URL"
-            value={instagram}
-            onChange={onChange}
-          />
-          <FormText color="danger">{errors ? errors.instagram : ''}</FormText>
-        </FormGroup>
+        <TextField
+          className={classes.profileFormInput}
+          variant="outlined"
+          fullWidth
+          label="Twitter URL"
+          type="text"
+          name="twitter"
+          value={twitter}
+          onChange={onChange}
+          error={errors.twitter}
+          helperText={errors ? errors.twitter : ''}
+        />
+        <TextField
+          className={classes.profileFormInput}
+          variant="outlined"
+          fullWidth
+          label="Facebook URL"
+          type="text"
+          name="facebook"
+          value={facebook}
+          onChange={onChange}
+          error={errors.facebook}
+          helperText={errors ? errors.facebook : ''}
+        />
+        <TextField
+          className={classes.profileFormInput}
+          variant="outlined"
+          fullWidth
+          label="Instagram URL"
+          type="text"
+          name="instagram"
+          value={instagram}
+          onChange={onChange}
+          error={errors.instagram}
+          helperText={errors ? errors.instagram : ''}
+        />
       </div>
     );
   }
@@ -118,21 +132,60 @@ const ProfileForm = ({
                 )}
               <Typography className={classes.profileFormText} variant="body1">Fill in the form</Typography>
 
-              {/* <TextField
-                className={classes.profileFormInput}
-                variant="outlined"
-                label="Location"
-                type="text"
-                name="location"
-                value={location}
-                onChange={onChange}
-                error={errors.location}
-                helperText={errors ? errors.location : ''}
-              />
-              
               <TextField
                 className={classes.profileFormInput}
                 variant="outlined"
+                fullWidth
+                label="Profile Handle"
+                type="text"
+                name="handle"
+                value={handle}
+                onChange={onChange}
+                error={errors.handle}
+                helperText={errors ? errors.handle : ''}
+              />
+              <Button
+                variant="outlined"
+                color="primary"
+                component="label"
+                label="My Label"
+                className={classes.registerFormUploadButton}
+              >
+                <Input type="file" name="name" onChange={onChange} className={classes.registerFormFileInput} />
+                {'Upload'}
+                <CloudUploadIcon className={classes.registerFormFileButton} />
+              </Button>
+
+              <TextField
+                select
+                className={classes.profileFormInput}
+                variant="outlined"
+                fullWidth
+                label="Profession"
+                type="text"
+                name="profession"
+                value={profession}
+                onChange={onChange}
+                error={errors.profession}
+                helperText={errors ? errors.profession : ''}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value="Pastry Chef">Pastry Chef</MenuItem>
+                <MenuItem value="Chef de Cuisine">Chef de Cuisine</MenuItem>
+                <MenuItem value="Sous Chef">Sous Chef</MenuItem>
+                <MenuItem value="Cook">Cook</MenuItem>
+                <MenuItem value="Food Designer">Food Designer</MenuItem>
+                <MenuItem value="Food Scientist">Food Scientist</MenuItem>
+                <MenuItem value="Student/Intern">Student/Intern</MenuItem>
+                <MenuItem value="Other">Other</MenuItem>
+              </TextField>
+
+              <TextField
+                className={classes.profileFormInput}
+                variant="outlined"
+                fullWidth
                 label="Location"
                 type="text"
                 name="location"
@@ -140,96 +193,27 @@ const ProfileForm = ({
                 onChange={onChange}
                 error={errors.location}
                 helperText={errors ? errors.location : ''}
-              /> */}
-            </form>
-
-            <Form onSubmit={onSubmit} noValidate>
-              <FormGroup>
-                <Label for="">Handle</Label>
-                <Input
-                  name="handle"
-                  placeholder="* Profile Handle"
-                  value={handle}
-                  onChange={onChange}
-                />
-                <FormText color="muted"> A unique handle for your profile URL. Your full name, company
-                  name, nickname</FormText>
-                <FormText color="danger">{errors ? errors.handle : ''}</FormText>
-              </FormGroup>
-
-              <FormGroup>
-                <Label>Profession</Label>
-                <Input
-                  type="select"
-                  name="profession"
-                  value={profession}
-                  onChange={onChange}
-                >
-                  {selectOptions}
-                </Input>
-                <FormText color="danger">{errors ? errors.profession : ''}</FormText>
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="">Location</Label>
-                <Input
-                  name="location"
-                  placeholder="Location"
-                  value={location}
-                  onChange={onChange}
-                />
-                <FormText color="danger">{errors ? errors.location : ''}</FormText>
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="">Skills</Label>
-                <Input
-                  name="skills"
-                  placeholder="* Skills"
-                  value={skills}
-                  onChange={onChange}
-                />
-                <FormText color="danger">{errors ? errors.skills : ''}</FormText>
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="">About me</Label>
-                <Input
-                  type="textarea"
-                  name="bio"
-                  placeholder="Short Bio"
-                  value={bio}
-                  onChange={onChange}
-                />
-                <FormText color="danger">{errors ? errors.bio : ''}</FormText>
-              </FormGroup>
-
-              <div className="mb-3">
-                <Button
-                  type="button"
-                  className="btn btn-light"
-                  onClick={() => {
-                    this.setState(prevState => ({
-                      displaySocialInputs: !prevState.displaySocialInputs,
-                    }));
-                  }}
-                >
-                  {' '}
-                  Add Social Network Links
-                </Button>
-                <span className="text-muted">Optional</span>
-              </div>
-              {socialInputs}
-              <Input
-                type="submit"
-                value="Submit"
-                className="btn btn-info btn-block mt-4"
               />
-            </Form>
+              <TextField
+                className={classes.profileFormInput}
+                variant="outlined"
+                fullWidth
+                label="Short Bio"
+                type="text"
+                name="bio"
+                value={bio}
+                onChange={onChange}
+                error={errors.bio}
+                helperText={errors ? errors.bio : ''}
+              />
+              <Button onClick={onDisplayInputs} variant="outlined" color="primary">Add Social Network Links</Button>
+              {socialInputs}
+              <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.profileFormButton}>Submit</Button>
+            </form>
           </Col>
         </Row>
       </Container>
-    </div>
+    </div >
   );
 };
 
@@ -240,18 +224,17 @@ ProfileForm.propTypes = {
   profession: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   bio: PropTypes.string.isRequired,
-  skills: PropTypes.array.isRequired,
   twitter: PropTypes.string.isRequired,
   facebook: PropTypes.string.isRequired,
   instagram: PropTypes.string.isRequired,
   errors: PropTypes.shape({
     profession: PropTypes.string,
   }).isRequired,
+  isOpen: PropTypes.bool.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,
+  onToggleDisplayInputs: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default withStyles(styles)(ProfileForm);
-
-// TODO: change to material ui

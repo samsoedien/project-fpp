@@ -9,11 +9,18 @@ import {
   Tooltip,
   Zoom,
 } from '@material-ui/core';
-import { Favorite as FavoriteIcon, Share as ShareIcon } from '@material-ui/icons';
+import {
+  Favorite as FavoriteIcon,
+  Share as ShareIcon,
+  Delete as DeleteIcon,
+} from '@material-ui/icons';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
 
 const styles = theme => ({
+  root: {
+    marginTop: '-120px', // to take account for nav w/ herobanner
+  },
   blogHeaderParallax: {
     position: 'relative',
     minHeight: '560px',
@@ -22,6 +29,7 @@ const styles = theme => ({
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
     backgroundAttachment: 'fixed',
+    zIndex: '100',
   },
   blogHeaderOverlay: {
     position: 'absolute',
@@ -65,8 +73,6 @@ const styles = theme => ({
   },
 });
 
-
-
 const BlogHeader = ({
   blog,
   auth,
@@ -95,13 +101,13 @@ const BlogHeader = ({
   };
 
   return (
-    <div className="blog-header">
+    <div className={classes.root}>
       <ScrollWrapper onWindowScroll={handleScroll}>
-        <header className={classes.blogHeaderParallax} id="myHeader" style={{ backgroundImage: `url(${blog.image})` }}>
+        <header className={classes.blogHeaderParallax} id="myHeader" style={{ backgroundImage: `url(/${blog.image})` }}>
           <div className={classes.blogHeaderOverlay} />
           {blog.user._id === auth.user.id ? (
             <Fragment>
-              <Button variant="contained" color="secondary" className={classes.blogDeleteButton} onClick={onDelete}>Delete Blog</Button>
+              <Button variant="contained" color="secondary" className={classes.blogDeleteButton} onClick={onDelete}>Delete Blog<DeleteIcon /></Button>
               <Button variant="outlined" className={classes.blogEditButton} onClick={onEdit}>Edit Blog</Button>
             </Fragment>
           ) : null}

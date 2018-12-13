@@ -9,18 +9,24 @@ import {
 } from '@material-ui/core';
 
 import BlogHeader from './BlogHeader';
+import ProfileCard from '../profiles/ProfileCard';
 import PostFeed from '../posts/PostFeed';
 import PostForm from '../posts/PostForm';
 import Loader from '../common/Loader';
 
 const styles = theme => ({
-  blogArticle: {},
+  root: {
+  },
+  blogArticle: {
+    textAlign: 'center',
+  },
   blogHeadline: {
+    margin: '12px 0',
     textTransform: 'capitalize',
   },
   blogSection: {
     textAlign: 'center',
-  }
+  },
 });
 
 const Blog = ({
@@ -87,16 +93,18 @@ const Blog = ({
       <div>
         <BlogHeader
           blog={blog}
+          auth={auth}
           isFavorited={isFavorited}
           onEditHandle={onEditHandle}
           onDeleteHandle={onDeleteHandle}
           onFavoriteHandle={onFavoriteHandle}
         />
+        {/* <ProfileCard
+          user={blog.user} profile={blog.profile}
+        /> */}
         <Container>
           <article className={classes.blogArticle}>
             <Typography variant="h2" className={classes.blogHeadline}>{blog.headline}</Typography>
-            <Avatar src={blog.user.avatar} />
-            <Typography>{blog.user.name}</Typography>
             <section className={classes.blogSection}>
               <Container>
                 <Row>
@@ -131,7 +139,7 @@ const Blog = ({
       </div>
     );
   }
-  return <div className="blog">{blogContent}</div>;
+  return <div className={classes.root}>{blogContent}</div>;
 };
 
 Blog.propTypes = {

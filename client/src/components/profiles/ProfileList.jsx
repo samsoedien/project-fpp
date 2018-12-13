@@ -1,13 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
+import {
+  Typography,
+} from '@material-ui/core';
 
 import Loader from '../common/Loader';
 import ProfileItem from './ProfileItem';
 
-const ProfileList = ({ profiles, loading }) => {
+const styles = theme => ({
+
+});
+
+const ProfileList = ({ profiles, loading, classes }) => {
   let profileItems;
 
   if (profiles === null || loading) {
@@ -25,10 +32,8 @@ const ProfileList = ({ profiles, loading }) => {
       <Container>
         <Row>
           <Col md="12">
-            <h1 className="display-4 text-center">Chef Profiles</h1>
-            <p className="lead text-center">
-              Browse and connect with chefs
-            </p>
+            <Typography variant="h4">Chef Profiles</Typography>
+            <Typography>Browse and connect with chefs</Typography>
             {profileItems}
           </Col>
         </Row>
@@ -42,6 +47,7 @@ ProfileList.propTypes = {
     profile: PropTypes.object.isRequired,
   }).isRequired,
   loading: PropTypes.bool.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default ProfileList;
+export default withStyles(styles)(ProfileList);

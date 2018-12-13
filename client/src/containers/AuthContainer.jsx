@@ -21,7 +21,7 @@ class AuthContainer extends Component {
     this.onChangeCallback = this.onChangeCallback.bind(this);
     this.onSubmitRegisterCallback = this.onSubmitRegisterCallback.bind(this);
     this.onSubmitLoginCallback = this.onSubmitLoginCallback.bind(this);
-    this.handleShowPasswordCallback = this.handleShowPasswordCallback.bind(this);
+    this.onShowPasswordCallback = this.onShowPasswordCallback.bind(this);
   }
 
   componentDidMount() {
@@ -72,7 +72,7 @@ class AuthContainer extends Component {
     loginUser(userData);
   }
 
-  handleShowPasswordCallback() {
+  onShowPasswordCallback() {
     this.setState(prevState => ({
       showPassword: !prevState.showPassword,
     }));
@@ -97,22 +97,22 @@ class AuthContainer extends Component {
             showPassword={showPassword}
             onChangeCallback={this.onChangeCallback}
             onSubmitLoginCallback={this.onSubmitLoginCallback}
-            handleShowPasswordCallback={this.handleShowPasswordCallback}
+            onShowPasswordCallback={this.onShowPasswordCallback}
             errors={errors}
           />
         ) : (
-          <Register
-            name={name}
-            email={email}
-            password={password}
-            passwordConfirm={passwordConfirm}
-            showPassword={showPassword}
-            onChangeCallback={this.onChangeCallback}
-            onSubmitRegisterCallback={this.onSubmitRegisterCallback}
-            handleShowPasswordCallback={this.handleShowPasswordCallback}
-            errors={errors}
-          />
-        )}
+            <Register
+              name={name}
+              email={email}
+              password={password}
+              passwordConfirm={passwordConfirm}
+              showPassword={showPassword}
+              onChangeCallback={this.onChangeCallback}
+              onSubmitRegisterCallback={this.onSubmitRegisterCallback}
+              onShowPasswordCallback={this.onShowPasswordCallback}
+              errors={errors}
+            />
+          )}
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Link } from 'react-router-dom';
+// import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Button,
@@ -18,6 +18,9 @@ import {
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
 
 const styles = theme => ({
+  root: {
+    marginTop: '-120px', // to take account for nav w/ herobanner
+  },
   recipeHeaderParallax: {
     position: 'relative',
     minHeight: '560px',
@@ -96,7 +99,7 @@ const RecipeHeader = ({
   };
 
   return (
-    <div className="recipe-header">
+    <div className={classes.root}>
       <ScrollWrapper onWindowScroll={handleScroll}>
         <header className={classes.recipeHeaderParallax} id="myHeader" style={{ backgroundImage: `url(/${recipe.image})` }}>
           <div className={classes.recipeHeaderOverlay} />

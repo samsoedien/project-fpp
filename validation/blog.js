@@ -9,8 +9,8 @@ module.exports = function validateBlogInput(data) {
     article: !isEmpty(data.article) ? data.article : '',
   };
 
-  if (!Validator.isLength(data.headline, { min: 3, max: 32 })) {
-    errors.headline = 'Headline must be between 3 and 32 characters';
+  if (!Validator.isLength(data.headline, { min: 3, max: 64 })) {
+    errors.headline = 'Headline must be between 3 and 64 characters';
   }
 
   if (Validator.isEmpty(data.headline)) {

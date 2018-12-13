@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,900');
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400');
 
@@ -33,6 +33,7 @@ html, body {
   box-sizing: border-box;
   font-family: 'open sans', sans-serif;
   z-index: 100;
+  padding-top: 120px; // to take account for nav w/ herobanner
 }
 
 .app-main {

@@ -7,13 +7,10 @@ import {
   Typography,
   Paper,
   Button,
-  TextField,
-  InputAdornment,
-  IconButton,
 } from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons/';
 
-import Stepper from '../layout/Stepper';
+
+import RegisterFormAccountDetails from './RegisterFormAccountDetails';
 import Pricing from '../layout/Pricing';
 
 const styles = theme => ({
@@ -50,21 +47,20 @@ const Register = ({
   showPassword,
   onChangeCallback,
   onSubmitRegisterCallback,
-  handleShowPasswordCallback,
+  onShowPasswordCallback,
   errors,
   classes,
 }) => {
-  const onChange = e => {
+  const onChangeHandle = e => {
     onChangeCallback(e);
   };
 
-  const onSubmit = e => {
-    e.preventDefault();
+  const onSubmitRegisterHandle = () => {
     onSubmitRegisterCallback();
   };
 
-  const handleShowPassword = () => {
-    handleShowPasswordCallback();
+  const onShowPasswordHandle = () => {
+    onShowPasswordCallback();
   };
 
   return (
@@ -73,87 +69,24 @@ const Register = ({
         <Row>
           <Col md="10">
             <Paper className={classes.registerPaper}>
-              <Stepper />
+              <RegisterFormAccountDetails
+                name={name}
+                email={email}
+                password={password}
+                passwordConfirm={passwordConfirm}
+                showPassword={showPassword}
+                onChangeHandle={onChangeHandle}
+                onSubmitRegisterHandle={onSubmitRegisterHandle}
+                onShowPasswordHandle={onShowPasswordHandle}
+                errors={errors}
+              />
             </Paper>
           </Col>
         </Row>
 
         <Row>
           <Col xs="8" md="6" lg="4">
-            <Typography className={classes.registerFormTitle} variant="h3">Signup</Typography>
-            <Typography className={classes.registerFormText} variant="body1">Create your FPP account</Typography>
-            <form onSubmit={onSubmit} className={classes.registerForm} noValidate autoComplete="off">
-              <TextField
-                id="mui-theme-provider-outlined-input"
-                className={classes.registerFormInput}
-                variant="outlined"
-                label="Name"
-                type="text"
-                name="name"
-                value={name}
-                onChange={onChange}
-                error={errors.name}
-                helperText={errors ? errors.name : ''}
-              />
-
-              <TextField
-                id="mui-theme-provider-outlined-input"
-                className={classes.registerFormInput}
-                variant="outlined"
-                label="Email Address"
-                type="text"
-                name="email"
-                value={email}
-                onChange={onChange}
-                error={errors.email}
-                helperText={errors ? errors.email : ''}
-              />
-
-              <TextField
-                id="mui-theme-provider-outlined-input"
-                className={classes.registerFormInput}
-                variant="outlined"
-                label="Password"
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                value={password}
-                onChange={onChange}
-                error={errors.password}
-                helperText={errors ? errors.password : ''}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="Toggle password visibility"
-                        onClick={handleShowPassword}
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-
-              <TextField
-                id="mui-theme-provider-outlined-input"
-                // className="form__input"
-                className={classes.registerFormInput}
-                variant="outlined"
-                label="Confirm Password"
-                type={showPassword ? 'text' : 'password'}
-                name="passwordConfirm"
-                value={passwordConfirm}
-                onChange={onChange}
-                error={errors.passwordConfirm}
-                helperText={errors ? errors.passwordConfirm : ''}
-              />
-              <small className={classes.registerFormSmall}>
-                {'Forgot Password? '}
-                <Link to="/">Reset Password</Link>
-              </small>
-              <br />
-              <Button type="submit" value="Submit" className={classes.registerFormButton}>Signup</Button>
-            </form>
+            hi
           </Col>
         </Row>
       </Container>
@@ -170,7 +103,7 @@ Register.propTypes = {
   showPassword: PropTypes.string.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitRegisterCallback: PropTypes.func.isRequired,
-  handleShowPasswordCallback: PropTypes.func.isRequired,
+  onShowPasswordCallback: PropTypes.func.isRequired,
   errors: PropTypes.shape({
     name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,

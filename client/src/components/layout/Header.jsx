@@ -15,18 +15,18 @@ const Header = ({
   onLogoutCallback,
   onHomepage,
 }) => (
-  <div className="header">
-    <Navbar
-      user={user}
-      isAuthenticated={isAuthenticated}
-      isOpen={isOpen}
-      onNavbarToggleCallback={onNavbarToggleCallback}
-      onLogoutCallback={onLogoutCallback}
-      onHomepage={onHomepage}
-    />
-    {onHomepage ? <HeroBanner /> : null}
-  </div>
-);
+    <div className="header">
+      <Navbar
+        user={user}
+        isAuthenticated={isAuthenticated}
+        isOpen={isOpen}
+        onNavbarToggleCallback={onNavbarToggleCallback}
+        onLogoutCallback={onLogoutCallback}
+        onHomepage={onHomepage}
+      />
+      {onHomepage ? <HeroBanner /> : null}
+    </div>
+  );
 
 Header.defaultProps = {
   onHomepage: true,

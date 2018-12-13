@@ -197,10 +197,12 @@ class BlogContainer extends Component {
 
 BlogContainer.propTypes = {
   getBlog: PropTypes.func.isRequired,
+  deleteBlog: PropTypes.func.isRequired,
+  favoriteBlog: PropTypes.func.isRequired,
   addBlogComment: PropTypes.func.isRequired,
   likeBlogComment: PropTypes.func.isRequired,
-  favoriteBlog: PropTypes.func.isRequired,
-  deleteBlog: PropTypes.func.isRequired,
+  flagBlogComment: PropTypes.func.isRequired,
+  deleteBlogComment: PropTypes.func.isRequired,
   blog: PropTypes.shape({
     blog: PropTypes.object,
     loading: PropTypes.bool,

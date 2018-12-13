@@ -11,7 +11,6 @@ import {
 } from '@material-ui/core';
 import { CloudUpload as CloudUploadIcon } from '@material-ui/icons';
 
-
 import ModalComponent from '../common/ModalComponent';
 
 const styles = theme => ({
@@ -105,14 +104,15 @@ const RecipeForm = ({
               helperText={errors ? errors.description : ''}
             />
             <Button
+              id="image-upload"
               variant="outlined"
               color="primary"
-              containerElement='label' // <-- Just add me!
-              label='My Label'
+              component="label"
+              label="My Label"
               className={classes.recipeUploadButton}
             >
               <Input type="file" name="image" onChange={onChange} className={classes.recipeFileInput} />
-              Upload
+              {'Upload'}
               <CloudUploadIcon className={classes.recipeFileButton} />
             </Button>
             <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.recipeFormButton}>Submit</Button>

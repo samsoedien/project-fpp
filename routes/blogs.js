@@ -5,24 +5,13 @@ const blogsController = require('../controllers/blogs');
 
 const router = express.Router();
 
-// @route   GET api/blogs/test
-// @desc    Tests post route
-// @access  Public
+
 router.get('/test', blogsController.testBlogs);
 
-// @route   GET api/posts
-// @desc    Get posts
-// @access  Public
 router.get('/', blogsController.getBlogs);
 
-// @route   GET api/posts/:id
-// @desc    Get post by id
-// @access  Public
 router.get('/:id', blogsController.getBlogById);
 
-// @route   POST api/posts
-// @desc    Create post
-// @access  Private
 router.post('/', passport.authenticate('jwt', { session: false }), blogsController.postBlog);
 
 router.patch('/:id', passport.authenticate('jwt', { session: false }), blogsController.updateBlog);
@@ -31,12 +20,12 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), blogsCon
 
 router.post('/:id/favorites', passport.authenticate('jwt', { session: false }), blogsController.postFavoriteBlog);
 
-router.post('/:id/comments', passport.authenticate('jwt', { session: false }), blogsController.postCommentBlog);
+router.post('/:id/posts', passport.authenticate('jwt', { session: false }), blogsController.postBlogPost);
 
-router.post('/:blogId/comments/:commentId/likes', passport.authenticate('jwt', { session: false }), blogsController.postLikeCommentBlog);
+router.delete('/:blogId/posts/:postId', passport.authenticate('jwt', { session: false }), blogsController.deleteBlogPost);
 
-router.post('/:blogId/comments/:commentId/flags', passport.authenticate('jwt', { session: false }), blogsController.postFlagCommentBlog);
+router.post('/:blogId/posts/:postId/likes', passport.authenticate('jwt', { session: false }), blogsController.postLikeBlogPost);
 
-
+router.post('/:blogId/posts/:postId/flags', passport.authenticate('jwt', { session: false }), blogsController.postFlagBlogPost);
 
 module.exports = router;
