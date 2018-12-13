@@ -6,8 +6,8 @@ module.exports = function validateProfileInput(data) {
 
   data = {
     handle: !isEmpty(data.handle) ? data.handle : '',
-    profession: !isEmpty(data.profession) ? data.profession : '',
-    skills: !isEmpty(data.skills) ? data.skills : '',
+    // profession: !isEmpty(data.profession) ? data.profession : '',
+    // skills: !isEmpty(data.skills) ? data.skills : '',
   };
 
   if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
@@ -18,13 +18,13 @@ module.exports = function validateProfileInput(data) {
     errors.handle = 'Profile handle is required';
   }
 
-  if (Validator.isEmpty(data.profession)) {
-    errors.profession = 'Profession field is required';
-  }
+  // if (Validator.isEmpty(data.profession)) {
+  //   errors.profession = 'Profession field is required';
+  // }
 
-  if (Validator.isEmpty(data.skills)) {
-    errors.skills = 'Status field is required';
-  }
+  // if (Validator.isEmpty(data.skills)) {
+  //   errors.skills = 'Status field is required';
+  // }
 
   if (!isEmpty(data.website)) {
     if (!Validator.isURL(data.website)) {

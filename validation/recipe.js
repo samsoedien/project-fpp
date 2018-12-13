@@ -11,8 +11,8 @@ module.exports = function validateRecipeInput(data) {
     directions: !isEmpty(data.directions) ? data.directions : '',
   };
 
-  if (!Validator.isLength(data.title, { min: 3, max: 20 })) {
-    errors.title = 'Recipe title must be between 3 and 20 characters';
+  if (!Validator.isLength(data.title, { min: 3, max: 32 })) {
+    errors.title = 'Recipe title must be between 3 and 32 characters';
   }
 
   if (Validator.isEmpty(data.title)) {

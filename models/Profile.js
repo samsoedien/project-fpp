@@ -15,7 +15,7 @@ const ProfileSchema = new Schema({
   },
   profession: {
     type: String,
-    required: true,
+    default: 'Pastry Chef',
   },
   reputation: {
     type: String,
@@ -26,7 +26,6 @@ const ProfileSchema = new Schema({
   },
   skills: {
     type: [String],
-    required: true,
   },
   bio: {
     type: String,

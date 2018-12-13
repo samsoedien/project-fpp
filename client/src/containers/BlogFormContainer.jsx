@@ -35,11 +35,13 @@ class BlogFormContainer extends Component {
   }
 
   onSubmitCallback() {
-    const { headline, article } = this.state;
-    const blogData = {
-      headline,
-      article,
-    };
+    const { headline, article, image } = this.state;
+
+    const blogData = new FormData();
+    blogData.append('headline', headline);
+    blogData.append('article', article);
+    blogData.append('image', image);
+
     const { createBlog, history } = this.props;
     createBlog(blogData, history);
   }

@@ -25,7 +25,7 @@ const ProfileHeader = ({ profile, classes }) => {
       <Col md="12">
         <Card>
           <CardMedia
-            image={profile.user.avatar}
+            image={profile.user.image}
             title="Live from space album cover"
             className={classes.cover}
           />

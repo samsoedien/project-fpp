@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const path = require('path');
 
 const Recipe = require('../models/Recipe');
 const Profile = require('../models/Profile');
@@ -58,13 +59,15 @@ exports.postRecipe = (req, res, next) => {
     }
   });
   if (req.file) {
+    const imagePath = req.file.path.replace(/\\/g, '/');
+    console.log(imagePath);
     const newRecipe = new Recipe({
       _id: new mongoose.Types.ObjectId(),
       user: req.user.id,
       title: req.body.title,
       cuisine: req.body.cuisine,
       description: req.body.description,
-      image: req.file.path,
+      image: imagePath,
     });
     newRecipe
       .save()

@@ -91,22 +91,20 @@ const ProfileForm = ({
   }
 
   const options = [
-    { label: '* Select Professional Status', value: 0 },
+    { label: 'Pastry Chef', value: 'Pastry Chef' },
     { label: 'Chef de Cuisine', value: 'Chef de Cuisine' },
     { label: 'Sous Chef', value: 'Sous Chef' },
-    { label: 'Pastry Chef', value: 'Pastry Chef' },
-    { label: 'Chocolatier', value: 'Chocolatier' },
-    { label: 'Confectonary', value: 'Confectonary' },
+    { label: 'Cook', value: 'Cook' },
     { label: 'Food Designer', value: 'Food Designer' },
     { label: 'Food Scientist', value: 'Food Scientist' },
     { label: 'Student/Intern', value: 'Student/Intern' },
     { label: 'Other', value: 'Other' }
   ];
-  const selectOptions = options.map(option => (
-    <option key={option.label} value={option.value}>
-      {option.label}
-    </option>
-  ));
+  // const selectOptions = options.map(option => (
+  //   <option key={option.label} value={option.value}>
+  //     {option.label}
+  //   </option>
+  // ));
 
   return (
     <div className="profile-form">
@@ -140,23 +138,18 @@ const ProfileForm = ({
                 variant="outlined"
                 fullWidth
                 label="Profession"
-                name="profession"
+                type="text"
+                // name="profession"
                 value={profession}
                 onChange={onChange}
                 error={errors.profession}
                 helperText={errors ? errors.profession : ''}
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value="Pastry Chef">Pastry Chef</MenuItem>
-                <MenuItem value="Chef de Cuisine">Chef de Cuisine</MenuItem>
-                <MenuItem value="Sous Chef">Sous Chef</MenuItem>
-                <MenuItem value="Cook">Cook</MenuItem>
-                <MenuItem value="Food Designer">Food Designer</MenuItem>
-                <MenuItem value="Food Scientist">Food Scientist</MenuItem>
-                <MenuItem value="Student/Intern">Student/Intern</MenuItem>
-                <MenuItem value="Other">Other</MenuItem>
+                {options.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
               </TextField>
 
               <TextField

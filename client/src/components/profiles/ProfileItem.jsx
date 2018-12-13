@@ -6,17 +6,27 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   Typography,
   Card,
+  Avatar,
+  Button,
 } from '@material-ui/core';
 
 import isEmpty from '../../utils/is-empty';
 
-const ProfileItem = ({ profile }) => {
+const styles = theme => ({
+  profileAvatar: {
+    margin: 10,
+    width: 60,
+    height: 60,
+  },
+});
+
+const ProfileItem = ({ profile, classes }) => {
   return (
     <div className="profile-item">
       <Card>
         <Row>
           <Col md="2">
-            <img src={profile.user.avatar} alt="" className="rounded-circle" />
+            <Avatar alt="" src={`/${profile.user.image}`} className={classes.profileAvatar} />
           </Col>
           <Col md="4" lg="6">
             <h3>{profile.user.name}</h3>
@@ -31,9 +41,7 @@ const ProfileItem = ({ profile }) => {
                 <span>{profile.location}</span>
               )}
             </p>
-            <Link to={`/profiles/${profile.handle}`} className="btn btn-info">
-              View Profile
-            </Link>
+            <Button component={Link} to={`/profiles/${profile.handle}`} variant="contained" color="primary">View Profile</Button>
           </Col>
           <Col md="4">
             <h4>Skill Set</h4>
@@ -53,7 +61,12 @@ const ProfileItem = ({ profile }) => {
 };
 
 ProfileItem.propTypes = {
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.shape({
+    user: PropTypes.object,
+    company: PropTypes.string,
+    location: PropTypes.string,
+  }).isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default ProfileItem;
+export default withStyles(styles)(ProfileItem);

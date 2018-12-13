@@ -21,7 +21,7 @@ const styles = theme => ({
     textAlign: 'center',
   },
   blogHeadline: {
-    margin: '12px 0',
+    marginTop: '-80px',
     textTransform: 'capitalize',
   },
   blogSection: {
@@ -99,9 +99,7 @@ const Blog = ({
           onDeleteHandle={onDeleteHandle}
           onFavoriteHandle={onFavoriteHandle}
         />
-        {/* <ProfileCard
-          user={blog.user} profile={blog.profile}
-        /> */}
+        <ProfileCard user={blog.user} />
         <Container>
           <article className={classes.blogArticle}>
             <Typography variant="h2" className={classes.blogHeadline}>{blog.headline}</Typography>

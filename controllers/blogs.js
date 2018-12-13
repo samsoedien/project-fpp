@@ -40,13 +40,16 @@ exports.postBlog = (req, res, next) => {
     }
   });
   if (req.file) {
+    const imagePath = req.file.path.replace(/\\/g, '/');
+    console.log(imagePath);
+
     const newBlog = new Blog({
       _id: new mongoose.Types.ObjectId(),
       user: req.user.id,
       profile: req.profile,
       headline: req.body.headline,
       article: req.body.article,
-      image: req.file.path,
+      image: imagePath,
     });
     newBlog
       .save()

@@ -115,8 +115,6 @@ const Recipe = ({
             </Col>
           </Row>
         </Container>
-
-        <RecipeProfileCard recipe={recipe} />
         <ThreeContainer recipe={recipe} width="600px" height="400px" />
         {auth.isAuthenticated ? (
           <PostForm

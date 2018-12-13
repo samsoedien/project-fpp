@@ -45,7 +45,7 @@ export const getRecipe = id => dispatch => {
 export const createRecipe = (recipeData, history) => dispatch => {
   axios
     .post('/api/recipes', recipeData)
-    .then(res => history.push('/dashboard'))
+    .then(res => history.push('/recipes'))
     .catch(err => dispatch({
       type: GET_ERRORS,
       payload: err.response.data,

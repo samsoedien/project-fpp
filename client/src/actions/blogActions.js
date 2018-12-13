@@ -41,7 +41,7 @@ export const getBlog = id => dispatch => {
 export const createBlog = (blogData, history) => dispatch => {
   axios
     .post('/api/blogs', blogData)
-    .then(res => history.push('/dashboard'))
+    .then(res => history.push('/community'))
     .catch(err => dispatch({
       type: GET_ERRORS,
       payload: err.response.data,

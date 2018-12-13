@@ -21,25 +21,29 @@ exports.registerUser = (req, res, next) => {
     if (user) {
       errors.email = 'Email already exists';
       return res.status(400).json(errors);
-    } else {
-      const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
-        image: req.file.path,
-        password: req.body.password,
-      });
-
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then(user => res.status(201).json(user))
-            .catch(err => console.log(err));
-        });
-      });
     }
+    if (!req.file) {
+      return res.status(422).json(errors);
+    }
+    const imagePath = req.file.path.replace(/\\/g, "/");
+    console.log(imagePath);
+    const newUser = new User({
+      name: req.body.name,
+      email: req.body.email,
+      image: imagePath,
+      password: req.body.password,
+    });
+
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newUser.password, salt, (err, hash) => {
+        if (err) throw err;
+        newUser.password = hash;
+        newUser
+          .save()
+          .then(user => res.status(201).json(user))
+          .catch(err => console.log(err));
+      });
+    });
   });
 };
 

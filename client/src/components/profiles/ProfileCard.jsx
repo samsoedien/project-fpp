@@ -40,13 +40,13 @@ const styles = theme => ({
   },
 });
 
-const ProfileCard = ({ user, profile, classes }) => {
+const ProfileCard = ({ user, classes }) => {
   return (
     <div className={classes.root}>
       <Container className={classes.center}>
         <Typography className={classes.profileCompany}>Bij Robert</Typography>
-        <Avatar src={profile.user.avatar} className={classes.profileAvatar} />
-        <Typography component={Link} to={`/profiles/${profile.handle}`} color="primary" className={classes.profileName}>{profile.user.name}</Typography>
+        <Avatar src={`/${user.image}`} className={classes.profileAvatar} />
+        <Typography component={Link} to={`/profiles/${user.name}`} color="primary" className={classes.profileName}>{user.name}</Typography>
         <Typography variant="caption" className={classes.profileProfession}>Pastry Chef</Typography>
       </Container>
     </div>
