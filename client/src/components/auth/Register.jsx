@@ -44,6 +44,7 @@ const Register = ({
   email,
   password,
   passwordConfirm,
+  image,
   showPassword,
   onChangeCallback,
   onSubmitRegisterCallback,
@@ -74,6 +75,7 @@ const Register = ({
                 email={email}
                 password={password}
                 passwordConfirm={passwordConfirm}
+                image={image}
                 showPassword={showPassword}
                 onChangeHandle={onChangeHandle}
                 onSubmitRegisterHandle={onSubmitRegisterHandle}

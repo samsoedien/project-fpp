@@ -46,7 +46,7 @@ const ProfileCard = ({ user, profile, classes }) => {
       <Container className={classes.center}>
         <Typography className={classes.profileCompany}>Bij Robert</Typography>
         <Avatar src={profile.user.avatar} className={classes.profileAvatar} />
-        <Typography component={Link} to={`/profiles/${profile.handle}`} color="primary" className={classes.profileName}>profile.user.name}</Typography>
+        <Typography component={Link} to={`/profiles/${profile.handle}`} color="primary" className={classes.profileName}>{profile.user.name}</Typography>
         <Typography variant="caption" className={classes.profileProfession}>Pastry Chef</Typography>
       </Container>
     </div>

@@ -7,18 +7,8 @@ import {
   Typography,
   TextField,
   Button,
-  Input,
-  InputLabel,
-  Label,
-  FormControl,
-  FormText,
-  FormGroup,
-  OutlinedInput,
-  Select,
   MenuItem,
 } from '@material-ui/core';
-import { CloudUpload as CloudUploadIcon } from '@material-ui/icons';
-
 
 const styles = theme => ({
   profileFormInput: {
@@ -33,7 +23,6 @@ const ProfileForm = ({
   profession,
   location,
   bio,
-  skills,
   twitter,
   facebook,
   instagram,
@@ -144,17 +133,6 @@ const ProfileForm = ({
                 error={errors.handle}
                 helperText={errors ? errors.handle : ''}
               />
-              <Button
-                variant="outlined"
-                color="primary"
-                component="label"
-                label="My Label"
-                className={classes.registerFormUploadButton}
-              >
-                <Input type="file" name="name" onChange={onChange} className={classes.registerFormFileInput} />
-                {'Upload'}
-                <CloudUploadIcon className={classes.registerFormFileButton} />
-              </Button>
 
               <TextField
                 select
@@ -162,7 +140,6 @@ const ProfileForm = ({
                 variant="outlined"
                 fullWidth
                 label="Profession"
-                type="text"
                 name="profession"
                 value={profession}
                 onChange={onChange}

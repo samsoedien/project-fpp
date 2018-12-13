@@ -13,9 +13,6 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40,
   },
-  avatar: {
-    type: String,
-  },
   profession: {
     type: String,
     required: true,

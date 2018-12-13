@@ -7,10 +7,11 @@ import {
   Typography,
   Button,
   TextField,
+  Input,
   InputAdornment,
   IconButton,
 } from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons/';
+import { Visibility, VisibilityOff, CloudUpload as CloudUploadIcon } from '@material-ui/icons/';
 
 const styles = theme => ({
   registerPaper: {
@@ -43,6 +44,7 @@ const RegisterFormAccountDetails = ({
   email,
   password,
   passwordConfirm,
+  image,
   showPassword,
   onChangeHandle,
   onSubmitRegisterHandle,
@@ -131,9 +133,21 @@ const RegisterFormAccountDetails = ({
           error={errors.passwordConfirm}
           helperText={errors ? errors.passwordConfirm : ''}
         />
-        <Typography variant="caption" className={classes.registerFormSmall}>Forgot Password? </Typography>
+        <Typography variant="caption" className={classes.registerFormSmall}>{'Forgot Password? '} </Typography>
         <Typography component={Link} to="/" variant="caption" className={classes.registerFormSmall}>Reset Password</Typography>
         <br />
+        <Button
+          id="image-upload"
+          variant="outlined"
+          color="primary"
+          component="label"
+          label="My Label"
+          className={classes.registerFormUploadButton}
+        >
+          <Input type="file" name="image" value={image} onChange={onChange} className={classes.registerFormFileInput} />
+          {'Upload'}
+          <CloudUploadIcon className={classes.registerFormFileButton} />
+        </Button>
         <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.registerFormButton}>Signup</Button>
       </form>
     </div>

@@ -15,6 +15,7 @@ class AuthContainer extends Component {
       email: '',
       password: '',
       passwordConfirm: '',
+      image: '',
       showPassword: false,
       errors: {},
     };
@@ -42,7 +43,13 @@ class AuthContainer extends Component {
   }
 
   onChangeCallback(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    switch (e.target.name) {
+      case 'image':
+        this.setState({ image: e.target.files[0] });
+        break;
+      default:
+        this.setState({ [e.target.name]: e.target.value });
+    }
   }
 
   onSubmitRegisterCallback() {
@@ -51,13 +58,22 @@ class AuthContainer extends Component {
       email,
       password,
       passwordConfirm,
+      image,
     } = this.state;
-    const newUser = {
-      name,
-      email,
-      password,
-      passwordConfirm,
-    };
+    // const newUser = {
+    //   name,
+    //   email,
+    //   password,
+    //   passwordConfirm,
+    // };
+
+    const newUser = new FormData();
+    newUser.append('name', name);
+    newUser.append('email', email);
+    newUser.append('password', password);
+    newUser.append('passwordConfirm', passwordConfirm);
+    newUser.append('avatar', image);
+
     const { registerUser, history } = this.props;
     registerUser(newUser, history);
   }
@@ -85,6 +101,7 @@ class AuthContainer extends Component {
       email,
       password,
       passwordConfirm,
+      image,
       showPassword,
       errors,
     } = this.state;
@@ -95,6 +112,7 @@ class AuthContainer extends Component {
             email={email}
             password={password}
             showPassword={showPassword}
+            image={image}
             onChangeCallback={this.onChangeCallback}
             onSubmitLoginCallback={this.onSubmitLoginCallback}
             onShowPasswordCallback={this.onShowPasswordCallback}

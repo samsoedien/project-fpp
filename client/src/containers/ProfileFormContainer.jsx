@@ -13,7 +13,6 @@ class ProfileFormContainer extends Component {
       updateProfile: false,
       displaySocialInputs: false,
       handle: '',
-      image: '',
       profession: '',
       location: '',
       bio: '',
@@ -42,19 +41,12 @@ class ProfileFormContainer extends Component {
   }
 
   onChangeCallback(e) {
-    switch (e.target.name) {
-      case 'image':
-        this.setState({ image: e.target.files[0] });
-        break;
-      default:
-        this.setState({ [e.target.name]: e.target.value });
-    }
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   onSubmitCallback() {
     const {
       handle,
-      image,
       profession,
       location,
       bio,
@@ -62,23 +54,21 @@ class ProfileFormContainer extends Component {
       facebook,
       instagram,
     } = this.state;
-    const profileData = new FormData();
-    profileData.append('handle', handle);
-    profileData.append('image', image);
-    profileData.append('profession', profession);
-    profileData.append('location', location);
-    profileData.append('bio', bio);
-    profileData.append('twitter', twitter);
-    profileData.append('facebook', facebook);
-    profileData.append('insatgram', instagram);
-
+    const profileData = {
+      handle,
+      profession,
+      location,
+      bio,
+      twitter,
+      facebook,
+      instagram,
+    };
     const { createProfile, history } = this.props;
     createProfile(profileData, history);
   }
 
   render() {
     const {
-      image,
       displaySocialInputs,
       updateProfile,
       errors,
@@ -88,7 +78,6 @@ class ProfileFormContainer extends Component {
     return (
       <div className="profile-form-container">
         <ProfileForm
-          image={image}
           updateProfile={updateProfile}
           displaySocialInputs={displaySocialInputs}
           isOpen={isOpen}
