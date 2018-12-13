@@ -72,7 +72,7 @@ class AuthContainer extends Component {
     newUser.append('email', email);
     newUser.append('password', password);
     newUser.append('passwordConfirm', passwordConfirm);
-    newUser.append('avatar', image);
+    newUser.append('image', image);
 
     const { registerUser, history } = this.props;
     registerUser(newUser, history);

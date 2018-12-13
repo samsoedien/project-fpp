@@ -75,7 +75,7 @@ const NavbarComponent = ({
           <DropdownToggle className="navbar__item__link" nav caret>
             <img
               className="rounded-circle"
-              src={user.avatar}
+              src={user.image}
               alt={user.name}
               style={{ width: '20px', marginRight: '5px' }}
             />

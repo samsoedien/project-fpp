@@ -25,7 +25,7 @@ exports.registerUser = (req, res, next) => {
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        avatar: req.file.path,
+        image: req.file.path,
         password: req.body.password,
       });
 
@@ -42,6 +42,7 @@ exports.registerUser = (req, res, next) => {
     }
   });
 };
+
 exports.loginUser = (req, res, next) => {
   const { errors, isValid } = validateLoginInput(req.body);
   if (!isValid) {
