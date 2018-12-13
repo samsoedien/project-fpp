@@ -113,11 +113,11 @@ const BlogHeader = ({
           ) : null}
 
           <Tooltip title={`${blog.favorites.length} chef(s) loved this blog`} placement="top" TransitionComponent={Zoom}>
-            <IconButton onClick={onFavoriteHandle} className={classes.blogHeaderFavoriteButton}>
+            <IconButton onClick={onFavorite} className={classes.blogHeaderFavoriteButton}>
               <FavoriteIcon className={isFavorited ? classes.blogHeaderIconFavorited : classes.blogHeaderIcon} />
             </IconButton>
           </Tooltip>
-          <IconButton onClick={onFavorite} className={classes.blogHeaderShareButton}>
+          <IconButton className={classes.blogHeaderShareButton}>
             <ShareIcon className={classes.blogHeaderIcon} />
           </IconButton>
         </header>

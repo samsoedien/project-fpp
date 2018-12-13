@@ -115,7 +115,7 @@ const RecipeHeader = ({
               <FavoriteIcon className={isFavorited ? classes.recipeHeaderIconFavorited : classes.recipeHeaderIcon} />
             </IconButton>
           </Tooltip>
-          <IconButton onClick={onFavorite} className={classes.recipeHeaderShareButton}>
+          <IconButton className={classes.recipeHeaderShareButton}>
             <ShareIcon className={classes.recipeHeaderIcon} />
           </IconButton>
         </header>

@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const passport = require('passport');
+const uuidv4 = require('uuid/v4')
 
 const authRoutes = require('./routes/auth');
 const usersRoutes = require('./routes/users');
@@ -22,9 +23,11 @@ const fileStorage = multer.diskStorage({
     cb(null, 'uploads');
   },
   filename: (req, file, cb) => {
-    cb(null, new Date().toISOString() + '-' + file.originalname);
+    cb(null, uuidv4() + path.extname(file.originalname));
   }
 });
+
+console.log(uuidv4());
 
 const fileFilter = (req, file, cb) => {
   if (
