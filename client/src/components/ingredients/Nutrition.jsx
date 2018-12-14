@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Table,
   Button,
 } from 'reactstrap';
@@ -56,32 +56,30 @@ const Nutrition = ({
 
   return (
     <div className="">
-      <Container>
-        <Row>
-          <Col md="6">
-            <Table className="table-hover">
-              <thead>
-                <tr>
-                  <th scope="col" className="text-muted text-left pl-5">
-                    Nutrition
+      <Grid container justify="center">
+        <Grid item md={6}>
+          <Table className="table-hover">
+            <thead>
+              <tr>
+                <th scope="col" className="text-muted text-left pl-5">
+                  Nutrition
                   </th>
-                  <th scope="col" className="text-muted text-right pr-5">
-                    Value
+                <th scope="col" className="text-muted text-right pr-5">
+                  Value
                   </th>
-                </tr>
-              </thead>
-              <tbody>{nutritionItems}</tbody>
-            </Table>
-          </Col>
-        </Row>
-      </Container>
-      <Container>
+              </tr>
+            </thead>
+            <tbody>{nutritionItems}</tbody>
+          </Table>
+        </Grid>
+      </Grid>
+      <Grid container justify="center">
         {isEditable ? (
           <Button onClick={onSubmit} className="btn btn-success btn-sm">
             Save Changes
           </Button>
         ) : null}
-      </Container>
+      </Grid>
     </div>
   );
 };

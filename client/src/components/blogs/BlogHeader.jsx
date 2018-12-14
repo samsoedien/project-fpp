@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
-// import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Button,
@@ -82,7 +81,6 @@ const BlogHeader = ({
   onFavoriteHandle,
   classes,
 }) => {
-
   const onEdit = () => {
     onEditHandle();
   };

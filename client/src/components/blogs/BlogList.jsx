@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
-import { Paper } from '@material-ui/core';
+import { Grid, Paper } from '@material-ui/core';
 
 import Loader from '../common/Loader';
 import BlogItem from './BlogItem';
@@ -25,13 +24,11 @@ const BlogList = ({ blogs, loading, classes }) => {
 
   return (
     <div className="blog-list">
-      <Container>
+      <Grid container justify="center" spacing={16}>
         <Paper className={classes.blogListPaper}>
-          <Row>
-            {blogItems}
-          </Row>
+          {blogItems}
         </Paper>
-      </Container>
+      </Grid>
     </div>
   );
 };

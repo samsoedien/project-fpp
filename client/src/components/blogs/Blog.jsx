@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
   Avatar,
 } from '@material-ui/core';
@@ -100,20 +100,18 @@ const Blog = ({
           onFavoriteHandle={onFavoriteHandle}
         />
         <ProfileCard user={blog.user} />
-        <Container>
+        <Grid container justify="center">
           <article className={classes.blogArticle}>
             <Typography variant="h2" className={classes.blogHeadline}>{blog.headline}</Typography>
             <section className={classes.blogSection}>
-              <Container>
-                <Row>
-                  <Col lg="8" md="9" sm="10" xs="11" className="m-auto">
-                    <Typography>{blog.article}</Typography>
-                  </Col>
-                </Row>
-              </Container>
+              <Grid container justify="center">
+                <Grid item xs={10} sm={8} lg={6}>
+                  <Typography>{blog.article}</Typography>
+                </Grid>
+              </Grid>
             </section>
           </article>
-        </Container>
+        </Grid>
         {auth.isAuthenticated ? (
           <PostForm
             comment={comment}

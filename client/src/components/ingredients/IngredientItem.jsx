@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 
 import testImg from '../../assets/img/foodprinted_sidedish.jpg';
 
-const IngredientItem = ({ ingredient }) => (
+const styles = theme => ({
+
+});
+
+const IngredientItem = ({ ingredient, classes }) => (
   <div className="ingredient-item">
     <Grid container justify="center">
       <Grid item md={2}>
@@ -33,6 +36,7 @@ IngredientItem.propTypes = {
   ingredient: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }).isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default IngredientItem;
+export default withStyles(styles)(IngredientItem);

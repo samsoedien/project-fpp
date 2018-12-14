@@ -9,7 +9,6 @@ import {
   Button,
 } from '@material-ui/core';
 
-import ProfileActions from './ProfileActions';
 import Experience from './Experience';
 import Equipment from './Equipment';
 import Loader from '../common/Loader';
@@ -54,8 +53,8 @@ const Dashboard = ({
           {'Welcome '}
           <Button component={Link} to={`/profiles/${profile.handle}`}>{user.name}</Button>
         </Typography>
-        <ProfileActions />
-        <Experience experience={profile.experience} onDeleteExperience={onDeleteExperience} />
+        <Button component={Link} to="/edit-profile">Edit Profile</Button>
+        <Button component={Link} to="/add-experience">Add Experience</Button>        <Experience experience={profile.experience} onDeleteExperience={onDeleteExperience} />
         <Typography variant="h5">Equipment</Typography>
         <Equipment equipment="printing" printer="custom food printer" />
         <Equipment equipment="idle" printer="pastry printer" />

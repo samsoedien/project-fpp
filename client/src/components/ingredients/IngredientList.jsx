@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 
@@ -9,7 +8,17 @@ import IngredientItem from './IngredientItem';
 import Loader from '../common/Loader';
 import SearchBar from '../common/SearchBar';
 
-const IngredientList = ({ ingredients, filterText, filterUpdate, loading }) => {
+const styles = theme => ({
+
+});
+
+const IngredientList = ({
+  ingredients,
+  filterText,
+  filterUpdate,
+  loading,
+  classes,
+}) => {
   const filterCallback = val => {
     filterUpdate(val);
   };
@@ -49,9 +58,8 @@ IngredientList.propTypes = {
   ingredients: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   filterText: PropTypes.string.isRequired,
-  filterUpdate: PropTypes.string.isRequired
+  filterUpdate: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default IngredientList;
-
-//TODO: Use Code Splitting ( dynamic import() )
+export default withStyles(styles)(IngredientList);

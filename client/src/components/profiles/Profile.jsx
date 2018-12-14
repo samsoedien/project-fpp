@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 
 import Loader from '../common/Loader';
 import ProfileHeader from './ProfileHeader';
@@ -21,12 +20,10 @@ const Profile = ({ profile, loading, classes }) => {
   } else {
     profileContent = (
       <div>
-        <Row>
-          <Col md="6">
-            <Button component={Link} to="/profiles">Back to Profiles</Button>
-          </Col>
-          <Col md="6" />
-        </Row>
+        <Grid item md={6}>
+          <Button component={Link} to="/profiles">Back to Profiles</Button>
+        </Grid>
+        <Grid item md={6} />
         <ProfileHeader profile={profile} />
         <ProfileAbout profile={profile} />
         <ProfileCreds experience={profile.experience} />
@@ -35,11 +32,11 @@ const Profile = ({ profile, loading, classes }) => {
   }
   return (
     <div className="profile">
-      <Container>
-        <Row>
-          <Col md="12">{profileContent}</Col>
-        </Row>
-      </Container>
+      <Grid container justify="center">
+        <Grid item md={12}>
+          {profileContent}
+        </Grid>
+      </Grid>
     </div>
   );
 };

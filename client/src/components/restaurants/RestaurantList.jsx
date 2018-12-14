@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 
@@ -9,7 +8,17 @@ import RestaurantItem from './RestaurantItem';
 import SearchBar from '../common/SearchBar';
 import Loader from '../common/Loader';
 
-const RestaurantList = ({ restaurants, filterText, filterUpdate, loading }) => {
+const styles = theme => ({
+
+});
+
+const RestaurantList = ({
+  restaurants,
+  filterText,
+  filterUpdate,
+  loading,
+  classes,
+}) => {
   const filterCallback = val => {
     filterUpdate(val);
   };
@@ -41,7 +50,6 @@ const RestaurantList = ({ restaurants, filterText, filterUpdate, loading }) => {
           filterCallback={filterCallback}
         />
       </Grid>
-
       <Grid container justify="center">
         <Grid item>
           {restaurantItems}
@@ -58,6 +66,7 @@ RestaurantList.propTypes = {
   loading: PropTypes.bool.isRequired,
   filterText: PropTypes.string.isRequired,
   filterUpdate: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default RestaurantList;
+export default withStyles(styles)(RestaurantList);

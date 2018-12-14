@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   InputGroup,
@@ -9,7 +8,11 @@ import {
   Input,
   Button,
 } from 'reactstrap';
-import { Typography, InputBase } from '@material-ui/core';
+import {
+  Grid,
+  Typography,
+  InputBase
+} from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
@@ -67,8 +70,8 @@ class SearchBar extends Component {
     const { searchLabel, classes } = this.props;
     return (
       <div className="search-bar">
-        <Container>
-          <Row>
+        <Grid container justify="center">
+          <Grid item>
             {/* <Typography variant="h4" className={classes.searchLabel}>{searchLabel}</Typography>
 
             <InputBase
@@ -89,8 +92,8 @@ class SearchBar extends Component {
                 }}
               />
             </div>
-          </Row>
-        </Container>
+          </Grid>
+        </Grid>
         {/* <InputGroup size="lg" className="shadow-sm mb-4">
           <InputGroupAddon addonType="prepend">Recipes</InputGroupAddon>
           <input
@@ -105,7 +108,7 @@ class SearchBar extends Component {
             <Button color="primary">Search</Button>
           </InputGroupAddon>
         </InputGroup> */}
-      </div >
+      </div>
     );
   }
 }

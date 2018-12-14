@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -39,7 +38,7 @@ const IngredientForm = ({
   return (
     <div className="ingredient-form">
       <Grid container justify="center">
-        <Grid item xs="8">
+        <Grid item xs={8}>
           <Typography variant="h2">Create a recipe</Typography>
           <Typography variant="paragraph">
             Add some information to start creating your custom food printing

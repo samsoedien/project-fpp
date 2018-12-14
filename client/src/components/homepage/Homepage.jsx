@@ -1,14 +1,17 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
-// import { Container, Row, Col } from 'reactstrap';
-// import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 import PrimaryCallsToAction from './PrimaryCallsToAction';
 import Features from './Features';
 import Headline from './Headline';
 
-const Homepage = ({ auth }) => (
+const styles = theme => ({
+
+});
+
+const Homepage = ({ auth, classes }) => (
   <div className="homepage">
     <div className="homepage__content">
       {(auth.isAuthenticated)
@@ -31,6 +34,7 @@ Homepage.propTypes = {
   auth: PropTypes.shape({
     isAuthenticated: PropTypes.bool,
   }).isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default Homepage;
+export default withStyles(styles)(Homepage);

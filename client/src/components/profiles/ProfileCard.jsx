@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
   Card,
   Avatar,
@@ -43,12 +43,12 @@ const styles = theme => ({
 const ProfileCard = ({ user, classes }) => {
   return (
     <div className={classes.root}>
-      <Container className={classes.center}>
+      <Grid container justify="center">
         <Typography className={classes.profileCompany}>Bij Robert</Typography>
         <Avatar src={`/${user.image}`} className={classes.profileAvatar} />
         <Typography component={Link} to={`/profiles/${user.name}`} color="primary" className={classes.profileName}>{user.name}</Typography>
         <Typography variant="caption" className={classes.profileProfession}>Pastry Chef</Typography>
-      </Container>
+      </Grid>
     </div>
   );
 };

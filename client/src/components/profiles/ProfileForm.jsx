@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
   TextField,
   Button,
@@ -108,81 +108,79 @@ const ProfileForm = ({
 
   return (
     <div className="profile-form">
-      <Container>
-        <Row>
-          <Col md="8" className="m-auto">
-            <form onSubmit={onSubmit} className={classes.profileForm} noValidate autoComplete="off">
-              {!updateProfile ? (
-                <Typography variant="h3" className={classes.profileFormTitle}>Create Your Profile</Typography>
-              ) : (
-                  <Typography variant="h3" className={classes.profileFormTitle}>Edit Your Profile</Typography>
-                )}
-              <Typography className={classes.profileFormText} variant="body1">Fill in the form</Typography>
+      <Grid container justify="center">
+        <Grid item md={8}>
+          <form onSubmit={onSubmit} className={classes.profileForm} noValidate autoComplete="off">
+            {!updateProfile ? (
+              <Typography variant="h3" className={classes.profileFormTitle}>Create Your Profile</Typography>
+            ) : (
+                <Typography variant="h3" className={classes.profileFormTitle}>Edit Your Profile</Typography>
+              )}
+            <Typography className={classes.profileFormText} variant="body1">Fill in the form</Typography>
 
-              <TextField
-                className={classes.profileFormInput}
-                variant="outlined"
-                fullWidth
-                label="Profile Handle"
-                type="text"
-                name="handle"
-                value={handle}
-                onChange={onChange}
-                error={errors.handle}
-                helperText={errors ? errors.handle : ''}
-              />
+            <TextField
+              className={classes.profileFormInput}
+              variant="outlined"
+              fullWidth
+              label="Profile Handle"
+              type="text"
+              name="handle"
+              value={handle}
+              onChange={onChange}
+              error={errors.handle}
+              helperText={errors ? errors.handle : ''}
+            />
 
-              <TextField
-                select
-                className={classes.profileFormInput}
-                variant="outlined"
-                fullWidth
-                label="Profession"
-                type="text"
-                // name="profession"
-                value={profession}
-                onChange={onChange}
-                error={errors.profession}
-                helperText={errors ? errors.profession : ''}
-              >
-                {options.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
+            <TextField
+              select
+              className={classes.profileFormInput}
+              variant="outlined"
+              fullWidth
+              label="Profession"
+              type="text"
+              // name="profession"
+              value={profession}
+              onChange={onChange}
+              error={errors.profession}
+              helperText={errors ? errors.profession : ''}
+            >
+              {options.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
-              <TextField
-                className={classes.profileFormInput}
-                variant="outlined"
-                fullWidth
-                label="Location"
-                type="text"
-                name="location"
-                value={location}
-                onChange={onChange}
-                error={errors.location}
-                helperText={errors ? errors.location : ''}
-              />
-              <TextField
-                className={classes.profileFormInput}
-                variant="outlined"
-                fullWidth
-                label="Short Bio"
-                type="text"
-                name="bio"
-                value={bio}
-                onChange={onChange}
-                error={errors.bio}
-                helperText={errors ? errors.bio : ''}
-              />
-              <Button onClick={onDisplayInputs} variant="outlined" color="primary">Add Social Network Links</Button>
-              {socialInputs}
-              <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.profileFormButton}>Submit</Button>
-            </form>
-          </Col>
-        </Row>
-      </Container>
+            <TextField
+              className={classes.profileFormInput}
+              variant="outlined"
+              fullWidth
+              label="Location"
+              type="text"
+              name="location"
+              value={location}
+              onChange={onChange}
+              error={errors.location}
+              helperText={errors ? errors.location : ''}
+            />
+            <TextField
+              className={classes.profileFormInput}
+              variant="outlined"
+              fullWidth
+              label="Short Bio"
+              type="text"
+              name="bio"
+              value={bio}
+              onChange={onChange}
+              error={errors.bio}
+              helperText={errors ? errors.bio : ''}
+            />
+            <Button onClick={onDisplayInputs} variant="outlined" color="primary">Add Social Network Links</Button>
+            {socialInputs}
+            <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.profileFormButton}>Submit</Button>
+          </form>
+        </Grid>
+      </Grid>
     </div >
   );
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
   Paper,
   Button,
@@ -24,13 +24,15 @@ const PrimaryCallsToAction = ({ classes }) => {
   return (
     <div className="primary-calls-to-action">
       <ScrollWrapper onWindowScroll={handleScroll}>
-        <Container>
-          <Paper className={classes.primaryctaPaper} id="myPrimaryCTA">
-            <Typography variant="h3">Enrich your workspace now</Typography>
-            <Typography variant="paragraph">Discover (brandname) by creating astounding dishes for you customers. We as food lovers understand in wanting to deliver the best experiences to your customers, building personal relations and improve your business.</Typography>
-            <Button component={Link} to="/register">Get Started</Button>
-          </Paper>
-        </Container>
+        <Grid container justify="center">
+          <Grid item xs={8}>
+            <Paper className={classes.primaryctaPaper} id="myPrimaryCTA">
+              <Typography variant="h3">Enrich your workspace now</Typography>
+              <Typography variant="paragraph">Discover (brandname) by creating astounding dishes for you customers. We as food lovers understand in wanting to deliver the best experiences to your customers, building personal relations and improve your business.</Typography>
+              <Button component={Link} to="/register">Get Started</Button>
+            </Paper>
+          </Grid>
+        </Grid>
       </ScrollWrapper>
     </div>
   );

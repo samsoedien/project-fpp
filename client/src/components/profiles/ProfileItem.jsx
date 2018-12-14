@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
   Card,
   Avatar,

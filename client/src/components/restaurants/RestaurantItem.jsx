@@ -1,21 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core';
 
-const RestaurantItem = ({ restaurant }) => (
+const styles = theme => ({
+
+});
+
+const RestaurantItem = ({ restaurant, classes }) => (
   <div className="restaurant-item">
-    <Col md="10">
+    <Grid item md={10}>
       <Link to={`/restaurants/${restaurant._id}`} className="btn text-dark">
         <div className="card bg-light mb-3">{restaurant.name}</div>
       </Link>
-    </Col>
+    </Grid>
   </div>
 );
 
-RestaurantItem.PropTypes = {
-  restaurant: PropTypes.object.isRequired
+RestaurantItem.propTypes = {
+  restaurant: PropTypes.shape({}).isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default RestaurantItem;
+export default withStyles(styles)(RestaurantItem);
