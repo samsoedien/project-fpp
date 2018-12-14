@@ -15,13 +15,15 @@ import { Visibility, VisibilityOff, CloudUpload as CloudUploadIcon } from '@mate
 
 const styles = theme => ({
   registerPaper: {
-    margin: '0 auto',
   },
   registerForm: {
     padding: '36px 16px',
     margin: '0 auto',
   },
-  registerFormTitle: { padding: '6px 0' },
+  registerFormTitle: {
+    padding: '6px 0',
+    textAlign: 'center',
+  },
   registerFormText: {
     padding: '12px 0',
     textAlign: 'center',
@@ -39,7 +41,7 @@ const styles = theme => ({
   },
 });
 
-const RegisterFormAccountDetails = ({
+const RegisterForm = ({
   name,
   email,
   password,
@@ -67,7 +69,7 @@ const RegisterFormAccountDetails = ({
   };
   return (
     <div className="register-form-account-details">
-      <Typography className={classes.registerFormTitle} variant="h3">Signup</Typography>
+      <Typography className={classes.registerFormTitle} variant="h2">Signup</Typography>
       <Typography className={classes.registerFormText} variant="body1">Create your FPP account</Typography>
       <form onSubmit={onSubmit} className={classes.registerForm} noValidate autoComplete="off">
         <TextField
@@ -154,12 +156,13 @@ const RegisterFormAccountDetails = ({
   );
 };
 
-RegisterFormAccountDetails.propTypes = {
+RegisterForm.propTypes = {
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   passwordConfirm: PropTypes.string.isRequired,
   showPassword: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   onChangeHandle: PropTypes.func.isRequired,
   onSubmitRegisterHandle: PropTypes.func.isRequired,
   onShowPasswordHandle: PropTypes.func.isRequired,
@@ -172,4 +175,4 @@ RegisterFormAccountDetails.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default withStyles(styles)(RegisterFormAccountDetails);
+export default withStyles(styles)(RegisterForm);

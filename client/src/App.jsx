@@ -9,10 +9,10 @@ import { clearCurrentProfile } from './actions/profileActions';
 import store from './store/store';
 import theme from './theme/theme';
 
+import './App.scss';
 import Routes from './Routes';
 import HeaderContainer from './containers/HeaderContainer';
 import FooterContainer from './containers/FooterContainer';
-import './App.scss';
 
 // Check for token
 if (localStorage.jwtToken) {

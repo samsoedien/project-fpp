@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
   Paper,
   Button,
@@ -78,17 +78,15 @@ const Dashboard = ({
 
   return (
     <div className="dashboard">
-      <Container className={classes.dashboardContent}>
+      <Grid container justify="center">
         <Typography variant="h2">Dashboard</Typography>
-        <Row className={classes.center}>
-          <Col md="12">
-            <Paper elevation={4}>
-              {dashboardContent}
-            </Paper>
-          </Col>
-        </Row>
-      </Container>
-    </div >
+        <Grid item md={12}>
+          <Paper elevation={4}>
+            {dashboardContent}
+          </Paper>
+        </Grid>
+      </Grid>
+    </div>
   );
 };
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
   Paper,
   Button,
@@ -25,7 +25,10 @@ const styles = theme => ({
   loginForm: {
     padding: '36px 16px',
   },
-  loginFormTitle: { padding: '6px 0' },
+  loginFormTitle: {
+    padding: '6px 0',
+    textAlign: 'center',
+  },
   formText: {
     padding: '12px 0',
     textAlign: 'center',
@@ -39,6 +42,7 @@ const styles = theme => ({
     width: '100%',
   },
   loginFormButton: {
+    marginBottom: '12px',
     float: 'right',
   },
 });
@@ -68,63 +72,61 @@ const Login = ({
 
   return (
     <div className="login">
-      <Container>
+      <Grid container justify="center">
         <Paper className="paper-panel" elevation={3}>
-          <Container>
-            <Row>
-              <Col xs="12" sm="6">
-                <div className={classes.panelBackground} />
-              </Col>
-              <Col xs="12" sm="6">
-                <form onSubmit={onSubmit} className={classes.loginForm} noValidate autoComplete="off">
-                  <Typography className={classes.loginFormTitle} variant="h3" color="primary">Login</Typography>
-                  <Typography className={classes.formText} variant="body1">Sign in to your account</Typography>
-                  <small className={classes.loginFormSmall}>
-                    {'No account yet? '}
-                    <Link to="/register">Signup here.</Link>
-                  </small>
-                  <TextField
-                    className={classes.loginFormInput}
-                    variant="outlined"
-                    label="Email Address"
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={onChange}
-                    error={errors.email}
-                    helperText={errors ? errors.email : ''}
-                  />
-                  <TextField
-                    className={classes.loginFormInput}
-                    variant="outlined"
-                    label="Password"
-                    type={showPassword ? 'text' : 'password'}
-                    name="password"
-                    value={password}
-                    onChange={onChange}
-                    error={errors.password}
-                    helperText={errors ? errors.password : ''}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="Toggle password visibility"
-                            onClick={onShowPassword}
-                          >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                  <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.loginFormButton}>Login</Button>
-                </form>
-              </Col>
-            </Row>
-          </Container>
+          <Grid container>
+            <Grid item xs={12} sm={6}>
+              <div className={classes.panelBackground} />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <form onSubmit={onSubmit} className={classes.loginForm} noValidate autoComplete="off">
+                <Typography className={classes.loginFormTitle} variant="h3" color="primary">Login</Typography>
+                <Typography className={classes.formText} variant="body1">Sign in to your account</Typography>
+                <small className={classes.loginFormSmall}>
+                  {'No account yet? '}
+                  <Link to="/register">Signup here.</Link>
+                </small>
+                <TextField
+                  className={classes.loginFormInput}
+                  variant="outlined"
+                  label="Email Address"
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={onChange}
+                  error={errors.email}
+                  helperText={errors ? errors.email : ''}
+                />
+                <TextField
+                  className={classes.loginFormInput}
+                  variant="outlined"
+                  label="Password"
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  error={errors.password}
+                  helperText={errors ? errors.password : ''}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="Toggle password visibility"
+                          onClick={onShowPassword}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.loginFormButton}>Login</Button>
+              </form>
+            </Grid>
+          </Grid>
         </Paper>
-      </Container>
-    </div>
+      </Grid>
+    </div >
   );
 };
 

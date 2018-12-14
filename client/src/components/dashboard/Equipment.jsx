@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
   Card,
   CardMedia,
@@ -57,19 +57,13 @@ const Equipment = ({
         <CardContent className={classes.equipmentCardContent}>
           <Typography variant="h6" className={classes.equipmentTitle}>{printer}</Typography>
           <Typography variant="caption">Material Chocolate</Typography>
-          <Container>
-            <Row className={classes.rowContent}>
-              <Col xs="2">
-                <Typography variant="body2">Status: </Typography>
-              </Col>
-              <Col xs="4">
-                {equipmentStatus}
-              </Col>
-              <Col xs="2">
-                {((equipment !== 'idle')) ? <CircularProgress disableShrink color="primary" /> : null}
-              </Col>
-            </Row>
-          </Container>
+          <Grid container justify="center">
+            <Grid xs={2}>
+              <Typography variant="body2">Status: </Typography>
+              {equipmentStatus}
+              {((equipment !== 'idle')) ? <CircularProgress disableShrink color="primary" /> : null}
+            </Grid>
+          </Grid>
         </CardContent>
         <CardActions>
           <IconButton>

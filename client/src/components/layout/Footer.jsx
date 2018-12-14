@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
   List,
   ListItem,
@@ -79,98 +79,96 @@ const Footer = ({
   return (
     <div className="footer">
       <footer className={classes.root}>
-        <Container>
-          <Row>
-            <Col xs="4" md="2">
-              <List dense component="nav" className={classes.footerList}>
-                <ListItem component={Link} to="/about-us" button>
-                  <ListItemText
-                    // disableTypography
-                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>About us</Typography>}
-                  />
-                </ListItem>
-                <ListItem component={Link} to="/press" button>
-                  <ListItemText
-                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Press</Typography>}
-                  />
-                </ListItem>
-                <ListItem component={Link} to="/follow-us" button>
-                  <ListItemText
-                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Follow us</Typography>}
-                  />
-                </ListItem>
-                <ListItem component={Link} to="/contact" button>
-                  <ListItemText
-                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Contact</Typography>}
-                  />
-                </ListItem>
-              </List>
-            </Col>
-            <Col xs="4" md="2">
-              <List dense component="nav">
-                <ListItem component={Link} to="/terms-of-service" button>
-                  <ListItemText
-                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Terms</Typography>}
-                  />
-                </ListItem>
-                <ListItem component={Link} to="/privacy-policy" button>
-                  <ListItemText
-                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Privacy</Typography>}
-                  />
-                </ListItem>
-                <ListItem component={Link} to="/cookies" button>
-                  <ListItemText
-                    primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Cookies</Typography>}
-                  />
-                </ListItem>
-              </List>
-            </Col>
-            <Col xs="4" md="8">
-              <form onSubmit={onSubmit} className={classes.footerForm} noValidate autoComplete="off">
-                <Typography>Sign up for the newsletter</Typography>
-                <TextField
-                  id="mui-theme-provider-outlined-input"
-                  className={classes.footerFormInput}
-                  variant="outlined"
-                  label="Email Address"
-                  type="email"
-                  name="email"
-                  value={email}
-                  onChange={onChange}
-                  error={errors.email}
-                  helperText={errors ? errors.email : ''}
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.cssLabel,
-                      focused: classes.cssFocused,
-                    },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.cssOutlinedInput,
-                      focused: classes.cssFocused,
-                      notchedOutline: classes.notchedOutline,
-                    },
-                  }}
+        <Grid container justify="center">
+          <Grid item xs={4} md={2}>
+            <List dense component="nav" className={classes.footerList}>
+              <ListItem component={Link} to="/about-us" button>
+                <ListItemText
+                  // disableTypography
+                  primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>About us</Typography>}
                 />
-                <Button type="submit" value="Submit" className={classes.footerFormButton}>Submit</Button>
-              </form>
-            </Col>
-          </Row>
-          <Row>
-            <div className={classes.socialMediaLinks}>
-              <ShareIcon />
-            </div>
-            <Typography className={classes.footerCopyright}>
-              Copyright &copy;
+              </ListItem>
+              <ListItem component={Link} to="/press" button>
+                <ListItemText
+                  primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Press</Typography>}
+                />
+              </ListItem>
+              <ListItem component={Link} to="/follow-us" button>
+                <ListItemText
+                  primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Follow us</Typography>}
+                />
+              </ListItem>
+              <ListItem component={Link} to="/contact" button>
+                <ListItemText
+                  primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Contact</Typography>}
+                />
+              </ListItem>
+            </List>
+          </Grid>
+          <Grid item xs={4} md={2}>
+            <List dense component="nav">
+              <ListItem component={Link} to="/terms-of-service" button>
+                <ListItemText
+                  primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Terms</Typography>}
+                />
+              </ListItem>
+              <ListItem component={Link} to="/privacy-policy" button>
+                <ListItemText
+                  primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Privacy</Typography>}
+                />
+              </ListItem>
+              <ListItem component={Link} to="/cookies" button>
+                <ListItemText
+                  primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>Cookies</Typography>}
+                />
+              </ListItem>
+            </List>
+          </Grid>
+          <Grid item xs={4} md={8}>
+            <form onSubmit={onSubmit} className={classes.footerForm} noValidate autoComplete="off">
+              <Typography>Sign up for the newsletter</Typography>
+              <TextField
+                id="mui-theme-provider-outlined-input"
+                className={classes.footerFormInput}
+                variant="outlined"
+                label="Email Address"
+                type="email"
+                name="email"
+                value={email}
+                onChange={onChange}
+                error={errors.email}
+                helperText={errors ? errors.email : ''}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel,
+                    focused: classes.cssFocused,
+                  },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.cssOutlinedInput,
+                    focused: classes.cssFocused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
+              />
+              <Button type="submit" value="Submit" className={classes.footerFormButton}>Submit</Button>
+            </form>
+          </Grid>
+        </Grid>
+        <Grid container justify="center">
+          <div className={classes.socialMediaLinks}>
+            <ShareIcon />
+          </div>
+          <Typography className={classes.footerCopyright}>
+            Copyright &copy;
               {' '}
-              {new Date().getFullYear()}
-              {' Samsoedien'}
-            </Typography>
-          </Row>
-        </Container>
+            {new Date().getFullYear()}
+            {' Samsoedien'}
+          </Typography>
+        </Grid>
       </footer>
-    </div>
+    </div >
   );
 };
 
