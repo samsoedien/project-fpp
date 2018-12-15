@@ -11,6 +11,7 @@ import {
   CardMedia,
   CardActions,
   CardActionArea,
+  Avatar,
   Button,
 } from '@material-ui/core';
 
@@ -21,6 +22,7 @@ const styles = theme => ({
     width: '320px',
   },
   blogCardHeader: {
+    margin: '6px 0',
     height: '80px',
     textAlign: 'center',
     textTransform: 'capitalize',
@@ -33,21 +35,28 @@ const styles = theme => ({
     overflow: 'hidden',
     textAlign: 'center',
     height: '200px',
-    padding: '32px 20px',
+    padding: '12px 20px',
   },
   blogCardActions: {
-    display: 'flex',
-    justifyContent: 'center',
+    // display: 'flex',
+    // justifyContent: 'center',
+  },
+  blogAvatar: {
+    height: 60,
+    width: 60,
+  },
+  blogAuthor: {
+    textAlign: 'center',
   },
 });
 
 const BlogItem = ({ blog, classes }) => (
   <Grid item>
     <div className="blog-item">
-      <Card className={classes.blogCard} raised="true">
+      <Card className={classes.blogCard} raised>
         <CardHeader
           title={blog.headline}
-          subheader={`Blog Author ${blog.user.name}`}
+          subheader={blog.user.moderator ? 'Editor\'s Post' : null}
           className={classes.blogCardHeader}
         />
         <CardActionArea component={Link} to={`/blogs/${blog._id}`}>
@@ -58,6 +67,14 @@ const BlogItem = ({ blog, classes }) => (
           />
         </CardActionArea>
         <CardContent className={classes.blogCardContent}>
+          <Grid container justify="space-evenly" alignItems="center">
+            <Grid item>
+              <Avatar src={`/${blog.user.image}`} className={classes.blogAvatar} />
+            </Grid>
+            <Grid item>
+              <Typography component={Link} to={`/profiles/${blog.user.name}`} variant="" color="primary" className={classes.blogAuthor}>{blog.user.name}</Typography>
+            </Grid>
+          </Grid>
           <Typography variant="paragraph">{blog.article}</Typography>
           <CardActions className={classes.blogCardActions}>
             <Button variant="outlined" color="primary" component={Link} to={`/blogs/${blog._id}`}>Read Full Blog</Button>

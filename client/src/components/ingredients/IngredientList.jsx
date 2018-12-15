@@ -2,14 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import {
+  Grid,
+  Typography,
+  TextField,
+  List,
+} from '@material-ui/core';
 
 import IngredientItem from './IngredientItem';
 import Loader from '../common/Loader';
-import SearchBarComponent from '../common/SearchBarComponent';
 
 const styles = theme => ({
-
+  ingredientList: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
 });
 
 const IngredientList = ({
@@ -30,32 +38,36 @@ const IngredientList = ({
   } else if (ingredients.length > 0) {
     ingredientItems = ingredients
       .filter(ingredient => {
-        // remove names that do not match current filter text
         return ingredient.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0;
       })
       .map(ingredient => <IngredientItem key={ingredient._id} ingredient={ingredient} />);
   } else {
-    ingredientItems = <h4>No Ingredients found...</h4>;
+    ingredientItems = <Typography variant="h4">No Ingredients found...</Typography>;
   }
 
   return (
     <div className="ingredient-list">
       <Grid container justify="center">
-        <div className="input-group input-group-lg">
-          <SearchBarComponent
-            filterText={filterText}
-            filterUpdate={filterUpdate}
-            filterCallback={filterCallback}
-          />
-        </div>
-        <ul>{ingredientItems}</ul>
+        <TextField
+          className={classes.searchTextfield}
+          placeholder="Select an Ingredient"
+          margin="normal"
+          variant="outlined"
+        // inputRef={value => {
+        //   this.myValue = value;
+        // }}
+        // onChange={this.filterUpdate}
+        />
+        <List className={classes.ingredientList}>
+          {ingredientItems}
+        </List>
       </Grid>
     </div>
   );
 };
 
 IngredientList.propTypes = {
-  ingredients: PropTypes.object.isRequired,
+  ingredients: PropTypes.shape({}).isRequired,
   loading: PropTypes.bool.isRequired,
   filterText: PropTypes.string.isRequired,
   filterUpdate: PropTypes.string.isRequired,

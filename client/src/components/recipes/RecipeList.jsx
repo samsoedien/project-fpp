@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Button } from '@material-ui/core';
 
 import RecipeItem from './RecipeItem';
 import RecipeFeatured from './RecipeFeatured';
@@ -12,7 +12,8 @@ import SearchBarComponent from '../common/SearchBarComponent';
 import BANNER_IMG from '../../assets/img/pastry.jpg';
 
 const styles = theme => ({
-  root: {},
+  root: {
+  },
   recipeListTitle: {
     margin: '16px 0',
     textAlign: 'center',
@@ -20,6 +21,10 @@ const styles = theme => ({
   recipeListParagraph: {
     textAlign: 'center',
   },
+  recipelistButton: {
+    margin: '24px 0',
+
+  }
 });
 
 const RecipeList = ({
@@ -47,10 +52,10 @@ const RecipeList = ({
         <RecipeItem key={recipe._id} recipe={recipe} />
       ));
   } else {
-    recipeItems = <h4>No Recipes found...</h4>;
+    recipeItems = <Typography variant="h4">No Recipes found...</Typography>;
   }
   return (
-    <div className="recipe-list">
+    <div className={classes.root}>
       <Grid container justify="center">
         <Grid item xs={12} sm={10} md={8}>
           <Typography variant="h3" className={classes.recipeListTitle}>Recipe Catalogue</Typography>
@@ -58,6 +63,13 @@ const RecipeList = ({
         </Grid>
       </Grid>
       <RecipeFeatured recipes={recipes} loading={loading} />
+
+      <Grid container justify="center">
+        <Grid item>
+          <Typography variant="body1" className={classes.recipeListParagraph}>Also want to create custom pastry dishes for your business? Get started with an easy dish creation process.</Typography>
+          <Button component={Link} to="/create-recipe" variant="contained" color="primary" className={classes.recipelistButton}>Create a Recipe</Button>
+        </Grid>
+      </Grid>
 
       <SearchBarComponent
         bannerImage={BANNER_IMG}

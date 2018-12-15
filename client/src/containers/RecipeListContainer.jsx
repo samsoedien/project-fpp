@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getRecipes } from '../actions/recipeActions';
 
 import RecipeList from '../components/recipes/RecipeList';
-import RecipeFormContainer from './RecipeFormContainer';
 
 class RecipeListContainer extends Component {
   constructor(props) {
@@ -28,7 +27,7 @@ class RecipeListContainer extends Component {
   }
 
   render() {
-    const { recipe: { recipes, loading }, auth } = this.props;
+    const { recipe: { recipes, loading } } = this.props;
     const { filterText } = this.state;
     return (
       <div className="recipe-list-container">
@@ -38,7 +37,6 @@ class RecipeListContainer extends Component {
           filterText={filterText}
           filterUpdate={this.filterListUpdate}
         />
-        {(auth.isAuthenticated) ? <RecipeFormContainer /> : null}
       </div>
     );
   }
@@ -57,7 +55,6 @@ RecipeListContainer.propTypes = {
 
 const mapStateToProps = state => ({
   recipe: state.recipe,
-  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getRecipes })(RecipeListContainer);

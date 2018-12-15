@@ -16,6 +16,12 @@ import Loader from '../common/Loader';
 const styles = theme => ({
   root: {
   },
+  blogTypography: {
+    position: 'relative',
+    top: '-90px',
+    textAlign: 'center',
+    textTransform: 'capitalize',
+  },
   blogArticle: {
     textAlign: 'center',
   },
@@ -99,9 +105,10 @@ const Blog = ({
           onFavoriteHandle={onFavoriteHandle}
         />
         <ProfileCard user={blog.user} />
+
         <Grid container justify="center">
           <article className={classes.blogArticle}>
-            <Typography variant="h2" className={classes.blogHeadline}>{blog.headline}</Typography>
+            <Typography variant="h3" className={classes.blogTypography}>{blog.headline}</Typography>
             <section className={classes.blogSection}>
               <Grid container justify="center">
                 <Grid item xs={10} sm={8} lg={6}>

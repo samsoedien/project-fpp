@@ -23,11 +23,12 @@ const styles = theme => ({
   recipeHeaderParallax: {
     position: 'relative',
     minHeight: '560px',
-    width: '100%',
-    backgroundSize: 'cover',
+    minWidth: '100%',
+    backgroundSize: 'auto',
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
     backgroundAttachment: 'fixed',
+    zIndex: '100',
   },
   recipeHeaderOverlay: {
     position: 'absolute',
@@ -94,7 +95,7 @@ const RecipeHeader = ({
 
   const handleScroll = scrollDistance => {
     const parallaxItem = document.getElementById('myHeader');
-    parallaxItem.style.transform = `translate(0px, ${-scrollDistance / 2}px)`;
+    parallaxItem.style.transform = `translate(0px, ${-scrollDistance / 1.7}px)`;
   };
 
   return (

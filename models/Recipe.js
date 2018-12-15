@@ -25,7 +25,7 @@ const RecipeSchema = new Schema({
   },
   image: {
     type: String,
-    default: 'database/images/pastry.jpg',
+    default: 'uploads/recipe.jpg',
   },
   settings: {
     type: [String],

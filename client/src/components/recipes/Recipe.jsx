@@ -5,27 +5,40 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
   Typography,
+  Divider,
 } from '@material-ui/core';
 
 import ThreeContainer from '../../containers/ThreeContainer';
 import RecipeHeader from './RecipeHeader';
+import ProfileCard from '../profiles/ProfileCard';
 import RecipeChips from './RecipeChips';
+import Nutritions from '../ingredients/Nutritions';
 import PostFeed from '../posts/PostFeed';
 import PostForm from '../posts/PostForm';
 import Loader from '../common/Loader';
 import isEmpty from '../../utils/is-empty';
 
 const styles = theme => ({
-  caption: {
-    textAlign: 'center',
+  root: {
   },
-  recipeTitle: {
+  recipeTypography: {
+    position: 'relative',
+    top: '-90px',
     textAlign: 'center',
     textTransform: 'capitalize',
   },
-  center: {
-    display: 'flex',
-    justifyContent: 'center',
+  recipeDescription: {
+    textAlign: 'center',
+  },
+  recipeDivider: {
+    position: 'relative',
+    top: '-50px',
+  },
+  recipeData: {
+    // padding: '24px 0',
+  },
+  three: {
+    border: 'red 1px solid',
   },
 });
 
@@ -99,19 +112,36 @@ const Recipe = ({
           onDeleteHandle={onDeleteHandle}
           onFavoriteHandle={onFavoriteHandle}
         />
+        <ProfileCard user={recipe.user} />
+
+        <div className={classes.recipeData}>
+          <Grid container justify="center">
+            <Grid item md={8}>
+              <Typography variant="h3" className={classes.recipeTypography}>{recipe.title}</Typography>
+              <Typography variant="caption" className={classes.recipeTypography}>{recipe.cuisine}</Typography>
+              <Divider variant="center" className={classes.recipeDivider} />
+              <RecipeChips recipe={recipe.settings} />
+              {isEmpty(recipe.description)
+                ? (<Typography variant="caption" className={classes.recipeDescription}>No description written yet</Typography>)
+                : (<Typography variant="paragraph" className={classes.recipeDescription}>{recipe.description}</Typography>)}
+            </Grid>
+          </Grid>
+        </div>
+
         <Grid container justify="center">
-          <Grid item md={8}>
-            <Typography variant="caption" className="text-muted text-left text-uppercase">
-              {'Cuisine: '}
-              {recipe.cuisine}
-            </Typography>
-            <Typography variant="h2" className={classes.recipeTitle}>{recipe.title}</Typography>
-            <RecipeChips recipe={recipe.settings} />
-            {isEmpty(recipe.description)
-              ? (<Typography variant="caption">No description written yet</Typography>)
-              : (<Typography variant="paragraph">{recipe.description}</Typography>)}
+          <Grid item xs={10}>
+            <Grid container spacing={16}>
+              <Grid item xs={12} md={6}>
+                <div className={classes.three}>threecontent</div>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Nutritions recipe={recipe} />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
+
+
         <ThreeContainer recipe={recipe} width="600px" height="400px" />
         {
           auth.isAuthenticated ? (
@@ -135,10 +165,10 @@ const Recipe = ({
           onReplyHandle={onReplyHandle}
           onDeleteHandle={onDeleteHandle}
         />
-      </div>
+      </div >
     );
   }
-  return <div className="recipe">{recipeContent}</div>;
+  return <div className={classes.root}>{recipeContent}</div>;
 };
 
 Recipe.propTypes = {

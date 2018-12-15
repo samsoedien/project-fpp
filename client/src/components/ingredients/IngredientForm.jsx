@@ -6,21 +6,25 @@ import {
   Grid,
   Typography,
   TextField,
+  Input,
   Button,
 } from '@material-ui/core';
+import { CloudUpload as CloudUploadIcon } from '@material-ui/icons';
+
 
 const styles = theme => ({
   ingredientFormInput: {
-    marginBottom: '24px',
-    width: '100%',
+    margin: '12px 0',
   },
   ingredientFormButton: {
     float: 'right',
+    margin: '12px 0',
   },
 });
 
 const IngredientForm = ({
   name,
+  image,
   errors,
   onChangeCallback,
   onSubmitCallback,
@@ -40,15 +44,14 @@ const IngredientForm = ({
       <Grid container justify="center">
         <Grid item xs={8}>
           <form onSubmit={onSubmit} noValidate autoComplete="off">
-            <Typography variant="h2">Create a recipe</Typography>
+            <Typography variant="h3">Add an Ingredient</Typography>
             <Typography variant="paragraph">
-              Add some information to start creating your custom food printing
-              dish.
+              Help by adding more ingredients to the website.
             </Typography>
             <TextField
-              id="mui-theme-provider-outlined-input"
               className={classes.ingredientFormInput}
               variant="outlined"
+              fullWidth
               label="Ingredient"
               type="text"
               name="name"
@@ -57,7 +60,19 @@ const IngredientForm = ({
               error={errors.name}
               helperText={errors ? errors.name : ''}
             />
-            <Button type="submit" value="Submit" className={classes.ingredientFormButton}>Submit</Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              component="label"
+              label="My Label"
+              className={classes.ingredientUploadButton}
+            >
+              <Input type="file" name="image" onChange={onChange} className={classes.ingredientFileInput} />
+              {'Upload'}
+              <CloudUploadIcon className={classes.ingredientFileButton} />
+            </Button>
+
+            <Button type="submit" value="Submit" variant="contained" color="primary" className={classes.ingredientFormButton}>Submit</Button>
           </form>
           <Button component={Link} to="/add-nutritions">Add Nutritions</Button>
 
@@ -69,6 +84,7 @@ const IngredientForm = ({
 
 IngredientForm.propTypes = {
   name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,
   errors: PropTypes.shape({

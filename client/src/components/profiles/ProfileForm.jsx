@@ -19,7 +19,7 @@ const styles = theme => ({
 const ProfileForm = ({
   updateProfile,
   displaySocialInputs,
-  handle,
+  // handle,
   profession,
   location,
   bio,
@@ -118,7 +118,7 @@ const ProfileForm = ({
               )}
             <Typography className={classes.profileFormText} variant="body1">Fill in the form</Typography>
 
-            <TextField
+            {/* <TextField
               className={classes.profileFormInput}
               variant="outlined"
               fullWidth
@@ -129,7 +129,7 @@ const ProfileForm = ({
               onChange={onChange}
               error={errors.handle}
               helperText={errors ? errors.handle : ''}
-            />
+            /> */}
 
             <TextField
               select

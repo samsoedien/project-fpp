@@ -6,10 +6,11 @@ const IngredientSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   name: {
     type: String,
-    required: true
+    required: true,
   },
   image: {
     type: String,
+    default: 'uploads/ingredient.jpg',
   },
   nutritions: [
     {

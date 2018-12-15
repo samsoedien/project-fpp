@@ -10,39 +10,20 @@ const validatePostInput = require('../validation/post');
 exports.getRecipes = (req, res, next) => {
   Recipe.find()
     .select('-__v')
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name', 'image', 'moderator'])
     .sort({ date: -1 })
     .exec()
-    .then(result => {
-      const response = {
-        count: result.length,
-        recipes: result.map(doc => {
-          return {
-            _id: doc._id,
-            title: doc.title,
-            request: {
-              type: 'GET',
-              url: `http://localhost:4000/api/recipes/${doc._id}`,
-            },
-          };
-        }),
-      };
-      res.status(200).json(response);
-    })
+    .then(recipes => res.status(200).json(recipes))
     .catch(err => res.status(404).json({ status: 'error', message: 'No recipes found' }));
 };
 
 exports.getRecipeById = (req, res, next) => {
   Recipe.findById(req.params.id)
     .select('-__v')
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name', 'image', 'moderator'])
     .exec()
-    .then(result => {
-      const response = {
-        recipe: result,
-      };
-      res.status(200).json(response);
-    })
+    .then(recipes => res.status(200).json(recipes))
+
     .catch(err => res.status(404).json({ status: 'error', message: 'No recipe found with that ID' }));
 };
 
@@ -207,3 +188,29 @@ exports.postFlagRecipePost = (req, res, next) => {
       .catch(err => res.status(404).json({ recipenotfound: 'No recipe found' }));
   });
 };
+
+// exports.getRecipes = (req, res, next) => {
+//   Recipe.find()
+//     .select('-__v')
+// .populate('user', ['name', 'image', 'moderator'])
+//     .sort({ date: -1 })
+//     .exec()
+//     .then(result => {
+//       const response = {
+//         count: result.length,
+//         recipes: result.map(doc => {
+//           return {
+//             _id: doc._id,
+//             title: doc.title,
+//             image: doc.image
+//             request: {
+//               type: 'GET',
+//               url: `http://localhost:4000/api/recipes/${doc._id}`,
+//             },
+//           };
+//         }),
+//       };
+//       res.status(200).json(response);
+//     })
+//     .catch(err => res.status(404).json({ status: 'error', message: 'No recipes found' }));
+// };

@@ -11,6 +11,7 @@ class IngredientFormContainer extends Component {
     super(props);
     this.state = {
       name: '',
+      image: '',
       errors: {},
     };
     this.onChangeCallback = this.onChangeCallback.bind(this);
@@ -24,24 +25,32 @@ class IngredientFormContainer extends Component {
   }
 
   onChangeCallback(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    switch (e.target.name) {
+      case 'image':
+        this.setState({ image: e.target.files[0] });
+        break;
+      default:
+        this.setState({ [e.target.name]: e.target.value });
+    }
   }
 
   onSubmitCallback(e) {
-    const { name } = this.state;
-    const ingredientData = {
-      name,
-    };
+    const { name, image } = this.state;
+    const ingredientData = new FormData();
+    ingredientData.append('name', name);
+    ingredientData.append('image', image);
+
     const { createIngredient, history } = this.props;
     createIngredient(ingredientData, history);
   }
 
   render() {
-    const { name, errors } = this.state;
+    const { name, image, errors } = this.state;
     return (
       <div className="ingredient-form-container">
         <IngredientForm
           name={name}
+          image={image}
           errors={errors}
           onChangeCallback={this.onChangeCallback}
           onSubmitCallback={this.onSubmitCallback}
@@ -54,16 +63,12 @@ class IngredientFormContainer extends Component {
 IngredientFormContainer.propTypes = {
   createIngredient: PropTypes.func.isRequired,
   ingredient: PropTypes.shape({}).isRequired,
-  auth: PropTypes.shape({
-    user: PropTypes.object,
-  }).isRequired,
   errors: PropTypes.shape({}).isRequired,
   history: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 const mapStateToProps = state => ({
   ingredient: state.ingredient,
-  auth: state.auth,
   errors: state.errors,
 });
 

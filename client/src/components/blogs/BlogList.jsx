@@ -1,21 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
+import {
+  Grid,
+  Typography,
+  Button,
+  Divider,
+} from '@material-ui/core';
 
 import BlogItem from './BlogItem';
 import Loader from '../common/Loader';
-import SearchBarComponent from '../common/SearchBarComponent';
+// import SearchBarComponent from '../common/SearchBarComponent';
 
-import BANNER_IMG from '../../assets/img/foodprinted_sidedish.jpg';
+// import BANNER_IMG from '../../assets/img/foodprinted_sidedish.jpg';
 
 const styles = theme => ({
-  paper: {
-    border: 'red solid 1px',
-    width: '200px',
-    height: '600px',
-  }
+  root: {},
+  blogListTitle: {
+    margin: '16px 0',
+    textAlign: 'center',
+  },
+  blogListParagraph: {
+    textAlign: 'center',
+  },
+  blogListButton: {
+    margin: '24px 0',
+  },
 });
 
 const BlogList = ({
@@ -23,10 +34,16 @@ const BlogList = ({
   loading,
   filterText,
   filterUpdate,
+  limit,
+  onShowContentCallback,
   classes,
 }) => {
-  const filterCallback = val => {
-    filterUpdate(val);
+  // const filterCallback = val => {
+  //   filterUpdate(val);
+  // };
+
+  const onShowContent = () => {
+    onShowContentCallback();
   };
 
   let blogItems;
@@ -39,33 +56,46 @@ const BlogList = ({
           blog.headline.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
         );
       })
+      .slice(0, limit)
       .map(blog => (
         <BlogItem key={blog._id} blog={blog} />
       ));
   } else {
-    blogItems = <h4>No Blogs found...</h4>;
+    blogItems = <Typography variant="h4">No Blogs found...</Typography>;
   }
 
   return (
     <div className="blog-list">
       <Grid container justify="center">
         <Grid item xs={12} sm={10} md={8}>
-          <Typography variant="h3" className={classes.recipeListTitle}>Community Blogs</Typography>
-          <Typography paragraph variant="body1" className={classes.recipeListParagraph}>All culinary stories written by the community. Explore wonderful cooking tips, business advice and more!</Typography>
+          <Typography variant="h3" className={classes.blogListTitle}>Community Blogs</Typography>
+          <Typography paragraph variant="body1" className={classes.blogListParagraph}>All culinary stories written by the community. Explore wonderful cooking tips, business advice and more!</Typography>
         </Grid>
       </Grid>
 
-      <SearchBarComponent
+      {/* <SearchBarComponent
         bannerImage={BANNER_IMG}
         searchLabel="Search Blogs"
         filterText={filterText}
         filterUpdate={filterUpdate}
         filterCallback={filterCallback}
-      />
+      /> */}
 
       <Grid container justify="center" spacing={24}>
         {blogItems}
       </Grid>
+      <Grid container justify="center">
+        <Button onClick={onShowContent} variant="contained" color="primary" className={classes.blogListButton}>Show more</Button>
+      </Grid>
+      <Divider variant="middle" />
+
+      <Grid container justify="center">
+        <Grid item>
+          <Typography variant="body1" className={classes.blogListParagraph}>Do you have an interesting story to share? Write your blog post about your food experiences, cooking skills, and more</Typography>
+          <Button component={Link} to="/create-blog" size="large" variant="contained" color="primary" className={classes.blogListButton}>Write a Blog</Button>
+        </Grid>
+      </Grid>
+
     </div>
   );
 };
@@ -77,6 +107,8 @@ BlogList.propTypes = {
   loading: PropTypes.bool.isRequired,
   filterText: PropTypes.string.isRequired,
   filterUpdate: PropTypes.func.isRequired,
+  limit: PropTypes.number.isRequired,
+  onShowContentCallback: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 

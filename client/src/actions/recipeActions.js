@@ -18,7 +18,7 @@ export const getRecipes = () => dispatch => {
     .get('/api/recipes')
     .then(res => dispatch({
       type: GET_RECIPES,
-      payload: res.data.recipes,
+      payload: res.data,
     }))
     .catch(err => dispatch({
       type: GET_RECIPES,
@@ -33,7 +33,7 @@ export const getRecipe = id => dispatch => {
     .get(`/api/recipes/${id}`)
     .then(res => dispatch({
       type: GET_RECIPE,
-      payload: res.data.recipe,
+      payload: res.data,
     }))
     .catch(err => dispatch({
       type: GET_RECIPE,

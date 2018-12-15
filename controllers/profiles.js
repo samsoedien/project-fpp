@@ -12,7 +12,7 @@ exports.testProfiles = (req, res, next) => res.json({ message: 'Profiles Works' 
 exports.getProfiles = (req, res) => {
   const errors = {};
   Profile.find()
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name', 'image', 'moderator'])
     .select('-__v')
     .sort({ date: -1 })
     .exec()
@@ -30,7 +30,7 @@ exports.getProfiles = (req, res) => {
 exports.getCurrentProfile = (req, res, ) => {
   const errors = {};
   Profile.findOne({ user: req.user.id })
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name', 'image', 'moderator'])
     .select('-__v')
     .exec()
     .then(profile => {
@@ -46,7 +46,7 @@ exports.getCurrentProfile = (req, res, ) => {
 exports.getProfileByHandle = (req, res, next) => {
   const errors = {};
   Profile.findOne({ handle: req.params.handle })
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name', 'image', 'moderator'])
     .then(profile => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
@@ -61,7 +61,7 @@ exports.getProfileById = (req, res, next) => {
   const errors = {};
 
   Profile.findOne({ user: req.params.user_id })
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name', 'image', 'moderator'])
     .then(profile => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
@@ -81,6 +81,7 @@ exports.createOrUpdateProfile = (req, res, next) => {
 
   const profileFields = {
     ...req.body,
+    handle: req.user.name,
     user: req.user.id,
     // skills: skills.split(','),
     social: { twitter, facebook, instagram }
@@ -110,9 +111,10 @@ exports.createOrUpdateProfile = (req, res, next) => {
         profile => res.json(profile)
       );
     } else {
+      // Profile.findOne({ handle: profileFields.handle }).then(profile => {
       Profile.findOne({ handle: profileFields.handle }).then(profile => {
         if (profile) {
-          errors.handle = 'That handle already exists';
+          errors.handle = 'That handle a lready exists';
           res.status(400).json(errors);
         }
         new Profile(profileFields).save().then(profile => res.json(profile));

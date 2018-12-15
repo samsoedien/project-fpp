@@ -5,18 +5,18 @@ module.exports = function validateProfileInput(data) {
   const errors = {};
 
   data = {
-    handle: !isEmpty(data.handle) ? data.handle : '',
+    // handle: !isEmpty(data.handle) ? data.handle : '',
     // profession: !isEmpty(data.profession) ? data.profession : '',
     // skills: !isEmpty(data.skills) ? data.skills : '',
   };
 
-  if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
-    errors.handle = 'Handle needs to between 2 and 4 characters';
-  }
+  // if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
+  //   errors.handle = 'Handle needs to between 2 and 4 characters';
+  // }
 
-  if (Validator.isEmpty(data.handle)) {
-    errors.handle = 'Profile handle is required';
-  }
+  // if (Validator.isEmpty(data.handle)) {
+  //   errors.handle = 'Profile handle is required';
+  // }
 
   // if (Validator.isEmpty(data.profession)) {
   //   errors.profession = 'Profession field is required';

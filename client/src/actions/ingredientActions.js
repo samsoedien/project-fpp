@@ -44,7 +44,7 @@ export const getIngredient = id => dispatch => {
 export const createIngredient = (ingredientData, history) => dispatch => {
   axios
     .post('/api/ingredients', ingredientData)
-    .then(res => history.push('/dashboard'))
+    .then(res => dispatch(getIngredients()))
     .catch(err => dispatch({
       type: GET_ERRORS,
       payload: err.response.data,

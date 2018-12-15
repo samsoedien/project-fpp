@@ -23,27 +23,41 @@ exports.registerUser = (req, res, next) => {
       return res.status(400).json(errors);
     }
     if (!req.file) {
-      return res.status(422).json(errors);
-    }
-    const imagePath = req.file.path.replace(/\\/g, "/");
-    console.log(imagePath);
-    const newUser = new User({
-      name: req.body.name,
-      email: req.body.email,
-      image: imagePath,
-      password: req.body.password,
-    });
-
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newUser.password, salt, (err, hash) => {
-        if (err) throw err;
-        newUser.password = hash;
-        newUser
-          .save()
-          .then(user => res.status(201).json(user))
-          .catch(err => console.log(err));
+      const newUser = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
       });
-    });
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then(user => res.status(201).json(user))
+            .catch(err => console.log(err));
+        });
+      });
+    } else {
+      const imagePath = req.file.path.replace(/\\/g, "/");
+      console.log(imagePath);
+      const newUser = new User({
+        name: req.body.name,
+        email: req.body.email,
+        image: imagePath,
+        password: req.body.password,
+      });
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then(user => res.status(201).json(user))
+            .catch(err => console.log(err));
+        });
+      });
+    }
   });
 };
 

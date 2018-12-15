@@ -13,6 +13,7 @@ import BannerComponent from './BannerComponent';
 
 const styles = theme => ({
   root: {
+    margin: '24px 0',
   },
   searchTextfield: {
     marginTop: '100px',
@@ -68,7 +69,7 @@ class SearchBarComponent extends Component {
               />
             </Grid>
           </Grid >
-        </BannerComponent >
+        </BannerComponent>
       </div >
     );
   }

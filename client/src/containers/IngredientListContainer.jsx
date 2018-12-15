@@ -47,6 +47,7 @@ class IngredientListContainer extends Component {
 IngredientListContainer.propTypes = {
   getIngredients: PropTypes.func.isRequired,
   ingredient: PropTypes.shape({}).isRequired,
+  auth: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({

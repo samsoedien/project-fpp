@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
 // import Carousel from '../common/Carousel';
 // import GridList from '../common/GridList';
@@ -25,7 +25,7 @@ const RecipeFeatured = ({
   } else if (recipes.length > 0) {
     // recipeFeatured = <GridList recipes={recipes} />;
   } else {
-    recipeFeatured = <h4>No Featured Recipes found...</h4>;
+    recipeFeatured = <Typography variant="h4">No Featured Recipes found...</Typography>;
   }
   return (
     <div className={classes.root}>

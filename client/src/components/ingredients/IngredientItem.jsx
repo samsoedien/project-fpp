@@ -2,33 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
-
-import testImg from '../../assets/img/foodprinted_sidedish.jpg';
+import {
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Avatar,
+} from '@material-ui/core';
 
 const styles = theme => ({
-
+  ingredientAvatar: {
+    height: 60,
+    width: 60,
+  },
+  ingredientName: {
+  },
 });
 
 const IngredientItem = ({ ingredient, classes }) => (
   <div className="ingredient-item">
-    <Grid container justify="center">
-      <Grid item md={2}>
-        <img
-          src={testImg}
-          alt=""
-          className="bg-secondary rounded-circle"
-          style={{ width: '60px', height: '60px' }}
-        />
-      </Grid>
-      <Grid item md={10}>
-        <Link to={`/ingredients/${ingredient._id}`}>
-          <span className="text-muted text-center text-capitalize">
-            {ingredient.name}
-          </span>
-        </Link>
-      </Grid>
-    </Grid>
+    <ListItem button divider component={Link} to={`/ingredients/${ingredient._id}`}>
+      <ListItemAvatar>
+        <Avatar src={`/${ingredient.image}`} className={classes.recipeAvatar} />
+      </ListItemAvatar>
+      <ListItemText primary={ingredient.name} />
+    </ListItem>
   </div>
 );
 

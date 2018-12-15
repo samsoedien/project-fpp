@@ -9,7 +9,7 @@ const validateRecipeInput = require('../../validation/recipe');
 exports.getRecipes = (req, res, next) => {
   Recipe.find()
     .select('-__v')
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name', 'image', 'moderator'])
     .sort({ date: -1 })
     .exec()
     .then(result => {
@@ -34,7 +34,7 @@ exports.getRecipes = (req, res, next) => {
 exports.getRecipeById = (req, res, next) => {
   Recipe.findById(req.params.id)
     .select('-__v')
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name', 'image', 'moderator'])
     .exec()
     .then(result => {
       const response = {

@@ -7,6 +7,7 @@ import { Grid, CircularProgress } from '@material-ui/core';
 const styles = theme => ({
   loaderProgress: {
     margin: '24px 0',
+    height: '120px',
   },
 
 });

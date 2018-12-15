@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PrimaryCallsToAction from './PrimaryCallsToAction';
 import Features from './Features';
 import Headline from './Headline';
+import ImageBanner from './ImageBanner';
 
 const styles = theme => ({
 
@@ -20,6 +21,7 @@ const Homepage = ({ auth, classes }) => (
             <PrimaryCallsToAction />
             <Features />
             <div style={{ height: '200px' }} />
+            <ImageBanner />
           </Fragment>
         ) : (
           <Fragment>

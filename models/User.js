@@ -19,6 +19,11 @@ const UserSchema = new Schema({
   },
   image: {
     type: String,
+    default: 'uploads/avatar.jpg',
+  },
+  moderator: {
+    type: Boolean,
+    default: false,
   },
   date: {
     type: Date,

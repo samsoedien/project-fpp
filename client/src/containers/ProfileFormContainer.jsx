@@ -12,7 +12,7 @@ class ProfileFormContainer extends Component {
     this.state = {
       updateProfile: false,
       displaySocialInputs: false,
-      handle: '',
+      // handle: '',
       profession: '',
       location: '',
       bio: '',
@@ -46,7 +46,7 @@ class ProfileFormContainer extends Component {
 
   onSubmitCallback() {
     const {
-      handle,
+      // handle,
       profession,
       location,
       bio,
@@ -55,7 +55,7 @@ class ProfileFormContainer extends Component {
       instagram,
     } = this.state;
     const profileData = {
-      handle,
+      // handle,
       profession,
       location,
       bio,

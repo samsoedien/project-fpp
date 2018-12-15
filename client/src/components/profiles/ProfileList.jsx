@@ -24,7 +24,7 @@ const ProfileList = ({ profiles, loading, classes }) => {
       <ProfileItem key={profile._id} profile={profile} />
     ));
   } else {
-    profileItems = <h4>No profiles found...</h4>;
+    profileItems = <Typography variant="h4">No profiles found...</Typography>;
   }
 
   return (

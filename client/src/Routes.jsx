@@ -11,16 +11,19 @@ import ProfileUpdateContainer from './containers/ProfileUpdateContainer';
 import ExperienceFormContainer from './containers/ExperienceFormContainer';
 import ProfileListContainer from './containers/ProfileListContainer';
 import ProfileContainer from './containers/ProfileContainer';
-// import PostListContainer from './containers/PostListContainer';
-// import PostContainer from './containers/PostContainer';
-import RecipeListContainer from './containers/RecipeListContainer';
+
 import RecipeContainer from './containers/RecipeContainer';
+import RecipeListContainer from './containers/RecipeListContainer';
 import RecipeFormContainer from './containers/RecipeFormContainer';
-import IngredientListContainer from './containers/IngredientListContainer';
+
 import IngredientContainer from './containers/IngredientContainer';
+import IngredientListContainer from './containers/IngredientListContainer';
 import IngredientFormContainer from './containers/IngredientFormContainer';
-import BlogListContainer from './containers/BlogListContainer';
+
 import BlogContainer from './containers/BlogContainer';
+import BlogListContainer from './containers/BlogListContainer';
+import BlogFormContainer from './containers/BlogFormContainer';
+
 import RestaurantListContainer from './containers/RestaurantListContainer';
 import ThreeEditorContainer from './containers/ThreeEditorContainer';
 import NotFound from './components/not-found/NotFound';
@@ -42,13 +45,21 @@ const Routes = () => (
     />
     <Route exact path="/profiles" component={ProfileListContainer} />
     <Route exact path="/profiles/:handle" component={ProfileContainer} />
+
     <Route exact path="/recipes" component={RecipeListContainer} />
     <Route exact path="/recipes/:id" component={RecipeContainer} />
+    <Switch>
+      <PrivateRouteWrapper exact path="/create-recipe" component={RecipeFormContainer} />
+    </Switch>
+
     <Route exact path="/restaurants" component={RestaurantListContainer} />
     <Route exact path="/ingredients/:id" component={IngredientContainer} />
     <Route exact path="/ingredients" component={IngredientListContainer} />
     <Route exact path="/blogs/:id" component={BlogContainer} />
     <Route exact path="/community" component={BlogListContainer} />
+    <Switch>
+      <PrivateRouteWrapper exact path="/create-blog" component={BlogFormContainer} />
+    </Switch>
 
     <Switch>
       <PrivateRouteWrapper exact path="/dashboard" component={DashboardContainer} />
@@ -81,20 +92,7 @@ const Routes = () => (
         component={ExperienceFormContainer}
       />
     </Switch>
-    {/* <Switch>
-      <PrivateRouteWrapper exact path="/feed-private" component={PostListContainer} />
-    </Switch>
-    <Route exact path="/feed" component={PostListContainer} /> */}
-    {/* <Switch>
-      <PrivateRouteWrapper exact path="/post/:id" component={PostContainer} />
-    </Switch> */}
-    <Switch>
-      <PrivateRouteWrapper
-        exact
-        path="/create-recipe"
-        component={RecipeFormContainer}
-      />
-    </Switch>
+
     <Switch>
       <PrivateRouteWrapper exact path="/editor" component={ThreeEditorContainer} />
     </Switch>

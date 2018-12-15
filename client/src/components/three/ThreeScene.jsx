@@ -121,9 +121,10 @@ class ThreeScene extends Component {
     });
   }
 
-  // volumeCallback(vol) {
-  //   const volume = vol;
-  // }
+  volumeCallback(vol) {
+    console.log('implement vol callback')
+    // const volume = vol;
+  }
 
   render() {
     const { classes } = this.props;

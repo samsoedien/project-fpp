@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
 import RestaurantItem from './RestaurantItem';
 import SearchBarComponent from '../common/SearchBarComponent';
@@ -37,7 +37,7 @@ const RestaurantList = ({
         <RestaurantItem key={restaurant._id} restaurant={restaurant} />
       ));
   } else {
-    restaurantItems = <h4>No Restaurants found...</h4>;
+    restaurantItems = <Typography variant="h4">No Restaurants found...</Typography>;
   }
 
   return (

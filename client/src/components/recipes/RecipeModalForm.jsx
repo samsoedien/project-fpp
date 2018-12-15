@@ -11,6 +11,8 @@ import {
 } from '@material-ui/core';
 import { CloudUpload as CloudUploadIcon } from '@material-ui/icons';
 
+import ModalComponent from '../common/ModalComponent';
+
 const styles = theme => ({
   recipeFormModal: {},
   recipeFormInput: {
@@ -52,13 +54,16 @@ const RecipeForm = ({
   return (
     <div className="recipe-form">
       <Grid container justify="center">
-        <Grid item xs={8}>
+        <ModalComponent buttonLabel="Create a Recipe" className={classes.recipeFormModal}>
+          <Typography variant="h6" id="modal-title">
+            Create a Recipe
+          </Typography>
+          <Typography variant="subtitle1" id="simple-modal-description">
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
           <form onSubmit={onSubmit} className={classes.registerForm} noValidate autoComplete="off">
-            <Typography variant="h6" id="modal-title">Create a Recipe</Typography>
-            <Typography variant="subtitle1" id="simple-modal-description">
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
             <TextField
+              id="mui-theme-provider-outlined-input"
               className={classes.recipeFormInput}
               variant="outlined"
               fullWidth
@@ -71,6 +76,7 @@ const RecipeForm = ({
               helperText={errors ? errors.title : ''}
             />
             <TextField
+              id="mui-theme-provider-outlined-input"
               className={classes.recipeFormInput}
               variant="outlined"
               fullWidth
@@ -83,6 +89,7 @@ const RecipeForm = ({
               helperText={errors ? errors.cuisine : ''}
             />
             <TextField
+              id="mui-theme-provider-outlined-input"
               className={classes.recipeFormInput}
               variant="outlined"
               multiline
@@ -110,9 +117,9 @@ const RecipeForm = ({
             </Button>
             <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.recipeFormButton}>Submit</Button>
           </form>
-        </Grid>
+        </ModalComponent>
       </Grid>
-    </div >
+    </div>
   );
 };
 

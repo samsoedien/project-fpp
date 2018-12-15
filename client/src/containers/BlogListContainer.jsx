@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getBlogs } from '../actions/blogActions';
 
-import BlogFormContainer from './BlogFormContainer';
 import BlogList from '../components/blogs/BlogList';
 
 class BlogListContainer extends Component {
@@ -11,8 +10,10 @@ class BlogListContainer extends Component {
     super(props);
     this.state = {
       filterText: '',
+      limit: 2,
     };
     this.filterListUpdate = this.filterListUpdate.bind(this);
+    this.onShowContentCallback = this.onShowContentCallback.bind(this)
   }
 
   componentDidMount() {
@@ -20,16 +21,22 @@ class BlogListContainer extends Component {
     getBlogs();
   }
 
+  onShowContentCallback() {
+    const { limit } = this.state;
+    this.setState({
+      limit: limit + 4,
+    });
+  }
+
   filterListUpdate(value) {
-    console.log(value);
     this.setState({
       filterText: value,
     });
   }
 
   render() {
-    const { blog: { blogs, loading }, auth } = this.props;
-    const { filterText } = this.state;
+    const { blog: { blogs, loading } } = this.props;
+    const { filterText, limit } = this.state;
     return (
       <div className="blogs-list-container">
         <BlogList
@@ -37,8 +44,9 @@ class BlogListContainer extends Component {
           loading={loading}
           filterText={filterText}
           filterUpdate={this.filterListUpdate}
+          limit={limit}
+          onShowContentCallback={this.onShowContentCallback}
         />
-        {(auth.isAuthenticated) ? <BlogFormContainer /> : null}
       </div>
     );
   }
@@ -57,7 +65,6 @@ BlogListContainer.propTypes = {
 
 const mapStateToProps = state => ({
   blog: state.blog,
-  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getBlogs })(BlogListContainer);

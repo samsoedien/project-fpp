@@ -32,20 +32,17 @@ const styles = theme => ({
     textAlign: 'center',
     fontStyle: 'italic',
   },
-  center: {
-    // display: 'flex',
-    // justifyContent: 'center',
-    display: 'block',
-  },
 });
 
 const ProfileCard = ({ user, classes }) => {
   return (
     <div className={classes.root}>
-      <Grid container justify="center">
+      <Grid container direction="column" justify="center">
         <Typography className={classes.profileCompany}>Bij Robert</Typography>
-        <Avatar src={`/${user.image}`} className={classes.profileAvatar} />
-        <Typography component={Link} to={`/profiles/${user.name}`} color="primary" className={classes.profileName}>{user.name}</Typography>
+        <Link to={`/profile/${user.name}`}>
+          <Avatar src={`/${user.image}`} className={classes.profileAvatar} />
+        </Link>
+        <Typography component={Link} to={`/profile/${user.name}`} color="primary" className={classes.profileName}>{user.name}</Typography>
         <Typography variant="caption" className={classes.profileProfession}>Pastry Chef</Typography>
       </Grid>
     </div>

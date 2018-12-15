@@ -23,8 +23,6 @@ import {
   MoreVert as MoreVertIcon,
 } from '@material-ui/icons';
 
-import IMG from '../../assets/img/foodprinted_sidedish.jpg';
-
 const styles = theme => ({
   recipeCard: {
     margin: '20px 0',
@@ -48,6 +46,10 @@ const styles = theme => ({
   recipeCardActions: {
     display: 'flex',
     justifyContent: 'center',
+  },
+  recipeAvatar: {
+    height: 60,
+    width: 60,
   },
 });
 
@@ -76,12 +78,10 @@ class RecipeItem extends Component {
     return (
       <Grid item>
         <div className="recipe-item">
-          <Card className={classes.recipeCard}>
+          <Card className={classes.recipeCard} raised>
             <CardHeader
               avatar={(
-                <Avatar aria-label="Recipe" className={classes.avatar}>
-                  {IMG}
-                </Avatar>
+                <Avatar src={`/${recipe.user.image}`} className={classes.recipeAvatar} />
               )}
               action={(
                 <IconButton>
@@ -93,7 +93,7 @@ class RecipeItem extends Component {
             />
             <CardActionArea component={Link} to={`/recipes/${recipe._id}`}>
               <CardMedia
-                image={IMG}
+                image={recipe.image}
                 title="Paella dish"
                 className={classes.recipeCardMedia}
               />

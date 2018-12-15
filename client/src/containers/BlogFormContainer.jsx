@@ -12,6 +12,7 @@ class BlogFormContainer extends Component {
     this.state = {
       headline: '',
       article: '',
+      image: '',
       errors: {},
     };
     this.onChangeCallback = this.onChangeCallback.bind(this);

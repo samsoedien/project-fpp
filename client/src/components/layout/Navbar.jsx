@@ -16,6 +16,9 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+// import {
+//   Avatar,
+// } from '@material-ui/core';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
 import './Navbar.css';

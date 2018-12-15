@@ -11,6 +11,7 @@ exports.testBlogs = (req, res, next) => res.json({ message: 'Blogs Works' });
 exports.getBlogs = (req, res, next) => {
   Blog.find()
     .select('-__v')
+    .populate('user', ['name', 'image', 'moderator'])
     .sort({ date: -1 })
     .exec()
     .then(blogs => res.status(200).json(blogs))
@@ -20,8 +21,7 @@ exports.getBlogs = (req, res, next) => {
 exports.getBlogById = (req, res, next) => {
   Blog.findById(req.params.id)
     .select('-__v')
-    .populate('user', ['name', 'avatar'])
-    .populate('profile', ['name', 'avatar', 'profession'])
+    .populate('user', ['name', 'image', 'moderator'])
     .exec()
     .then(blogs => res.status(200).json(blogs))
     .catch(err => res.status(404).json({ status: 'error', message: 'No blogs found with that ID' }));

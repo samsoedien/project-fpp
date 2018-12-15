@@ -21,7 +21,7 @@ const BlogSchema = new Schema({
   },
   image: {
     type: String,
-    default: 'database/images/pastry.jpg',
+    default: 'uploads/blog.jpg',
   },
   favorites: [
     {

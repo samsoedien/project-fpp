@@ -9,7 +9,7 @@ exports.testIngredients = (req, res, next) => res.json({ message: 'Ingredients W
 exports.getIngredients = (req, res, next) => {
   Ingredient.find()
     .sort({ date: -1 })
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name', 'image', 'moderator'])
     .exec()
     .then(ingredients => res.status(200).json(ingredients))
     .catch(err => res.status(404).json({ noingredientsfound: 'No ingredients found' }));
@@ -27,12 +27,22 @@ exports.postIngredient = (req, res, next) => {
   if (!isValid) {
     return res.status(422).json(errors);
   }
-  const newIngredient = new Ingredient({
-    _id: new mongoose.Types.ObjectId(),
-    name: req.body.name,
-    image: req.body.image,
-  });
-  newIngredient.save().then(ingredient => res.status(201).json(ingredient));
+  if (req.file) {
+    const imagePath = req.file.path.replace(/\\/g, '/');
+    console.log(imagePath);
+    const newIngredient = new Ingredient({
+      _id: new mongoose.Types.ObjectId(),
+      name: req.body.name,
+      image: imagePath,
+    });
+    newIngredient.save().then(ingredient => res.status(201).json(ingredient));
+  } else {
+    const newIngredient = new Ingredient({
+      _id: new mongoose.Types.ObjectId(),
+      name: req.body.name,
+    });
+    newIngredient.save().then(ingredient => res.status(201).json(ingredient));
+  }
 };
 
 exports.updateIngredient = (req, res, next) => { };
