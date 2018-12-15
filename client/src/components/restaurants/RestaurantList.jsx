@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 
 import RestaurantItem from './RestaurantItem';
-import SearchBar from '../common/SearchBar';
+import SearchBarComponent from '../common/SearchBarComponent';
 import Loader from '../common/Loader';
 
 const styles = theme => ({
@@ -44,7 +44,7 @@ const RestaurantList = ({
     <div className="restaurant-list">
       <Grid container>
         <h4 className="text-center text-uppercase">Search Restaurants</h4>
-        <SearchBar
+        <SearchBarComponent
           filterText={filterText}
           filterUpdate={filterUpdate}
           filterCallback={filterCallback}

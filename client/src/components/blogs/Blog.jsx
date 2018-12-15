@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
   Typography,
-  Avatar,
 } from '@material-ui/core';
 
 import BlogHeader from './BlogHeader';

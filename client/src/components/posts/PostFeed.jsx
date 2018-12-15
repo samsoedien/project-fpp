@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Paper,
 } from '@material-ui/core';
 
@@ -61,15 +61,13 @@ const PostFeed = ({
 
   return (
     <div className="post-comment-feed">
-      <Container>
-        <Row>
-          <Col md="12">
-            <Paper>
-              {postContent}
-            </Paper>
-          </Col>
-        </Row>
-      </Container>
+      <Grid container justify="center">
+        <Grid item md={12}>
+          <Paper>
+            {postContent}
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 };

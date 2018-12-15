@@ -22,3 +22,5 @@ TODO:
 
 Backend
 Is made in nodejs using express framework. Using MVC with EJS as template engine for returning error pages.
+
+killall -9 node

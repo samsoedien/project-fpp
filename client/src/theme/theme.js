@@ -34,10 +34,25 @@ const theme = createMuiTheme({
     // caption: {},
     // button: {},
     // h1: {},
+
     h2: {
       fontFamily: '"Great Vibes", cursive',
       fontSize: '6rem',
-    }
+    },
+    h3: {
+      fontFamily: '"Great Vibes", cursive',
+      fontSize: '6rem',
+    },
+    // h3: {
+    //   fontFamily: '"Montserrat", sans-serif',
+    //   fontWeight: '600',
+    // },
+    body1: {
+      fontFamily: '"Montserrat", sans-serif',
+      // fontFamily: '"Great Vibes", cursive',
+      fontWeight: '300',
+      fontSize: '1rem',
+    },
   },
 });
 

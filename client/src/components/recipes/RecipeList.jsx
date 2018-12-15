@@ -1,27 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography, Paper } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
 import RecipeItem from './RecipeItem';
 import RecipeFeatured from './RecipeFeatured';
 import Loader from '../common/Loader';
-import SearchBar from '../common/SearchBar';
+import SearchBarComponent from '../common/SearchBarComponent';
+
+import BANNER_IMG from '../../assets/img/pastry.jpg';
 
 const styles = theme => ({
-  recipeSearch: {
-    display: 'flex',
-    justifyContent: 'center',
+  root: {},
+  recipeListTitle: {
+    margin: '16px 0',
+    textAlign: 'center',
+  },
+  recipeListParagraph: {
+    textAlign: 'center',
   },
 });
 
 const RecipeList = ({
   recipes,
+  loading,
   filterText,
   filterUpdate,
-  loading,
   classes,
 }) => {
   const filterCallback = val => {
@@ -46,29 +51,31 @@ const RecipeList = ({
   }
   return (
     <div className="recipe-list">
-      {/* <RecipeFeatured recipes={recipes} loading={loading} /> */}
-      <Container>
-        <Paper elevation="4" className={classes.recipeSearch}>
-          <SearchBar
-            searchLabel="Search Recipes"
-            filterText={filterText}
-            filterUpdate={filterUpdate}
-            filterCallback={filterCallback}
-          />
-        </Paper>
-      </Container>
+      <Grid container justify="center">
+        <Grid item xs={12} sm={10} md={8}>
+          <Typography variant="h3" className={classes.recipeListTitle}>Recipe Catalogue</Typography>
+          <Typography paragraph variant="body1" className={classes.recipeListParagraph}>Find below an broad assortment of food printable pastry dishes. With each recipe simple instructions are given in how to prepare the dish. Best of all most recipes can be personalised to your cutsomer wishes!</Typography>
+        </Grid>
+      </Grid>
+      <RecipeFeatured recipes={recipes} loading={loading} />
 
-      <Container>
-        <Row>
-          {recipeItems}
-        </Row>
-      </Container>
-    </div >
+      <SearchBarComponent
+        bannerImage={BANNER_IMG}
+        searchLabel="Search Recipes"
+        filterText={filterText}
+        filterUpdate={filterUpdate}
+        filterCallback={filterCallback}
+      />
+
+      <Grid container justify="center" spacing={24}>
+        {recipeItems}
+      </Grid>
+    </div>
   );
 };
 
 RecipeList.propTypes = {
-  recipes: PropTypes.object,
+  recipes: PropTypes.shape({}).isRequired,
   loading: PropTypes.bool.isRequired,
   filterText: PropTypes.string.isRequired,
   filterUpdate: PropTypes.func.isRequired,

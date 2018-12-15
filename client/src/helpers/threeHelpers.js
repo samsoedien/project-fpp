@@ -1,5 +1,5 @@
 import THREE from './three';
-import FONT from '../assets/fonts/helvetiker_bold.typeface.json';
+// import FONT from '../assets/fonts/helvetiker_bold.typeface.json';
 
 // export const threeDetector = () => {
 //   if (Detector.webgl) {
@@ -146,8 +146,8 @@ export const threeNewGeometry = (geo) => {
 
 export const threeTextGeometry = () => {
   const loader = new THREE.FontLoader();
-  const fontName = 'helvetiker';
-  const fontWeight = 'bold';
+  // const fontName = 'helvetiker';
+  // const fontWeight = 'bold';
 
   let geometry;
   loader.load( '//raw.githubusercontent.com/mrdoob/three.js/master/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {

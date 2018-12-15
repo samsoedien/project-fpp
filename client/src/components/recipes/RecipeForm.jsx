@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
   TextField,
   Button,
@@ -53,7 +53,7 @@ const RecipeForm = ({
 
   return (
     <div className="recipe-form">
-      <Container>
+      <Grid container justify="center">
         <ModalComponent buttonLabel="Create a Recipe" className={classes.recipeFormModal}>
           <Typography variant="h6" id="modal-title">
             Create a Recipe
@@ -118,7 +118,7 @@ const RecipeForm = ({
             <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.recipeFormButton}>Submit</Button>
           </form>
         </ModalComponent>
-      </Container>
+      </Grid>
     </div>
   );
 };
@@ -127,10 +127,10 @@ RecipeForm.propTypes = {
   title: PropTypes.string.isRequired,
   cuisine: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  directions: PropTypes.object.isRequired,
-  image: PropTypes.object.isRequired,
-  settings: PropTypes.array.isRequired,
-  ingredient: PropTypes.object.isRequired,
+  directions: PropTypes.shape().isRequired,
+  image: PropTypes.string.isRequired,
+  settings: PropTypes.arrayOf({}).isRequired,
+  ingredient: PropTypes.shape().isRequired,
   onChangeCallback: PropTypes.func.isRequired,
   onSubmitCallback: PropTypes.func.isRequired,
   errors: PropTypes.shape({

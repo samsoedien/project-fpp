@@ -3,7 +3,7 @@ import './ThreeFileImporter.css';
 import THREE from '../../helpers/three';
 import { threeLoader } from '../../helpers/threeHelpers';
 
-import MODELJSON from '../../assets/models/utah-teapot.json';
+// import MODELJSON from '../../assets/models/utah-teapot.json';
 import MODEL from '../../assets/models/dome.stl';
 
 class ThreeFileImporter extends Component {

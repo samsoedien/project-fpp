@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -25,37 +24,35 @@ const ProfileItem = ({ profile, classes }) => {
   return (
     <div className="profile-item">
       <Card>
-        <Row>
-          <Col md="2">
-            <Avatar alt="" src={`/${profile.user.image}`} className={classes.profileAvatar} />
-          </Col>
-          <Col md="4" lg="6">
-            <h3>{profile.user.name}</h3>
-            <p>
-              {profile.status}{' '}
-              {isEmpty(profile.company) ? null : (
-                <span>at {profile.company}</span>
-              )}
-            </p>
-            <p>
-              {isEmpty(profile.location) ? null : (
-                <span>{profile.location}</span>
-              )}
-            </p>
-            <Button component={Link} to={`/profiles/${profile.handle}`} variant="contained" color="primary">View Profile</Button>
-          </Col>
-          <Col md="4">
-            <h4>Skill Set</h4>
-            <ul className="list-group">
-              {profile.skills.slice(0, 4).map((skill, index) => (
-                <li key={index} className="list-group-item">
-                  <i className="fa fa-check pr-1" />
-                  {skill}
-                </li>
-              ))}
-            </ul>
-          </Col>
-        </Row>
+        <Grid item md={2}>
+          <Avatar alt="" src={`/${profile.user.image}`} className={classes.profileAvatar} />
+        </Grid>
+        <Grid item md={4} lg={6}>
+          <Typography variant="h3">{profile.user.name}</Typography>
+          <Typography>
+            {profile.status}{' '}
+            {isEmpty(profile.company) ? null : (
+              <span>at {profile.company}</span>
+            )}
+          </Typography>
+          <Typography>
+            {isEmpty(profile.location) ? null : (
+              <span>{profile.location}</span>
+            )}
+          </Typography>
+          <Button component={Link} to={`/profiles/${profile.handle}`} variant="contained" color="primary">View Profile</Button>
+        </Grid>
+        <Grid item md={4}>
+          <Typography variant="h4">Skill Set</Typography>
+          <ul className="list-group">
+            {profile.skills.slice(0, 4).map((skill, index) => (
+              <li key={index} className="list-group-item">
+                <i className="fa fa-check pr-1" />
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </Grid>
       </Card>
     </div>
   );

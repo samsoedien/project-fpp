@@ -84,7 +84,6 @@ const Footer = ({
             <List dense component="nav" className={classes.footerList}>
               <ListItem component={Link} to="/about-us" button>
                 <ListItemText
-                  // disableTypography
                   primary={<Typography variant="body2" type="body2" className={classes.footerListItem}>About us</Typography>}
                 />
               </ListItem>

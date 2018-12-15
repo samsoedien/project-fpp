@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Moment from 'react-moment';
 
 import ConfirmDeleteWrapper from '../../wrappers/ConfirmDeleteWrapper';
 
+const styles = theme => ({
+
+});
+
 const Experience = ({
   experience,
   onDeleteExperience,
+  classes,
 }) => {
   const onDelete = id => {
     onDeleteExperience(id);
@@ -58,6 +63,7 @@ const Experience = ({
 Experience.propTypes = {
   experience: PropTypes.shape({}).isRequired,
   onDeleteExperience: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default Experience;
+export default withStyles(styles)(Experience);

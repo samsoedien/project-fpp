@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
   Button,
   Avatar,
@@ -54,38 +54,36 @@ const Post = ({
 
   return (
     <div className="post-comment">
-      <Container>
-        <Row>
-          <Col md="2">
-            <Avatar src={post.avatar} className={classes.postAvatar} component={Link} to="/" />
-            <Typography>{post.name}</Typography>
-          </Col>
-          <Col md="10">
-            {(isFlagged) ? <Typography variant="caption">This comment has been flagged by a user</Typography> : <Typography variant="paragraph">{post.comment}</Typography>}
-            {showActions ? (
-              <Fragment>
-                <IconButton onClick={onLike}>
-                  <Typography>{post.likes.length}</Typography>
-                  <ThumbUpIcon
-                    className={isLiked ? classes.postThumbIconLiked : classes.postThumbIconUnliked}
+      <Grid container justify="center">
+        <Grid item md={2}>
+          <Avatar src={post.avatar} className={classes.postAvatar} component={Link} to="/" />
+          <Typography>{post.name}</Typography>
+        </Grid>
+        <Grid item md={10}>
+          {(isFlagged) ? <Typography variant="caption">This comment has been flagged by a user</Typography> : <Typography variant="paragraph">{post.comment}</Typography>}
+          {showActions ? (
+            <Fragment>
+              <IconButton onClick={onLike}>
+                <Typography>{post.likes.length}</Typography>
+                <ThumbUpIcon
+                  className={isLiked ? classes.postThumbIconLiked : classes.postThumbIconUnliked}
+                />
+              </IconButton>
+              <Tooltip title="flag comment as inappropriate" placement="top" TransitionComponent={Zoom}>
+                <IconButton onClick={onFlag}>
+                  <FlagIcon
+                    className={isFlagged ? classes.flagIconFlagged : classes.flagIconUnflagged}
                   />
                 </IconButton>
-                <Tooltip title="flag comment as inappropriate" placement="top" TransitionComponent={Zoom}>
-                  <IconButton onClick={onFlag}>
-                    <FlagIcon
-                      className={isFlagged ? classes.flagIconFlagged : classes.flagIconUnflagged}
-                    />
-                  </IconButton>
-                </Tooltip>
-                {auth.isAuthenticated ? <Button variant="outline" color="primary" onClick={onReply}>Reply</Button> : null}
-                {post.user === auth.user.id
-                  ? (<Button variant="contained" color="secondary" onClick={onDelete}>Delete Comment</Button>)
-                  : null}
-              </Fragment>
-            ) : null}
-          </Col>
-        </Row>
-      </Container>
+              </Tooltip>
+              {auth.isAuthenticated ? <Button variant="outline" color="primary" onClick={onReply}>Reply</Button> : null}
+              {post.user === auth.user.id
+                ? (<Button variant="contained" color="secondary" onClick={onDelete}>Delete Comment</Button>)
+                : null}
+            </Fragment>
+          ) : null}
+        </Grid>
+      </Grid>
     </div>
   );
 };

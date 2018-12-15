@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 
 import IngredientItem from './IngredientItem';
 import Loader from '../common/Loader';
-import SearchBar from '../common/SearchBar';
+import SearchBarComponent from '../common/SearchBarComponent';
 
 const styles = theme => ({
 
@@ -42,7 +42,7 @@ const IngredientList = ({
     <div className="ingredient-list">
       <Grid container justify="center">
         <div className="input-group input-group-lg">
-          <SearchBar
+          <SearchBarComponent
             filterText={filterText}
             filterUpdate={filterUpdate}
             filterCallback={filterCallback}

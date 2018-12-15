@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Link } from  'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
 } from '@material-ui/core';
 
 import ThreeContainer from '../../containers/ThreeContainer';
 import RecipeHeader from './RecipeHeader';
-import RecipeProfileCard from './RecipeProfileCard';
 import RecipeChips from './RecipeChips';
 import PostFeed from '../posts/PostFeed';
 import PostForm from '../posts/PostForm';
@@ -100,31 +99,31 @@ const Recipe = ({
           onDeleteHandle={onDeleteHandle}
           onFavoriteHandle={onFavoriteHandle}
         />
-        <Container>
-          <Row className={classes.center}>
-            <Col md="8" style={{ minHeight: '360px' }}>
-              <Typography variant="caption" className="text-muted text-left text-uppercase">
-                {'Cuisine: '}
-                {recipe.cuisine}
-              </Typography>
-              <Typography variant="h2" className={classes.recipeTitle}>{recipe.title}</Typography>
-              <RecipeChips recipe={recipe.settings} />
-              {isEmpty(recipe.description)
-                ? (<Typography variant="caption">No description written yet</Typography>)
-                : (<Typography variant="paragraph">{recipe.description}</Typography>)}
-            </Col>
-          </Row>
-        </Container>
+        <Grid container justify="center">
+          <Grid item md={8}>
+            <Typography variant="caption" className="text-muted text-left text-uppercase">
+              {'Cuisine: '}
+              {recipe.cuisine}
+            </Typography>
+            <Typography variant="h2" className={classes.recipeTitle}>{recipe.title}</Typography>
+            <RecipeChips recipe={recipe.settings} />
+            {isEmpty(recipe.description)
+              ? (<Typography variant="caption">No description written yet</Typography>)
+              : (<Typography variant="paragraph">{recipe.description}</Typography>)}
+          </Grid>
+        </Grid>
         <ThreeContainer recipe={recipe} width="600px" height="400px" />
-        {auth.isAuthenticated ? (
-          <PostForm
-            comment={comment}
-            errors={errors}
-            onChangeHandle={onChangeHandle}
-            onCancelHandle={onCancelHandle}
-            onSubmitHandle={onSubmitHandle}
-          />
-        ) : <Typography variant="caption" className={classes.caption}>Signin to place a comment</Typography>}
+        {
+          auth.isAuthenticated ? (
+            <PostForm
+              comment={comment}
+              errors={errors}
+              onChangeHandle={onChangeHandle}
+              onCancelHandle={onCancelHandle}
+              onSubmitHandle={onSubmitHandle}
+            />
+          ) : <Typography variant="caption" className={classes.caption}>Signin to place a comment</Typography>
+        }
         <PostFeed
           posts={recipe.posts}
           loading={loading}

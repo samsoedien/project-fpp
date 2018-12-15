@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Chip,
 } from '@material-ui/core';
 
@@ -24,17 +24,15 @@ const RecipeChips = ({ recipe, classes }) => {
 
   return (
     <div className="recipe-chips">
-      <Container>
-        <Row>
-          {recipeChips}
-        </Row>
-      </Container>
+      <Grid container justify="center">
+        {recipeChips}
+      </Grid>
     </div>
   );
 };
 
 RecipeChips.propTypes = {
-  recipe: PropTypes.object,
+  recipe: PropTypes.shape({}).isRequired,
   classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 

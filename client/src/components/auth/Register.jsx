@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
-  Typography,
   Paper,
-  Button,
 } from '@material-ui/core';
 
-import RegisterStepperComponent from './RegisterStepperComponent';
+import RegisterForm from './RegisterForm';
 
 const styles = theme => ({
 });
@@ -44,7 +42,7 @@ const Register = ({
       <Grid container justify="center">
         <Grid item md={8}>
           <Paper className={classes.registerPaper}>
-            <RegisterStepperComponent
+            <RegisterForm
               name={name}
               email={email}
               password={password}

@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
-// import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Button,
@@ -105,14 +104,21 @@ const RecipeHeader = ({
           <div className={classes.recipeHeaderOverlay} />
           {recipe.user._id === auth.user.id ? (
             <Fragment>
-              <Button variant="contained" color="secondary" className={classes.recipeDeleteButton} onClick={onDelete}>Delete Recipe<DeleteIcon /></Button>
+              <Button variant="contained" color="secondary" className={classes.recipeDeleteButton} onClick={onDelete}>
+                Delete Recipe
+                <DeleteIcon />
+              </Button>
               <Button variant="outlined" className={classes.recipeEditButton} onClick={onEdit}>Edit Recipe</Button>
             </Fragment>
           ) : null}
 
           <Tooltip title={`${recipe.favorites.length} chef(s) loved this recipe`} placement="top" TransitionComponent={Zoom}>
             <IconButton onClick={onFavorite} className={classes.recipeHeaderFavoriteButton}>
-              <FavoriteIcon className={isFavorited ? classes.recipeHeaderIconFavorited : classes.recipeHeaderIcon} />
+              <FavoriteIcon
+                className={isFavorited
+                  ? classes.recipeHeaderIconFavorited
+                  : classes.recipeHeaderIcon}
+              />
             </IconButton>
           </Tooltip>
           <IconButton className={classes.recipeHeaderShareButton}>

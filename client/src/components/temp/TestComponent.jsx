@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+// import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
 
-import Pricing from '../layout/Pricing';
+const styles = theme => ({
 
-export default class TestComponent extends Component {
-  render() {
-    return (
-      <div>
-        <Pricing />
-      </div>
-    );
-  }
-}
+});
+
+const TestComponent = ({ classes }) => (
+  <div>
+    component use for testing
+  </div>
+);
+
+TestComponent.propTypes = {
+  classes: PropTypes.object.isRequired, // eslint-disable-line
+};
+
+export default withStyles(styles)(TestComponent);

@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
   Typography,
-  Card,
   Avatar,
 } from '@material-ui/core';
 

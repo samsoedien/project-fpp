@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -9,7 +9,11 @@ import {
 
 import Loader from '../common/Loader';
 
-const Ingredient = ({ ingredient, loading }) => {
+const styles = theme => ({
+
+});
+
+const Ingredient = ({ ingredient, loading, classes }) => {
   let ingredientContent;
   if (ingredient === null || loading) {
     ingredientContent = <Loader />;
@@ -36,6 +40,7 @@ Ingredient.propTypes = {
     name: PropTypes.string,
   }).isRequired,
   loading: PropTypes.bool.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default Ingredient;
+export default withStyles(styles)(Ingredient);

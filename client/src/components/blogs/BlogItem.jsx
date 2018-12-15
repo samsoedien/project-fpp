@@ -14,11 +14,9 @@ import {
   Button,
 } from '@material-ui/core';
 
-import BLOG_IMAGE from '../../assets/img/foodprinted_sidedish.jpg';
-
 const styles = theme => ({
   blogCard: {
-    margin: '20px',
+    margin: '20px 60px',
     height: '600px',
     width: '320px',
   },
@@ -44,31 +42,30 @@ const styles = theme => ({
 });
 
 const BlogItem = ({ blog, classes }) => (
-  <div className="blog-item">
-    <Grid item xs={12} sm={12} md={6} lg={4}>
+  <Grid item>
+    <div className="blog-item">
       <Card className={classes.blogCard} raised="true">
+        <CardHeader
+          title={blog.headline}
+          subheader={`Blog Author ${blog.user.name}`}
+          className={classes.blogCardHeader}
+        />
         <CardActionArea component={Link} to={`/blogs/${blog._id}`}>
-          <CardHeader
-            title={blog.heading}
-            subheader={`Blog Author ${blog.user.name}`}
-            className={classes.blogCardHeader}
-          />
           <CardMedia
-            // image={blog.image}
-            image={BLOG_IMAGE}
+            image={blog.image}
             title="blog banner image"
             className={classes.blogCardMedia}
           />
-          <CardContent className={classes.blogCardContent}>
-            <Typography variant="paragraph">{blog.article}</Typography>
-            <CardActions className={classes.blogCardActions}>
-              <Button variant="outlined" color="primary" component={Link} to={`/blogs/${blog._id}`}>Read Full Blog</Button>
-            </CardActions>
-          </CardContent>
         </CardActionArea>
+        <CardContent className={classes.blogCardContent}>
+          <Typography variant="paragraph">{blog.article}</Typography>
+          <CardActions className={classes.blogCardActions}>
+            <Button variant="outlined" color="primary" component={Link} to={`/blogs/${blog._id}`}>Read Full Blog</Button>
+          </CardActions>
+        </CardContent>
       </Card>
-    </Grid>
-  </div>
+    </div>
+  </Grid>
 );
 
 BlogItem.propTypes = {

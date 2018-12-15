@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import THREE from '../../helpers/three';
-import { threeInit, threeLights, threeCalcVol } from '../../helpers/threeHelpers';
+// import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core';
 
+import THREE from '../../helpers/three';
+// import { threeInit, threeLights, threeCalcVol } from '../../helpers/threeHelpers';
 import ThreeVolume from './ThreeVolume';
-import ThreeNutritions from './ThreeNutritions';
 import ThreeFileExporter from './ThreeFileExporter';
+
+const styles = theme => ({
+
+});
 
 class ThreeScene extends Component {
   constructor(props) {
@@ -115,36 +121,35 @@ class ThreeScene extends Component {
     });
   }
 
-  volumeCallback(vol) {
-    const volume = vol;
-  }
+  // volumeCallback(vol) {
+  //   const volume = vol;
+  // }
 
   render() {
+    const { classes } = this.props;
     return (
-      <div className="three-scene">
-        <div className="container">
-          <div className="row">
-            <div
-              className={this.state.largerWindowSizeActive ? 'col-md-12' : 'col-md-8'}
-              style={{ height: '600px', width: '400px' }}
-              ref={(mount) => { this.mount = mount; }}
-            >
-              <button type="button" onClick={this.onClick} className="btn btn-secondary btn-sm position-absolute" style={{ top: '8px', right: '4px' }}>{this.state.largerWindowSizeActive ? 'Smaller' : 'Larger'}</button>
-              <ThreeVolume mesh={this.mesh} volumeCallback={this.volumeCallback} />
-              <ThreeFileExporter name={this.props.title} scene={this.state.scene} />
-            </div>
-
+      <div className={classes.root}>
+        <Grid container justify="center">
+          <div
+            className={this.state.largerWindowSizeActive ? 'col-md-12' : 'col-md-8'}
+            style={{ height: '600px', width: '400px' }}
+            ref={(mount) => { this.mount = mount; }}
+          >
+            <button type="button" onClick={this.onClick} className="btn btn-secondary btn-sm position-absolute" style={{ top: '8px', right: '4px' }}>{this.state.largerWindowSizeActive ? 'Smaller' : 'Larger'}</button>
+            <ThreeVolume mesh={this.mesh} volumeCallback={this.volumeCallback} />
+            <ThreeFileExporter name={this.props.title} scene={this.state.scene} />
           </div>
-        </div>
+        </Grid>
       </div>
     );
   }
 }
 
 ThreeScene.propTypes = {
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default ThreeScene;
+export default withStyles(styles)(ThreeScene);
 
 /* <div className="col-md-4">
 <ThreeNutritions volume={this.props.volume} nutritions={this.props.ingredient.nutritions} />

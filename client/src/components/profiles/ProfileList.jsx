@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
+  Grid,
   Typography,
 } from '@material-ui/core';
 
@@ -29,15 +29,13 @@ const ProfileList = ({ profiles, loading, classes }) => {
 
   return (
     <div className="profiles-list">
-      <Container>
-        <Row>
-          <Col md="12">
-            <Typography variant="h4">Chef Profiles</Typography>
-            <Typography>Browse and connect with chefs</Typography>
-            {profileItems}
-          </Col>
-        </Row>
-      </Container>
+      <Grid container justify="center">
+        <Grid item md={12}>
+          <Typography variant="h4">Chef Profiles</Typography>
+          <Typography>Browse and connect with chefs</Typography>
+          {profileItems}
+        </Grid>
+      </Grid>
     </div>
   );
 };

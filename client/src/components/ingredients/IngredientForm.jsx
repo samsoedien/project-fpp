@@ -39,12 +39,12 @@ const IngredientForm = ({
     <div className="ingredient-form">
       <Grid container justify="center">
         <Grid item xs={8}>
-          <Typography variant="h2">Create a recipe</Typography>
-          <Typography variant="paragraph">
-            Add some information to start creating your custom food printing
-            dish.
-            </Typography>
           <form onSubmit={onSubmit} noValidate autoComplete="off">
+            <Typography variant="h2">Create a recipe</Typography>
+            <Typography variant="paragraph">
+              Add some information to start creating your custom food printing
+              dish.
+            </Typography>
             <TextField
               id="mui-theme-provider-outlined-input"
               className={classes.ingredientFormInput}
