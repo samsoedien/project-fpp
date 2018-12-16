@@ -14,11 +14,14 @@ class ProfileFormContainer extends Component {
       displaySocialInputs: false,
       // handle: '',
       profession: '',
+      company: '',
       location: '',
       bio: '',
+      skills: '',
       twitter: '',
       facebook: '',
       instagram: '',
+      image: '',
       errors: {},
       isOpen: false,
     };
@@ -41,28 +44,50 @@ class ProfileFormContainer extends Component {
   }
 
   onChangeCallback(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    switch (e.target.name) {
+      case 'image':
+        this.setState({ image: e.target.files[0] });
+        break;
+      default:
+        this.setState({ [e.target.name]: e.target.value });
+    }
   }
 
   onSubmitCallback() {
     const {
       // handle,
       profession,
+      company,
       location,
       bio,
+      skills,
       twitter,
       facebook,
       instagram,
+      image,
     } = this.state;
-    const profileData = {
-      // handle,
-      profession,
-      location,
-      bio,
-      twitter,
-      facebook,
-      instagram,
-    };
+    // const profileData = {
+    //   // handle,
+    //   profession,
+    //   company,
+    //   location,
+    //   bio,
+    //   skills,
+    //   twitter,
+    //   facebook,
+    //   instagram,
+    // };
+    const profileData = new FormData();
+    profileData.append('profession', profession);
+    profileData.append('company', company);
+    profileData.append('location', location);
+    profileData.append('bio', bio);
+    profileData.append('skills', skills);
+    profileData.append('twitter', twitter);
+    profileData.append('facebook', facebook);
+    profileData.append('instagram', instagram);
+    profileData.append('image', image);
+
     const { createProfile, history } = this.props;
     createProfile(profileData, history);
   }

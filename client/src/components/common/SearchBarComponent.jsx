@@ -19,13 +19,13 @@ const styles = theme => ({
     marginTop: '100px',
   },
   searchInput: {
-    fontSize: '2.4rem',
+    fontSize: '2rem',
     background: 'white',
     color: theme.palette.primary.main,
     // padding: '8px 0',
   },
   searchIcon: {
-    marginRight: '32px',
+    marginRight: '16px',
     height: '45px',
     width: '45px',
     color: theme.palette.primary.main,

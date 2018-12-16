@@ -79,13 +79,27 @@ exports.createOrUpdateProfile = (req, res, next) => {
   }
   const { skills, twitter, facebook, instagram } = req.body;
 
-  const profileFields = {
-    ...req.body,
-    handle: req.user.name,
-    user: req.user.id,
-    // skills: skills.split(','),
-    social: { twitter, facebook, instagram }
-  };
+  let profileFields;
+  if (!req.file) {
+    profileFields = {
+      ...req.body,
+      handle: req.user.name,
+      user: req.user.id,
+      skills: skills.split(','),
+      social: { twitter, facebook, instagram }
+    };
+  } else {
+    const imagePath = req.file.path.replace(/\\/g, '/');
+    console.log(imagePath);
+    profileFields = {
+      ...req.body,
+      handle: req.user.name,
+      user: req.user.id,
+      skills: skills.split(','),
+      social: { twitter, facebook, instagram },
+      image: imagePath,
+    };
+  }
 
   // // Get fields
   // const profileFields = {};
@@ -108,7 +122,7 @@ exports.createOrUpdateProfile = (req, res, next) => {
   Profile.findOne({ user: req.user.id }).then(profile => {
     if (profile) {
       Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true }).then(
-        profile => res.json(profile)
+        profile => res.json(profile),
       );
     } else {
       // Profile.findOne({ handle: profileFields.handle }).then(profile => {
@@ -136,7 +150,7 @@ exports.postExperience = (req, res, next) => {
       from: req.body.from,
       to: req.body.to,
       current: req.body.current,
-      description: req.body.description
+      description: req.body.description,
     };
     profile.experience.unshift(newExp);
     profile.save().then(result => res.json(result));

@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid, Typography, Button } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
 import RecipeItem from './RecipeItem';
 import RecipeFeatured from './RecipeFeatured';
 import Loader from '../common/Loader';
 import SearchBarComponent from '../common/SearchBarComponent';
+import ImageBanner from '../homepage/ImageBanner';
+import ProfileAction from '../profiles/ProfileAction';
 
 import BANNER_IMG from '../../assets/img/pastry.jpg';
+import ACTION_IMG from '../../assets/img/profile-action-recipe.jpg';
+
 
 const styles = theme => ({
   root: {
@@ -22,8 +26,8 @@ const styles = theme => ({
     textAlign: 'center',
   },
   recipelistButton: {
-    margin: '24px 0',
-
+    // margin: '24px 0',
+    margin: '0 auto',
   }
 });
 
@@ -59,16 +63,20 @@ const RecipeList = ({
       <Grid container justify="center">
         <Grid item xs={12} sm={10} md={8}>
           <Typography variant="h3" className={classes.recipeListTitle}>Recipe Catalogue</Typography>
-          <Typography paragraph variant="body1" className={classes.recipeListParagraph}>Find below an broad assortment of food printable pastry dishes. With each recipe simple instructions are given in how to prepare the dish. Best of all most recipes can be personalised to your cutsomer wishes!</Typography>
+          <Typography paragraph variant="body1" className={classes.recipeListParagraph}>Find below an broad assortment of food printable pastry dishes. With each recipe simple instructions are given in how to prepare the dish. Best of all most recipes can be personalised to your customer wishes!</Typography>
         </Grid>
       </Grid>
       <RecipeFeatured recipes={recipes} loading={loading} />
 
+      <ImageBanner />
+
       <Grid container justify="center">
-        <Grid item>
+        <Grid item xs={12} sm={10} md={8}>
           <Typography variant="body1" className={classes.recipeListParagraph}>Also want to create custom pastry dishes for your business? Get started with an easy dish creation process.</Typography>
-          <Button component={Link} to="/create-recipe" variant="contained" color="primary" className={classes.recipelistButton}>Create a Recipe</Button>
         </Grid>
+      </Grid>
+      <Grid container justify="center">
+        <ProfileAction url="/create-recipe" buttonLabel="Create a Recipe" actionImage={ACTION_IMG} />
       </Grid>
 
       <SearchBarComponent

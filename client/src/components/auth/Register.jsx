@@ -40,7 +40,7 @@ const Register = ({
   return (
     <div className="register">
       <Grid container justify="center">
-        <Grid item md={8}>
+        <Grid item xs={12} sm={8} md={6}>
           <Paper className={classes.registerPaper}>
             <RegisterForm
               name={name}

@@ -116,7 +116,7 @@ const NavbarComponent = ({
               <NavLink tag={Link} to="/recipes" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Recipes</NavLink>
             </NavItem>
             <NavItem className="navbar__item">
-              <NavLink tag={Link} to="/restaurants" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Restaurants</NavLink>
+              <NavLink tag={Link} to="/profiles" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Pâtisseries</NavLink>
             </NavItem>
             <NavItem className="navbar__item">
               <NavLink tag={Link} to="/community" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Community</NavLink>

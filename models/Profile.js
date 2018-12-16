@@ -21,6 +21,9 @@ const ProfileSchema = new Schema({
     type: String,
     default: 'Apprentice',
   },
+  company: {
+    type: String,
+  },
   location: {
     type: String,
   },
@@ -28,6 +31,9 @@ const ProfileSchema = new Schema({
     type: [String],
   },
   bio: {
+    type: String,
+  },
+  image: {
     type: String,
   },
   experience: [

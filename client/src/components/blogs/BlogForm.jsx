@@ -49,9 +49,8 @@ const BlogForm = ({
       <Grid container justify="center">
         <Grid item md={8}>
           <Card className={classes.blogFormCard}>
-            <CardHeader className={classes.blogFormCardheader} color="primary" title="Comment" />
             <CardContent>
-              <Typography>Write a Blog</Typography>
+              <Typography variant="h3">Write a Blog</Typography>
               <form onSubmit={onSubmit} noValidate>
                 <TextField
                   className={classes.blogFormInput}

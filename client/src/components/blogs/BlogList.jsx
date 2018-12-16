@@ -12,8 +12,11 @@ import {
 import BlogItem from './BlogItem';
 import Loader from '../common/Loader';
 // import SearchBarComponent from '../common/SearchBarComponent';
+import ProfileAction from '../profiles/ProfileAction';
 
 // import BANNER_IMG from '../../assets/img/foodprinted_sidedish.jpg';
+import ACTION_IMG from '../../assets/img/profile-action-blog.jpg';
+
 
 const styles = theme => ({
   root: {},
@@ -90,10 +93,12 @@ const BlogList = ({
       <Divider variant="middle" />
 
       <Grid container justify="center">
-        <Grid item>
+        <Grid item xs={12} sm={10} md={8}>
           <Typography variant="body1" className={classes.blogListParagraph}>Do you have an interesting story to share? Write your blog post about your food experiences, cooking skills, and more</Typography>
-          <Button component={Link} to="/create-blog" size="large" variant="contained" color="primary" className={classes.blogListButton}>Write a Blog</Button>
         </Grid>
+      </Grid>
+      <Grid container justify="center">
+        <ProfileAction url="/create-blog" buttonLabel="Write a Blog" actionImage={ACTION_IMG} />
       </Grid>
 
     </div>

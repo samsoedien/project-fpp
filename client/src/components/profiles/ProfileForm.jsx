@@ -6,13 +6,19 @@ import {
   Grid,
   Typography,
   TextField,
+  Input,
   Button,
   MenuItem,
 } from '@material-ui/core';
+import { CloudUpload as CloudUploadIcon } from '@material-ui/icons';
 
 const styles = theme => ({
   profileFormInput: {
     margin: '12px 0',
+  },
+  profileFormText: {
+    margin: '16px 0',
+    textAlign: 'center',
   },
 });
 
@@ -21,11 +27,14 @@ const ProfileForm = ({
   displaySocialInputs,
   // handle,
   profession,
+  company,
   location,
   bio,
+  skills,
   twitter,
   facebook,
   instagram,
+  image,
   errors,
   onChangeCallback,
   onSubmitCallback,
@@ -109,14 +118,14 @@ const ProfileForm = ({
   return (
     <div className="profile-form">
       <Grid container justify="center">
-        <Grid item md={8}>
+        <Grid item xs={10} md={8}>
           <form onSubmit={onSubmit} className={classes.profileForm} noValidate autoComplete="off">
             {!updateProfile ? (
               <Typography variant="h3" className={classes.profileFormTitle}>Create Your Profile</Typography>
             ) : (
                 <Typography variant="h3" className={classes.profileFormTitle}>Edit Your Profile</Typography>
               )}
-            <Typography className={classes.profileFormText} variant="body1">Fill in the form</Typography>
+            <Typography className={classes.profileFormText} variant="body1">Fill in the form to profile your business to the outisde world.</Typography>
 
             {/* <TextField
               className={classes.profileFormInput}
@@ -155,6 +164,19 @@ const ProfileForm = ({
               className={classes.profileFormInput}
               variant="outlined"
               fullWidth
+              label="Business Name"
+              type="text"
+              name="company"
+              value={company}
+              onChange={onChange}
+              error={errors.company}
+              helperText={errors ? errors.company : ''}
+            />
+
+            <TextField
+              className={classes.profileFormInput}
+              variant="outlined"
+              fullWidth
               label="Location"
               type="text"
               name="location"
@@ -163,9 +185,24 @@ const ProfileForm = ({
               error={errors.location}
               helperText={errors ? errors.location : ''}
             />
+
             <TextField
               className={classes.profileFormInput}
               variant="outlined"
+              fullWidth
+              label="Specialties"
+              type="text"
+              name="skills"
+              value={skills}
+              onChange={onChange}
+              error={errors.skills}
+              helperText={errors ? errors.skills : ''}
+            />
+            <TextField
+              className={classes.profileFormInput}
+              variant="outlined"
+              rows="4"
+              multiline
               fullWidth
               label="Short Bio"
               type="text"
@@ -175,6 +212,19 @@ const ProfileForm = ({
               error={errors.bio}
               helperText={errors ? errors.bio : ''}
             />
+            <Button
+              id="image-upload"
+              variant="outlined"
+              color="primary"
+              component="label"
+              label="My Label"
+              className={classes.recipeUploadButton}
+            >
+              <Input type="file" name="image" onChange={onChange} className={classes.recipeFileInput} />
+              {'Upload'}
+              <CloudUploadIcon className={classes.recipeFileButton} />
+            </Button>
+
             <Button onClick={onDisplayInputs} variant="outlined" color="primary">Add Social Network Links</Button>
             {socialInputs}
             <Button variant="contained" color="primary" type="submit" value="Submit" className={classes.profileFormButton}>Submit</Button>
@@ -188,13 +238,16 @@ const ProfileForm = ({
 ProfileForm.propTypes = {
   updateProfile: PropTypes.bool.isRequired,
   displaySocialInputs: PropTypes.bool.isRequired,
-  handle: PropTypes.string.isRequired,
+  // handle: PropTypes.string.isRequired,
   profession: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   bio: PropTypes.string.isRequired,
+  skills: PropTypes.string.isRequired,
   twitter: PropTypes.string.isRequired,
   facebook: PropTypes.string.isRequired,
   instagram: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   errors: PropTypes.shape({
     profession: PropTypes.string,
   }).isRequired,

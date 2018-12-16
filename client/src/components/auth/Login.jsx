@@ -80,7 +80,7 @@ const Login = ({
             </Grid>
             <Grid item xs={12} sm={6}>
               <form onSubmit={onSubmit} className={classes.loginForm} noValidate autoComplete="off">
-                <Typography className={classes.loginFormTitle} variant="h3" color="primary">Login</Typography>
+                <Typography className={classes.loginFormTitle} variant="h2">Login</Typography>
                 <Typography className={classes.formText} variant="body1">Sign in to your account</Typography>
                 <small className={classes.loginFormSmall}>
                   {'No account yet? '}

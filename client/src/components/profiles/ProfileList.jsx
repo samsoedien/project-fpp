@@ -11,7 +11,9 @@ import Loader from '../common/Loader';
 import ProfileItem from './ProfileItem';
 
 const styles = theme => ({
-
+  profileListTypography: {
+    textAlign: 'center',
+  },
 });
 
 const ProfileList = ({ profiles, loading, classes }) => {
@@ -30,9 +32,9 @@ const ProfileList = ({ profiles, loading, classes }) => {
   return (
     <div className="profiles-list">
       <Grid container justify="center">
-        <Grid item md={12}>
-          <Typography variant="h4">Chef Profiles</Typography>
-          <Typography>Browse and connect with chefs</Typography>
+        <Grid item>
+          <Typography variant="h2" className={classes.profileListTypography}>Business Profiles</Typography>
+          <Typography paragraph variant="body1" className={classes.profileListTypography}>Browse and connect with chefs</Typography>
           {profileItems}
         </Grid>
       </Grid>
