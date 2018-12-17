@@ -108,7 +108,7 @@ const NavbarComponent = ({
   return (
     <ScrollWrapper onWindowScroll={handleScroll}>
       <Navbar fixed="top" expand="sm" className={(onHomepage) ? 'navbar' : 'navbar--not-homepage'} id="myNav">
-        <NavbarBrand tag={Link} to="/home" className="navbar__brand">Project FPP</NavbarBrand>
+        <NavbarBrand tag={Link} to="/home" className="navbar__brand">Pasthrees</NavbarBrand>
         <NavbarToggler onClick={onNavbarToggle} className="navbar__toggler" />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto pr-4" navbar>

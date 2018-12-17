@@ -9,7 +9,7 @@ import {
   CardActionArea,
 } from '@material-ui/core';
 
-import IMG_URL from '../../assets/img/foodprinted_sidedish.jpg';
+// import IMG_URL from '../../assets/img/foodprinted_sidedish.jpg';
 
 const styles = theme => ({
   root: {

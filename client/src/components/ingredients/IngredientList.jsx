@@ -27,9 +27,9 @@ const IngredientList = ({
   loading,
   classes,
 }) => {
-  const filterCallback = val => {
-    filterUpdate(val);
-  };
+  // const filterCallback = val => {
+  //   filterUpdate(val);
+  // };
 
   console.log(ingredients);
   let ingredientItems;

@@ -15,6 +15,8 @@ import {
   Share as ShareIcon,
 } from '@material-ui/icons';
 
+import IMG from '../../assets/img/pastry-banner.jpg';
+
 const styles = theme => ({
   root: {
     position: 'fixed',
@@ -22,9 +24,22 @@ const styles = theme => ({
     height: '320px',
     width: '100%',
     zIndex: '-1',
-    backgroundColor: '#264348',
+    // backgroundColor: '#264348',
     color: theme.palette.common.white,
     padding: '40px 0',
+    backgroundImage: `url(${IMG})`,
+    backgroundSize: '100%',
+    backgroundPosition: 'center center',
+    backgroundRepeat: 'no-repeat',
+  },
+  overlay: {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    background: 'rgba(0, 0, 0, 0.6)',
+    // backgroundImage: 'linear-gradient(to bottom right, rgba(0, 0, 0, 1), rgba(0, 0, 0, .9)',
   },
   footerList: {
     zIndex: '100',
@@ -79,6 +94,7 @@ const Footer = ({
   return (
     <div className="footer">
       <footer className={classes.root}>
+        <div className={classes.overlay} />
         <Grid container justify="center">
           <Grid item xs={4} md={2}>
             <List dense component="nav" className={classes.footerList}>

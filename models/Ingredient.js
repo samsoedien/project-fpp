@@ -12,23 +12,21 @@ const IngredientSchema = new Schema({
     type: String,
     default: 'uploads/ingredient.jpg',
   },
-  nutritions: [
-    {
-      kcal: {
-        type: Number,
-        default: 10,
-      },
-      fats: {
-        type: Number,
-      },
-      carbohydrates: {
-        type: Number,
-      },
-      proteins: {
-        type: Number,
-      }
-    }
-  ],
+  nutritions: {
+    calories: {
+      type: Number,
+      default: 10,
+    },
+    fats: {
+      type: Number,
+    },
+    carbs: {
+      type: Number,
+    },
+    proteins: {
+      type: Number,
+    },
+  },
   settings: {
     type: String,
   },

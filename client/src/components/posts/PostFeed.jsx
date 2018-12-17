@@ -62,7 +62,7 @@ const PostFeed = ({
   return (
     <div className="post-comment-feed">
       <Grid container justify="center">
-        <Grid item md={12}>
+        <Grid item md={8}>
           <Paper>
             {postContent}
           </Paper>

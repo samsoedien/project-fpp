@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { 
+import {
+  Grid,
   Typography,
   MobileStepper,
   Paper,
   Button,
- } from '@material-ui/core';
- import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
+} from '@material-ui/core';
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
 
 const tutorialSteps = [
   {
@@ -59,7 +60,7 @@ const styles = theme => ({
   },
 });
 
-class TextMobileStepper extends React.Component {
+class Carousel extends React.Component {
   state = {
     activeStep: 0,
   };
@@ -82,41 +83,43 @@ class TextMobileStepper extends React.Component {
     const maxSteps = tutorialSteps.length;
 
     return (
-      <div className={classes.root}>
-        <Paper square elevation={0} className={classes.header}>
-          <Typography>{tutorialSteps[activeStep].label}</Typography>
-        </Paper>
-        <img
-          className={classes.img}
-          src={tutorialSteps[activeStep].imgPath}
-          alt={tutorialSteps[activeStep].label}
-        />
-        <MobileStepper
-          steps={maxSteps}
-          position="static"
-          activeStep={activeStep}
-          className={classes.mobileStepper}
-          nextButton={
-            <Button size="small" onClick={this.handleNext} disabled={activeStep === maxSteps - 1}>
-              Next
+      <Grid container justify="center">
+        <div className={classes.root}>
+          <Paper square elevation={0} className={classes.header}>
+            <Typography>{tutorialSteps[activeStep].label}</Typography>
+          </Paper>
+          <img
+            className={classes.img}
+            src={tutorialSteps[activeStep].imgPath}
+            alt={tutorialSteps[activeStep].label}
+          />
+          <MobileStepper
+            steps={maxSteps}
+            position="static"
+            activeStep={activeStep}
+            className={classes.mobileStepper}
+            nextButton={
+              <Button size="small" onClick={this.handleNext} disabled={activeStep === maxSteps - 1}>
+                Next
               {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+              </Button>
+            }
+            backButton={
+              <Button size="small" onClick={this.handleBack} disabled={activeStep === 0}>
+                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                Back
             </Button>
-          }
-          backButton={
-            <Button size="small" onClick={this.handleBack} disabled={activeStep === 0}>
-              {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-              Back
-            </Button>
-          }
-        />
-      </div>
+            }
+          />
+        </div>
+      </Grid>
     );
   }
 }
 
-TextMobileStepper.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+Carousel.propTypes = {
+  theme: PropTypes.object.isRequired, // eslint-disable-line
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default withStyles(styles, { withTheme: true })(TextMobileStepper);
+export default withStyles(styles, { withTheme: true })(Carousel);

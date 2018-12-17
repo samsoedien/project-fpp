@@ -7,6 +7,7 @@ import { Grid, Typography } from '@material-ui/core';
 import RecipeItem from './RecipeItem';
 import RecipeFeatured from './RecipeFeatured';
 import Loader from '../common/Loader';
+import Carousel from '../common/Carousel';
 import SearchBarComponent from '../common/SearchBarComponent';
 import ImageBanner from '../homepage/ImageBanner';
 import ProfileAction from '../profiles/ProfileAction';
@@ -64,9 +65,10 @@ const RecipeList = ({
         <Grid item xs={12} sm={10} md={8}>
           <Typography variant="h3" className={classes.recipeListTitle}>Recipe Catalogue</Typography>
           <Typography paragraph variant="body1" className={classes.recipeListParagraph}>Find below an broad assortment of food printable pastry dishes. With each recipe simple instructions are given in how to prepare the dish. Best of all most recipes can be personalised to your customer wishes!</Typography>
+          <Carousel recipes={recipes} loading={loading} />
         </Grid>
       </Grid>
-      <RecipeFeatured recipes={recipes} loading={loading} />
+
 
       <ImageBanner />
 

@@ -49,8 +49,8 @@ const PostForm = ({
   return (
     <div className="post-form">
       <Grid container justify="center">
-        <Grid item xs={12}>
-          <Card raised className={classes.postFormCard}>
+        <Grid item xs={8}>
+          <Card className={classes.postFormCard}>
             <CardHeader className={classes.postFormCardheader} color="primary" title="Comment" />
             <CardContent>
               <form onSubmit={onSubmit} noValidate>

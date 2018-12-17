@@ -125,7 +125,7 @@ const ProfileForm = ({
             ) : (
                 <Typography variant="h3" className={classes.profileFormTitle}>Edit Your Profile</Typography>
               )}
-            <Typography className={classes.profileFormText} variant="body1">Fill in the form to profile your business to the outisde world.</Typography>
+            <Typography className={classes.profileFormText} variant="body1">Fill in the form to profile your business to the outside world.</Typography>
 
             {/* <TextField
               className={classes.profileFormInput}

@@ -10,7 +10,9 @@ exports.testPosts = (req, res, next) => res.json({ message: 'Posts Works' });
 
 exports.getPosts = (req, res, next) => {
   Post.find()
+    .populate('user', ['name', 'image', 'moderator'])
     .sort({ date: -1 })
+    .exec()
     .then(posts => res.status(200).json(posts))
     // .then(result => res.status(200).json({
     //   posts: {
@@ -26,6 +28,8 @@ exports.getPosts = (req, res, next) => {
 
 exports.getPostById = (req, res, next) => {
   Post.findById(req.params.id)
+    .populate('user', ['name', 'image', 'moderator'])
+    .exec()
     .then(post => res.status(200).json(post))
     .catch(err => res.status(404).json({ nopostfound: 'No post found with that ID' }));
 };

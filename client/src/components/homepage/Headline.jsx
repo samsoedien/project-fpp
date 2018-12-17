@@ -29,7 +29,7 @@ const styles = theme => ({
 const Headline = ({ classes }) => {
   return (
     <div className={classes.headlineText}>
-      <Typography variant="h4">
+      <Typography variant="h5">
         {'Create beautiful dishes for your '}
         <Typist className={classes.typist}>
           patisserie

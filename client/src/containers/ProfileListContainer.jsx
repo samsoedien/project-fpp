@@ -10,13 +10,22 @@ class ProfileListContainer extends Component {
     super(props);
     this.state = {
       filterText: '',
+      limit: 2,
     };
     this.filterUpdate = this.filterUpdate.bind(this);
+    this.onShowContentCallback = this.onShowContentCallback.bind(this);
   }
 
   componentDidMount() {
     const { getProfiles } = this.props;
     getProfiles();
+  }
+
+  onShowContentCallback() {
+    const { limit } = this.state;
+    this.setState({
+      limit: limit + 2,
+    });
   }
 
   filterUpdate(value) {
@@ -27,7 +36,7 @@ class ProfileListContainer extends Component {
 
   render() {
     const { profile: { profiles, loading } } = this.props;
-    const { filterText } = this.state;
+    const { filterText, limit } = this.state;
     return (
       <div className="profile-list-container">
         <ProfileList
@@ -35,6 +44,8 @@ class ProfileListContainer extends Component {
           loading={loading}
           filterText={filterText}
           filterUpdate={this.filterUpdate}
+          limit={limit}
+          onShowContentCallback={this.onShowContentCallback}
         />
       </div>
     );

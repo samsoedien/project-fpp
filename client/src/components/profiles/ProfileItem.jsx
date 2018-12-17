@@ -59,7 +59,7 @@ const ProfileItem = ({ profile, classes }) => {
   return (
     <div className={classes.root}>
       <Card raised>
-        <CardActionArea component={Link} to={`/profile/${profile.user.name}`}>
+        <CardActionArea component={Link} to={`/profiles/${profile.user.name}`}>
           <CardMedia image={profile.image} className={classes.profileCardMedia} />
         </CardActionArea>
         <CardContent>
@@ -69,7 +69,7 @@ const ProfileItem = ({ profile, classes }) => {
                 <Link to={`/profile/${profile.user.name}`}>
                   <Avatar src={`/${profile.user.image}`} className={classes.profileAvatar} />
                 </Link>
-                <Typography component={Link} to={`/profile/${profile.user.name}`} color="primary" className={classes.profileName}>{profile.user.name}</Typography>
+                <Typography component={Link} to={`/profiles/${profile.user.name}`} color="primary" className={classes.profileName}>{profile.user.name}</Typography>
                 <Typography variant="caption" className={classes.profileProfession}>Pastry Chef</Typography>
               </Grid>
             </Grid>

@@ -7,10 +7,13 @@ import { Grid, Button } from '@material-ui/core';
 import Loader from '../common/Loader';
 import ProfileHeader from './ProfileHeader';
 import ProfileAbout from './ProfileAbout';
-import ProfileCreds from './ProfileCreds';
 
 const styles = theme => ({
-
+  backButton: {
+    position: 'absolute',
+    top: '24px',
+    left: '24px',
+  },
 });
 
 const Profile = ({ profile, loading, classes }) => {
@@ -20,22 +23,18 @@ const Profile = ({ profile, loading, classes }) => {
   } else {
     profileContent = (
       <div>
-        <Grid item md={6}>
-          <Button component={Link} to="/profiles">Back to Profiles</Button>
+        <Grid item sm={12} md={10}>
+          <ProfileHeader profile={profile} />
+          <ProfileAbout profile={profile} experience={profile.experience} />
         </Grid>
-        <Grid item md={6} />
-        <ProfileHeader profile={profile} />
-        <ProfileAbout profile={profile} />
-        <ProfileCreds experience={profile.experience} />
       </div>
     );
   }
   return (
     <div className="profile">
+      <Button component={Link} to="/profiles" variant="outlined" color="primary" className={classes.backButton}>Back to Profiles</Button>
       <Grid container justify="center">
-        <Grid item md={12}>
-          {profileContent}
-        </Grid>
+        {profileContent}
       </Grid>
     </div>
   );

@@ -45,6 +45,7 @@ const rows = [
 
 class Nutritions extends Component {
   state = {
+    volume: 200,
     checked: true,
   };
 
@@ -101,8 +102,25 @@ class Nutritions extends Component {
               );
             })}
           </TableBody>
+          {/* table nutrition test */}
+          {/* <TableBody>
+            {recipe.ingredients.map(ingredient => {
+              return (
+                <TableRow key={ingredient._id}>
+                  <TableCell component="th" scope="nutrition">
+                    {ingredient.name}
+                  </TableCell>
+                  <TableCell numeric>{checked ? (ingredient.nutritions.calories * volume) : ingredient.nutritions.calories}</TableCell>
+                  <TableCell numeric>{ingredient.nutritions.fat}</TableCell>
+                  <TableCell numeric>{ingredient.nutritions.carbs}</TableCell>
+                  <TableCell numeric>{ingredient.nutritions.protein}</TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody> */}
+
         </Table>
-      </Paper >
+      </Paper>
     );
   };
 }

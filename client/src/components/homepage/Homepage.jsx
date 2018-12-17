@@ -15,19 +15,15 @@ const styles = theme => ({
 const Homepage = ({ auth, classes }) => (
   <div className="homepage">
     <div className="homepage__content">
-      {(auth.isAuthenticated)
-        ? (
-          <Fragment>
-            <PrimaryCallsToAction />
-            <Features />
-            <div style={{ height: '200px' }} />
-            <ImageBanner />
-          </Fragment>
-        ) : (
-          <Fragment>
-            <Headline />
-          </Fragment>
-        )}
+      {/* {(auth.isAuthenticated)
+        ? (): ()} */}
+      <Fragment>
+        <Headline />
+        <PrimaryCallsToAction />
+        <Features />
+        <div style={{ height: '200px' }} />
+        <ImageBanner />
+      </Fragment>
     </div>
   </div>
 );

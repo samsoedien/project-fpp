@@ -8,7 +8,7 @@ import {
   Button,
 } from '@material-ui/core';
 
-import IMG from '../../assets/img/pastry.jpg';
+import IMG from '../../assets/img/pastry-banner.jpg';
 
 const styles = theme => ({
   root: {
@@ -32,6 +32,9 @@ const styles = theme => ({
   ctaContent: {
     margin: '12px',
   },
+  typography: {
+    color: theme.palette.common.white,
+  },
 });
 
 const ImageBanner = ({ classes }) => (
@@ -43,8 +46,8 @@ const ImageBanner = ({ classes }) => (
           <div className={classes.ctaContent}>
             <Grid container direction="row" alignContent="center">
               <Grid item xs={4}>
-                <Typography variant="h4">Improve your workflow and create beautiful dishes</Typography>
-                <Typography variant="body1">Sign up now!</Typography>
+                <Typography variant="h4" className={classes.typography}>Improve your workflow and create beautiful dishes</Typography>
+                <Typography variant="body1" className={classes.typography}>Sign up now!</Typography>
                 <Button component={Link} to="/register" variant="outlined" className={classes.button}>Get Started</Button>
               </Grid>
             </Grid>

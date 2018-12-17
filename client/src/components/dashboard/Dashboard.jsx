@@ -27,6 +27,7 @@ const styles = theme => ({
   },
   dashboardText: {
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   dashboardButton: {
     margin: '16px 0',

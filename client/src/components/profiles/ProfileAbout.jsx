@@ -4,43 +4,104 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
-  Card,
+  List,
+  ListItem,
+  Typography,
+  Paper,
+  Chip,
+  Divider,
 } from '@material-ui/core';
+import Moment from 'react-moment';
 
 import isEmpty from '../../utils/is-empty';
 
 const styles = theme => ({
-
+  profileAboutPaper: {
+    marginBottom: '24px',
+    width: '800px',
+  },
+  typography: {
+    textAlign: 'center',
+    margin: '6px 0',
+  },
+  profileBio: {
+    textAlign: 'center',
+    margin: '24px 0',
+  },
+  chip: {
+    margin: '6px 4px',
+  },
 });
 
-const ProfileAbout = ({ profile, classes }) => {
+const ProfileAbout = ({ profile, experience, classes }) => {
   // Get first name
   const firstName = profile.user.name.trim().split(' ')[0];
 
   // Skill List
   const skills = profile.skills.map((skill, index) => (
     <div key={index} className="p-3">
-      <i className="fa fa-check" /> {skill}
+      <Chip
+        key={index}
+        label={skill}
+        className={classes.chip}
+        color="primary"
+      />
     </div>
   ));
 
-  return (
-    <Grid item md={12}>
-      <Card className="mb-3">
-
-        {firstName}'s Bio
-            {isEmpty(profile.bio) ? (
-          <span>{firstName} does not have a bio</span>
+  const expItems = experience.map(exp => (
+    <ListItem key={exp._id} className="list-group-item">
+      <Typography variant="h4">{exp.company}</Typography>
+      <Typography>
+        <Moment format="YYYY/MM/DD">{exp.from}</Moment> -
+        {exp.to === null ? (
+          ' Now'
         ) : (
-            <span>{profile.bio}</span>
+            <Moment format="YYYY/MM/DD">{exp.to}</Moment>
           )}
-        <hr />
-        <h3 className="text-center text-info">Skill Set</h3>
-        <div className="d-flex flex-wrap justify-content-center align-items-center">
-          {skills}
-        </div>
-      </Card>
-    </Grid>
+      </Typography>
+      <Typography>
+        <strong>Position:</strong> {exp.title}
+      </Typography>
+      <Typography>
+        {exp.location === '' ? null : (
+          <span>
+            <strong>Location: </strong> {exp.location}
+          </span>
+        )}
+      </Typography>
+      <Typography>
+        {exp.description === '' ? null : (
+          <span>
+            <strong>Description: </strong> {exp.description}
+          </span>
+        )}
+      </Typography>
+    </ListItem>
+  ));
+
+  return (
+    <Paper className={classes.profileAboutPaper}>
+      <Typography variant="h6" className={classes.typography}> {firstName}'s Bio</Typography>
+      <Typography paragraph variant="body1" className={classes.profileBio}>{isEmpty(profile.bio) ? (`${firstName} 'does not have a bio`) : (profile.bio)}</Typography>
+
+      <Divider variant="middle" />
+
+      <Typography variant="h6" className={classes.typography}>Specialties</Typography>
+      <Grid container justify="center" alignItems="center">
+        {skills}
+      </Grid>
+
+      <Divider variant="middle" />
+
+      <Typography variant="h6" className={classes.typography}>Experience</Typography>
+      {expItems.length > 0 ? (
+        <List>{expItems}</List>
+      ) : (
+          <Typography className={classes.typography}>No Experience Listed</Typography>
+        )}
+
+    </Paper>
   );
 };
 
