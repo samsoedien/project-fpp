@@ -12,7 +12,19 @@ import {
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
 
 const styles = theme => ({
-  primaryctaCard: {},
+  root: {
+    position: 'absolute',
+    bottom: '80px',
+    zIndex: 300,
+  },
+  primaryctaPaper: {
+    height: '460px',
+    padding: '12px 24px',
+  },
+  ctaHeader: {
+    textAlign: 'center',
+    fontSize: '14px',
+  },
   typography: {
     textAlign: 'center',
   },
@@ -24,20 +36,24 @@ const styles = theme => ({
 const PrimaryCallsToAction = ({ classes }) => {
   const handleScroll = scrollDistance => {
     const parallaxItem = document.getElementById('myPrimaryCTA');
-    parallaxItem.style.transform = `translate(0px, ${-scrollDistance / 4}px)`;
+    parallaxItem.style.transform = `translate(0px, ${-scrollDistance / -4}px)`;
   };
 
   return (
-    <div className="primary-calls-to-action">
+    <div className={classes.root}>
       <ScrollWrapper onWindowScroll={handleScroll}>
         <Grid container justify="center">
           <Grid item xs={10}>
             <Grid container justify="flex-end">
-              <Grid item xs={5}>
-                <Paper className={classes.primaryctaPaper} id="myPrimaryCTA">
-                  <Typography variant="h4" className={classes.typography}>Enrich your workspace now</Typography>
-                  <Typography variant="paragraph" className={classes.typography}>Discover (brandname) by creating astounding dishes for you customers. We as food lovers understand in wanting to deliver the best experiences to your customers, building personal relations and improve your business.</Typography>
-                  <Button component={Link} to="/register" variant="contained" color="primary" className={classes.ctaButton}>Get Started</Button>
+              <Grid item xs={4}>
+                <Paper className={classes.primaryctaPaper} id="myPrimaryCTA" elevation={4}>
+                  <Grid container direction="column" justify="center" alignItems="center">
+                    <Grid item>
+                      <Typography variant="h1" className={classes.ctaHeader}>Pasthrees</Typography>
+                      <Typography variant="body1" className={classes.typography}>Discover Pasthrees by creating astounding dishes for you customers. We as food lovers understand in wanting to deliver the best experiences to your customers, building personal relations and improve your business.</Typography>
+                      <Button component={Link} to="/register" fullWidth variant="contained" color="primary" className={classes.ctaButton}>Get Started</Button>
+                    </Grid>
+                  </Grid>
                 </Paper>
               </Grid>
             </Grid>

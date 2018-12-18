@@ -14,6 +14,8 @@ import {
 } from '@material-ui/core';
 import { ThumbUp as ThumbUpIcon, Flag as FlagIcon } from '@material-ui/icons';
 
+import IMG from '../../assets/img/printed-geometry.jpg';
+
 const styles = theme => ({
   root: {
     margin: '12px 0',
@@ -82,7 +84,8 @@ const Post = ({
         <Grid item xs={3}>
           <Grid container direction="column" justify="center">
             <Link to={`/profile/${post.name}`}>
-              <Avatar src={`/${post.user.image}`} className={classes.postAvatar} />
+              {/* <Avatar src={`/${post.user.image}`} className={classes.postAvatar} /> */}
+              <Avatar src={IMG} className={classes.postAvatar} />
             </Link>
             <Typography component={Link} to={`/profiles/${post.name}`} color="primary" className={classes.postName}>{post.name}</Typography>
             <Typography variant="caption" className={classes.postProfession}>Pastry Chef</Typography>

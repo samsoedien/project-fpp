@@ -18,11 +18,17 @@
 
 .navbar__brand, .navbar__toggler {
   color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-weight: 100;
+  font-weight: 200;
+  font-size: 0.9em;
+  letter-spacing: 0.45rem;
+  text-transform: uppercase;
 }
 
 .navbar__item {
   font-family: 'Lato', sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   font-size: 0.8rem;
   letter-spacing: .02rem;
   text-transform: uppercase;
@@ -33,27 +39,37 @@
 }
 
 .navbar__item__link:hover, .nav__item__link:active {
-  color: #4E342E;
+  color: rgb(110, 110, 110);
   transition: .2s
 }
 
 .navbar__item__link--dropdown {
-  color: #616161;
+  color: #754c29;
 }
 
 .navbar__item__link--dropdown:hover {
-  color: #4E342E;
+  color: #795548;
 }
 
-.navbar--shrink a {
-  color: #616161;
-}
+
 
 .navbar--shrink a:hover, .navbar--shrink a:active {
-  color: #4E342E;
+  color: rgb(110, 110, 110);
+}
+
+.navbar--shrink .navbar__brand--grey {
+  color: rgb(110, 110, 110);
 }
 
 .navbar--not-homepage {
-  /* background-color: #fff !important; */
-  background-color: rgba(0, 0, 0, 0.2) !important;
+  background-color: #fff !important;
+  /* background-color: #754c29 !important; */
+}
+
+.navbar--not-homepage a {
+  color: #754c29;
+}
+
+.navbar--shrink a, .navbar--shrink .navbar__brand {
+  color: #795548;
 }

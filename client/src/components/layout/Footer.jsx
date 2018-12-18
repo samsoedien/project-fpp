@@ -45,6 +45,9 @@ const styles = theme => ({
     zIndex: '100',
   },
   footerListItem: {
+    fontFamily: 'lato',
+    fontWeight: '100',
+    letterspacing: '.6rem',
     color: theme.palette.common.white,
   },
   footerForm: {
@@ -140,7 +143,7 @@ const Footer = ({
             </List>
           </Grid>
           <Grid item xs={4} md={8}>
-            <form onSubmit={onSubmit} className={classes.footerForm} noValidate autoComplete="off">
+            {/* <form onSubmit={onSubmit} className={classes.footerForm} noValidate autoComplete="off">
               <Typography>Sign up for the newsletter</Typography>
               <TextField
                 id="mui-theme-provider-outlined-input"
@@ -168,10 +171,10 @@ const Footer = ({
                 }}
               />
               <Button type="submit" value="Submit" className={classes.footerFormButton}>Submit</Button>
-            </form>
+            </form> */}
           </Grid>
         </Grid>
-        <Grid container justify="center">
+        {/* <Grid container justify="center">
           <div className={classes.socialMediaLinks}>
             <ShareIcon />
           </div>
@@ -181,7 +184,7 @@ const Footer = ({
             {new Date().getFullYear()}
             {' Samsoedien'}
           </Typography>
-        </Grid>
+        </Grid> */}
       </footer>
     </div >
   );

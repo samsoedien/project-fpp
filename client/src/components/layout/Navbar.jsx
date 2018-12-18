@@ -16,12 +16,13 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
-// import {
-//   Avatar,
-// } from '@material-ui/core';
+import {
+  Avatar,
+} from '@material-ui/core';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
 import './Navbar.css';
+import LOGO from '../../assets/img/pasthrees-logo-no-circle.png';
 
 const styles = theme => ({
 
@@ -108,7 +109,10 @@ const NavbarComponent = ({
   return (
     <ScrollWrapper onWindowScroll={handleScroll}>
       <Navbar fixed="top" expand="sm" className={(onHomepage) ? 'navbar' : 'navbar--not-homepage'} id="myNav">
-        <NavbarBrand tag={Link} to="/home" className="navbar__brand">Pasthrees</NavbarBrand>
+        {/* <Link to="/home" >
+          <img src={LOGO} className="navbar__brand" style={{ height: '30px' }} />
+        </Link> */}
+        <NavbarBrand tag={Link} to="/home" className="navbar__brand">Pas<span className="navbar__brand--grey">three</span>s</NavbarBrand>
         <NavbarToggler onClick={onNavbarToggle} className="navbar__toggler" />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto pr-4" navbar>
@@ -125,7 +129,7 @@ const NavbarComponent = ({
           {isAuthenticated ? authLinks : guestLinks}
         </Collapse>
       </Navbar>
-    </ScrollWrapper>
+    </ScrollWrapper >
   );
 };
 

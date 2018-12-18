@@ -7,7 +7,8 @@ const styles = theme => ({
   scrollArrow: {
     position: 'absolute',
     top: '80%',
-    left: '50%',
+    // left: '50%',
+    left: '32%',
     transform: 'translate(-50%, -50%)',
   },
   scrollArrowLines: {

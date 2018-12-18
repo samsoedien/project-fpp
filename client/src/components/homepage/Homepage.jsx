@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-import PrimaryCallsToAction from './PrimaryCallsToAction';
 import Features from './Features';
 import Headline from './Headline';
 import ImageBanner from './ImageBanner';
@@ -19,10 +18,9 @@ const Homepage = ({ auth, classes }) => (
         ? (): ()} */}
       <Fragment>
         <Headline />
-        <PrimaryCallsToAction />
-        <Features />
-        <div style={{ height: '200px' }} />
-        <ImageBanner />
+        {/* <Features /> */}
+        {/* <div style={{ height: '200px' }} /> */}
+        {/* <ImageBanner /> */}
       </Fragment>
     </div>
   </div>

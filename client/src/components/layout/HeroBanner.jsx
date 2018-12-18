@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import ScrollArrow from './ScrollArrow';
 
 import VID from '../../assets/videos/promotional-video.mp4';
+import PrimaryCallsToAction from '../homepage/PrimaryCallsToAction';
 
 const styles = theme => ({
   root: {
@@ -25,10 +26,14 @@ const styles = theme => ({
   herobannerVideo: { height: '100vh' },
   herobannerTitle: {
     position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    top: '55%',
+    left: '15%',
+    // transformY: 'translate(-50%)',
+    // transform: 'translate(-50%, -50%)',
     color: '#fff',
+  },
+  primarycta: {
+
   },
 });
 
@@ -38,8 +43,9 @@ const HeroBanner = ({ onHomepage, classes }) => (
       <Fragment>
         <div className={classes.herobannerOverlay} />
         <video src={VID} className={classes.herobannerVideo} autoPlay loop muted />
-        <h1 className={classes.herobannerTitle}>Enrich the Kitchen</h1>
+        <h1 className={classes.herobannerTitle}>Pasthrees</h1>
         <ScrollArrow />
+        <PrimaryCallsToAction className={classes.primarycta} />
       </Fragment>
     ) : (null)}
   </div>

@@ -26,12 +26,17 @@ const styles = theme => ({
     justifyContent: 'center',
   },
   dashboardText: {
+    margin: '12px 0',
     textAlign: 'center',
     textTransform: 'capitalize',
   },
+  dashboardTypography: {
+    margin: '12px 0',
+    textAlign: 'center',
+  },
   dashboardButton: {
-    margin: '16px 0',
-  }
+    margin: '12px auto',
+  },
 });
 
 const Dashboard = ({
@@ -71,29 +76,37 @@ const Dashboard = ({
           </Grid>
         </Grid>
 
-
-        <Paper elevation={4}>
-          <Button component={Link} to="/add-experience">Add Experience</Button>
-          <Experience experience={profile.experience} onDeleteExperience={onDeleteExperience} />
-          <Typography variant="h5">Equipment</Typography>
-          <Equipment equipment="printing" printer="custom food printer" />
-          <Equipment equipment="idle" printer="pastry printer" />
-          <div style={{ marginBottom: '60px' }} />
-          <ConfirmDeleteWrapper onDeleteClick={onDeleteClick} buttonLabel="Delete my account">Are you sure you want to delete your account? This action can not be undone</ConfirmDeleteWrapper>
-        </Paper>
+        <Grid container justify="center">
+          <Grid item xs={10} md={8}>
+            <Paper elevation={4}>
+              <Button component={Link} to="/add-experience">Add Experience</Button>
+              <Experience experience={profile.experience} onDeleteExperience={onDeleteExperience} />
+              <Typography variant="h5">Equipment</Typography>
+              <Equipment equipment="printing" printer="custom food printer" />
+              <div style={{ marginBottom: '60px' }} />
+              <ConfirmDeleteWrapper onDeleteClick={onDeleteClick} buttonLabel="Delete my account">Are you sure you want to delete your account? This action can not be undone</ConfirmDeleteWrapper>
+            </Paper>
+          </Grid>
+        </Grid >
       </Fragment >
     );
   } else {
     dashboardContent = (
       <Fragment>
-        <Typography variant="body1">
+        <Typography variant="body1" className={classes.dashboardText}>
           {'Welcome '}
           {user.name}
         </Typography>
-        <Paper elevation={4}>
-          <Typography variant="body1" className="">You have not yet setup a profile, add some info</Typography>
-          <Button component={Link} to="/create-profile" variant="contained" color="primary" className={classes.dashboardButton}>Create Profile</Button>
-        </Paper>
+        <Grid container justify="center">
+          <Grid item xs={10} md={8}>
+            <Paper elevation={4}>
+              <Typography variant="body1" className={classes.dashboardTypography}>You have not yet setup a profile, add some info</Typography>
+              <Grid container justify="center">
+                <Button component={Link} to="/create-profile" variant="contained" color="primary" className={classes.dashboardButton}>Create Profile</Button>
+              </Grid>
+            </Paper>
+          </Grid>
+        </Grid>
       </Fragment>
     );
   }
@@ -102,7 +115,7 @@ const Dashboard = ({
     <div className="dashboard">
       <Grid container justify="center">
         <Typography variant="h2">Dashboard</Typography>
-        <Grid item xs={11} md={10} >
+        <Grid item xs={11} md={10}>
           {dashboardContent}
         </Grid>
       </Grid>

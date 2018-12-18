@@ -1,13 +1,13 @@
 import { createMuiTheme } from '@material-ui/core';
-import { grey, red, teal } from '@material-ui/core/colors';
+import { grey, red, brown } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
     type: 'light',
     primary: {
-      light: teal[300],
-      main: teal[500],
-      dark: teal[700],
+      main: brown[500],
+      light: brown[300],
+      dark: brown[700],
       red: red[800],
     },
     error: {
