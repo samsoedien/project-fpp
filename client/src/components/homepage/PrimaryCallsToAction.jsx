@@ -36,7 +36,7 @@ const styles = theme => ({
 const PrimaryCallsToAction = ({ classes }) => {
   const handleScroll = scrollDistance => {
     const parallaxItem = document.getElementById('myPrimaryCTA');
-    parallaxItem.style.transform = `translate(0px, ${-scrollDistance / -4}px)`;
+    parallaxItem.style.transform = `translate(0px, ${-scrollDistance / -8}px)`;
   };
 
   return (
@@ -49,8 +49,8 @@ const PrimaryCallsToAction = ({ classes }) => {
                 <Paper className={classes.primaryctaPaper} id="myPrimaryCTA" elevation={4}>
                   <Grid container direction="column" justify="center" alignItems="center">
                     <Grid item>
-                      <Typography variant="h1" className={classes.ctaHeader}>Pasthrees</Typography>
-                      <Typography variant="body1" className={classes.typography}>Discover Pasthrees by creating astounding dishes for you customers. We as food lovers understand in wanting to deliver the best experiences to your customers, building personal relations and improve your business.</Typography>
+                      <Typography variant="h5" className={classes.ctaHeader}>What are you going to bake today?</Typography>
+                      <Typography variant="body1" className={classes.typography}>Join Pasthrees and put your creative pastry skills to test by creating beautiful and astounding dishes for your customers.</Typography>
                       <Button component={Link} to="/register" fullWidth variant="contained" color="primary" className={classes.ctaButton}>Get Started</Button>
                     </Grid>
                   </Grid>
@@ -69,5 +69,3 @@ PrimaryCallsToAction.propTypes = {
 };
 
 export default withStyles(styles)(PrimaryCallsToAction);
-
-// TODO: build/style cta and position over herobanner

@@ -22,7 +22,7 @@ import {
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
 import './Navbar.css';
-import LOGO from '../../assets/img/pasthrees-logo-no-circle.png';
+import IMG from '../../assets/img/printed-geometry.jpg';
 
 const styles = theme => ({
 
@@ -77,14 +77,17 @@ const NavbarComponent = ({
       <NavItem className="navbar__item">
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle className="navbar__item__link" nav caret>
-            <img
+            <Avatar
+              src={IMG}
+            />
+            {/* <img
               className="rounded-circle"
               src={`/${user.image}`}
               alt={user.name}
               style={{ width: '20px', marginRight: '5px' }}
             />
             {' '}
-            {user.name}
+            {user.name} */}
           </DropdownToggle>
           <DropdownMenu right>
             <DropdownItem>
@@ -117,7 +120,7 @@ const NavbarComponent = ({
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto pr-4" navbar>
             <NavItem className="navbar__item">
-              <NavLink tag={Link} to="/recipes" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Recipes</NavLink>
+              <NavLink tag={Link} to="/recipes" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Catalogue</NavLink>
             </NavItem>
             <NavItem className="navbar__item">
               <NavLink tag={Link} to="/profiles" className="navbar__item__link" activeStyle={{ color: '#795548' }}>Pâtisseries</NavLink>

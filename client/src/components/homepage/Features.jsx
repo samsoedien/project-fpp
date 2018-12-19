@@ -8,16 +8,17 @@ import {
 } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
-import BG_IMG_URL from '../../assets/img/foodprinted_sidedish.jpg';
+import BG_IMG_URL from '../../assets/img/baked-chocolate-close-up-533326.jpg';
 
 const styles = theme => ({
+  root: { margin: '24px 0' },
   featuresBackgroundBanner: {
     position: 'relative',
     height: '360px',
     width: '100%',
     backgroundImage: `url(${BG_IMG_URL})`,
-    backgroundSize: '100%',
-    backgroundPosition: 'top center',
+    backgroundSize: 'auto',
+    backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
     backgroundAttachment: 'fixed',
   },
@@ -29,6 +30,7 @@ const styles = theme => ({
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
   },
   featureHeading: {
+    position: 'absolute',
     textAlign: 'center',
     color: 'white',
   },
@@ -47,9 +49,9 @@ const styles = theme => ({
 
 const Features = ({ classes }) => {
   return (
-    <div className="features">
+    <div className={classes.root}>
       <div className={classes.featuresBackgroundBanner}>
-        <div className={classes.featuresOverlay} />
+        {/* <div className={classes.featuresOverlay} /> */}
         <Grid container alignItems="center" justify="center">
           <Grid item md={2}>
             <Typography variant="h5" className={classes.featuresText}>Personalised</Typography>

@@ -8,12 +8,12 @@ import {
   List,
   ListItem,
   ListItemText,
-  TextField,
-  Button,
+  // TextField,
+  // Button,
 } from '@material-ui/core';
-import {
-  Share as ShareIcon,
-} from '@material-ui/icons';
+// import {
+//   Share as ShareIcon,
+// } from '@material-ui/icons';
 
 import IMG from '../../assets/img/pastry-banner.jpg';
 
@@ -85,14 +85,14 @@ const Footer = ({
   errors,
   classes,
 }) => {
-  const onChange = e => {
-    onChangeCallback(e);
-  };
+  // const onChange = e => {
+  //   onChangeCallback(e);
+  // };
 
-  const onSubmit = e => {
-    e.preventDefault();
-    onSubmitCallback();
-  };
+  // const onSubmit = e => {
+  //   e.preventDefault();
+  //   onSubmitCallback();
+  // };
 
   return (
     <div className="footer">

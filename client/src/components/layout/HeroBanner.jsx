@@ -2,8 +2,10 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 
 import ScrollArrow from './ScrollArrow';
+import Headline from '../homepage/Headline';
 
 import VID from '../../assets/videos/promotional-video.mp4';
 import PrimaryCallsToAction from '../homepage/PrimaryCallsToAction';
@@ -35,6 +37,11 @@ const styles = theme => ({
   primarycta: {
 
   },
+  headline: {
+    position: 'absolute',
+    top: '65%',
+    left: '15%',
+  },
 });
 
 const HeroBanner = ({ onHomepage, classes }) => (
@@ -43,7 +50,8 @@ const HeroBanner = ({ onHomepage, classes }) => (
       <Fragment>
         <div className={classes.herobannerOverlay} />
         <video src={VID} className={classes.herobannerVideo} autoPlay loop muted />
-        <h1 className={classes.herobannerTitle}>Pasthrees</h1>
+        <Typography variant="h1" className={classes.herobannerTitle}>Pasthrees</Typography>
+        <Headline className={classes.headline} />
         <ScrollArrow />
         <PrimaryCallsToAction className={classes.primarycta} />
       </Fragment>

@@ -5,10 +5,22 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Features from './Features';
 import Headline from './Headline';
-import ImageBanner from './ImageBanner';
+import Story from './Story';
+// import ImageBanner from './ImageBanner';
+
+import BG_IMG_URL from '../../assets/img/dough-flour-hands-784636.jpg';
 
 const styles = theme => ({
-
+  backgroundImage: {
+    position: 'relative',
+    height: '360px',
+    width: '100%',
+    backgroundImage: `url(${BG_IMG_URL})`,
+    backgroundSize: '100%',
+    backgroundPosition: 'top center',
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed',
+  }
 });
 
 const Homepage = ({ auth, classes }) => (
@@ -18,7 +30,9 @@ const Homepage = ({ auth, classes }) => (
         ? (): ()} */}
       <Fragment>
         <Headline />
-        {/* <Features /> */}
+        <Story />
+        <Features />
+        <div className={classes.backgroundImage} />
         {/* <div style={{ height: '200px' }} /> */}
         {/* <ImageBanner /> */}
       </Fragment>

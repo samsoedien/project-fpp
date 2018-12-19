@@ -34,7 +34,11 @@ const theme = createMuiTheme({
     // caption: {},
     // button: {},
     // h1: {},
-
+    h1: {
+      textAlign: 'center',
+      fontSize: '8rem',
+      fontFamily: 'Timberline',
+    },
     h2: {
       fontFamily: '"Great Vibes", cursive',
       fontSize: '6rem',

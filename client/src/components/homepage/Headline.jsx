@@ -9,8 +9,19 @@ import Typist from 'react-typist';
 
 const styles = theme => ({
   headlineText: {
-    padding: '24px 0',
-    textAlign: 'center',
+    position: 'absolute',
+    top: '78%',
+    left: '12%',
+    // padding: '24px 0',
+    // textAlign: 'center',
+  },
+  typography: {
+    fontFamily: '"lato", sans-serif',
+    fontWeight: '100',
+    fontSize: '1em',
+    letterSpacing: '0.05rem',
+    textTransform: 'uppercase',
+    color: 'white',
   },
   typist: {
     display: 'inline-block',
@@ -27,22 +38,26 @@ const styles = theme => ({
 });
 
 const Headline = ({ classes }) => {
+  const words = ['patisserie', 'restaurant', 'chocolaterie', 'confectionery', 'boulanger', 'bakery'];
+  for (let i = 6; i < 18; i++) {
+    words[i] = words[i - 6];
+  }
+
   return (
     <div className={classes.headlineText}>
-      <Typography variant="h5">
+      {/* <Typography variant="h1">Pasthrees</Typography> */}
+      <Typography variant="h5" className={classes.typography}>
         {'Create beautiful dishes for your '}
         <Typist className={classes.typist}>
-          patisserie
-          <Typist.Backspace count={10} delay={1000} />
-          restaurant
-          <Typist.Backspace count={10} delay={1000} />
-          chocolaterie
-          <Typist.Backspace count={12} delay={1000} />
-          confectionery
-          <Typist.Backspace count={13} delay={1000} />
-          boulanger
-          <Typist.Backspace count={9} delay={1000} />
-          bakery
+          {words.map((word, i) => (
+            <span key={word}>
+              {word}
+              <Typist.Backspace
+                count={word.length}
+                delay={(i + 1) * 1000}
+              />
+            </span>
+          ))}
         </Typist>
         {' business.'}
       </Typography>
