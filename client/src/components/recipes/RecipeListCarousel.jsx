@@ -37,6 +37,7 @@ const tutorialSteps = [
 
 const styles = theme => ({
   root: {
+    margin: '32px 0',
     maxWidth: 400,
     flexGrow: 1,
   },

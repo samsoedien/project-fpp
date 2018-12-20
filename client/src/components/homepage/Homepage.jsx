@@ -19,7 +19,6 @@ const styles = theme => ({
     backgroundSize: '100%',
     backgroundPosition: 'top center',
     backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'fixed',
   }
 });
 

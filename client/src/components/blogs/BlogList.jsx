@@ -25,6 +25,7 @@ const styles = theme => ({
     textAlign: 'center',
   },
   blogListParagraph: {
+    margin: '24px 0',
     textAlign: 'center',
   },
   blogListButton: {
@@ -94,7 +95,7 @@ const BlogList = ({
 
       <Grid container justify="center">
         <Grid item xs={12} sm={10} md={8}>
-          <Typography variant="body1" className={classes.blogListParagraph}>Have you recently tried out a Pasthree and created a beautiful tasty dish? Share your story with the community by writing how you created your recipe and where everyone can try it out!</Typography>
+          <Typography paragraph variant="body1" className={classes.blogListParagraph}>Have you recently tried out a Pasthree and created a beautiful tasty dish? Share your story with the community by writing how you created your recipe and where everyone can try it out!</Typography>
         </Grid>
       </Grid>
       <Grid container justify="center">

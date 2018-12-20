@@ -51,7 +51,7 @@ const Features = ({ classes }) => {
   return (
     <div className={classes.root}>
       <div className={classes.featuresBackgroundBanner}>
-        {/* <div className={classes.featuresOverlay} /> */}
+        <div className={classes.featuresOverlay} />
         <Grid container alignItems="center" justify="center">
           <Grid item md={2}>
             <Typography variant="h5" className={classes.featuresText}>Personalised</Typography>

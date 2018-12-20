@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink as Link } from 'react-router-dom';
-// import { Container, Row, Col } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Collapse,
@@ -16,9 +15,9 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
-import {
-  Avatar,
-} from '@material-ui/core';
+// import {
+//   Avatar,
+// } from '@material-ui/core';
 
 import ScrollWrapper from '../../wrappers/ScrollWrapper';
 import './Navbar.css';
@@ -77,31 +76,31 @@ const NavbarComponent = ({
       <NavItem className="navbar__item">
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle className="navbar__item__link" nav caret>
-            <Avatar
+            {/* <Avatar
               src={IMG}
-            />
-            {/* <img
+            /> */}
+            <img
               className="rounded-circle"
-              src={`/${user.image}`}
+              src={IMG}
               alt={user.name}
-              style={{ width: '20px', marginRight: '5px' }}
+              style={{ width: '32px', height: '32px', marginRight: '5px' }}
             />
             {' '}
-            {user.name} */}
+            {user.name}
           </DropdownToggle>
           <DropdownMenu right>
             <DropdownItem>
               <NavLink tag={Link} to="/dashboard" className="navbar__item__link--dropdown">Dashboard</NavLink>
             </DropdownItem>
             <DropdownItem>
-              <NavLink tag={Link} to="/profiles" className="navbar__item__link--dropdown">Chefs</NavLink>
+              <NavLink tag={Link} to={`/profiles/${user.name}`} className="navbar__item__link--dropdown">My Profile</NavLink>
             </DropdownItem>
-            <DropdownItem>
+            {/* <DropdownItem>
               <NavLink tag={Link} to="/ingredients" className="navbar__item__link--dropdown">Ingredients</NavLink>
             </DropdownItem>
             <DropdownItem>
               <NavLink tag={Link} to="/editor" className="navbar__item__link--dropdown">Editor</NavLink>
-            </DropdownItem>
+            </DropdownItem> */}
             <DropdownItem divider />
             <DropdownItem onClick={onLogout}><NavLink tag={Link} to="/home" className="navbar__item__link--dropdown">Logout</NavLink></DropdownItem>
           </DropdownMenu>

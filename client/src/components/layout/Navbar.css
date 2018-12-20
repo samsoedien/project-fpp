@@ -63,6 +63,10 @@
   color: rgb(110, 110, 110);
 }
 
+.navbar--shrink a:hover .navbar__brand--grey {
+  color: rgb(110, 110, 110);
+}
+
 .navbar--not-homepage {
   background-color: #fff !important;
   /* background-color: #754c29 !important; */

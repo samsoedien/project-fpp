@@ -5,15 +5,17 @@ import { withStyles } from '@material-ui/core/styles';
 import { Grid, CircularProgress } from '@material-ui/core';
 
 const styles = theme => ({
+  root: {
+    height: '120px',
+  },
   loaderProgress: {
     margin: '24px 0',
     height: '120px',
   },
-
 });
 
 const Loader = ({ classes }) => (
-  <div className="loader">
+  <div className={classes.root}>
     <Grid container justify="center">
       <CircularProgress className={classes.loaderProgress} color="primary" />
     </Grid>

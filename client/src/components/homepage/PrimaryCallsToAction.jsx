@@ -14,18 +14,20 @@ import ScrollWrapper from '../../wrappers/ScrollWrapper';
 const styles = theme => ({
   root: {
     position: 'absolute',
+    right: '20px',
     bottom: '80px',
     zIndex: 300,
   },
   primaryctaPaper: {
     height: '460px',
-    padding: '12px 24px',
+    padding: '32px 24px',
   },
   ctaHeader: {
+    marginBottom: '12px',
     textAlign: 'center',
-    fontSize: '14px',
   },
   typography: {
+    padding: '12px 0',
     textAlign: 'center',
   },
   ctaButton: {
@@ -49,7 +51,7 @@ const PrimaryCallsToAction = ({ classes }) => {
                 <Paper className={classes.primaryctaPaper} id="myPrimaryCTA" elevation={4}>
                   <Grid container direction="column" justify="center" alignItems="center">
                     <Grid item>
-                      <Typography variant="h5" className={classes.ctaHeader}>What are you going to bake today?</Typography>
+                      <Typography variant="h4" className={classes.ctaHeader}>What are you going to bake today?</Typography>
                       <Typography variant="body1" className={classes.typography}>Join Pasthrees and put your creative pastry skills to test by creating beautiful and astounding dishes for your customers.</Typography>
                       <Button component={Link} to="/register" fullWidth variant="contained" color="primary" className={classes.ctaButton}>Get Started</Button>
                     </Grid>

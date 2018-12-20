@@ -47,13 +47,16 @@ const theme = createMuiTheme({
       fontFamily: '"Great Vibes", cursive',
       fontSize: '6rem',
     },
-    // h3: {
-    //   fontFamily: '"Montserrat", sans-serif',
-    //   fontWeight: '600',
-    // },
+    h4: {
+      fontFamily: '"Montserrat", san-serif',
+      fontWeight: 600,
+      fontSize: '1.5em',
+      color: brown[600],
+
+      // textTransform: 'uppercase',
+    },
     body1: {
       fontFamily: '"Montserrat", sans-serif',
-      // fontFamily: '"Great Vibes", cursive',
       fontWeight: '300',
       fontSize: '1rem',
     },

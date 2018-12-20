@@ -62,14 +62,15 @@ const RecipeList = ({
       <Grid container justify="center">
         <Grid item xs={12} sm={10} md={8}>
           <Typography variant="h3" className={classes.recipeListTitle}>Pasthrees Catalogue</Typography>
-          <Typography paragraph variant="body1" className={classes.recipeListParagraph}>Find a broad assortment of Pasthrees to print down below. Find below an broad assortment of food printable pastry dishes. With each recipe simple instructions are given in how to prepare the dish. Best of all most recipes can be personalised to your customer wishes!</Typography>
+          <Typography paragraph variant="body1" className={classes.recipeListParagraph}>Pasthrees are chocolate shapes made with food printing technology. A pasthree is highly cutomisable and can be used as a building block in your dish creation process. In our catalogues a broad variety of Pasthrees can be found created by us and the community. Pasthrees can be used in ways intended by the pastry chef, shapes can be used as foundation, decoration or ..</Typography>
+          <Typography paragraph variant="body1" className={classes.recipeListParagraph}>Find below an broad assortment of food printable pasthrees. With each recipe simple instructions are given in how to prepare the pasthree. Best of all most pasthrees can be personalised to your customer wishes!</Typography>
           <RecipeListCarousel recipes={recipes} loading={loading} />
         </Grid>
       </Grid>
 
       <Grid container justify="center">
         <Grid item xs={12} sm={10} md={8}>
-          <Typography variant="body1" className={classes.recipeListParagraph}>Also want to create custom pastry dishes for your business? Get started with an easy dish creation process.</Typography>
+          <Typography paragraph variant="body1" className={classes.recipeListParagraph}>Also want to create custom pasthree shape for your dish? Get started with an easy creation process.</Typography>
         </Grid>
       </Grid>
       <Grid container justify="center">
