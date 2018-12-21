@@ -46,9 +46,7 @@ exports.postBlog = (req, res, next) => {
     const newBlog = new Blog({
       _id: new mongoose.Types.ObjectId(),
       user: req.user.id,
-      profile: req.profile,
-      headline: req.body.headline,
-      article: req.body.article,
+      ...req.body,
       image: imagePath,
     });
     newBlog
@@ -59,9 +57,7 @@ exports.postBlog = (req, res, next) => {
     const newBlog = new Blog({
       _id: new mongoose.Types.ObjectId(),
       user: req.user.id,
-      profile: req.profile,
-      headline: req.body.headline,
-      article: req.body.article,
+      ...req.body,
     });
     newBlog
       .save()

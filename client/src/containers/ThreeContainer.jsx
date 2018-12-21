@@ -13,18 +13,24 @@ class ThreeContainer extends Component {
       largerWindowSizeActive: false,
       scene: '',
     };
+    this.onVolumeHandle = this.onVolumeHandle.bind(this);
   }
-  
+
   componentDidMount() {
     // this.props.getThreeScene(this.props.match.params.id);
     // this.props.saveThreeScene(this.state.scene);
   }
 
+  onVolumeHandle(vol) {
+    const { onVolumeCallback } = this.props;
+    onVolumeCallback(vol);
+  }
+
   render() {
-    const { title, ingredient } = this.props.recipe;
+    const { recipe, cad, cadText } = this.props;
     return (
       <div className="three-container">
-        <ThreeScene title={title} ingredient={ingredient} />
+        <ThreeScene onVolumeHandle={this.onVolumeHandle} title={recipe.title} cad={cad} cadText={cadText} />
       </div>
     );
   }

@@ -9,8 +9,8 @@ import {
   Button,
 } from '@material-ui/core';
 
-import IMG from '../../assets/img/bake-bakery-baking-8924.jpg';
-import IMG_URL from '../../assets/img/foodprinted_sidedish.jpg';
+import IMG from '../../assets/img/bakery-baking-blur-271082.jpg';
+import IMG2 from '../../assets/img/cooking-dishes-herb-1109197.jpg';
 
 const styles = theme => ({
   root: { padding: '32px 0' },
@@ -24,8 +24,8 @@ const styles = theme => ({
     textAlign: 'center',
   },
   storySection: {
-    height: '320px',
     margin: '24px 0',
+    overflow: 'hidden',
   },
   storyButton: {
     marginTop: '12px',
@@ -33,7 +33,7 @@ const styles = theme => ({
   storyImage: {
     minHeight: '100%',
     minWidth: '100%',
-    backgroundImage: `url(${IMG})`,
+    backgroundImage: `url(${IMG2})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
@@ -42,7 +42,7 @@ const styles = theme => ({
     minHeight: '100%',
     minWidth: '100%',
     backgroundImage: `url(${IMG})`,
-    backgroundSize: '100%',
+    backgroundSize: 'cover',
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
   },

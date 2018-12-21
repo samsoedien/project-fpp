@@ -12,6 +12,12 @@ class BlogFormContainer extends Component {
     this.state = {
       headline: '',
       article: '',
+      subtitle1: '',
+      subtitle2: '',
+      section1: '',
+      section2: '',
+      link: '',
+      url: '',
       image: '',
       errors: {},
     };
@@ -36,11 +42,27 @@ class BlogFormContainer extends Component {
   }
 
   onSubmitCallback() {
-    const { headline, article, image } = this.state;
+    const {
+      headline,
+      article,
+      subtitle1,
+      subtitle2,
+      section1,
+      section2,
+      link,
+      url,
+      image,
+    } = this.state;
 
     const blogData = new FormData();
     blogData.append('headline', headline);
     blogData.append('article', article);
+    blogData.append('subtitle1', subtitle1);
+    blogData.append('subtitle2', subtitle2);
+    blogData.append('section1', section1);
+    blogData.append('section2', section2);
+    blogData.append('link', link);
+    blogData.append('url', url);
     blogData.append('image', image);
 
     const { createBlog, history } = this.props;
@@ -51,6 +73,12 @@ class BlogFormContainer extends Component {
     const {
       headline,
       article,
+      subtitle1,
+      subtitle2,
+      section1,
+      section2,
+      link,
+      url,
       image,
       errors,
     } = this.state;
@@ -59,6 +87,12 @@ class BlogFormContainer extends Component {
         <BlogForm
           headline={headline}
           article={article}
+          subtitle1={subtitle1}
+          subtitle2={subtitle2}
+          section1={section1}
+          section2={section2}
+          link={link}
+          url={url}
           image={image}
           errors={errors}
           onChangeCallback={this.onChangeCallback}

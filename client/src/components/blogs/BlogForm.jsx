@@ -29,6 +29,12 @@ const styles = theme => ({
 const BlogForm = ({
   headline,
   article,
+  subtitle1,
+  subtitle2,
+  section1,
+  section2,
+  link,
+  url,
   image,
   onChangeCallback,
   onSubmitCallback,
@@ -77,7 +83,80 @@ const BlogForm = ({
                   error={errors.article}
                   helperText={errors ? errors.article : ''}
                 />
-
+                <TextField
+                  className={classes.blogFormInput}
+                  variant="outlined"
+                  fullWidth
+                  label="Subtitle 1"
+                  type="text"
+                  name="subtitle1"
+                  value={subtitle1}
+                  onChange={onChange}
+                  error={errors.subtitle1}
+                  helperText={errors ? errors.subtitle1 : ''}
+                />
+                <TextField
+                  className={classes.blogFormInput}
+                  variant="outlined"
+                  multiline
+                  rows="4"
+                  fullWidth
+                  label="Section 1"
+                  type="text"
+                  name="section1"
+                  value={section1}
+                  onChange={onChange}
+                  error={errors.section1}
+                  helperText={errors ? errors.section1 : ''}
+                />
+                <TextField
+                  className={classes.blogFormInput}
+                  variant="outlined"
+                  fullWidth
+                  label="Subtitle 2"
+                  type="text"
+                  name="subtitle2"
+                  value={subtitle2}
+                  onChange={onChange}
+                  error={errors.subtitle2}
+                  helperText={errors ? errors.subtitle2 : ''}
+                />
+                <TextField
+                  className={classes.blogFormInput}
+                  variant="outlined"
+                  multiline
+                  rows="4"
+                  fullWidth
+                  label="Section 2"
+                  type="text"
+                  name="section2"
+                  value={section2}
+                  onChange={onChange}
+                  error={errors.section2}
+                  helperText={errors ? errors.section2 : ''}
+                />
+                <TextField
+                  className={classes.blogFormInput}
+                  variant="outlined"
+                  label="Link"
+                  type="text"
+                  name="link"
+                  value={link}
+                  onChange={onChange}
+                  error={errors.link}
+                  helperText={errors ? errors.link : ''}
+                />
+                <TextField
+                  className={classes.blogFormInput}
+                  variant="outlined"
+                  label="URL"
+                  type="text"
+                  name="url"
+                  value={url}
+                  onChange={onChange}
+                  error={errors.url}
+                  helperText={errors ? errors.url : ''}
+                />
                 <Button
                   variant="outlined"
                   color="primary"

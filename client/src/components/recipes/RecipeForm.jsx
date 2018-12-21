@@ -28,11 +28,15 @@ const styles = theme => ({
 
 const RecipeForm = ({
   title,
-  cuisine,
+  categories,
+  specifications,
   description,
-  directions,
-  image,
   settings,
+  printTime,
+  dimensions,
+  cad,
+  cadText,
+  image,
   ingredient,
   onChangeCallback,
   onSubmitCallback,
@@ -74,13 +78,37 @@ const RecipeForm = ({
               className={classes.recipeFormInput}
               variant="outlined"
               fullWidth
-              label="Cuisine"
+              label="Category"
               type="text"
-              name="cuisine"
-              value={cuisine}
+              name="categories"
+              value={categories}
               onChange={onChange}
-              error={errors.cuisine}
-              helperText={errors ? errors.cuisine : ''}
+              error={errors.categories}
+              helperText={errors ? errors.categories : ''}
+            />
+            <TextField
+              className={classes.recipeFormInput}
+              variant="outlined"
+              fullWidth
+              label="Print Time"
+              type="text"
+              name="printTime"
+              value={printTime}
+              onChange={onChange}
+              error={errors.printTime}
+              helperText={errors ? errors.printTime : ''}
+            />
+            <TextField
+              className={classes.recipeFormInput}
+              variant="outlined"
+              fullWidth
+              label="Dimensions"
+              type="text"
+              name="dimensions"
+              value={dimensions}
+              onChange={onChange}
+              error={errors.dimensions}
+              helperText={errors ? errors.dimensions : ''}
             />
             <TextField
               className={classes.recipeFormInput}
@@ -95,6 +123,55 @@ const RecipeForm = ({
               onChange={onChange}
               error={errors.description}
               helperText={errors ? errors.description : ''}
+            />
+            <TextField
+              className={classes.recipeFormInput}
+              variant="outlined"
+              fullWidth
+              label="Specifications"
+              type="text"
+              name="specifications"
+              value={specifications}
+              onChange={onChange}
+              error={errors.specifications}
+              helperText={errors ? errors.specifications : ''}
+            />
+
+            <TextField
+              className={classes.recipeFormInput}
+              variant="outlined"
+              fullWidth
+              label="Print Settings"
+              type="text"
+              name="settings"
+              value={settings}
+              onChange={onChange}
+              error={errors.settings}
+              helperText={errors ? errors.settings : ''}
+            />
+            <TextField
+              className={classes.recipeFormInput}
+              variant="outlined"
+              fullWidth
+              label="CAD model Name"
+              type="text"
+              name="cad"
+              value={cad}
+              onChange={onChange}
+              error={errors.cad}
+              helperText={errors ? errors.cad : ''}
+            />
+            <TextField
+              className={classes.recipeFormInput}
+              variant="outlined"
+              fullWidth
+              label="Text Geometry"
+              type="text"
+              name="cadText"
+              value={cadText}
+              onChange={onChange}
+              error={errors.cadText}
+              helperText={errors ? errors.cadText : ''}
             />
             <Button
               id="image-upload"

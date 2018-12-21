@@ -22,6 +22,7 @@ class RecipeContainer extends Component {
       isLiked: false,
       isFlagged: false,
       comment: '',
+      volume: 0,
       errors: {},
     };
     this.onChangeCallback = this.onChangeCallback.bind(this);
@@ -34,6 +35,7 @@ class RecipeContainer extends Component {
     this.onDeleteCallback = this.onDeleteCallback.bind(this);
     this.onDeletePostCallback = this.onDeletePostCallback.bind(this);
     this.onFavoriteCallback = this.onFavoriteCallback.bind(this);
+    this.onVolumeContainerCallback = this.onVolumeContainerCallback.bind(this)
   }
 
   componentDidMount() {
@@ -136,6 +138,12 @@ class RecipeContainer extends Component {
     this.findUserFavorites(recipe.favorites);
   }
 
+  onVolumeContainerCallback(vol) {
+    this.setState(() => ({
+      volume: vol,
+    }));
+  }
+
   findUserFavorites(favorites) {
     const { auth } = this.props;
     if (favorites.filter(favorite => favorite.user === auth.user.id).length > 0) {
@@ -164,6 +172,7 @@ class RecipeContainer extends Component {
       isLiked,
       isFlagged,
       comment,
+      volume,
       errors,
     } = this.state;
     return (
@@ -177,6 +186,7 @@ class RecipeContainer extends Component {
           isLiked={isLiked}
           isFlagged={isFlagged}
           comment={comment}
+          volume={volume}
           errors={errors}
           onChangeCallback={this.onChangeCallback}
           onCancelCallback={this.onCancelCallback}
@@ -188,6 +198,7 @@ class RecipeContainer extends Component {
           onDeleteCallback={this.onDeleteCallback}
           onDeletePostCallback={this.onDeletePostCallback}
           onFavoriteCallback={this.onFavoriteCallback}
+          onVolumeContainerCallback={this.onVolumeContainerCallback}
         />
       </div>
     );

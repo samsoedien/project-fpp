@@ -25,7 +25,11 @@ const RecipeChips = ({ recipe, classes }) => {
   return (
     <div className="recipe-chips">
       <Grid container justify="center">
-        {recipeChips}
+        <Chip label={recipe.category} className={classes.chip} variant="outlined" color="primary" />
+        <Chip label={recipe.printTime} className={classes.chip} variant="outlined" color="primary" />
+        <Chip label={recipe.dimensions} className={classes.chip} variant="outlined" color="primary" />
+        <Chip label="Vegetarian" className={classes.chip} variant="outlined" color="primary" />
+        <Chip label="Vegetarian" className={classes.chip} variant="outlined" color="primary" />
       </Grid>
     </div>
   );

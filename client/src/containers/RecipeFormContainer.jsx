@@ -11,11 +11,15 @@ class RecipeFormContainer extends Component {
     super(props);
     this.state = {
       title: '',
-      cuisine: '',
+      categories: '',
+      specifications: '',
       description: '',
-      directions: '',
-      image: '',
       settings: '',
+      printTime: '',
+      dimensions: '',
+      cad: '',
+      cadText: '',
+      image: '',
       ingredient: '',
       errors: {},
     };
@@ -53,15 +57,27 @@ class RecipeFormContainer extends Component {
     // };
     const {
       title,
-      cuisine,
+      categories,
+      specifications,
       description,
+      settings,
+      printTime,
+      dimensions,
+      cad,
+      cadText,
       image,
     } = this.state;
 
     const recipeData = new FormData();
     recipeData.append('title', title);
-    recipeData.append('cuisine', cuisine);
+    recipeData.append('categories', categories);
+    recipeData.append('specifications', specifications);
     recipeData.append('description', description);
+    recipeData.append('settings', settings);
+    recipeData.append('printTime', printTime);
+    recipeData.append('dimensions', dimensions);
+    recipeData.append('cad', cad);
+    recipeData.append('cadText', cadText);
     recipeData.append('image', image);
 
     const { createRecipe, history } = this.props;
@@ -71,11 +87,15 @@ class RecipeFormContainer extends Component {
   render() {
     const {
       title,
-      cuisine,
+      categories,
+      specifications,
       description,
-      directions,
-      image,
       settings,
+      printTime,
+      dimensions,
+      cad,
+      cadText,
+      image,
       ingredient,
       errors,
     } = this.state;
@@ -83,11 +103,15 @@ class RecipeFormContainer extends Component {
       <div className="recipe-form-container">
         <RecipeForm
           title={title}
-          cuisine={cuisine}
+          categories={categories}
+          specifications={specifications}
           description={description}
-          directions={directions}
-          image={image}
           settings={settings}
+          printTime={printTime}
+          dimensions={dimensions}
+          cad={cad}
+          cadText={cadText}
+          image={image}
           ingredient={ingredient}
           errors={errors}
           onChangeCallback={this.onChangeCallback}

@@ -4,6 +4,7 @@ import FileSaver from 'file-saver';
 // import * as THREE from 'three';
 // import { STLExporter } from 'three/STLExporter';
 import THREE from '../../helpers/three';
+import { Button } from '@material-ui/core';
 
 const ThreeFileExporter = ({
   name,
@@ -20,7 +21,7 @@ const ThreeFileExporter = ({
     <div className="three-file-exporter">
       <div className="container">
         <div className="position-absolute" style={{ bottom: '8px', right: '4px' }}>
-          <button type="button" className="btn btn-primary btn-sm text-uppercase" onClick={onFileDownload}>Download File (.STL)</button>
+          <Button variant="contained" color="primary" onClick={onFileDownload}>Download File (.STL)</Button>
         </div>
       </div>
     </div>

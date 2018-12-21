@@ -19,6 +19,24 @@ const BlogSchema = new Schema({
     type: String,
     required: true,
   },
+  subtitle1: {
+    type: String,
+  },
+  section1: {
+    type: String,
+  },
+  subtitle2: {
+    type: String,
+  },
+  section2: {
+    type: String,
+  },
+  link: {
+    type: String,
+  },
+  url: {
+    type: String,
+  },
   image: {
     type: String,
     default: 'uploads/blog.jpg',

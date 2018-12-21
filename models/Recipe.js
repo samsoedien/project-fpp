@@ -14,21 +14,34 @@ const RecipeSchema = new Schema({
     required: true,
     unique: true,
   },
-  cuisine: {
+  specifications: {
     type: String,
   },
   description: {
     type: String,
   },
-  directions: {
-    type: [String],
-  },
   image: {
     type: String,
     default: 'uploads/recipe.jpg',
   },
+  categories: {
+    type: [String],
+  },
   settings: {
     type: [String],
+  },
+  printTime: {
+    type: String,
+    default: '20',
+  },
+  dimensions: {
+    type: String,
+  },
+  cad: {
+    type: String,
+  },
+  cadText: {
+    type: String,
   },
   favorites: [
     {

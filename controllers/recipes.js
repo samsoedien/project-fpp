@@ -39,15 +39,20 @@ exports.postRecipe = (req, res, next) => {
       return res.status(400).json(errors);
     }
   });
+  const { categories, settings } = req.body;
   if (req.file) {
     const imagePath = req.file.path.replace(/\\/g, '/');
     console.log(imagePath);
     const newRecipe = new Recipe({
       _id: new mongoose.Types.ObjectId(),
       user: req.user.id,
-      title: req.body.title,
-      cuisine: req.body.cuisine,
-      description: req.body.description,
+      ...req.body,
+      categories: categories.split(','),
+      settings: settings.split(','),
+
+      // title: req.body.title,
+      // cuisine: req.body.cuisine,
+      // description: req.body.description,
       image: imagePath,
     });
     newRecipe
@@ -58,9 +63,10 @@ exports.postRecipe = (req, res, next) => {
     const newRecipe = new Recipe({
       _id: new mongoose.Types.ObjectId(),
       user: req.user.id,
-      title: req.body.title,
-      cuisine: req.body.cuisine,
-      description: req.body.description,
+      ...req.body,
+      // title: req.body.title,
+      // cuisine: req.body.cuisine,
+      // description: req.body.description,
     });
     newRecipe
       .save()

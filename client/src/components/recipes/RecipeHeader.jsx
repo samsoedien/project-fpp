@@ -24,7 +24,7 @@ const styles = theme => ({
     position: 'relative',
     minHeight: '560px',
     minWidth: '100%',
-    backgroundSize: 'auto',
+    backgroundSize: 'cover',
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
     backgroundAttachment: 'fixed',

@@ -6,6 +6,7 @@ import { Grid } from '@material-ui/core';
 
 import THREE from '../../helpers/three';
 // import { threeInit, threeLights, threeCalcVol } from '../../helpers/threeHelpers';
+import { threeInit, threeLights, threeCalcVol } from '../../helpers/threeHelpers';
 import ThreeVolume from './ThreeVolume';
 import ThreeFileExporter from './ThreeFileExporter';
 
@@ -26,6 +27,7 @@ class ThreeScene extends Component {
     this.animate = this.animate.bind(this);
     this.onWindowResize = this.onWindowResize.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.volumeCallback = this.volumeCallback.bind(this);
   }
 
   componentDidMount() {
@@ -50,8 +52,48 @@ class ThreeScene extends Component {
       0.1,
       1000,
     );
+
+    // if (this.props.cad === 'box') {
+    //   const loader = new THREE.ObjectLoader();
+    //   loader.load(
+    //     model,
+    //     (obj) => {
+    //       scene.add(obj);
+    //     },
+    //     (xhr) => {
+    //       console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+    //     },
+    //     (err) => {
+    //       console.error('An error happened');
+    //     },
+    //   );
+    // }
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    const geometry = new THREE.CylinderGeometry(20, 20, 15, 64);
+    // const geometry = new THREE.CylinderGeometry(20, 20, 15, 64);
+    let geometry;
+    if (this.props.cad === 'box' && this.props.cadText === '') {
+      geometry = new THREE.BoxGeometry(20, 20, 20);
+    } else if (this.props.cad === 'cylinder' && this.props.cadText === '') {
+      geometry = new THREE.CylinderGeometry(5, 5, 20, 32);
+      // } else if (this.props.cadText) {
+      // var loader = new THREE.FontLoader();
+      // loader.load('./fonts/helvetiker_regular.typeface.json', function (font) {
+
+      //   geometry = new THREE.TextGeometry('Hello three.js!', {
+      //     font: font,
+      //     size: 80,
+      //     height: 5,
+      //     curveSegments: 12,
+      //     bevelEnabled: true,
+      //     bevelThickness: 10,
+      //     bevelSize: 8,
+      //     bevelSegments: 5
+      //   });
+      // });
+    } else {
+      geometry = new THREE.BoxGeometry(1, 1, 1);
+    }
+
     const material = new THREE.MeshLambertMaterial({ color: 0x3b240e, wireframe: false });
     const mesh = new THREE.Mesh(geometry, material);
 
@@ -82,8 +124,8 @@ class ThreeScene extends Component {
   }
 
   animate() {
-    //this.mesh.rotation.x += 0.01;
-    //this.mesh.rotation.y += 0.01;
+    this.mesh.rotation.x += 0.01;
+    this.mesh.rotation.y += 0.01;
 
     this.renderScene();
     // controls.update();
@@ -122,12 +164,14 @@ class ThreeScene extends Component {
   }
 
   volumeCallback(vol) {
-    console.log('implement vol callback')
+    const { onVolumeHandle } = this.props;
+    onVolumeHandle(vol);
     // const volume = vol;
   }
 
+
   render() {
-    const { classes } = this.props;
+    const { title, classes } = this.props;
     return (
       <div className={classes.root}>
         <Grid container justify="center">
@@ -136,9 +180,9 @@ class ThreeScene extends Component {
             style={{ height: '600px', width: '400px' }}
             ref={(mount) => { this.mount = mount; }}
           >
-            <button type="button" onClick={this.onClick} className="btn btn-secondary btn-sm position-absolute" style={{ top: '8px', right: '4px' }}>{this.state.largerWindowSizeActive ? 'Smaller' : 'Larger'}</button>
-            <ThreeVolume mesh={this.mesh} volumeCallback={this.volumeCallback} />
-            <ThreeFileExporter name={this.props.title} scene={this.state.scene} />
+            {/* <button type="button" onClick={this.onClick} className="btn btn-secondary btn-sm position-absolute" style={{ top: '8px', right: '4px' }}>{this.state.largerWindowSizeActive ? 'Smaller' : 'Larger'}</button> */}
+            <ThreeVolume mesh={this.mesh} name={title} volumeCallback={this.volumeCallback} />
+            <ThreeFileExporter name={title} scene={this.state.scene} />
           </div>
         </Grid>
       </div>

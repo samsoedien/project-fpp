@@ -13,6 +13,7 @@ import {
   TableRow,
   Paper,
   Switch,
+  Tooltip,
 } from '@material-ui/core';
 
 const styles = theme => ({
@@ -30,22 +31,19 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(name, calories, fat, carbs, protein) {
+function createData(name, description, calories, energy, fat, carbs, sugar, protein, salt) {
   id += 1;
-  return { id, name, calories, fat, carbs, protein };
+  return { id, name, description, calories, energy, fat, carbs, sugar, protein, salt };
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Callebaut N811 Pure', 'Cacaomassa, Suiker, Cacaoboter, Emulgator: sojalecithine, Natuurlijk vanille aroma', 546, 2284, 35.9, 46.2, 44, 5, 0.015),
+  createData('Callebaut Power 80 Extra Pure', 'cacaomassa 71,0%; suiker 26,0%; magere cacaopoeder 2,0%; emulgator: sojalecithine <1%; natuurlijk vanille aroma <1%', 545, 2340, 44.5, 20.8, 15.9, 10, 0.03),
+  createData('Callebaut Pure Sao Thome 70%', 'cacaomassa São Tomé 72,5%; suiker 27,0%; emulgator: sojalecithine <1%; natuurlijk vanille aroma <1%', 544, 2281, 39.4, 31.2, 26.9, 8.5, 0.02),
 ];
 
 class Nutritions extends Component {
   state = {
-    volume: 200,
     checked: true,
   };
 
@@ -54,7 +52,7 @@ class Nutritions extends Component {
   };
 
   render() {
-    const { recipe, classes } = this.props;
+    const { recipe, volume, classes } = this.props;
     const { checked } = this.state;
     return (
       <Paper className={classes.root} >
@@ -82,22 +80,30 @@ class Nutritions extends Component {
             <TableRow>
               <TableCell className={classes.tableCellRecipeTitle}>{`${recipe.title} (${checked ? 'per portion' : 'per 100 gram'})`}</TableCell>
               <TableCell numeric>Calories</TableCell>
+              <TableCell numeric>Energy (kJ)</TableCell>
               <TableCell numeric>Fat (g)</TableCell>
               <TableCell numeric>Carbs (g)</TableCell>
+              <TableCell numeric>Sugars (g)</TableCell>
               <TableCell numeric>Protein (g)</TableCell>
+              <TableCell numeric>Salt (g)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map(row => {
               return (
                 <TableRow key={row.id}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell numeric>{row.calories}</TableCell>
-                  <TableCell numeric>{row.fat}</TableCell>
-                  <TableCell numeric>{row.carbs}</TableCell>
-                  <TableCell numeric>{row.protein}</TableCell>
+                  <Tooltip title={row.description} placement="left">
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                  </Tooltip>
+                  <TableCell numeric>{checked ? ((Math.round(10 * (row.calories / 100) * (volume / 1000))) / 10) : row.calories}</TableCell>
+                  <TableCell numeric>{checked ? ((Math.round(10 * (row.energy / 100) * (volume / 1000))) / 10) : row.energy}</TableCell>
+                  <TableCell numeric>{checked ? ((Math.round(10 * (row.fat / 100) * (volume / 1000))) / 10) : row.fat}</TableCell>
+                  <TableCell numeric>{checked ? ((Math.round(10 * (row.carbs / 100) * (volume / 1000))) / 10) : row.carbs}</TableCell>
+                  <TableCell numeric>{checked ? ((Math.round(10 * (row.sugar / 100) * (volume / 1000))) / 10) : row.sugar}</TableCell>
+                  <TableCell numeric>{checked ? ((Math.round(10 * (row.protein / 100) * (volume / 1000))) / 10) : row.protein}</TableCell>
+                  <TableCell numeric>{checked ? ((Math.round(10 * (row.salt / 100) * (volume / 1000))) / 10) : row.salt}</TableCell>
                 </TableRow>
               );
             })}

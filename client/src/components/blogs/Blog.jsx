@@ -13,6 +13,8 @@ import PostFeed from '../posts/PostFeed';
 import PostForm from '../posts/PostForm';
 import Loader from '../common/Loader';
 
+import IMG from '../../assets/img/profile-action-blog.jpg';
+
 const styles = theme => ({
   root: {
   },
@@ -26,11 +28,27 @@ const styles = theme => ({
     textAlign: 'center',
   },
   blogHeadline: {
-    marginTop: '-80px',
+    marginTop: '-60px',
     textTransform: 'capitalize',
   },
   blogSection: {
     textAlign: 'center',
+  },
+  blogIntro: {
+    fontSize: '1.2rem',
+  },
+  subtitle: {
+    margin: '12px 0',
+    textTransform: 'capitalize',
+  },
+  img: {
+    margin: '24px 0',
+    height: '360px',
+    width: '100%',
+    backgroundImage: `url(${IMG})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    backgroundRepeat: 'no-repeat',
   },
 });
 
@@ -112,7 +130,13 @@ const Blog = ({
             <section className={classes.blogSection}>
               <Grid container justify="center">
                 <Grid item xs={10} sm={8} lg={6}>
-                  <Typography>{blog.article}</Typography>
+                  <Typography paragraph variant="body" className={classes.blogIntro}>{blog.article}</Typography>
+                  <Typography variant="h4" className={classes.subtitle}>{blog.subtitle1}</Typography>
+                  <Typography paragraph variant="body1">{blog.section1}</Typography>
+                  <div className={classes.img} />
+                  <Typography variant="h4" className={classes.subtitle}>{blog.subtitle2}</Typography>
+                  <Typography paragraph variant="body1">{blog.section2}</Typography>
+
                 </Grid>
               </Grid>
             </section>
