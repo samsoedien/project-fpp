@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
   Typography,
+  Button,
 } from '@material-ui/core';
 
 import BlogHeader from './BlogHeader';
@@ -14,6 +15,8 @@ import PostForm from '../posts/PostForm';
 import Loader from '../common/Loader';
 
 import IMG from '../../assets/img/profile-action-blog.jpg';
+import isEmpty from '../../utils/is-empty';
+
 
 const styles = theme => ({
   root: {
@@ -136,6 +139,7 @@ const Blog = ({
                   <div className={classes.img} />
                   <Typography variant="h4" className={classes.subtitle}>{blog.subtitle2}</Typography>
                   <Typography paragraph variant="body1">{blog.section2}</Typography>
+                  {!isEmpty(blog.url) ? <Button component={Link} to={blog.url} variant="outlined" color="primary">{blog.link}</Button> : null}
 
                 </Grid>
               </Grid>

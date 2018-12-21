@@ -74,7 +74,7 @@ class ThreeScene extends Component {
     if (this.props.cad === 'box' && this.props.cadText === '') {
       geometry = new THREE.BoxGeometry(20, 20, 20);
     } else if (this.props.cad === 'cylinder' && this.props.cadText === '') {
-      geometry = new THREE.CylinderGeometry(5, 5, 20, 32);
+      geometry = new THREE.CylinderGeometry(20, 20, 50, 32);
       // } else if (this.props.cadText) {
       // var loader = new THREE.FontLoader();
       // loader.load('./fonts/helvetiker_regular.typeface.json', function (font) {
@@ -125,7 +125,7 @@ class ThreeScene extends Component {
 
   animate() {
     this.mesh.rotation.x += 0.01;
-    this.mesh.rotation.y += 0.01;
+    this.mesh.rotation.y += 0.005;
 
     this.renderScene();
     // controls.update();

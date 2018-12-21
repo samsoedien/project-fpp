@@ -38,8 +38,8 @@ const ProfileCard = ({ user, classes }) => {
   return (
     <div className={classes.root}>
       <Grid container direction="column" justify="center">
-        <Typography className={classes.profileCompany}>Bij Robert</Typography>
-        <Link to={`/profile/${user.name}`}>
+        {/* <Typography className={classes.profileCompany}>Bij Robert</Typography> */}
+        <Link to={`/profiles/${user.name}`}>
           <Avatar src={`/${user.image}`} className={classes.profileAvatar} />
         </Link>
         <Typography component={Link} to={`/profile/${user.name}`} color="primary" className={classes.profileName}>{user.name}</Typography>

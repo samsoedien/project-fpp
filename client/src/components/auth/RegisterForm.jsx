@@ -69,7 +69,7 @@ const RegisterForm = ({
   return (
     <div className="register-form-account-details">
       <Typography className={classes.registerFormTitle} variant="h2">Signup</Typography>
-      <Typography className={classes.registerFormText} variant="body1">Create your FPP account</Typography>
+      <Typography className={classes.registerFormText} variant="body1">Create your Pasthrees account</Typography>
       <form onSubmit={onSubmit} className={classes.registerForm} noValidate autoComplete="off">
         <TextField
           id="mui-theme-provider-outlined-input"

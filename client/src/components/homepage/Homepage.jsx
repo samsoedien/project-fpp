@@ -30,8 +30,8 @@ const Homepage = ({ auth, classes }) => (
       <Fragment>
         <Headline />
         <Story />
-        <Features />
-        <div className={classes.backgroundImage} />
+        {/* <Features /> */}
+        {/* <div className={classes.backgroundImage} /> */}
         {/* <div style={{ height: '200px' }} /> */}
         {/* <ImageBanner /> */}
       </Fragment>

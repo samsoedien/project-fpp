@@ -23,9 +23,9 @@ module.exports = function validateProfileInput(data) {
   //   errors.profession = 'Profession field is required';
   // }
 
-  if (Validator.isEmpty(data.company)) {
-    errors.company = 'Business name field is required';
-  }
+  // if (Validator.isEmpty(data.company)) {
+  //   errors.company = 'Business name field is required';
+  // }
 
   if (Validator.isEmpty(data.skills)) {
     errors.skills = 'Status field is required';

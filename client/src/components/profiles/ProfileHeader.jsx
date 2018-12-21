@@ -79,7 +79,7 @@ const ProfileHeader = ({ profile, classes }) => {
     <Paper className={classes.profilePaper}>
       <div style={{ backgroundImage: `url(/${profile.image})` }} className={classes.image} id="myHeader">
         <div className={classes.overlay} />
-        <Typography variant="subtitle" className={classes.profileUser}>{profile.company}</Typography>
+        <Typography variant="subtitle" className={classes.profileUser}>{profile.user.name}</Typography>
         <Avatar src={`/${profile.user.image}`} className={classes.profileAvatar} />
         <Typography variant="h3" className={classes.profileCompany}>{profile.company}</Typography>
 
