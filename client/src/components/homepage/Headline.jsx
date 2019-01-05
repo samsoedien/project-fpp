@@ -39,7 +39,7 @@ const styles = theme => ({
 
 const Headline = ({ classes }) => {
   const words = ['patisserie', 'restaurant', 'chocolaterie', 'confectionery', 'boulanger', 'bakery'];
-  for (let i = 6; i < 18; i++) {
+  for (let i = 6; i < 1800; i++) {
     words[i] = words[i - 6];
   }
 
