@@ -69,8 +69,8 @@ const Dashboard = ({
         <Grid container justify="center">
           <Grid item={10}>
             <Grid container justify="center" spacing={24}>
-              <ProfileAction url="/edit-profile" buttonLabel="Improve Business" actionImage={BUSINESS_IMG} />
-              <ProfileAction url="/create-recipe" buttonLabel="Create a Recipe" actionImage={RECIPE_IMG} />
+              <ProfileAction url="/edit-profile" buttonLabel="Drive Business" actionImage={BUSINESS_IMG} />
+              <ProfileAction url="/create-recipe" buttonLabel="Modify a Pasthree" actionImage={RECIPE_IMG} />
               <ProfileAction url="/create-blog" buttonLabel="Write a Blog" actionImage={BLOG_IMG} />
             </Grid>
           </Grid>
